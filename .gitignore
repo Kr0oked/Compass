@@ -1,13 +1,12 @@
-*.iml
-.gradle
+### Android ###
 /local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
 /captures
 .externalNativeBuild
+
+### Gradle ###
+.gradle
+/build
+
+### JetBrains IDEs ###
+.idea
+*.iml
