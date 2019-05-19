@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import kotlin.math.roundToInt
 
 private const val TAG = "MainActivity"
 private const val SENSOR_SAMPLING_PERIOD_US = SENSOR_DELAY_GAME
@@ -122,7 +123,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private fun updateCompass(azimuth: Float) {
         runOnUiThread {
-            degreeText.text = azimuth.toString()
+            degreeText.text = azimuth.roundToInt().toString()
             compassRoseImage.rotation = azimuth.unaryMinus()
         }
     }
