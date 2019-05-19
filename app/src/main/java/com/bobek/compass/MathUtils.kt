@@ -4,6 +4,6 @@ object MathUtils {
 
     @JvmStatic
     fun normalizeAngle(angleInDegrees: Float): Float {
-        return (angleInDegrees + 720) % 360
+        return (angleInDegrees + 360.0f) % 360.0f
     }
 }
