@@ -25,7 +25,7 @@ private const val Z = 2
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
-    private lateinit var degreeText: TextView
+    private lateinit var degreesText: TextView
     private lateinit var compassRoseImage: ImageView
 
     private lateinit var sensorManager: SensorManager
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        degreeText = findViewById(R.id.compass_degree_text)
+        degreesText = findViewById(R.id.compass_degrees_text)
         compassRoseImage = findViewById(R.id.compass_rose_image)
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
@@ -123,8 +123,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private fun updateCompass(azimuth: Float) {
         runOnUiThread {
-            degreeText.text = azimuth.roundToInt().toString()
+            degreesText.text = buildDegreesText(azimuth)
             compassRoseImage.rotation = azimuth.unaryMinus()
         }
+    }
+
+    private fun buildDegreesText(azimuth: Float): String {
+        return azimuth.roundToInt().toString() + "°"
     }
 }

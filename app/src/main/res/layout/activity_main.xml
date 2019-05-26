@@ -4,27 +4,43 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="10dp"
         tools:context=".MainActivity">
 
-    <ImageView
-            android:id="@+id/compass_rose_image"
+    <android.support.v7.widget.AppCompatImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
             android:adjustViewBounds="true"
-            android:contentDescription="@string/compass_rose_image_description"
-            android:src="@drawable/ic_compass_rose"
+            android:contentDescription="@string/device_heading_indicator_image_description"
+            android:src="@drawable/ic_device_heading_indicator"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-            android:id="@+id/compass_degree_text"
-            android:layout_width="wrap_content"
+    <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/compass_rose_image"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/compass_rose_image_description"
+            android:src="@drawable/ic_compass_rose"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/compass_rose_image" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/compass_degrees_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/compass_degrees_text_description"
+            android:text="@string/zero_degrees"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/compass_rose_image"
+            app:layout_constraintEnd_toEndOf="@+id/compass_rose_image"
+            app:layout_constraintStart_toStartOf="@+id/compass_rose_image"
+            app:layout_constraintTop_toTopOf="@+id/compass_rose_image" />
 
 </android.support.constraint.ConstraintLayout>
