@@ -9,11 +9,13 @@ import android.hardware.SensorManager
 import android.hardware.SensorManager.SENSOR_DELAY_GAME
 import android.os.Bundle
 import android.support.annotation.StringRes
+import android.support.constraint.ConstraintLayout
+import android.support.constraint.ConstraintSet
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.AppCompatImageView
+import android.support.v7.widget.AppCompatTextView
 import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
 import kotlin.math.roundToInt
 
 private const val TAG = "MainActivity"
@@ -22,11 +24,16 @@ private const val LOW_PASS_FILTER_ALPHA = 0.03f
 private const val X = 0
 private const val Y = 1
 private const val Z = 2
+private const val NORTH = 0
+private const val EAST = 90
+private const val SOUTH = 180
+private const val WEST = 270
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
-    private lateinit var degreesText: TextView
-    private lateinit var compassRoseImage: ImageView
+    private lateinit var mainActivityRootLayout: ConstraintLayout
+    private lateinit var degreesText: AppCompatTextView
+    private lateinit var compassRoseImage: AppCompatImageView
 
     private lateinit var sensorManager: SensorManager
 
@@ -38,7 +45,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        degreesText = findViewById(R.id.compass_degrees_text)
+        mainActivityRootLayout = findViewById(R.id.main_activity_root_layout)
+        degreesText = findViewById(R.id.degrees_text)
         compassRoseImage = findViewById(R.id.compass_rose_image)
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
@@ -123,12 +131,31 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private fun updateCompass(azimuth: Float) {
         runOnUiThread {
-            degreesText.text = buildDegreesText(azimuth)
-            compassRoseImage.rotation = azimuth.unaryMinus()
+            degreesText.text = getString(R.string.degrees, azimuth.roundToInt())
+
+            val rotationInDegrees = azimuth.unaryMinus()
+            compassRoseImage.rotation = rotationInDegrees
+            updateCardinalDirectionTexts(rotationInDegrees)
         }
     }
 
-    private fun buildDegreesText(azimuth: Float): String {
-        return azimuth.roundToInt().toString() + "°"
+    private fun updateCardinalDirectionTexts(rotationInDegrees: Float) {
+        val cardinalDirectionRadius = resources.getDimensionPixelOffset(R.dimen.cardinal_direction_radius)
+
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(mainActivityRootLayout)
+        constraintSet.constrainCircle(
+            R.id.cardinal_direction_north_text, R.id.degrees_text, cardinalDirectionRadius, rotationInDegrees + NORTH
+        )
+        constraintSet.constrainCircle(
+            R.id.cardinal_direction_east_text, R.id.degrees_text, cardinalDirectionRadius, rotationInDegrees + EAST
+        )
+        constraintSet.constrainCircle(
+            R.id.cardinal_direction_south_text, R.id.degrees_text, cardinalDirectionRadius, rotationInDegrees + SOUTH
+        )
+        constraintSet.constrainCircle(
+            R.id.cardinal_direction_west_text, R.id.degrees_text, cardinalDirectionRadius, rotationInDegrees + WEST
+        )
+        constraintSet.applyTo(mainActivityRootLayout)
     }
 }

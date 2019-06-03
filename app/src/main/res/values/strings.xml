@@ -5,6 +5,11 @@
     <string name="compass_degrees_text_description">Degrees of the compass</string>
     <string name="device_heading_indicator_image_description">Indicates in which direction the device is pointing</string>
     <string name="zero_degrees">0°</string>
+    <string name="degrees">%1$d°</string>
     <string name="compass_accelerometer_error_message">No accelerometer available</string>
     <string name="compass_magnetometer_error_message">No magnetometer available</string>
+    <string name="cardinal_direction_north">N</string>
+    <string name="cardinal_direction_east">E</string>
+    <string name="cardinal_direction_south">S</string>
+    <string name="cardinal_direction_west">W</string>
 </resources>

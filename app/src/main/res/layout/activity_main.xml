@@ -2,12 +2,14 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main_activity_root_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp"
+        android:padding="@dimen/root_layout_padding"
         tools:context=".MainActivity">
 
     <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/device_heading_indicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -31,16 +33,60 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/compass_degrees_text"
+            android:id="@+id/degrees_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/compass_degrees_text_description"
             android:text="@string/zero_degrees"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="30sp"
+            android:textSize="@dimen/degrees_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/compass_rose_image"
-            app:layout_constraintEnd_toEndOf="@+id/compass_rose_image"
-            app:layout_constraintStart_toStartOf="@+id/compass_rose_image"
+            app:layout_constraintLeft_toLeftOf="@+id/compass_rose_image"
+            app:layout_constraintRight_toRightOf="@+id/compass_rose_image"
             app:layout_constraintTop_toTopOf="@+id/compass_rose_image" />
+
+    <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/cardinal_direction_north_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cardinal_direction_north"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="@dimen/cardinal_direction_text_size"
+            app:layout_constraintCircle="@id/degrees_text"
+            app:layout_constraintCircleAngle="0"
+            app:layout_constraintCircleRadius="@dimen/cardinal_direction_radius" />
+
+    <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/cardinal_direction_east_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cardinal_direction_east"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="@dimen/cardinal_direction_text_size"
+            app:layout_constraintCircle="@id/degrees_text"
+            app:layout_constraintCircleAngle="90"
+            app:layout_constraintCircleRadius="@dimen/cardinal_direction_radius" />
+
+    <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/cardinal_direction_south_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cardinal_direction_south"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="@dimen/cardinal_direction_text_size"
+            app:layout_constraintCircle="@id/degrees_text"
+            app:layout_constraintCircleAngle="180"
+            app:layout_constraintCircleRadius="@dimen/cardinal_direction_radius" />
+
+    <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/cardinal_direction_west_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cardinal_direction_west"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="@dimen/cardinal_direction_text_size"
+            app:layout_constraintCircle="@id/degrees_text"
+            app:layout_constraintCircleAngle="270"
+            app:layout_constraintCircleRadius="@dimen/cardinal_direction_radius" />
 
 </android.support.constraint.ConstraintLayout>
