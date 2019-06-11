@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Compass</string>
+
     <string name="compass_rose_image_description">Compass rose showing to magnetic north</string>
-    <string name="compass_degrees_text_description">Degrees of the compass</string>
     <string name="device_heading_indicator_image_description">Indicates in which direction the device is pointing</string>
+
+    <string name="status_degrees_text_description">Degrees of the compass</string>
+    <string name="status_cardinal_direction_text_description">Cardinal direction of the compass</string>
+
     <string name="zero_degrees">0°</string>
     <string name="degrees">%1$d°</string>
-    <string name="compass_accelerometer_error_message">No accelerometer available</string>
-    <string name="compass_magnetometer_error_message">No magnetometer available</string>
+
     <string name="cardinal_direction_north">N</string>
+    <string name="cardinal_direction_north_east">NE</string>
     <string name="cardinal_direction_east">E</string>
+    <string name="cardinal_direction_south_east">SE</string>
     <string name="cardinal_direction_south">S</string>
+    <string name="cardinal_direction_south_west">SW</string>
     <string name="cardinal_direction_west">W</string>
+    <string name="cardinal_direction_north_west">NW</string>
+
     <string name="degree_0_text">0</string>
     <string name="degree_30_text">30</string>
     <string name="degree_60_text">60</string>
@@ -24,4 +32,7 @@
     <string name="degree_270_text">270</string>
     <string name="degree_300_text">300</string>
     <string name="degree_330_text">330</string>
+
+    <string name="compass_accelerometer_error_message">No accelerometer available</string>
+    <string name="compass_magnetometer_error_message">No magnetometer available</string>
 </resources>

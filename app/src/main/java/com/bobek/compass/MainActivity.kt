@@ -19,6 +19,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.AppCompatTextView
 import android.util.Log
+import com.bobek.compass.MathUtils.determineCardinalDirection
 import kotlin.math.roundToInt
 
 private const val TAG = "MainActivity"
@@ -35,7 +36,8 @@ private const val WEST_OFFSET = 270
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private lateinit var mainActivityRootLayout: ConstraintLayout
-    private lateinit var degreesText: AppCompatTextView
+    private lateinit var statusDegreesText: AppCompatTextView
+    private lateinit var statusCardinalDirectionText: AppCompatTextView
     private lateinit var compassRoseImage: AppCompatImageView
 
     private lateinit var sensorManager: SensorManager
@@ -49,7 +51,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         setContentView(R.layout.activity_main)
 
         mainActivityRootLayout = findViewById(R.id.main_activity_root_layout)
-        degreesText = findViewById(R.id.degrees_text)
+        statusDegreesText = findViewById(R.id.status_degrees_text)
+        statusCardinalDirectionText = findViewById(R.id.status_cardinal_direction_text)
         compassRoseImage = findViewById(R.id.compass_rose_image)
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
@@ -134,7 +137,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private fun updateCompass(azimuth: Float) {
         runOnUiThread {
-            degreesText.text = getString(R.string.degrees, azimuth.roundToInt())
+            statusDegreesText.text = getString(R.string.degrees, azimuth.roundToInt())
+            statusCardinalDirectionText.text = getString(determineCardinalDirection(azimuth).abbreviationResourceId)
 
             val angle = azimuth.unaryMinus()
             compassRoseImage.rotation = angle
