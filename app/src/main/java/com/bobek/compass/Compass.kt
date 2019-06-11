@@ -6,6 +6,7 @@ import android.hardware.SensorManager.getRotationMatrix
 private const val AZIMUTH = 0
 private const val AXIS_SIZE = 3
 private const val ROTATION_MATRIX_SIZE = 9
+private const val ZERO = 0.0f
 
 class Compass {
 
@@ -42,7 +43,7 @@ class Compass {
     }
 
     fun reset() {
-        accelerometerReading.fill(0.0f)
-        magnetometerReading.fill(0.0f)
+        accelerometerReading.fill(ZERO)
+        magnetometerReading.fill(ZERO)
     }
 }

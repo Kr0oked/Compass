@@ -1,5 +1,6 @@
 package com.bobek.compass
 
+import android.graphics.Point
 import android.hardware.Sensor
 import android.hardware.Sensor.TYPE_ACCELEROMETER
 import android.hardware.Sensor.TYPE_MAGNETIC_FIELD
@@ -8,9 +9,11 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.hardware.SensorManager.SENSOR_DELAY_GAME
 import android.os.Bundle
+import android.support.annotation.IdRes
 import android.support.annotation.StringRes
 import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
+import android.support.constraint.Guideline
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.AppCompatImageView
@@ -24,10 +27,10 @@ private const val LOW_PASS_FILTER_ALPHA = 0.03f
 private const val X = 0
 private const val Y = 1
 private const val Z = 2
-private const val NORTH = 0
-private const val EAST = 90
-private const val SOUTH = 180
-private const val WEST = 270
+private const val NORTH_OFFSET = 0
+private const val EAST_OFFSET = 90
+private const val SOUTH_OFFSET = 180
+private const val WEST_OFFSET = 270
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
@@ -133,29 +136,60 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         runOnUiThread {
             degreesText.text = getString(R.string.degrees, azimuth.roundToInt())
 
-            val rotationInDegrees = azimuth.unaryMinus()
-            compassRoseImage.rotation = rotationInDegrees
-            updateCardinalDirectionTexts(rotationInDegrees)
+            val angle = azimuth.unaryMinus()
+            compassRoseImage.rotation = angle
+            rotateTexts(angle)
         }
     }
 
-    private fun updateCardinalDirectionTexts(rotationInDegrees: Float) {
-        val cardinalDirectionRadius = resources.getDimensionPixelOffset(R.dimen.cardinal_direction_radius)
+    private fun rotateTexts(angle: Float) {
+        val displaySize = Point()
+        windowManager.defaultDisplay.getSize(displaySize)
 
         val constraintSet = ConstraintSet()
         constraintSet.clone(mainActivityRootLayout)
-        constraintSet.constrainCircle(
-            R.id.cardinal_direction_north_text, R.id.degrees_text, cardinalDirectionRadius, rotationInDegrees + NORTH
-        )
-        constraintSet.constrainCircle(
-            R.id.cardinal_direction_east_text, R.id.degrees_text, cardinalDirectionRadius, rotationInDegrees + EAST
-        )
-        constraintSet.constrainCircle(
-            R.id.cardinal_direction_south_text, R.id.degrees_text, cardinalDirectionRadius, rotationInDegrees + SOUTH
-        )
-        constraintSet.constrainCircle(
-            R.id.cardinal_direction_west_text, R.id.degrees_text, cardinalDirectionRadius, rotationInDegrees + WEST
-        )
+
+        rotateCardinalDirectionTexts(constraintSet, angle, displaySize)
+        rotateDegreeTexts(constraintSet, angle, displaySize)
+
         constraintSet.applyTo(mainActivityRootLayout)
+    }
+
+    private fun rotateCardinalDirectionTexts(constraintSet: ConstraintSet, angle: Float, displaySize: Point) {
+        val radius = calculateTextRadius(R.id.cardinal_direction_guideline, displaySize)
+        val northAngle = angle + NORTH_OFFSET
+        val eastAngle = angle + EAST_OFFSET
+        val southAngle = angle + SOUTH_OFFSET
+        val westAngle = angle + WEST_OFFSET
+
+        constraintSet.constrainCircle(R.id.cardinal_direction_north_text, R.id.compass_rose_image, radius, northAngle)
+        constraintSet.constrainCircle(R.id.cardinal_direction_east_text, R.id.compass_rose_image, radius, eastAngle)
+        constraintSet.constrainCircle(R.id.cardinal_direction_south_text, R.id.compass_rose_image, radius, southAngle)
+        constraintSet.constrainCircle(R.id.cardinal_direction_west_text, R.id.compass_rose_image, radius, westAngle)
+    }
+
+    private fun rotateDegreeTexts(constraintSet: ConstraintSet, angle: Float, displaySize: Point) {
+        val radius = calculateTextRadius(R.id.degree_guideline, displaySize)
+
+        constraintSet.constrainCircle(R.id.degree_0_text, R.id.compass_rose_image, radius, angle)
+        constraintSet.constrainCircle(R.id.degree_30_text, R.id.compass_rose_image, radius, angle + 30)
+        constraintSet.constrainCircle(R.id.degree_60_text, R.id.compass_rose_image, radius, angle + 60)
+        constraintSet.constrainCircle(R.id.degree_90_text, R.id.compass_rose_image, radius, angle + 90)
+        constraintSet.constrainCircle(R.id.degree_120_text, R.id.compass_rose_image, radius, angle + 120)
+        constraintSet.constrainCircle(R.id.degree_150_text, R.id.compass_rose_image, radius, angle + 150)
+        constraintSet.constrainCircle(R.id.degree_180_text, R.id.compass_rose_image, radius, angle + 180)
+        constraintSet.constrainCircle(R.id.degree_210_text, R.id.compass_rose_image, radius, angle + 210)
+        constraintSet.constrainCircle(R.id.degree_240_text, R.id.compass_rose_image, radius, angle + 240)
+        constraintSet.constrainCircle(R.id.degree_270_text, R.id.compass_rose_image, radius, angle + 270)
+        constraintSet.constrainCircle(R.id.degree_300_text, R.id.compass_rose_image, radius, angle + 300)
+        constraintSet.constrainCircle(R.id.degree_330_text, R.id.compass_rose_image, radius, angle + 330)
+    }
+
+    private fun calculateTextRadius(@IdRes id: Int, displaySize: Point): Int {
+        val guidelineLocation = IntArray(2)
+        val guideline = findViewById<Guideline>(id)
+        guideline.getLocationInWindow(guidelineLocation)
+
+        return displaySize.x / 2 - guidelineLocation[X]
     }
 }

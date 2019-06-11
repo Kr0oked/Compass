@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="root_layout_padding">16dp</dimen>
     <dimen name="degrees_text_size">30dp</dimen>
     <dimen name="cardinal_direction_radius">100dp</dimen>
     <dimen name="cardinal_direction_text_size">30dp</dimen>
+    <dimen name="degree_text_size">10dp</dimen>
+    <dimen name="degree_radius">160dp</dimen>
 </resources>
