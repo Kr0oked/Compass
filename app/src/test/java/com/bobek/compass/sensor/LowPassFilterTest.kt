@@ -1,4 +1,4 @@
-package com.bobek.compass
+package com.bobek.compass.sensor
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

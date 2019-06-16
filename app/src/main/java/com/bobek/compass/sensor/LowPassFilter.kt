@@ -1,5 +1,4 @@
-package com.bobek.compass
-
+package com.bobek.compass.sensor
 
 class LowPassFilter(private val alpha: Float) {
 

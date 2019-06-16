@@ -1,4 +1,4 @@
-package com.bobek.compass
+package com.bobek.compass.sensor
 
 import android.hardware.SensorManager.getOrientation
 import android.hardware.SensorManager.getRotationMatrix
@@ -8,7 +8,7 @@ private const val AXIS_SIZE = 3
 private const val ROTATION_MATRIX_SIZE = 9
 private const val ZERO = 0.0f
 
-class Compass {
+class SensorHandler {
 
     private val accelerometerReading = FloatArray(AXIS_SIZE)
     private val magnetometerReading = FloatArray(AXIS_SIZE)
@@ -39,7 +39,7 @@ class Compass {
         val orientationAnglesInRadians = getOrientation(rotationMatrix, FloatArray(AXIS_SIZE))
         val azimuthInRadians = orientationAnglesInRadians[AZIMUTH]
         val azimuthInDegrees = Math.toDegrees(azimuthInRadians.toDouble()).toFloat()
-        return MathUtils.normalizeAngle(azimuthInDegrees)
+        return SensorUtils.normalizeAngle(azimuthInDegrees)
     }
 
     fun reset() {

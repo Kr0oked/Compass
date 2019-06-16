@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="root_layout_padding">8dp</dimen>
+
     <dimen name="status_text_size">30dp</dimen>
     <dimen name="cardinal_direction_radius">100dp</dimen>
     <dimen name="cardinal_direction_text_size">30dp</dimen>

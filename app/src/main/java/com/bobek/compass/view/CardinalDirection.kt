@@ -1,6 +1,7 @@
-package com.bobek.compass
+package com.bobek.compass.view
 
 import android.support.annotation.StringRes
+import com.bobek.compass.R
 
 enum class CardinalDirection(@StringRes val abbreviationResourceId: Int) {
     NORTH(R.string.cardinal_direction_north),
