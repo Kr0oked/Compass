@@ -3,22 +3,22 @@ package com.bobek.compass.view
 object CompassUtils {
 
     @JvmStatic
-    fun determineCardinalDirection(azimuth: Float): CardinalDirection {
+    fun determineCardinalDirection(degrees: Float): CardinalDirection {
         val cardinalDirection: CardinalDirection
 
-        if (azimuth >= 22.5f && azimuth < 67.5f) {
+        if (degrees >= 22.5f && degrees < 67.5f) {
             cardinalDirection = CardinalDirection.NORTH_EAST
-        } else if (azimuth >= 67.5f && azimuth < 112.5f) {
+        } else if (degrees >= 67.5f && degrees < 112.5f) {
             cardinalDirection = CardinalDirection.EAST
-        } else if (azimuth >= 112.5f && azimuth < 157.5f) {
+        } else if (degrees >= 112.5f && degrees < 157.5f) {
             cardinalDirection = CardinalDirection.SOUTH_EAST
-        } else if (azimuth >= 157.5f && azimuth < 202.5f) {
+        } else if (degrees >= 157.5f && degrees < 202.5f) {
             cardinalDirection = CardinalDirection.SOUTH
-        } else if (azimuth >= 202.5f && azimuth < 247.5f) {
+        } else if (degrees >= 202.5f && degrees < 247.5f) {
             cardinalDirection = CardinalDirection.SOUTH_WEST
-        } else if (azimuth >= 247.5f && azimuth < 292.5f) {
+        } else if (degrees >= 247.5f && degrees < 292.5f) {
             cardinalDirection = CardinalDirection.WEST
-        } else if (azimuth >= 292.5f && azimuth < 337.5f) {
+        } else if (degrees >= 292.5f && degrees < 337.5f) {
             cardinalDirection = CardinalDirection.NORTH_WEST
         } else {
             cardinalDirection = CardinalDirection.NORTH

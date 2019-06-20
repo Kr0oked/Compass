@@ -12,6 +12,8 @@ import android.support.annotation.StringRes
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import com.bobek.compass.sensor.LowPassFilter
 import com.bobek.compass.sensor.SensorHandler
 import com.bobek.compass.sensor.SensorValues
@@ -52,28 +54,29 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
         reset()
 
-        val accelerometerSuccess = sensorManager.getDefaultSensor(TYPE_ACCELEROMETER)?.let { accelerometer ->
-            sensorManager.registerListener(this, accelerometer, SENSOR_SAMPLING_PERIOD_US)
-        } ?: false
-
-        if (!accelerometerSuccess) {
+        val accelerometer = sensorManager.getDefaultSensor(TYPE_ACCELEROMETER)
+        if (accelerometer == null) {
             showErrorDialog(R.string.compass_accelerometer_error_message)
+            return
         }
 
-        val magnetometerSuccess = sensorManager.getDefaultSensor(TYPE_MAGNETIC_FIELD)?.let { magnetometer ->
-            sensorManager.registerListener(this, magnetometer, SENSOR_SAMPLING_PERIOD_US)
-        } ?: false
-
-        if (!magnetometerSuccess) {
-            stopSensorEventListening()
+        val magnetometer = sensorManager.getDefaultSensor(TYPE_MAGNETIC_FIELD)
+        if (magnetometer == null) {
             showErrorDialog(R.string.compass_magnetometer_error_message)
+            return
         }
+
+        sensorManager.registerListener(this, accelerometer, SENSOR_SAMPLING_PERIOD_US)
+        sensorManager.registerListener(this, magnetometer, SENSOR_SAMPLING_PERIOD_US)
+
+        compass.visibility = VISIBLE
     }
 
     private fun reset() {
         accelerometerFilter.reset()
         magnetometerFilter.reset()
         sensorHandler.reset()
+        compass.visibility = GONE
     }
 
     private fun showErrorDialog(@StringRes messageId: Int) {
@@ -109,7 +112,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         SensorValues(values[X], values[Y], values[Z])
             .let { sensorValues -> accelerometerFilter.filter(sensorValues) }
             .let { filteredValues -> sensorHandler.handleAccelerometerValues(filteredValues) }
-            ?.let { azimuth -> updateUi(azimuth) }
+            ?.let { azimuth -> compass.setDegrees(azimuth) }
     }
 
     private fun handleMagneticFieldValues(values: FloatArray) {
@@ -117,12 +120,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         SensorValues(values[X], values[Y], values[Z])
             .let { sensorValues -> magnetometerFilter.filter(sensorValues) }
             .let { filteredValues -> sensorHandler.handleMagneticFieldValues(filteredValues) }
-            ?.let { azimuth -> updateUi(azimuth) }
-    }
-
-    private fun updateUi(azimuth: Float) {
-        runOnUiThread {
-            compass.update(azimuth)
-        }
+            ?.let { azimuth -> compass.setDegrees(azimuth) }
     }
 }
