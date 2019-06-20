@@ -3,7 +3,6 @@ package com.bobek.compass.view
 import android.content.Context
 import android.support.constraint.ConstraintLayout
 import android.support.constraint.ConstraintSet
-import android.support.constraint.Guideline
 import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.AppCompatTextView
 import android.util.AttributeSet
@@ -15,13 +14,14 @@ private const val EAST_OFFSET = 90
 private const val SOUTH_OFFSET = 180
 private const val WEST_OFFSET = 270
 
+private const val CARDINAL_DIRECTION_TEXT_RATIO = 0.23f
+private const val DEGREE_TEXT_RATIO = 0.08f
+
 class Compass(context: Context, attributeSet: AttributeSet) : ConstraintLayout(context, attributeSet) {
 
     private lateinit var statusDegreesText: AppCompatTextView
     private lateinit var statusCardinalDirectionText: AppCompatTextView
     private lateinit var compassRoseImage: AppCompatImageView
-    private lateinit var degreeGuideline: Guideline
-    private lateinit var cardinalDirectionGuideline: Guideline
 
     init {
         inflate(context, R.layout.compass, this)
@@ -37,8 +37,6 @@ class Compass(context: Context, attributeSet: AttributeSet) : ConstraintLayout(c
         statusDegreesText = findViewById(R.id.status_degrees_text)
         statusCardinalDirectionText = findViewById(R.id.status_cardinal_direction_text)
         compassRoseImage = findViewById(R.id.compass_rose_image)
-        degreeGuideline = findViewById(R.id.degree_guideline)
-        cardinalDirectionGuideline = findViewById(R.id.cardinal_direction_guideline)
     }
 
     fun setDegrees(degrees: Float) {
@@ -64,7 +62,7 @@ class Compass(context: Context, attributeSet: AttributeSet) : ConstraintLayout(c
     }
 
     private fun rotateCardinalDirectionTexts(constraintSet: ConstraintSet, rotation: Float) {
-        val radius = calculateTextRadius(cardinalDirectionGuideline)
+        val radius = calculateTextRadius(CARDINAL_DIRECTION_TEXT_RATIO)
         val northAngle = rotation + NORTH_OFFSET
         val eastAngle = rotation + EAST_OFFSET
         val southAngle = rotation + SOUTH_OFFSET
@@ -77,7 +75,7 @@ class Compass(context: Context, attributeSet: AttributeSet) : ConstraintLayout(c
     }
 
     private fun rotateDegreeTexts(constraintSet: ConstraintSet, rotation: Float) {
-        val radius = calculateTextRadius(degreeGuideline)
+        val radius = calculateTextRadius(DEGREE_TEXT_RATIO)
 
         constraintSet.constrainCircle(R.id.degree_0_text, R.id.compass_rose_image, radius, rotation)
         constraintSet.constrainCircle(R.id.degree_30_text, R.id.compass_rose_image, radius, rotation + 30)
@@ -93,10 +91,7 @@ class Compass(context: Context, attributeSet: AttributeSet) : ConstraintLayout(c
         constraintSet.constrainCircle(R.id.degree_330_text, R.id.compass_rose_image, radius, rotation + 330)
     }
 
-    private fun calculateTextRadius(guideline: Guideline): Int {
-        val guidelineLocation = IntArray(2)
-        guideline.getLocationInWindow(guidelineLocation)
-
-        return width / 2 - guidelineLocation.first()
+    private fun calculateTextRadius(ratio: Float): Int {
+        return width / 2 - (width * ratio).toInt()
     }
 }

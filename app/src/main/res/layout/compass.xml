@@ -4,20 +4,6 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.constraint.Guideline
-            android:id="@+id/degree_guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.05" />
-
-    <android.support.constraint.Guideline
-            android:id="@+id/cardinal_direction_guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.24" />
-
-    <android.support.constraint.Guideline
             android:id="@+id/center_horizontal_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,7 +13,7 @@
     <android.support.v7.widget.AppCompatImageView
             android:id="@+id/device_heading_indicator"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:contentDescription="@string/device_heading_indicator_image_description"
             android:src="@drawable/ic_device_heading_indicator"
@@ -39,7 +25,7 @@
     <android.support.v7.widget.AppCompatImageView
             android:id="@+id/compass_rose_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:adjustViewBounds="true"
             android:contentDescription="@string/compass_rose_image_description"
             android:src="@drawable/ic_compass_rose"
