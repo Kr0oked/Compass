@@ -12,8 +12,7 @@
     <path
             android:pathData="M100,25 L100,35"
             android:strokeWidth="2"
-            android:strokeColor="?android:attr/colorAccent"
-            android:strokeLineCap="butt" />
+            android:strokeColor="?android:attr/colorAccent" />
 
     <group
             android:pivotX="100"
@@ -22,8 +21,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -32,8 +30,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -42,8 +39,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -52,8 +48,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -62,8 +57,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -72,8 +66,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -82,8 +75,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -92,8 +84,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -102,8 +93,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -112,8 +102,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -122,8 +111,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -132,8 +120,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -142,8 +129,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -152,8 +138,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
 
     <group
@@ -163,8 +148,7 @@
         <path
                 android:pathData="M100,26 L100,35"
                 android:strokeWidth="2"
-                android:strokeColor="?android:attr/textColorPrimary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorPrimary" />
     </group>
 
     <group
@@ -174,8 +158,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -184,8 +167,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -194,8 +176,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -204,8 +185,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -214,8 +194,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -224,8 +203,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -234,8 +212,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -244,8 +221,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -254,8 +230,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -264,8 +239,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -274,8 +248,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -284,8 +257,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -294,8 +266,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -304,8 +275,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
 
     <group
@@ -315,8 +285,7 @@
         <path
                 android:pathData="M100,26 L100,35"
                 android:strokeWidth="2"
-                android:strokeColor="?android:attr/textColorPrimary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorPrimary" />
     </group>
 
     <group
@@ -326,8 +295,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -336,8 +304,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -346,8 +313,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -356,8 +322,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -366,8 +331,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -376,8 +340,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -386,8 +349,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -396,8 +358,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -406,8 +367,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -416,8 +376,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -426,8 +385,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -436,8 +394,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -446,8 +403,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -456,8 +412,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
 
     <group
@@ -467,8 +422,7 @@
         <path
                 android:pathData="M100,26 L100,35"
                 android:strokeWidth="2"
-                android:strokeColor="?android:attr/textColorPrimary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorPrimary" />
     </group>
 
     <group
@@ -478,8 +432,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -488,8 +441,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -498,8 +450,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -508,8 +459,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -518,8 +468,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -528,8 +477,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -538,8 +486,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -548,8 +495,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -558,8 +504,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -568,8 +513,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -578,8 +522,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -588,8 +531,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -598,8 +540,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -608,8 +549,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
 
     <group
@@ -619,8 +559,7 @@
         <path
                 android:pathData="M100,26 L100,35"
                 android:strokeWidth="2"
-                android:strokeColor="?android:attr/textColorPrimary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorPrimary" />
     </group>
 
     <group
@@ -630,8 +569,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -640,8 +578,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -650,8 +587,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -660,8 +596,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -670,8 +605,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -680,8 +614,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -690,8 +623,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -700,8 +632,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -710,8 +641,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -720,8 +650,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -730,8 +659,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -740,8 +668,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -750,8 +677,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -760,8 +686,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
 
     <group
@@ -771,8 +696,7 @@
         <path
                 android:pathData="M100,26 L100,35"
                 android:strokeWidth="2"
-                android:strokeColor="?android:attr/textColorPrimary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorPrimary" />
     </group>
 
     <group
@@ -782,8 +706,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -792,8 +715,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -802,8 +724,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -812,8 +733,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -822,8 +742,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -832,8 +751,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -842,8 +760,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -852,8 +769,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -862,8 +778,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -872,8 +787,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -882,8 +796,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -892,8 +805,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -902,8 +814,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -912,8 +823,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
 
     <group
@@ -923,8 +833,7 @@
         <path
                 android:pathData="M100,26 L100,35"
                 android:strokeWidth="2"
-                android:strokeColor="?android:attr/textColorPrimary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorPrimary" />
     </group>
 
     <group
@@ -934,8 +843,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -944,8 +852,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -954,8 +861,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -964,8 +870,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -974,8 +879,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -984,8 +888,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -994,8 +897,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1004,8 +906,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1014,8 +915,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1024,8 +924,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1034,8 +933,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1044,8 +942,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1054,8 +951,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1064,8 +960,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
 
     <group
@@ -1075,8 +970,7 @@
         <path
                 android:pathData="M100,26 L100,35"
                 android:strokeWidth="2"
-                android:strokeColor="?android:attr/textColorPrimary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorPrimary" />
     </group>
 
     <group
@@ -1086,8 +980,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1096,8 +989,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1106,8 +998,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1116,8 +1007,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1126,8 +1016,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1136,8 +1025,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1146,8 +1034,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1156,8 +1043,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1166,8 +1052,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1176,8 +1061,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1186,8 +1070,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1196,8 +1079,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1206,8 +1088,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1216,8 +1097,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
 
     <group
@@ -1227,8 +1107,7 @@
         <path
                 android:pathData="M100,26 L100,35"
                 android:strokeWidth="2"
-                android:strokeColor="?android:attr/textColorPrimary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorPrimary" />
     </group>
 
     <group
@@ -1238,8 +1117,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1248,8 +1126,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1258,8 +1135,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1268,8 +1144,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1278,8 +1153,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1288,8 +1162,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1298,8 +1171,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1308,8 +1180,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1318,8 +1189,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1328,8 +1198,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1338,8 +1207,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1348,8 +1216,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1358,8 +1225,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1368,8 +1234,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
 
     <group
@@ -1379,8 +1244,7 @@
         <path
                 android:pathData="M100,26 L100,35"
                 android:strokeWidth="2"
-                android:strokeColor="?android:attr/textColorPrimary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorPrimary" />
     </group>
 
     <group
@@ -1390,8 +1254,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1400,8 +1263,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1410,8 +1272,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1420,8 +1281,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1430,8 +1290,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1440,8 +1299,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1450,8 +1308,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1460,8 +1317,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1470,8 +1326,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1480,8 +1335,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1490,8 +1344,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1500,8 +1353,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1510,8 +1362,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1520,8 +1371,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
 
     <group
@@ -1531,8 +1381,7 @@
         <path
                 android:pathData="M100,26 L100,35"
                 android:strokeWidth="2"
-                android:strokeColor="?android:attr/textColorPrimary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorPrimary" />
     </group>
 
     <group
@@ -1542,8 +1391,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1552,8 +1400,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1562,8 +1409,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1572,8 +1418,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1582,8 +1427,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1592,8 +1436,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1602,8 +1445,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1612,8 +1454,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1622,8 +1463,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1632,8 +1472,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1642,8 +1481,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1652,8 +1490,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1662,8 +1499,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1672,8 +1508,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
 
     <group
@@ -1683,8 +1518,7 @@
         <path
                 android:pathData="M100,26 L100,35"
                 android:strokeWidth="2"
-                android:strokeColor="?android:attr/textColorPrimary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorPrimary" />
     </group>
 
     <group
@@ -1694,8 +1528,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1704,8 +1537,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1714,8 +1546,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1724,8 +1555,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1734,8 +1564,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1744,8 +1573,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1754,8 +1582,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1764,8 +1591,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1774,8 +1600,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1784,8 +1609,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1794,8 +1618,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1804,8 +1627,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1814,8 +1636,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
     <group
             android:pivotX="100"
@@ -1824,8 +1645,7 @@
         <path
                 android:pathData="M100,28 L100,35"
                 android:strokeWidth="1"
-                android:strokeColor="?android:attr/textColorSecondary"
-                android:strokeLineCap="butt" />
+                android:strokeColor="?android:attr/textColorSecondary" />
     </group>
 
 </vector>

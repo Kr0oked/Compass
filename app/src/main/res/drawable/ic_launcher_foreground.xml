@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="108dp"
+        android:height="108dp"
+        android:viewportWidth="108"
+        android:viewportHeight="108">
+
+    <group
+            android:pivotX="54"
+            android:pivotY="54"
+            android:rotation="45">
+
+        <path
+                android:fillColor="@color/colorAccent"
+                android:pathData="M54,22 L48,29 L60,29 Z" />
+
+        <path
+                android:pathData="M54,28 L54,41"
+                android:strokeWidth="5"
+                android:strokeColor="@color/colorAccent" />
+
+        <group
+                android:pivotX="54"
+                android:pivotY="54"
+                android:rotation="90">
+            <path
+                    android:pathData="M54,28 L54,41"
+                    android:strokeWidth="5"
+                    android:strokeColor="@android:color/primary_text_dark" />
+        </group>
+
+        <group
+                android:pivotX="54"
+                android:pivotY="54"
+                android:rotation="180">
+            <path
+                    android:pathData="M54,28 L54,41"
+                    android:strokeWidth="5"
+                    android:strokeColor="@android:color/primary_text_dark" />
+        </group>
+
+        <group
+                android:pivotX="54"
+                android:pivotY="54"
+                android:rotation="270">
+            <path
+                    android:pathData="M54,28 L54,41"
+                    android:strokeWidth="5"
+                    android:strokeColor="@android:color/primary_text_dark" />
+        </group>
+
+        <group
+                android:pivotX="54"
+                android:pivotY="54"
+                android:rotation="30">
+            <path
+                    android:pathData="M54,34 L54,41"
+                    android:strokeWidth="2"
+                    android:strokeColor="@android:color/secondary_text_dark" />
+        </group>
+
+        <group
+                android:pivotX="54"
+                android:pivotY="54"
+                android:rotation="60">
+            <path
+                    android:pathData="M54,34 L54,41"
+                    android:strokeWidth="2"
+                    android:strokeColor="@android:color/secondary_text_dark" />
+        </group>
+
+        <group
+                android:pivotX="54"
+                android:pivotY="54"
+                android:rotation="120">
+            <path
+                    android:pathData="M54,34 L54,41"
+                    android:strokeWidth="2"
+                    android:strokeColor="@android:color/secondary_text_dark" />
+        </group>
+
+        <group
+                android:pivotX="54"
+                android:pivotY="54"
+                android:rotation="150">
+            <path
+                    android:pathData="M54,34 L54,41"
+                    android:strokeWidth="2"
+                    android:strokeColor="@android:color/secondary_text_dark" />
+        </group>
+
+        <group
+                android:pivotX="54"
+                android:pivotY="54"
+                android:rotation="210">
+            <path
+                    android:pathData="M54,34 L54,41"
+                    android:strokeWidth="2"
+                    android:strokeColor="@android:color/secondary_text_dark" />
+        </group>
+
+        <group
+                android:pivotX="54"
+                android:pivotY="54"
+                android:rotation="240">
+            <path
+                    android:pathData="M54,34 L54,41"
+                    android:strokeWidth="2"
+                    android:strokeColor="@android:color/secondary_text_dark" />
+        </group>
+
+        <group
+                android:pivotX="54"
+                android:pivotY="54"
+                android:rotation="300">
+            <path
+                    android:pathData="M54,34 L54,41"
+                    android:strokeWidth="2"
+                    android:strokeColor="@android:color/secondary_text_dark" />
+        </group>
+
+        <group
+                android:pivotX="54"
+                android:pivotY="54"
+                android:rotation="330">
+            <path
+                    android:pathData="M54,34 L54,41"
+                    android:strokeWidth="2"
+                    android:strokeColor="@android:color/secondary_text_dark" />
+        </group>
+
+    </group>
+
+</vector>
