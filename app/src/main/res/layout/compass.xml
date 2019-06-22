@@ -3,14 +3,14 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
             android:id="@+id/center_horizontal_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.5" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/device_heading_indicator"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -22,7 +22,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/compass_rose_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -34,7 +34,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/status_degrees_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:ignore="SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/status_cardinal_direction_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             app:layout_constraintTop_toBottomOf="@id/center_horizontal_guideline"
             tools:ignore="SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cardinal_direction_north_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
             app:layout_constraintCircleRadius="@dimen/cardinal_direction_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cardinal_direction_east_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
             app:layout_constraintCircleRadius="@dimen/cardinal_direction_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cardinal_direction_south_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,7 +96,7 @@
             app:layout_constraintCircleRadius="@dimen/cardinal_direction_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cardinal_direction_west_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
             app:layout_constraintCircleRadius="@dimen/cardinal_direction_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_0_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,7 +120,7 @@
             app:layout_constraintCircleRadius="@dimen/degree_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_30_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
             app:layout_constraintCircleRadius="@dimen/degree_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_60_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
             app:layout_constraintCircleRadius="@dimen/degree_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_90_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
             app:layout_constraintCircleRadius="@dimen/degree_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_120_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -168,7 +168,7 @@
             app:layout_constraintCircleRadius="@dimen/degree_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_150_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -180,7 +180,7 @@
             app:layout_constraintCircleRadius="@dimen/degree_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_180_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -192,7 +192,7 @@
             app:layout_constraintCircleRadius="@dimen/degree_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_210_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -204,7 +204,7 @@
             app:layout_constraintCircleRadius="@dimen/degree_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_240_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -216,7 +216,7 @@
             app:layout_constraintCircleRadius="@dimen/degree_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_270_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -228,7 +228,7 @@
             app:layout_constraintCircleRadius="@dimen/degree_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_300_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -240,7 +240,7 @@
             app:layout_constraintCircleRadius="@dimen/degree_radius"
             tools:ignore="MissingConstraints,SpUsage" />
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_330_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

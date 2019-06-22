@@ -8,12 +8,12 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.hardware.SensorManager.SENSOR_DELAY_GAME
 import android.os.Bundle
-import android.support.annotation.StringRes
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.bobek.compass.sensor.LowPassFilter
 import com.bobek.compass.sensor.SensorHandler
 import com.bobek.compass.sensor.SensorValues
