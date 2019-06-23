@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="com.bobek.compass.MainActivity">
+
+    <item
+            android:id="@+id/action_night_mode"
+            android:icon="@drawable/ic_night_mode_auto"
+            android:title="@string/action_night_mode"
+            app:showAsAction="ifRoom" />
+
+</menu>
