@@ -12,12 +12,12 @@ import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bobek.compass.sensor.LowPassFilter
 import com.bobek.compass.sensor.SensorHandler
 import com.bobek.compass.sensor.SensorValues
 import com.bobek.compass.view.Compass
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 private const val TAG = "MainActivity"
 private const val SENSOR_SAMPLING_PERIOD_US = SENSOR_DELAY_GAME
@@ -52,7 +52,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onResume() {
         super.onResume()
 
-        reset()
+        compass.visibility = GONE
 
         val accelerometer = sensorManager.getDefaultSensor(TYPE_ACCELEROMETER)
         if (accelerometer == null) {
@@ -72,15 +72,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         compass.visibility = VISIBLE
     }
 
-    private fun reset() {
-        accelerometerFilter.reset()
-        magnetometerFilter.reset()
-        sensorHandler.reset()
-        compass.visibility = GONE
-    }
-
     private fun showErrorDialog(@StringRes messageId: Int) {
-        AlertDialog.Builder(this)
+        MaterialAlertDialogBuilder(this)
             .setMessage(messageId)
             .setIcon(android.R.drawable.ic_dialog_alert)
             .setCancelable(false)
@@ -90,11 +83,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onPause() {
         super.onPause()
-        stopSensorEventListening()
-    }
-
-    private fun stopSensorEventListening() {
         sensorManager.unregisterListener(this)
+        accelerometerFilter.reset()
+        magnetometerFilter.reset()
+        sensorHandler.reset()
     }
 
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
