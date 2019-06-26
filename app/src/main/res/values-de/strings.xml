@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Compass.
+  ~ Copyright (C) 2019 Philipp Bobek
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Compass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">Kompass</string>
+    <string name="action_night_mode">Nachtmodus wechseln</string>
+
+    <string name="compass_rose_image_description">Windrose die den magnetischen Norden anzeigt</string>
+    <string name="device_heading_indicator_image_description">Gibt die Richtung an in die das Gerät zeigt</string>
+
+    <string name="status_degrees_text_description">Grad Anzahl des Kompass</string>
+    <string name="status_cardinal_direction_text_description">Himmelsrichtung des Kompass</string>
+
+    <string name="zero_degrees">0°</string>
+    <string name="degrees">%1$d°</string>
+
+    <string name="cardinal_direction_north">N</string>
+    <string name="cardinal_direction_north_east">NO</string>
+    <string name="cardinal_direction_east">O</string>
+    <string name="cardinal_direction_south_east">SO</string>
+    <string name="cardinal_direction_south">S</string>
+    <string name="cardinal_direction_south_west">SW</string>
+    <string name="cardinal_direction_west">W</string>
+    <string name="cardinal_direction_north_west">NW</string>
+
+    <string name="degree_0_text">0</string>
+    <string name="degree_30_text">30</string>
+    <string name="degree_60_text">60</string>
+    <string name="degree_90_text">90</string>
+    <string name="degree_120_text">120</string>
+    <string name="degree_150_text">150</string>
+    <string name="degree_180_text">180</string>
+    <string name="degree_210_text">210</string>
+    <string name="degree_240_text">240</string>
+    <string name="degree_270_text">270</string>
+    <string name="degree_300_text">300</string>
+    <string name="degree_330_text">330</string>
+
+    <string name="compass_accelerometer_error_message">Es wurde kein Beschleunigungssensor gefunden</string>
+    <string name="compass_magnetometer_error_message">Es wurde kein Magnetometer gefunden</string>
+</resources>
