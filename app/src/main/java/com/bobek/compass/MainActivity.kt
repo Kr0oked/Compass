@@ -80,6 +80,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private fun initializeNightMode(savedInstanceState: Bundle?) {
         nightMode = savedInstanceState?.getInt(STATE_NIGHT_MODE) ?: nightMode
         setDefaultNightMode(nightMode)
+        Log.d(TAG, "Initialized night mode with value $nightMode")
     }
 
     override fun onResume() {
@@ -90,12 +91,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val accelerometer = sensorManager.getDefaultSensor(TYPE_ACCELEROMETER)
         if (accelerometer == null) {
             showErrorDialog(R.string.compass_accelerometer_error_message)
+            Log.w(TAG, "No accelerometer available")
             return
         }
 
         val magnetometer = sensorManager.getDefaultSensor(TYPE_MAGNETIC_FIELD)
         if (magnetometer == null) {
             showErrorDialog(R.string.compass_magnetometer_error_message)
+            Log.w(TAG, "No magnetometer available")
             return
         }
 
@@ -103,6 +106,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         sensorManager.registerListener(this, magnetometer, SENSOR_SAMPLING_PERIOD_US)
 
         compass.visibility = VISIBLE
+
+        Log.i(TAG, "Initialized compass")
     }
 
     private fun showErrorDialog(@StringRes messageId: Int) {
@@ -120,6 +125,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         accelerometerFilter.reset()
         magnetometerFilter.reset()
         sensorHandler.reset()
+
+        Log.i(TAG, "Stopped compass")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -156,6 +163,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
 
         recreate()
+
+        Log.d(TAG, "Changed night mode to value $nightMode and scheduled recreation of activity")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -169,7 +178,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         when (event.sensor.type) {
             TYPE_ACCELEROMETER -> handleAccelerometerValues(event.values)
             TYPE_MAGNETIC_FIELD -> handleMagneticFieldValues(event.values)
-            else -> Log.wtf(TAG, "Unexpected sensor event of type ${event.sensor.type}")
+            else -> Log.w(TAG, "Unexpected sensor event of type ${event.sensor.type}")
         }
     }
 
@@ -182,7 +191,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun handleMagneticFieldValues(values: FloatArray) {
-        Log.v(TAG, "Magnetic Field - X: ${values[X]} Y: ${values[Y]} Z: ${values[Z]}")
+        Log.v(TAG, "Magnetometer - X: ${values[X]} Y: ${values[Y]} Z: ${values[Z]}")
         SensorValues(values[X], values[Y], values[Z])
             .let { sensorValues -> magnetometerFilter.filter(sensorValues) }
             .let { filteredValues -> sensorHandler.handleMagneticFieldValues(filteredValues) }
