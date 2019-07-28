@@ -18,30 +18,33 @@
 
 package com.bobek.compass.sensor
 
-class LowPassFilter(private val alpha: Float) {
+class LowPassFilter(private val timeConstantInSeconds: Float) {
 
     private var previousValues: SensorValues? = null
 
     init {
-        check(alpha > 0.0f && alpha < 1.0f) { "Alpha must be between 0 and 1" }
+        check(timeConstantInSeconds > 0.0f) { "Time constant must be greater than 0" }
     }
 
     fun filter(values: SensorValues): SensorValues {
-        val filteredValues = previousValues?.let { previousValues -> filter(values, previousValues) } ?: values
-        previousValues = filteredValues
-        return filteredValues
+        return filter(values, (previousValues ?: values))
+            .also { filteredValues -> previousValues = filteredValues }
     }
 
     private fun filter(newValues: SensorValues, lastValues: SensorValues): SensorValues {
-        val x = filter(newValues.x, lastValues.x)
-        val y = filter(newValues.y, lastValues.y)
-        val z = filter(newValues.z, lastValues.z)
+        val timeDifferenceInNanos = newValues.timestamp - lastValues.timestamp
+        val timeDifferenceInSeconds = timeDifferenceInNanos / 1_000_000_000f
+        val alpha = timeConstantInSeconds / (timeConstantInSeconds + timeDifferenceInSeconds)
 
-        return SensorValues(x, y, z)
+        val x = filter(newValues.x, lastValues.x, alpha)
+        val y = filter(newValues.y, lastValues.y, alpha)
+        val z = filter(newValues.z, lastValues.z, alpha)
+
+        return SensorValues(x, y, z, newValues.timestamp)
     }
 
-    private fun filter(newValue: Float, lastValue: Float): Float {
-        return lastValue + alpha * (newValue - lastValue)
+    private fun filter(newValue: Float, lastValue: Float, alpha: Float): Float {
+        return alpha * lastValue + (1 - alpha) * newValue
     }
 
     fun reset() {

@@ -43,8 +43,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 
 private const val TAG = "MainActivity"
-private const val SENSOR_SAMPLING_PERIOD_US = SENSOR_DELAY_GAME
-private const val LOW_PASS_FILTER_ALPHA = 0.03f
+private const val SAMPLING_PERIOD_US = SENSOR_DELAY_GAME
+private const val LOW_PASS_FILTER_TIME_CONSTANT = 0.18f
 private const val STATE_NIGHT_MODE = "night-mode"
 private const val X = 0
 private const val Y = 1
@@ -73,8 +73,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
 
         sensorHandler = SensorHandler()
-        accelerometerFilter = LowPassFilter(LOW_PASS_FILTER_ALPHA)
-        magnetometerFilter = LowPassFilter(LOW_PASS_FILTER_ALPHA)
+        accelerometerFilter = LowPassFilter(LOW_PASS_FILTER_TIME_CONSTANT)
+        magnetometerFilter = LowPassFilter(LOW_PASS_FILTER_TIME_CONSTANT)
     }
 
     private fun initializeNightMode(savedInstanceState: Bundle?) {
@@ -102,8 +102,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             return
         }
 
-        sensorManager.registerListener(this, accelerometer, SENSOR_SAMPLING_PERIOD_US)
-        sensorManager.registerListener(this, magnetometer, SENSOR_SAMPLING_PERIOD_US)
+        sensorManager.registerListener(this, accelerometer, SAMPLING_PERIOD_US)
+        sensorManager.registerListener(this, magnetometer, SAMPLING_PERIOD_US)
 
         compass.visibility = VISIBLE
 
@@ -176,23 +176,23 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onSensorChanged(event: SensorEvent) {
         when (event.sensor.type) {
-            TYPE_ACCELEROMETER -> handleAccelerometerValues(event.values)
-            TYPE_MAGNETIC_FIELD -> handleMagneticFieldValues(event.values)
+            TYPE_ACCELEROMETER -> handleAccelerometerValues(event.values, event.timestamp)
+            TYPE_MAGNETIC_FIELD -> handleMagneticFieldValues(event.values, event.timestamp)
             else -> Log.w(TAG, "Unexpected sensor event of type ${event.sensor.type}")
         }
     }
 
-    private fun handleAccelerometerValues(values: FloatArray) {
+    private fun handleAccelerometerValues(values: FloatArray, timestamp: Long) {
         Log.v(TAG, "Accelerometer - X: ${values[X]} Y: ${values[Y]} Z: ${values[Z]}")
-        SensorValues(values[X], values[Y], values[Z])
+        SensorValues(values[X], values[Y], values[Z], timestamp)
             .let { sensorValues -> accelerometerFilter.filter(sensorValues) }
             .let { filteredValues -> sensorHandler.handleAccelerometerValues(filteredValues) }
             ?.let { azimuth -> compass.setDegrees(azimuth) }
     }
 
-    private fun handleMagneticFieldValues(values: FloatArray) {
+    private fun handleMagneticFieldValues(values: FloatArray, timestamp: Long) {
         Log.v(TAG, "Magnetometer - X: ${values[X]} Y: ${values[Y]} Z: ${values[Z]}")
-        SensorValues(values[X], values[Y], values[Z])
+        SensorValues(values[X], values[Y], values[Z], timestamp)
             .let { sensorValues -> magnetometerFilter.filter(sensorValues) }
             .let { filteredValues -> sensorHandler.handleMagneticFieldValues(filteredValues) }
             ?.let { azimuth -> compass.setDegrees(azimuth) }

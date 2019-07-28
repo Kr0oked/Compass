@@ -23,20 +23,47 @@ import org.junit.Test
 
 class LowPassFilterTest {
 
+    private val oneSecondInNanos = 1_000_000_000L
+
     @Test
     fun filter() {
-        val lowPassFilter = LowPassFilter(0.5f)
-        assertEquals(lowPassFilter.filter(SensorValues(0.0f, 1.0f, 2.0f)), SensorValues(0.0f, 1.0f, 2.0f))
-        assertEquals(lowPassFilter.filter(SensorValues(1.0f, 1.0f, 1.0f)), SensorValues(0.5f, 1.0f, 1.5f))
-        assertEquals(lowPassFilter.filter(SensorValues(1.0f, 1.0f, 1.0f)), SensorValues(0.75f, 1.0f, 1.25f))
-        assertEquals(lowPassFilter.filter(SensorValues(1.0f, 1.0f, 1.0f)), SensorValues(0.875f, 1.0f, 1.125f))
-        assertEquals(lowPassFilter.filter(SensorValues(1.0f, 1.0f, 1.0f)), SensorValues(0.9375f, 1.0f, 1.0625f))
-        assertEquals(lowPassFilter.filter(SensorValues(1.0f, 1.0f, 1.0f)), SensorValues(0.96875f, 1.0f, 1.03125f))
-    }
+        val lowPassFilter = LowPassFilter(1f)
 
-    @Test(expected = IllegalStateException::class)
-    fun filterThrowsExceptionWhenAlphaIsTooBig() {
-        LowPassFilter(1.0f)
+        var timestamp = 0L
+        assertEquals(
+            SensorValues(0.0f, 1.0f, 2.0f, timestamp),
+            lowPassFilter.filter(SensorValues(0.0f, 1.0f, 2.0f, timestamp))
+        )
+
+        timestamp += oneSecondInNanos
+        assertEquals(
+            SensorValues(0.5f, 1.0f, 1.5f, timestamp),
+            lowPassFilter.filter(SensorValues(1.0f, 1.0f, 1.0f, timestamp))
+        )
+
+        timestamp += oneSecondInNanos
+        assertEquals(
+            SensorValues(0.75f, 1.0f, 1.25f, timestamp),
+            lowPassFilter.filter(SensorValues(1.0f, 1.0f, 1.0f, timestamp))
+        )
+
+        timestamp += oneSecondInNanos
+        assertEquals(
+            SensorValues(0.875f, 1.0f, 1.125f, timestamp),
+            lowPassFilter.filter(SensorValues(1.0f, 1.0f, 1.0f, timestamp))
+        )
+
+        timestamp += oneSecondInNanos
+        assertEquals(
+            SensorValues(0.9375f, 1.0f, 1.0625f, timestamp),
+            lowPassFilter.filter(SensorValues(1.0f, 1.0f, 1.0f, timestamp))
+        )
+
+        timestamp += oneSecondInNanos
+        assertEquals(
+            SensorValues(0.96875f, 1.0f, 1.03125f, timestamp),
+            lowPassFilter.filter(SensorValues(1.0f, 1.0f, 1.0f, timestamp))
+        )
     }
 
     @Test(expected = IllegalStateException::class)
@@ -46,11 +73,32 @@ class LowPassFilterTest {
 
     @Test
     fun reset() {
-        val lowPassFilter = LowPassFilter(0.5f)
-        assertEquals(lowPassFilter.filter(SensorValues(0.0f, 0.0f, 0.0f)), SensorValues(0.0f, 0.0f, 0.0f))
-        assertEquals(lowPassFilter.filter(SensorValues(1.0f, 1.0f, 1.0f)), SensorValues(0.5f, 0.5f, 0.5f))
+        val lowPassFilter = LowPassFilter(1f)
+
+        var timestamp = 0L
+        assertEquals(
+            lowPassFilter.filter(SensorValues(0.0f, 0.0f, 0.0f, timestamp)),
+            SensorValues(0.0f, 0.0f, 0.0f, timestamp)
+        )
+
+        timestamp += oneSecondInNanos
+        assertEquals(
+            lowPassFilter.filter(SensorValues(1.0f, 1.0f, 1.0f, timestamp)),
+            SensorValues(0.5f, 0.5f, 0.5f, timestamp)
+        )
+
         lowPassFilter.reset()
-        assertEquals(lowPassFilter.filter(SensorValues(0.0f, 0.0f, 0.0f)), SensorValues(0.0f, 0.0f, 0.0f))
-        assertEquals(lowPassFilter.filter(SensorValues(1.0f, 1.0f, 1.0f)), SensorValues(0.5f, 0.5f, 0.5f))
+
+        timestamp += oneSecondInNanos
+        assertEquals(
+            lowPassFilter.filter(SensorValues(0.0f, 0.0f, 0.0f, timestamp)),
+            SensorValues(0.0f, 0.0f, 0.0f, timestamp)
+        )
+
+        timestamp += oneSecondInNanos
+        assertEquals(
+            lowPassFilter.filter(SensorValues(1.0f, 1.0f, 1.0f, timestamp)),
+            SensorValues(0.5f, 0.5f, 0.5f, timestamp)
+        )
     }
 }
