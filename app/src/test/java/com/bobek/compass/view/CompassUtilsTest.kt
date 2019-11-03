@@ -18,6 +18,8 @@
 
 package com.bobek.compass.view
 
+import com.bobek.compass.view.CardinalDirection.*
+import com.bobek.compass.view.CompassUtils.determineCardinalDirection
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -25,46 +27,46 @@ class CompassUtilsTest {
 
     @Test
     fun determineCardinalDirection() {
-        assertEquals(CardinalDirection.NORTH, CompassUtils.determineCardinalDirection(0.0f))
-        assertEquals(CardinalDirection.NORTH_EAST, CompassUtils.determineCardinalDirection(45.0f))
-        assertEquals(CardinalDirection.EAST, CompassUtils.determineCardinalDirection(90.0f))
-        assertEquals(CardinalDirection.SOUTH_EAST, CompassUtils.determineCardinalDirection(135.0f))
-        assertEquals(CardinalDirection.SOUTH, CompassUtils.determineCardinalDirection(180.0f))
-        assertEquals(CardinalDirection.SOUTH_WEST, CompassUtils.determineCardinalDirection(225.0f))
-        assertEquals(CardinalDirection.WEST, CompassUtils.determineCardinalDirection(270.0f))
-        assertEquals(CardinalDirection.NORTH_WEST, CompassUtils.determineCardinalDirection(315.0f))
+        assertEquals(NORTH, determineCardinalDirection(0.0f))
+        assertEquals(NORTH_EAST, determineCardinalDirection(45.0f))
+        assertEquals(EAST, determineCardinalDirection(90.0f))
+        assertEquals(SOUTH_EAST, determineCardinalDirection(135.0f))
+        assertEquals(SOUTH, determineCardinalDirection(180.0f))
+        assertEquals(SOUTH_WEST, determineCardinalDirection(225.0f))
+        assertEquals(WEST, determineCardinalDirection(270.0f))
+        assertEquals(NORTH_WEST, determineCardinalDirection(315.0f))
     }
 
     @Test
     fun determineCardinalDirectionJunctions() {
-        assertEquals(CardinalDirection.NORTH, CompassUtils.determineCardinalDirection(337.5f))
-        assertEquals(CardinalDirection.NORTH_EAST, CompassUtils.determineCardinalDirection(22.5f))
-        assertEquals(CardinalDirection.EAST, CompassUtils.determineCardinalDirection(67.5f))
-        assertEquals(CardinalDirection.SOUTH_EAST, CompassUtils.determineCardinalDirection(112.5f))
-        assertEquals(CardinalDirection.SOUTH, CompassUtils.determineCardinalDirection(157.5f))
-        assertEquals(CardinalDirection.SOUTH_WEST, CompassUtils.determineCardinalDirection(202.5f))
-        assertEquals(CardinalDirection.WEST, CompassUtils.determineCardinalDirection(247.5f))
-        assertEquals(CardinalDirection.NORTH_WEST, CompassUtils.determineCardinalDirection(292.5f))
+        assertEquals(NORTH, determineCardinalDirection(337.5f))
+        assertEquals(NORTH_EAST, determineCardinalDirection(22.5f))
+        assertEquals(EAST, determineCardinalDirection(67.5f))
+        assertEquals(SOUTH_EAST, determineCardinalDirection(112.5f))
+        assertEquals(SOUTH, determineCardinalDirection(157.5f))
+        assertEquals(SOUTH_WEST, determineCardinalDirection(202.5f))
+        assertEquals(WEST, determineCardinalDirection(247.5f))
+        assertEquals(NORTH_WEST, determineCardinalDirection(292.5f))
     }
 
     @Test
     fun determineCardinalDirectionPrecision() {
-        assertEquals(CardinalDirection.NORTH, CompassUtils.determineCardinalDirection(22.4999f))
-        assertEquals(CardinalDirection.NORTH_EAST, CompassUtils.determineCardinalDirection(67.4999f))
-        assertEquals(CardinalDirection.EAST, CompassUtils.determineCardinalDirection(112.4999f))
-        assertEquals(CardinalDirection.SOUTH_EAST, CompassUtils.determineCardinalDirection(157.4999f))
-        assertEquals(CardinalDirection.SOUTH, CompassUtils.determineCardinalDirection(202.4999f))
-        assertEquals(CardinalDirection.SOUTH_WEST, CompassUtils.determineCardinalDirection(247.4999f))
-        assertEquals(CardinalDirection.WEST, CompassUtils.determineCardinalDirection(292.4999f))
-        assertEquals(CardinalDirection.NORTH_WEST, CompassUtils.determineCardinalDirection(337.4999f))
+        assertEquals(NORTH, determineCardinalDirection(22.4999f))
+        assertEquals(NORTH_EAST, determineCardinalDirection(67.4999f))
+        assertEquals(EAST, determineCardinalDirection(112.4999f))
+        assertEquals(SOUTH_EAST, determineCardinalDirection(157.4999f))
+        assertEquals(SOUTH, determineCardinalDirection(202.4999f))
+        assertEquals(SOUTH_WEST, determineCardinalDirection(247.4999f))
+        assertEquals(WEST, determineCardinalDirection(292.4999f))
+        assertEquals(NORTH_WEST, determineCardinalDirection(337.4999f))
     }
 
     @Test
     fun determineCardinalDirectionSpecialCases() {
-        assertEquals(CardinalDirection.NORTH, CompassUtils.determineCardinalDirection(Float.MIN_VALUE))
-        assertEquals(CardinalDirection.NORTH, CompassUtils.determineCardinalDirection(Float.MAX_VALUE))
-        assertEquals(CardinalDirection.NORTH, CompassUtils.determineCardinalDirection(Float.NEGATIVE_INFINITY))
-        assertEquals(CardinalDirection.NORTH, CompassUtils.determineCardinalDirection(Float.POSITIVE_INFINITY))
-        assertEquals(CardinalDirection.NORTH, CompassUtils.determineCardinalDirection(Float.NaN))
+        assertEquals(NORTH, determineCardinalDirection(Float.MIN_VALUE))
+        assertEquals(NORTH, determineCardinalDirection(Float.MAX_VALUE))
+        assertEquals(NORTH, determineCardinalDirection(Float.NEGATIVE_INFINITY))
+        assertEquals(NORTH, determineCardinalDirection(Float.POSITIVE_INFINITY))
+        assertEquals(NORTH, determineCardinalDirection(Float.NaN))
     }
 }

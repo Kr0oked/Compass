@@ -18,23 +18,22 @@
 
 package com.bobek.compass.sensor
 
-class LowPassFilter(private val timeConstantInSeconds: Float) {
+import com.bobek.compass.sensor.SensorUtils.nanosToSeconds
+
+class LowPassFilter(private val timeConstantInSeconds: Float) :
+    SensorFilter(timeConstantInSeconds) {
 
     private var previousValues: SensorValues? = null
 
-    init {
-        check(timeConstantInSeconds > 0.0f) { "Time constant must be greater than 0" }
-    }
-
-    fun filter(values: SensorValues): SensorValues {
+    override fun filter(values: SensorValues): SensorValues {
         return filter(values, (previousValues ?: values))
             .also { filteredValues -> previousValues = filteredValues }
     }
 
     private fun filter(newValues: SensorValues, lastValues: SensorValues): SensorValues {
-        val timeDifferenceInNanos = newValues.timestamp - lastValues.timestamp
-        val timeDifferenceInSeconds = timeDifferenceInNanos / 1_000_000_000f
-        val alpha = timeConstantInSeconds / (timeConstantInSeconds + timeDifferenceInSeconds)
+        val durationInNanos = newValues.timestamp - lastValues.timestamp
+        val durationInSeconds = nanosToSeconds(durationInNanos)
+        val alpha = timeConstantInSeconds / (timeConstantInSeconds + durationInSeconds)
 
         val x = filter(newValues.x, lastValues.x, alpha)
         val y = filter(newValues.y, lastValues.y, alpha)
@@ -47,7 +46,7 @@ class LowPassFilter(private val timeConstantInSeconds: Float) {
         return alpha * lastValue + (1 - alpha) * newValue
     }
 
-    fun reset() {
+    override fun reset() {
         previousValues = null
     }
 }

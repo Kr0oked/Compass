@@ -36,6 +36,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.*
 import com.bobek.compass.sensor.LowPassFilter
+import com.bobek.compass.sensor.SensorFilter
 import com.bobek.compass.sensor.SensorHandler
 import com.bobek.compass.sensor.SensorValues
 import com.bobek.compass.view.Compass
@@ -44,7 +45,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 private const val TAG = "MainActivity"
 private const val SAMPLING_PERIOD_US = SENSOR_DELAY_GAME
-private const val LOW_PASS_FILTER_TIME_CONSTANT = 0.18f
+private const val FILTER_TIME_CONSTANT = 0.18f
 private const val STATE_NIGHT_MODE = "night-mode"
 private const val X = 0
 private const val Y = 1
@@ -57,8 +58,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private lateinit var sensorManager: SensorManager
 
     private lateinit var sensorHandler: SensorHandler
-    private lateinit var accelerometerFilter: LowPassFilter
-    private lateinit var magnetometerFilter: LowPassFilter
+    private lateinit var accelerometerFilter: SensorFilter
+    private lateinit var magnetometerFilter: SensorFilter
 
     private var nightMode: Int = MODE_NIGHT_FOLLOW_SYSTEM
 
@@ -73,8 +74,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
 
         sensorHandler = SensorHandler()
-        accelerometerFilter = LowPassFilter(LOW_PASS_FILTER_TIME_CONSTANT)
-        magnetometerFilter = LowPassFilter(LOW_PASS_FILTER_TIME_CONSTANT)
+        accelerometerFilter = LowPassFilter(FILTER_TIME_CONSTANT)
+        magnetometerFilter = LowPassFilter(FILTER_TIME_CONSTANT)
     }
 
     private fun initializeNightMode(savedInstanceState: Bundle?) {

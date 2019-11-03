@@ -18,15 +18,13 @@
 
 package com.bobek.compass.sensor
 
-object SensorUtils {
+abstract class SensorFilter(timeConstantInSeconds: Float) {
 
-    @JvmStatic
-    fun normalizeAngle(angleInDegrees: Float): Float {
-        return (angleInDegrees + 360f) % 360f
+    init {
+        check(timeConstantInSeconds > 0.0f) { "Time constant must be greater than 0" }
     }
 
-    @JvmStatic
-    fun nanosToSeconds(nanos: Long): Float {
-        return nanos / 1_000_000_000f
-    }
+    abstract fun filter(values: SensorValues): SensorValues
+
+    abstract fun reset()
 }
