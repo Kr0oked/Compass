@@ -44,7 +44,8 @@ class SensorHandler {
     private fun updateAzimuth(): Float? {
         val rotationMatrix = FloatArray(ROTATION_MATRIX_SIZE)
 
-        val success = getRotationMatrix(rotationMatrix, null, accelerometerReading, magnetometerReading)
+        val success =
+            getRotationMatrix(rotationMatrix, null, accelerometerReading, magnetometerReading)
 
         return if (success) {
             calculateAzimuth(rotationMatrix)
