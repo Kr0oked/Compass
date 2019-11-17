@@ -41,6 +41,8 @@ class Compass(context: Context, attributeSet: AttributeSet) :
     private lateinit var statusCardinalDirectionText: AppCompatTextView
     private lateinit var compassRoseImage: AppCompatImageView
 
+    private var currentDegrees = 360
+
     init {
         inflate(context, R.layout.compass, this)
     }
@@ -58,19 +60,38 @@ class Compass(context: Context, attributeSet: AttributeSet) :
     }
 
     fun setDegrees(degrees: Float) {
-        statusDegreesText.text = context.getString(R.string.degrees, degrees.roundToInt())
+        val roundedDegrees = degrees.roundToInt()
 
-        val cardinalDirection = CompassUtils.determineCardinalDirection(degrees)
-        statusCardinalDirectionText.text =
-            context.getString(cardinalDirection.abbreviationResourceId)
-
-        val rotation = degrees.unaryMinus()
-        compassRoseImage.rotation = rotation
-
-        rotateTexts(rotation)
+        if (currentDegrees != roundedDegrees) {
+            currentDegrees = roundedDegrees
+            updateView()
+        }
     }
 
-    private fun rotateTexts(rotation: Float) {
+    private fun updateView() {
+        updateStatusDegreesText()
+        updateStatusDirectionText()
+
+        val rotation = currentDegrees.unaryMinus().toFloat()
+        rotateCompassRoseImage(rotation)
+        rotateCompassRoseTexts(rotation)
+    }
+
+    private fun updateStatusDegreesText() {
+        statusDegreesText.text = context.getString(R.string.degrees, currentDegrees)
+    }
+
+    private fun updateStatusDirectionText() {
+        val cardinalDirection = CompassUtils.determineCardinalDirection(currentDegrees.toFloat())
+        statusCardinalDirectionText.text =
+            context.getString(cardinalDirection.abbreviationResourceId)
+    }
+
+    private fun rotateCompassRoseImage(rotation: Float) {
+        compassRoseImage.rotation = rotation
+    }
+
+    private fun rotateCompassRoseTexts(rotation: Float) {
         val constraintSet = ConstraintSet()
         constraintSet.clone(this)
 
