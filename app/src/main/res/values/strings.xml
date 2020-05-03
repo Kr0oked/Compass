@@ -2,7 +2,7 @@
 
 <!--
   ~ This file is part of Compass.
-  ~ Copyright (C) 2019 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~ Copyright (C) 2020 Philipp Bobek <philipp.bobek@mailbox.org>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 
 <resources>
     <string name="app_name">Compass</string>
+    <string name="status_sensor">Sensor accuracy</string>
     <string name="action_night_mode">Change night mode</string>
 
     <string name="compass_rose_image_description">Compass rose showing to magnetic north</string>

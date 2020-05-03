@@ -18,21 +18,16 @@
   ~ along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context="com.bobek.compass.MainActivity">
-
-    <item
-            android:id="@+id/action_sensor_status"
-            android:icon="@drawable/ic_sensor_high"
-            android:title="@string/status_sensor"
-            app:showAsAction="ifRoom" />
-
-    <item
-            android:id="@+id/action_night_mode"
-            android:icon="@drawable/ic_night_mode_auto"
-            android:title="@string/action_night_mode"
-            app:showAsAction="ifRoom" />
-
-</menu>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="24dp"
+        android:height="24dp"
+        android:tint="#FFFFFF"
+        android:viewportWidth="24.0"
+        android:viewportHeight="24.0">
+    <path
+            android:fillColor="#FF000000"
+            android:pathData="M20,6.83V20H6.83L20,6.83M22,2L2,22h20V2z" />
+    <path
+            android:fillColor="#FF000000"
+            android:pathData="M2,22h14.0475V8z" />
+</vector>

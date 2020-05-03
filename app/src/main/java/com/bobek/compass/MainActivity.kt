@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2019 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2020 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ import android.hardware.Sensor.TYPE_MAGNETIC_FIELD
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import android.hardware.SensorManager.SENSOR_DELAY_GAME
+import android.hardware.SensorManager.*
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -61,7 +61,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private lateinit var accelerometerFilter: SensorFilter
     private lateinit var magnetometerFilter: SensorFilter
 
-    private var nightMode: Int = MODE_NIGHT_FOLLOW_SYSTEM
+    private var optionsMenu: Menu? = null
+
+    private var nightMode = MODE_NIGHT_FOLLOW_SYSTEM
+
+    private var accelerometerAccuracy = SENSOR_STATUS_ACCURACY_HIGH
+    private var magnetometerAccuracy = SENSOR_STATUS_ACCURACY_HIGH
 
     override fun onCreate(savedInstanceState: Bundle?) {
         initializeNightMode(savedInstanceState)
@@ -131,9 +136,18 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        super.onCreateOptionsMenu(menu)
+
+        optionsMenu = menu
+
         menuInflater.inflate(R.menu.menu_main, menu)
+
+        menu.findItem(R.id.action_sensor_status)
+            .setIcon(getSensorStatusIcon())
+
         menu.findItem(R.id.action_night_mode)
             .setIcon(getNightModeIcon())
+
         return true
     }
 
@@ -173,7 +187,50 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         outState.putInt(STATE_NIGHT_MODE, nightMode)
     }
 
-    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
+    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
+        when (sensor.type) {
+            TYPE_ACCELEROMETER -> setAccelerometerAccuracy(accuracy)
+            TYPE_MAGNETIC_FIELD -> setMagnetometerAccuracy(accuracy)
+            else -> Log.w(TAG, "Unexpected accuracy changed event of type ${sensor.type}")
+        }
+
+        optionsMenu
+            ?.findItem(R.id.action_sensor_status)
+            ?.setIcon(getSensorStatusIcon())
+    }
+
+    private fun setAccelerometerAccuracy(accuracy: Int) {
+        Log.v(TAG, "Accelerometer accuracy value $accuracy")
+        accelerometerAccuracy = accuracy
+    }
+
+    private fun setMagnetometerAccuracy(accuracy: Int) {
+        Log.v(TAG, "Magnetometer accuracy value $accuracy")
+        magnetometerAccuracy = accuracy
+    }
+
+    @DrawableRes
+    private fun getSensorStatusIcon(): Int {
+        return when {
+            aSensorHasThisAccuracy(SENSOR_STATUS_NO_CONTACT) -> R.drawable.ic_sensor_no_contact
+            aSensorHasThisAccuracy(SENSOR_STATUS_UNRELIABLE) -> R.drawable.ic_sensor_unreliable
+            aSensorHasThisAccuracy(SENSOR_STATUS_ACCURACY_LOW) -> R.drawable.ic_sensor_low
+            aSensorHasThisAccuracy(SENSOR_STATUS_ACCURACY_MEDIUM) -> R.drawable.ic_sensor_medium
+            aSensorHasThisAccuracy(SENSOR_STATUS_ACCURACY_HIGH) -> R.drawable.ic_sensor_high
+            else -> {
+                Log.w(
+                    TAG, "Encountered unexpected sensor accuracies. " +
+                            "Accelerometer value is $accelerometerAccuracy " +
+                            "and magnetometer value is $magnetometerAccuracy"
+                )
+                R.drawable.ic_sensor_no_contact
+            }
+        }
+    }
+
+    private fun aSensorHasThisAccuracy(accuracy: Int): Boolean {
+        return accelerometerAccuracy == accuracy || magnetometerAccuracy == accuracy
+    }
 
     override fun onSensorChanged(event: SensorEvent) {
         when (event.sensor.type) {
