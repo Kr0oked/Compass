@@ -21,13 +21,13 @@ package com.bobek.compass.view
 import androidx.annotation.StringRes
 import com.bobek.compass.R
 
-enum class CardinalDirection(@StringRes val abbreviationResourceId: Int) {
+enum class CardinalDirection(@StringRes val labelResourceId: Int) {
     NORTH(R.string.cardinal_direction_north),
-    NORTH_EAST(R.string.cardinal_direction_north_east),
+    NORTHEAST(R.string.cardinal_direction_northeast),
     EAST(R.string.cardinal_direction_east),
-    SOUTH_EAST(R.string.cardinal_direction_south_east),
+    SOUTHEAST(R.string.cardinal_direction_southeast),
     SOUTH(R.string.cardinal_direction_south),
-    SOUTH_WEST(R.string.cardinal_direction_south_west),
+    SOUTHWEST(R.string.cardinal_direction_southwest),
     WEST(R.string.cardinal_direction_west),
-    NORTH_WEST(R.string.cardinal_direction_north_west)
+    NORTHWEST(R.string.cardinal_direction_northwest)
 }

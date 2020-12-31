@@ -28,37 +28,37 @@ class CompassUtilsTest {
     @Test
     fun determineCardinalDirection() {
         assertEquals(NORTH, determineCardinalDirection(0.0f))
-        assertEquals(NORTH_EAST, determineCardinalDirection(45.0f))
+        assertEquals(NORTHEAST, determineCardinalDirection(45.0f))
         assertEquals(EAST, determineCardinalDirection(90.0f))
-        assertEquals(SOUTH_EAST, determineCardinalDirection(135.0f))
+        assertEquals(SOUTHEAST, determineCardinalDirection(135.0f))
         assertEquals(SOUTH, determineCardinalDirection(180.0f))
-        assertEquals(SOUTH_WEST, determineCardinalDirection(225.0f))
+        assertEquals(SOUTHWEST, determineCardinalDirection(225.0f))
         assertEquals(WEST, determineCardinalDirection(270.0f))
-        assertEquals(NORTH_WEST, determineCardinalDirection(315.0f))
+        assertEquals(NORTHWEST, determineCardinalDirection(315.0f))
     }
 
     @Test
     fun determineCardinalDirectionJunctions() {
         assertEquals(NORTH, determineCardinalDirection(337.5f))
-        assertEquals(NORTH_EAST, determineCardinalDirection(22.5f))
+        assertEquals(NORTHEAST, determineCardinalDirection(22.5f))
         assertEquals(EAST, determineCardinalDirection(67.5f))
-        assertEquals(SOUTH_EAST, determineCardinalDirection(112.5f))
+        assertEquals(SOUTHEAST, determineCardinalDirection(112.5f))
         assertEquals(SOUTH, determineCardinalDirection(157.5f))
-        assertEquals(SOUTH_WEST, determineCardinalDirection(202.5f))
+        assertEquals(SOUTHWEST, determineCardinalDirection(202.5f))
         assertEquals(WEST, determineCardinalDirection(247.5f))
-        assertEquals(NORTH_WEST, determineCardinalDirection(292.5f))
+        assertEquals(NORTHWEST, determineCardinalDirection(292.5f))
     }
 
     @Test
     fun determineCardinalDirectionPrecision() {
         assertEquals(NORTH, determineCardinalDirection(22.4999f))
-        assertEquals(NORTH_EAST, determineCardinalDirection(67.4999f))
+        assertEquals(NORTHEAST, determineCardinalDirection(67.4999f))
         assertEquals(EAST, determineCardinalDirection(112.4999f))
-        assertEquals(SOUTH_EAST, determineCardinalDirection(157.4999f))
+        assertEquals(SOUTHEAST, determineCardinalDirection(157.4999f))
         assertEquals(SOUTH, determineCardinalDirection(202.4999f))
-        assertEquals(SOUTH_WEST, determineCardinalDirection(247.4999f))
+        assertEquals(SOUTHWEST, determineCardinalDirection(247.4999f))
         assertEquals(WEST, determineCardinalDirection(292.4999f))
-        assertEquals(NORTH_WEST, determineCardinalDirection(337.4999f))
+        assertEquals(NORTHWEST, determineCardinalDirection(337.4999f))
     }
 
     @Test

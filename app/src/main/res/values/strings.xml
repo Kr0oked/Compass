@@ -32,14 +32,19 @@
     <string name="zero_degrees">0°</string>
     <string name="degrees">%1$d°</string>
 
-    <string name="cardinal_direction_north">N</string>
-    <string name="cardinal_direction_north_east">NE</string>
-    <string name="cardinal_direction_east">E</string>
-    <string name="cardinal_direction_south_east">SE</string>
-    <string name="cardinal_direction_south">S</string>
-    <string name="cardinal_direction_south_west">SW</string>
-    <string name="cardinal_direction_west">W</string>
-    <string name="cardinal_direction_north_west">NW</string>
+    <string name="cardinal_direction_north">North</string>
+    <string name="cardinal_direction_northeast">Northeast</string>
+    <string name="cardinal_direction_east">East</string>
+    <string name="cardinal_direction_southeast">Southeast</string>
+    <string name="cardinal_direction_south">South</string>
+    <string name="cardinal_direction_southwest">Southwest</string>
+    <string name="cardinal_direction_west">West</string>
+    <string name="cardinal_direction_northwest">Northwest</string>
+
+    <string name="cardinal_direction_north_abbreviation">N</string>
+    <string name="cardinal_direction_east_abbreviation">E</string>
+    <string name="cardinal_direction_south_abbreviation">S</string>
+    <string name="cardinal_direction_west_abbreviation">W</string>
 
     <string name="degree_0_text">0</string>
     <string name="degree_30_text">30</string>

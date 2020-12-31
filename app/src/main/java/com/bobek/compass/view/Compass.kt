@@ -84,7 +84,7 @@ class Compass(context: Context, attributeSet: AttributeSet) :
     private fun updateStatusDirectionText() {
         val cardinalDirection = CompassUtils.determineCardinalDirection(currentDegrees.toFloat())
         statusCardinalDirectionText.text =
-            context.getString(cardinalDirection.abbreviationResourceId)
+            context.getString(cardinalDirection.labelResourceId)
     }
 
     private fun rotateCompassRoseImage(rotation: Float) {
