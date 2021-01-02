@@ -2,7 +2,7 @@
 
 <!--
   ~ This file is part of Compass.
-  ~ Copyright (C) 2020 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~ Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -20,8 +20,15 @@
 
 <resources>
     <string name="app_name">Kompass</string>
+
     <string name="status_sensor">Sensor Genauigkeit</string>
     <string name="action_night_mode">Nachtmodus wechseln</string>
+
+    <string name="accelerometer">Beschleunigungsmesser</string>
+    <string name="magnetometer">Magnetometer</string>
+
+    <string name="sensor_name_description">Name des Sensors</string>
+    <string name="accuracy_image_description">Gibt die Genauigkeit des Sensors an</string>
 
     <string name="compass_rose_image_description">Windrose die den magnetischen Norden anzeigt</string>
     <string name="device_heading_indicator_image_description">Gibt die Richtung an in die das Gerät zeigt</string>

@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2020 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,6 +35,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.*
+import androidx.appcompat.widget.AppCompatImageView
 import com.bobek.compass.sensor.LowPassFilter
 import com.bobek.compass.sensor.SensorFilter
 import com.bobek.compass.sensor.SensorHandler
@@ -121,7 +122,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             .setMessage(messageId)
             .setIcon(android.R.drawable.ic_dialog_alert)
             .setCancelable(false)
-            .create()
             .show()
     }
 
@@ -162,12 +162,31 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.action_sensor_status -> {
+                showSensorStatusPopup()
+                true
+            }
             R.id.action_night_mode -> {
                 toggleNightMode()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showSensorStatusPopup() {
+        val sensorAccuracyView = layoutInflater.inflate(R.layout.sensor_alert_dialog_view, null)
+
+        sensorAccuracyView.findViewById<AppCompatImageView>(R.id.accelerometer_accuracy_image)
+            .setImageResource(getAccuracyIcon(accelerometerAccuracy))
+
+        sensorAccuracyView.findViewById<AppCompatImageView>(R.id.magnetometer_accuracy_image)
+            .setImageResource(getAccuracyIcon(magnetometerAccuracy))
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.status_sensor)
+            .setView(sensorAccuracyView)
+            .show()
     }
 
     private fun toggleNightMode() {
@@ -193,43 +212,45 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             TYPE_MAGNETIC_FIELD -> setMagnetometerAccuracy(accuracy)
             else -> Log.w(TAG, "Unexpected accuracy changed event of type ${sensor.type}")
         }
-
-        optionsMenu
-            ?.findItem(R.id.action_sensor_status)
-            ?.setIcon(getSensorStatusIcon())
     }
 
     private fun setAccelerometerAccuracy(accuracy: Int) {
         Log.v(TAG, "Accelerometer accuracy value $accuracy")
         accelerometerAccuracy = accuracy
+        updateSensorStatus()
     }
 
     private fun setMagnetometerAccuracy(accuracy: Int) {
         Log.v(TAG, "Magnetometer accuracy value $accuracy")
         magnetometerAccuracy = accuracy
+        updateSensorStatus()
+    }
+
+    private fun updateSensorStatus() {
+        optionsMenu
+            ?.findItem(R.id.action_sensor_status)
+            ?.setIcon(getSensorStatusIcon())
     }
 
     @DrawableRes
     private fun getSensorStatusIcon(): Int {
-        return when {
-            aSensorHasThisAccuracy(SENSOR_STATUS_NO_CONTACT) -> R.drawable.ic_sensor_no_contact
-            aSensorHasThisAccuracy(SENSOR_STATUS_UNRELIABLE) -> R.drawable.ic_sensor_unreliable
-            aSensorHasThisAccuracy(SENSOR_STATUS_ACCURACY_LOW) -> R.drawable.ic_sensor_low
-            aSensorHasThisAccuracy(SENSOR_STATUS_ACCURACY_MEDIUM) -> R.drawable.ic_sensor_medium
-            aSensorHasThisAccuracy(SENSOR_STATUS_ACCURACY_HIGH) -> R.drawable.ic_sensor_high
+        val smallestAccuracy = accelerometerAccuracy.coerceAtMost(magnetometerAccuracy)
+        return getAccuracyIcon(smallestAccuracy)
+    }
+
+    @DrawableRes
+    private fun getAccuracyIcon(accuracy: Int): Int {
+        return when (accuracy) {
+            SENSOR_STATUS_NO_CONTACT -> R.drawable.ic_sensor_no_contact
+            SENSOR_STATUS_UNRELIABLE -> R.drawable.ic_sensor_unreliable
+            SENSOR_STATUS_ACCURACY_LOW -> R.drawable.ic_sensor_low
+            SENSOR_STATUS_ACCURACY_MEDIUM -> R.drawable.ic_sensor_medium
+            SENSOR_STATUS_ACCURACY_HIGH -> R.drawable.ic_sensor_high
             else -> {
-                Log.w(
-                    TAG, "Encountered unexpected sensor accuracies. " +
-                            "Accelerometer value is $accelerometerAccuracy " +
-                            "and magnetometer value is $magnetometerAccuracy"
-                )
+                Log.w(TAG, "Encountered unexpected sensor accuracy '$accuracy'")
                 R.drawable.ic_sensor_no_contact
             }
         }
-    }
-
-    private fun aSensorHasThisAccuracy(accuracy: Int): Boolean {
-        return accelerometerAccuracy == accuracy || magnetometerAccuracy == accuracy
     }
 
     override fun onSensorChanged(event: SensorEvent) {
