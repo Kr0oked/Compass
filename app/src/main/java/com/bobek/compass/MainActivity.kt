@@ -42,7 +42,6 @@ import com.bobek.compass.sensor.SensorHandler
 import com.bobek.compass.sensor.SensorValues
 import com.bobek.compass.view.Compass
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import kotlinx.android.synthetic.main.activity_main.*
 
 private const val TAG = "MainActivity"
 private const val SAMPLING_PERIOD_US = SENSOR_DELAY_GAME
@@ -73,7 +72,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         initializeNightMode(savedInstanceState)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(findViewById(R.id.toolbar))
 
         compass = findViewById(R.id.compass)
 
