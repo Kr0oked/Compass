@@ -35,4 +35,10 @@
             android:title="@string/action_night_mode"
             app:showAsAction="ifRoom" />
 
+    <item
+            android:id="@+id/action_about"
+            android:icon="@drawable/ic_about"
+            android:title="@string/about"
+            app:showAsAction="ifRoom" />
+
 </menu>

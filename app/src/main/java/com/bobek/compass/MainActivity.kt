@@ -26,6 +26,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.hardware.SensorManager.*
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -36,6 +37,7 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import com.bobek.compass.sensor.LowPassFilter
 import com.bobek.compass.sensor.SensorFilter
 import com.bobek.compass.sensor.SensorHandler
@@ -169,6 +171,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                 toggleNightMode()
                 true
             }
+            R.id.action_about -> {
+                showAboutPopup()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -185,6 +191,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.status_sensor)
             .setView(sensorAccuracyView)
+            .setNeutralButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
             .show()
     }
 
@@ -198,6 +205,28 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         recreate()
 
         Log.d(TAG, "Changed night mode to value $nightMode and scheduled recreation of activity")
+    }
+
+    private fun showAboutPopup() {
+        val aboutView = layoutInflater.inflate(R.layout.about_alert_dialog_view, null)
+
+        val version = aboutView.findViewById<AppCompatTextView>(R.id.version)
+        version.text = getString(R.string.version, BuildConfig.VERSION_NAME)
+
+        val copyright = aboutView.findViewById<AppCompatTextView>(R.id.copyright)
+        copyright.movementMethod = LinkMovementMethod.getInstance()
+
+        val license = aboutView.findViewById<AppCompatTextView>(R.id.license)
+        license.movementMethod = LinkMovementMethod.getInstance()
+
+        val sourceCode = aboutView.findViewById<AppCompatTextView>(R.id.source_code)
+        sourceCode.movementMethod = LinkMovementMethod.getInstance()
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.app_name)
+            .setView(aboutView)
+            .setNeutralButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
+            .show()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

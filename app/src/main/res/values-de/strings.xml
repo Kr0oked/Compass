@@ -23,6 +23,7 @@
 
     <string name="status_sensor">Sensor Genauigkeit</string>
     <string name="action_night_mode">Nachtmodus wechseln</string>
+    <string name="about">Über die App</string>
 
     <string name="accelerometer">Beschleunigungsmesser</string>
     <string name="magnetometer">Magnetometer</string>
@@ -65,6 +66,17 @@
     <string name="degree_270_text">270</string>
     <string name="degree_300_text">300</string>
     <string name="degree_330_text">330</string>
+
+    <string name="ok">OK</string>
+
+    <string name="version">Version %s</string>
+    <string name="version_description">Versionsname</string>
+    <string name="copyright">Copyright @ 2021 <a href="mailto:philipp.bobek@mailbox.org">Philipp Bobek</a></string>
+    <string name="copyright_description">Copyright Hinweis</string>
+    <string name="license">Lizenz <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></string>
+    <string name="license_description">Softwarelizenz</string>
+    <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Quelltext</a></string>
+    <string name="source_code_description">Link zur Quelltext Verwaltung</string>
 
     <string name="compass_accelerometer_error_message">Es wurde kein Beschleunigungssensor gefunden</string>
     <string name="compass_magnetometer_error_message">Es wurde kein Magnetometer gefunden</string>

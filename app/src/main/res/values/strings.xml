@@ -23,6 +23,7 @@
 
     <string name="status_sensor">Sensor accuracy</string>
     <string name="action_night_mode">Change night mode</string>
+    <string name="about">About</string>
 
     <string name="accelerometer">Accelerometer</string>
     <string name="magnetometer">Magnetometer</string>
@@ -65,6 +66,17 @@
     <string name="degree_270_text">270</string>
     <string name="degree_300_text">300</string>
     <string name="degree_330_text">330</string>
+
+    <string name="ok">OK</string>
+
+    <string name="version">Version %s</string>
+    <string name="version_description">Version name</string>
+    <string name="copyright">Copyright @ 2021 <a href="mailto:philipp.bobek@mailbox.org">Philipp Bobek</a></string>
+    <string name="copyright_description">Copyright notice</string>
+    <string name="license">License <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></string>
+    <string name="license_description">Software license</string>
+    <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Source code</a></string>
+    <string name="source_code_description">Link to the Source code management</string>
 
     <string name="compass_accelerometer_error_message">No accelerometer available</string>
     <string name="compass_magnetometer_error_message">No magnetometer available</string>
