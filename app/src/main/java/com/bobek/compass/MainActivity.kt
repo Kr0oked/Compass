@@ -48,7 +48,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 private const val TAG = "MainActivity"
 private const val SAMPLING_PERIOD_US = SENSOR_DELAY_GAME
 private const val FILTER_TIME_CONSTANT = 0.18f
-private const val STATE_NIGHT_MODE = "night-mode"
 private const val X = 0
 private const val Y = 1
 private const val Z = 2
@@ -65,14 +64,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private var optionsMenu: Menu? = null
 
-    private var nightMode = MODE_NIGHT_FOLLOW_SYSTEM
-
     private var accelerometerAccuracy = SENSOR_STATUS_ACCURACY_HIGH
     private var magnetometerAccuracy = SENSOR_STATUS_ACCURACY_HIGH
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        initializeNightMode(savedInstanceState)
-        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
@@ -83,12 +78,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         sensorHandler = SensorHandler()
         accelerometerFilter = LowPassFilter(FILTER_TIME_CONSTANT)
         magnetometerFilter = LowPassFilter(FILTER_TIME_CONSTANT)
-    }
 
-    private fun initializeNightMode(savedInstanceState: Bundle?) {
-        nightMode = savedInstanceState?.getInt(STATE_NIGHT_MODE) ?: nightMode
-        setDefaultNightMode(nightMode)
-        Log.d(TAG, "Initialized night mode with value $nightMode")
+        super.onCreate(savedInstanceState)
     }
 
     override fun onResume() {
@@ -137,28 +128,11 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        super.onCreateOptionsMenu(menu)
-
-        optionsMenu = menu
-
         menuInflater.inflate(R.menu.menu_main, menu)
-
-        menu.findItem(R.id.action_sensor_status)
-            .setIcon(getSensorStatusIcon())
-
-        menu.findItem(R.id.action_night_mode)
-            .setIcon(getNightModeIcon())
-
-        return true
-    }
-
-    @DrawableRes
-    private fun getNightModeIcon(): Int {
-        return when (nightMode) {
-            MODE_NIGHT_NO -> R.drawable.ic_night_mode_no
-            MODE_NIGHT_YES -> R.drawable.ic_night_mode_yes
-            else -> R.drawable.ic_night_mode_auto
-        }
+        optionsMenu = menu
+        updateSensorStatusIcon()
+        updateNightModeIcon()
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -196,15 +170,15 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun toggleNightMode() {
-        nightMode = when (nightMode) {
+        val nextNightMode = when (getDefaultNightMode()) {
             MODE_NIGHT_NO -> MODE_NIGHT_YES
             MODE_NIGHT_YES -> MODE_NIGHT_FOLLOW_SYSTEM
             else -> MODE_NIGHT_NO
         }
 
-        recreate()
-
-        Log.d(TAG, "Changed night mode to value $nightMode and scheduled recreation of activity")
+        Log.d(TAG, "Setting night mode to value $nextNightMode")
+        setDefaultNightMode(nextNightMode)
+        updateNightModeIcon()
     }
 
     private fun showAboutPopup() {
@@ -229,11 +203,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             .show()
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putInt(STATE_NIGHT_MODE, nightMode)
-    }
-
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
         when (sensor.type) {
             TYPE_ACCELEROMETER -> setAccelerometerAccuracy(accuracy)
@@ -245,40 +214,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private fun setAccelerometerAccuracy(accuracy: Int) {
         Log.v(TAG, "Accelerometer accuracy value $accuracy")
         accelerometerAccuracy = accuracy
-        updateSensorStatus()
+        updateSensorStatusIcon()
     }
 
     private fun setMagnetometerAccuracy(accuracy: Int) {
         Log.v(TAG, "Magnetometer accuracy value $accuracy")
         magnetometerAccuracy = accuracy
-        updateSensorStatus()
-    }
-
-    private fun updateSensorStatus() {
-        optionsMenu
-            ?.findItem(R.id.action_sensor_status)
-            ?.setIcon(getSensorStatusIcon())
-    }
-
-    @DrawableRes
-    private fun getSensorStatusIcon(): Int {
-        val smallestAccuracy = accelerometerAccuracy.coerceAtMost(magnetometerAccuracy)
-        return getAccuracyIcon(smallestAccuracy)
-    }
-
-    @DrawableRes
-    private fun getAccuracyIcon(accuracy: Int): Int {
-        return when (accuracy) {
-            SENSOR_STATUS_NO_CONTACT -> R.drawable.ic_sensor_no_contact
-            SENSOR_STATUS_UNRELIABLE -> R.drawable.ic_sensor_unreliable
-            SENSOR_STATUS_ACCURACY_LOW -> R.drawable.ic_sensor_low
-            SENSOR_STATUS_ACCURACY_MEDIUM -> R.drawable.ic_sensor_medium
-            SENSOR_STATUS_ACCURACY_HIGH -> R.drawable.ic_sensor_high
-            else -> {
-                Log.w(TAG, "Encountered unexpected sensor accuracy '$accuracy'")
-                R.drawable.ic_sensor_no_contact
-            }
-        }
+        updateSensorStatusIcon()
     }
 
     override fun onSensorChanged(event: SensorEvent) {
@@ -303,5 +245,47 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             .let { sensorValues -> magnetometerFilter.filter(sensorValues) }
             .let { filteredValues -> sensorHandler.handleMagneticFieldValues(filteredValues) }
             ?.let { azimuth -> compass.setDegrees(azimuth) }
+    }
+
+    private fun updateSensorStatusIcon() {
+        optionsMenu
+            ?.findItem(R.id.action_sensor_status)
+            ?.setIcon(getSensorStatusIcon())
+    }
+
+    private fun updateNightModeIcon() {
+        optionsMenu
+            ?.findItem(R.id.action_night_mode)
+            ?.setIcon(getNightModeIcon())
+    }
+
+    @DrawableRes
+    private fun getSensorStatusIcon(): Int {
+        val smallestAccuracy = accelerometerAccuracy.coerceAtMost(magnetometerAccuracy)
+        return getAccuracyIcon(smallestAccuracy)
+    }
+
+    @DrawableRes
+    private fun getAccuracyIcon(accuracy: Int): Int {
+        return when (accuracy) {
+            SENSOR_STATUS_NO_CONTACT -> R.drawable.ic_sensor_no_contact
+            SENSOR_STATUS_UNRELIABLE -> R.drawable.ic_sensor_unreliable
+            SENSOR_STATUS_ACCURACY_LOW -> R.drawable.ic_sensor_low
+            SENSOR_STATUS_ACCURACY_MEDIUM -> R.drawable.ic_sensor_medium
+            SENSOR_STATUS_ACCURACY_HIGH -> R.drawable.ic_sensor_high
+            else -> {
+                Log.w(TAG, "Encountered unexpected sensor accuracy '$accuracy'")
+                R.drawable.ic_sensor_no_contact
+            }
+        }
+    }
+
+    @DrawableRes
+    private fun getNightModeIcon(): Int {
+        return when (getDefaultNightMode()) {
+            MODE_NIGHT_NO -> R.drawable.ic_night_mode_no
+            MODE_NIGHT_YES -> R.drawable.ic_night_mode_yes
+            else -> R.drawable.ic_night_mode_auto
+        }
     }
 }

@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2020 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,8 +31,7 @@ import kotlin.math.roundToInt
 private const val CARDINAL_DIRECTION_TEXT_RATIO = 0.23f
 private const val DEGREE_TEXT_RATIO = 0.08f
 
-class Compass(context: Context, attributeSet: AttributeSet) :
-    ConstraintLayout(context, attributeSet) {
+class Compass(context: Context, attributeSet: AttributeSet) : ConstraintLayout(context, attributeSet) {
 
     @IdRes
     private val center = R.id.compass_rose_image
@@ -83,8 +82,7 @@ class Compass(context: Context, attributeSet: AttributeSet) :
 
     private fun updateStatusDirectionText() {
         val cardinalDirection = CompassUtils.determineCardinalDirection(currentDegrees.toFloat())
-        statusCardinalDirectionText.text =
-            context.getString(cardinalDirection.labelResourceId)
+        statusCardinalDirectionText.text = context.getString(cardinalDirection.labelResourceId)
     }
 
     private fun rotateCompassRoseImage(rotation: Float) {
@@ -104,14 +102,10 @@ class Compass(context: Context, attributeSet: AttributeSet) :
     private fun rotateCardinalDirectionTexts(constraintSet: ConstraintSet, rotation: Float) {
         val radius = calculateTextRadius(CARDINAL_DIRECTION_TEXT_RATIO)
 
-        constraintSet
-            .constrainCircle(R.id.cardinal_direction_north_text, center, radius, rotation)
-        constraintSet
-            .constrainCircle(R.id.cardinal_direction_east_text, center, radius, rotation + 90)
-        constraintSet
-            .constrainCircle(R.id.cardinal_direction_south_text, center, radius, rotation + 180)
-        constraintSet
-            .constrainCircle(R.id.cardinal_direction_west_text, center, radius, rotation + 270)
+        constraintSet.constrainCircle(R.id.cardinal_direction_north_text, center, radius, rotation)
+        constraintSet.constrainCircle(R.id.cardinal_direction_east_text, center, radius, rotation + 90)
+        constraintSet.constrainCircle(R.id.cardinal_direction_south_text, center, radius, rotation + 180)
+        constraintSet.constrainCircle(R.id.cardinal_direction_west_text, center, radius, rotation + 270)
     }
 
     private fun rotateDegreeTexts(constraintSet: ConstraintSet, rotation: Float) {
