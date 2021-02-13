@@ -2,7 +2,7 @@
 
 <!--
   ~ This file is part of Compass.
-  ~ Copyright (C) 2020 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~ Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -25,128 +25,33 @@
         android:viewportHeight="108">
 
     <group
-            android:pivotX="54"
-            android:pivotY="54"
-            android:rotation="45">
+            android:scaleX="0.135"
+            android:scaleY="0.135">
 
         <path
-                android:fillColor="@color/colorAccent"
-                android:pathData="M54,22 L48,29 L60,29 Z" />
-
+                android:fillColor="#FFFFFF"
+                android:pathData="M400,150 L360,360 L400,400 Z" />
         <path
-                android:pathData="M54,28 L54,41"
-                android:strokeWidth="5"
-                android:strokeColor="@color/colorAccent" />
-
-        <group
-                android:pivotX="54"
-                android:pivotY="54"
-                android:rotation="90">
-            <path
-                    android:pathData="M54,28 L54,41"
-                    android:strokeWidth="5"
-                    android:strokeColor="@android:color/primary_text_dark" />
-        </group>
-
-        <group
-                android:pivotX="54"
-                android:pivotY="54"
-                android:rotation="180">
-            <path
-                    android:pathData="M54,28 L54,41"
-                    android:strokeWidth="5"
-                    android:strokeColor="@android:color/primary_text_dark" />
-        </group>
-
-        <group
-                android:pivotX="54"
-                android:pivotY="54"
-                android:rotation="270">
-            <path
-                    android:pathData="M54,28 L54,41"
-                    android:strokeWidth="5"
-                    android:strokeColor="@android:color/primary_text_dark" />
-        </group>
-
-        <group
-                android:pivotX="54"
-                android:pivotY="54"
-                android:rotation="30">
-            <path
-                    android:pathData="M54,34 L54,41"
-                    android:strokeWidth="2"
-                    android:strokeColor="@android:color/secondary_text_dark" />
-        </group>
-
-        <group
-                android:pivotX="54"
-                android:pivotY="54"
-                android:rotation="60">
-            <path
-                    android:pathData="M54,34 L54,41"
-                    android:strokeWidth="2"
-                    android:strokeColor="@android:color/secondary_text_dark" />
-        </group>
-
-        <group
-                android:pivotX="54"
-                android:pivotY="54"
-                android:rotation="120">
-            <path
-                    android:pathData="M54,34 L54,41"
-                    android:strokeWidth="2"
-                    android:strokeColor="@android:color/secondary_text_dark" />
-        </group>
-
-        <group
-                android:pivotX="54"
-                android:pivotY="54"
-                android:rotation="150">
-            <path
-                    android:pathData="M54,34 L54,41"
-                    android:strokeWidth="2"
-                    android:strokeColor="@android:color/secondary_text_dark" />
-        </group>
-
-        <group
-                android:pivotX="54"
-                android:pivotY="54"
-                android:rotation="210">
-            <path
-                    android:pathData="M54,34 L54,41"
-                    android:strokeWidth="2"
-                    android:strokeColor="@android:color/secondary_text_dark" />
-        </group>
-
-        <group
-                android:pivotX="54"
-                android:pivotY="54"
-                android:rotation="240">
-            <path
-                    android:pathData="M54,34 L54,41"
-                    android:strokeWidth="2"
-                    android:strokeColor="@android:color/secondary_text_dark" />
-        </group>
-
-        <group
-                android:pivotX="54"
-                android:pivotY="54"
-                android:rotation="300">
-            <path
-                    android:pathData="M54,34 L54,41"
-                    android:strokeWidth="2"
-                    android:strokeColor="@android:color/secondary_text_dark" />
-        </group>
-
-        <group
-                android:pivotX="54"
-                android:pivotY="54"
-                android:rotation="330">
-            <path
-                    android:pathData="M54,34 L54,41"
-                    android:strokeWidth="2"
-                    android:strokeColor="@android:color/secondary_text_dark" />
-        </group>
+                android:fillColor="#000000"
+                android:pathData="M400,150 L440,360 L400,400 Z" />
+        <path
+                android:fillColor="#FFFFFF"
+                android:pathData="M650,400 L440,360 L400,400 Z" />
+        <path
+                android:fillColor="#000000"
+                android:pathData="M650,400 L440,440 L400,400 Z" />
+        <path
+                android:fillColor="#FFFFFF"
+                android:pathData="M400,650 L440,440 L400,400 Z" />
+        <path
+                android:fillColor="#000000"
+                android:pathData="M400,650 L360,440 L400,400 Z" />
+        <path
+                android:fillColor="#FFFFFF"
+                android:pathData="M150,400 L360,440 L400,400 Z" />
+        <path
+                android:fillColor="#000000"
+                android:pathData="M150,400 L360,360 L400,400 Z" />
 
     </group>
 
