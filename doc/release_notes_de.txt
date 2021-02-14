@@ -1,0 +1,6 @@
+* Rotierende Windrose
+* Grad Anzeige
+* Himmelsrichtung Anzeige
+* Sensoren Status
+* Tag & Nacht Modus
+* Englische und deutsche Übersetzung
