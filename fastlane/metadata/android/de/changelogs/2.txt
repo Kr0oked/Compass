@@ -1,0 +1,2 @@
+- Lesbare Himmelsrichtung
+- Sensorgenauigkeits Dialog

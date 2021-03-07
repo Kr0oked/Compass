@@ -1,0 +1,3 @@
+- Über die App Seite
+- Überarbeitetes App Icon
+- Verbesserter Tag & Nacht Modus

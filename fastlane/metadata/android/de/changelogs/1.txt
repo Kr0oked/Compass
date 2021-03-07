@@ -1,0 +1,5 @@
+- Rotierende Windrose
+- Grad Anzeige
+- Himmelsrichtung Anzeige
+- Tag & Nacht Modus
+- Englische und deutsche Übersetzung

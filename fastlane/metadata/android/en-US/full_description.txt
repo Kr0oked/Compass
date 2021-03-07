@@ -1,0 +1,12 @@
+You’ll get exactly what you expect.
+A simple and beautiful compass that points to magnetic north.
+
+Features:
+* Points to magnetic north
+* Shows exact degrees and cardinal direction
+* Displays sensor status
+* Automatic night mode
+* No advertisements
+* No annoyance
+
+Have fun!
