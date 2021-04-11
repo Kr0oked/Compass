@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2020 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,35 +18,42 @@
 
 package com.bobek.compass.sensor
 
-import com.bobek.compass.sensor.SensorUtils.nanosToSeconds
-
 class LowPassFilter(private val timeConstantInSeconds: Float) :
     SensorFilter(timeConstantInSeconds) {
 
-    private var previousValues: SensorValues? = null
+    private var count = 1L
+    private var baseValues: SensorValues? = null
 
     override fun filter(values: SensorValues): SensorValues {
-        return filter(values, (previousValues ?: values))
-            .also { filteredValues -> previousValues = filteredValues }
+        return if (baseValues == null) {
+            initializeWithFirstValues(values)
+        } else {
+            update(values, baseValues!!)
+        }
     }
 
-    private fun filter(newValues: SensorValues, lastValues: SensorValues): SensorValues {
-        val durationInNanos = newValues.timestamp - lastValues.timestamp
-        val durationInSeconds = nanosToSeconds(durationInNanos)
-        val alpha = timeConstantInSeconds / (timeConstantInSeconds + durationInSeconds)
-
-        val x = filter(newValues.x, lastValues.x, alpha)
-        val y = filter(newValues.y, lastValues.y, alpha)
-        val z = filter(newValues.z, lastValues.z, alpha)
-
-        return SensorValues(x, y, z, newValues.timestamp)
+    private fun initializeWithFirstValues(values: SensorValues): SensorValues {
+        baseValues = values
+        return values
     }
 
-    private fun filter(newValue: Float, lastValue: Float, alpha: Float): Float {
-        return alpha * lastValue + (1 - alpha) * newValue
+    private fun update(latest: SensorValues, base: SensorValues): SensorValues {
+        val durationInSeconds = SensorUtils.nanosToSeconds(latest.timestamp - base.timestamp)
+        val deliveryRate = 1L / (count / durationInSeconds)
+        val alpha = deliveryRate / (deliveryRate + timeConstantInSeconds)
+
+        val x = base.x + alpha * (latest.x - base.x)
+        val y = base.y + alpha * (latest.y - base.y)
+        val z = base.z + alpha * (latest.z - base.z)
+
+        baseValues = SensorValues(x, y, z, base.timestamp)
+        count++
+
+        return SensorValues(x, y, z, latest.timestamp)
     }
 
     override fun reset() {
-        previousValues = null
+        count = 1L
+        baseValues = null
     }
 }
