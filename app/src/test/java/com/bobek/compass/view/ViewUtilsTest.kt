@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2020 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,11 +19,11 @@
 package com.bobek.compass.view
 
 import com.bobek.compass.view.CardinalDirection.*
-import com.bobek.compass.view.CompassUtils.determineCardinalDirection
+import com.bobek.compass.view.ViewUtils.determineCardinalDirection
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class CompassUtilsTest {
+class ViewUtilsTest {
 
     @Test
     fun determineCardinalDirection() {

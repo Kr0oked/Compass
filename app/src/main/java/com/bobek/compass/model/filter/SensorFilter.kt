@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2020 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,11 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass.sensor
+package com.bobek.compass.model.filter
 
-data class SensorValues(
-    val x: Float,
-    val y: Float,
-    val z: Float,
-    val timestamp: Long
-)
+import com.bobek.compass.model.SensorValues
+
+interface SensorFilter {
+
+    fun filter(values: SensorValues): SensorValues
+
+    fun reset()
+}

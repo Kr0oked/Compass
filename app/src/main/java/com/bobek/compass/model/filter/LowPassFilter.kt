@@ -16,10 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass.sensor
+package com.bobek.compass.model.filter
 
-class LowPassFilter(private val timeConstantInSeconds: Float) :
-    SensorFilter(timeConstantInSeconds) {
+import com.bobek.compass.model.ModelUtils
+import com.bobek.compass.model.SensorValues
+
+class LowPassFilter(private val timeConstantInSeconds: Float) : SensorFilter {
+
+    init {
+        check(timeConstantInSeconds > 0.0f) { "Time constant must be greater than 0" }
+    }
 
     private var count = 1L
     private var baseValues: SensorValues? = null
@@ -38,7 +44,7 @@ class LowPassFilter(private val timeConstantInSeconds: Float) :
     }
 
     private fun update(latest: SensorValues, base: SensorValues): SensorValues {
-        val durationInSeconds = SensorUtils.nanosToSeconds(latest.timestamp - base.timestamp)
+        val durationInSeconds = ModelUtils.nanosToSeconds(latest.timestamp - base.timestamp)
         val deliveryRate = 1L / (count / durationInSeconds)
         val alpha = deliveryRate / (deliveryRate + timeConstantInSeconds)
 

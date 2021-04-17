@@ -16,52 +16,59 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass.sensor
+package com.bobek.compass.model
 
-import android.hardware.SensorManager.getOrientation
-import android.hardware.SensorManager.getRotationMatrix
+import android.hardware.SensorManager
+import com.bobek.compass.model.filter.SensorFilter
 
 private const val AZIMUTH = 0
 private const val AXIS_SIZE = 3
 private const val ROTATION_MATRIX_SIZE = 9
 private const val ZERO = 0.0f
 
-class SensorHandler {
+class CompassModel(
+    private val accelerometerFilter: SensorFilter,
+    private val magnetometerFilter: SensorFilter
+) {
+
+    var azimuth = ZERO
+        private set
 
     private val accelerometerReading = FloatArray(AXIS_SIZE)
     private val magnetometerReading = FloatArray(AXIS_SIZE)
 
-    fun handleAccelerometerValues(values: SensorValues): Float? {
+    fun updateAccelerometer(values: SensorValues) {
         floatArrayOf(values.x, values.y, values.z).copyInto(accelerometerReading)
-        return updateAzimuth()
+        updateAzimuth()
     }
 
-    fun handleMagneticFieldValues(values: SensorValues): Float? {
+    fun updateMagneticField(values: SensorValues) {
         floatArrayOf(values.x, values.y, values.z).copyInto(magnetometerReading)
-        return updateAzimuth()
+        updateAzimuth()
     }
 
-    private fun updateAzimuth(): Float? {
+    private fun updateAzimuth() {
         val rotationMatrix = FloatArray(ROTATION_MATRIX_SIZE)
 
-        val success = getRotationMatrix(rotationMatrix, null, accelerometerReading, magnetometerReading)
+        val success = SensorManager.getRotationMatrix(rotationMatrix, null, accelerometerReading, magnetometerReading)
 
-        return if (success) {
-            calculateAzimuth(rotationMatrix)
-        } else {
-            null
+        if (success) {
+            azimuth = calculateAzimuth(rotationMatrix)
         }
     }
 
     private fun calculateAzimuth(rotationMatrix: FloatArray): Float {
-        val orientationAnglesInRadians = getOrientation(rotationMatrix, FloatArray(AXIS_SIZE))
+        val orientationAnglesInRadians = SensorManager.getOrientation(rotationMatrix, FloatArray(AXIS_SIZE))
         val azimuthInRadians = orientationAnglesInRadians[AZIMUTH]
         val azimuthInDegrees = Math.toDegrees(azimuthInRadians.toDouble()).toFloat()
-        return SensorUtils.normalizeAngle(azimuthInDegrees)
+        return ModelUtils.normalizeAngle(azimuthInDegrees)
     }
 
     fun reset() {
+        azimuth = ZERO
         accelerometerReading.fill(ZERO)
         magnetometerReading.fill(ZERO)
+        accelerometerFilter.reset()
+        magnetometerFilter.reset()
     }
 }

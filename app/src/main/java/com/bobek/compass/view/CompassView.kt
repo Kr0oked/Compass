@@ -31,7 +31,7 @@ import kotlin.math.roundToInt
 private const val CARDINAL_DIRECTION_TEXT_RATIO = 0.23f
 private const val DEGREE_TEXT_RATIO = 0.08f
 
-class Compass(context: Context, attributeSet: AttributeSet) : ConstraintLayout(context, attributeSet) {
+class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayout(context, attributeSet) {
 
     @IdRes
     private val center = R.id.compass_rose_image
@@ -40,16 +40,16 @@ class Compass(context: Context, attributeSet: AttributeSet) : ConstraintLayout(c
     private lateinit var statusCardinalDirectionText: AppCompatTextView
     private lateinit var compassRoseImage: AppCompatImageView
 
-    private var currentDegrees = 360
+    private var currentAzimuth = 360
 
     init {
-        inflate(context, R.layout.compass, this)
+        inflate(context, R.layout.compass_view, this)
     }
 
     override fun onFinishInflate() {
         super.onFinishInflate()
         findViews()
-        setDegrees(0.0f)
+        setAzimuth(0.0f)
     }
 
     private fun findViews() {
@@ -58,11 +58,11 @@ class Compass(context: Context, attributeSet: AttributeSet) : ConstraintLayout(c
         compassRoseImage = findViewById(R.id.compass_rose_image)
     }
 
-    fun setDegrees(degrees: Float) {
-        val roundedDegrees = degrees.roundToInt()
+    fun setAzimuth(azimuth: Float) {
+        val roundedAzimuth = azimuth.roundToInt()
 
-        if (currentDegrees != roundedDegrees) {
-            currentDegrees = roundedDegrees
+        if (currentAzimuth != roundedAzimuth) {
+            currentAzimuth = roundedAzimuth
             updateView()
         }
     }
@@ -71,17 +71,17 @@ class Compass(context: Context, attributeSet: AttributeSet) : ConstraintLayout(c
         updateStatusDegreesText()
         updateStatusDirectionText()
 
-        val rotation = currentDegrees.unaryMinus().toFloat()
+        val rotation = currentAzimuth.unaryMinus().toFloat()
         rotateCompassRoseImage(rotation)
         rotateCompassRoseTexts(rotation)
     }
 
     private fun updateStatusDegreesText() {
-        statusDegreesText.text = context.getString(R.string.degrees, currentDegrees)
+        statusDegreesText.text = context.getString(R.string.degrees, currentAzimuth)
     }
 
     private fun updateStatusDirectionText() {
-        val cardinalDirection = CompassUtils.determineCardinalDirection(currentDegrees.toFloat())
+        val cardinalDirection = ViewUtils.determineCardinalDirection(currentAzimuth.toFloat())
         statusCardinalDirectionText.text = context.getString(cardinalDirection.labelResourceId)
     }
 
