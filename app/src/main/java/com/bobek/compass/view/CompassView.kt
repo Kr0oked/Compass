@@ -40,7 +40,7 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
     private lateinit var statusCardinalDirectionText: AppCompatTextView
     private lateinit var compassRoseImage: AppCompatImageView
 
-    private var currentAzimuth = 360
+    private var currentAzimuth = 0
 
     init {
         inflate(context, R.layout.compass_view, this)
@@ -48,14 +48,14 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
 
     override fun onFinishInflate() {
         super.onFinishInflate()
-        findViews()
-        setAzimuth(0.0f)
-    }
-
-    private fun findViews() {
         statusDegreesText = findViewById(R.id.status_degrees_text)
         statusCardinalDirectionText = findViewById(R.id.status_cardinal_direction_text)
         compassRoseImage = findViewById(R.id.compass_rose_image)
+    }
+
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        super.onLayout(changed, left, top, right, bottom)
+        updateView()
     }
 
     fun setAzimuth(azimuth: Float) {
