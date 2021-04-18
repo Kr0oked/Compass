@@ -21,15 +21,9 @@
 <resources>
     <string name="app_name">Kompass</string>
 
-    <string name="status_sensor">Sensor Genauigkeit</string>
+    <string name="sensor_status">Sensor Status</string>
     <string name="action_night_mode">Nachtmodus wechseln</string>
     <string name="about">Über die App</string>
-
-    <string name="accelerometer">Beschleunigungsmesser</string>
-    <string name="magnetometer">Magnetometer</string>
-
-    <string name="sensor_name_description">Name des Sensors</string>
-    <string name="accuracy_image_description">Gibt die Genauigkeit des Sensors an</string>
 
     <string name="compass_rose_image_description">Windrose die den magnetischen Norden anzeigt</string>
     <string name="device_heading_indicator_image_description">Gibt die Richtung an in die das Gerät zeigt</string>
@@ -78,6 +72,12 @@
     <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Quelltext</a></string>
     <string name="source_code_description">Link zur Quelltext Verwaltung</string>
 
-    <string name="compass_accelerometer_error_message">Es wurde kein Beschleunigungssensor gefunden</string>
-    <string name="compass_magnetometer_error_message">Es wurde kein Magnetometer gefunden</string>
+    <string name="sensor_accuracy_no_contact">Sensor nicht verfügbar</string>
+    <string name="sensor_accuracy_unreliable">Sensor Werte sind unzuverlässig</string>
+    <string name="sensor_accuracy_low">Niedrige Genauigkeit</string>
+    <string name="sensor_accuracy_medium">Durchschnittliche Genauigkeit</string>
+    <string name="sensor_accuracy_high">Maximale Genauigkeit</string>
+    <string name="sensor_accuracy_image_description">Zeigt grafisch die Genauigkeit des Sensors an</string>
+    <string name="sensor_accuracy_text_description">Beschreibt die Genauigkeit des Sensors</string>
+    <string name="sensor_error_message">Sensor nicht verfügbar</string>
 </resources>

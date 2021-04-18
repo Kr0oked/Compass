@@ -18,11 +18,11 @@
 
 package com.bobek.compass.model
 
-import com.bobek.compass.model.ModelUtils.normalizeAngle
+import com.bobek.compass.model.MathUtils.normalizeAngle
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class ModelUtilsTest {
+class MathUtilsTest {
 
     @Test
     fun normalizeAngleKeepsValue() {

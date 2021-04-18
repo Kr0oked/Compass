@@ -21,15 +21,9 @@
 <resources>
     <string name="app_name">Compass</string>
 
-    <string name="status_sensor">Sensor accuracy</string>
+    <string name="sensor_status">Sensor status</string>
     <string name="action_night_mode">Change night mode</string>
     <string name="about">About</string>
-
-    <string name="accelerometer">Accelerometer</string>
-    <string name="magnetometer">Magnetometer</string>
-
-    <string name="sensor_name_description">Name of the sensor</string>
-    <string name="accuracy_image_description">Indicates the sensors accuracy</string>
 
     <string name="compass_rose_image_description">Compass rose showing to magnetic north</string>
     <string name="device_heading_indicator_image_description">Indicates in which direction the device is pointing</string>
@@ -78,6 +72,12 @@
     <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Source code</a></string>
     <string name="source_code_description">Link to the Source code management</string>
 
-    <string name="compass_accelerometer_error_message">No accelerometer available</string>
-    <string name="compass_magnetometer_error_message">No magnetometer available</string>
+    <string name="sensor_accuracy_no_contact">Sensor not available</string>
+    <string name="sensor_accuracy_unreliable">Sensor values are unreliable</string>
+    <string name="sensor_accuracy_low">Low accuracy</string>
+    <string name="sensor_accuracy_medium">Average accuracy</string>
+    <string name="sensor_accuracy_high">Maximum accuracy</string>
+    <string name="sensor_accuracy_image_description">Indicates graphically the sensors accuracy</string>
+    <string name="sensor_accuracy_text_description">Describes the sensors accuracy</string>
+    <string name="sensor_error_message">Sensor not available</string>
 </resources>

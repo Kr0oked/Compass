@@ -25,68 +25,32 @@
         android:padding="?dialogPreferredPadding">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/accelerometer_line"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/accelerometer_accuracy_image"
+                android:id="@+id/sensor_accuracy_image"
                 android:layout_width="@dimen/sensor_alert_dialog_icon_size"
                 android:layout_height="@dimen/sensor_alert_dialog_icon_size"
                 android:layout_marginEnd="@dimen/sensor_alert_dialog_icon_padding"
-                android:contentDescription="@string/accuracy_image_description"
+                android:contentDescription="@string/sensor_accuracy_image_description"
                 android:src="@drawable/ic_sensor_no_contact"
                 android:tint="@android:color/tab_indicator_text"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/accelerometer_name_text"
+                app:layout_constraintEnd_toStartOf="@+id/sensor_accuracy_text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/accelerometer_name_text"
+                android:id="@+id/sensor_accuracy_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/sensor_name_description"
-                android:text="@string/accelerometer"
+                android:contentDescription="@string/sensor_accuracy_text_description"
+                android:text="@string/sensor_accuracy_no_contact"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/accelerometer_accuracy_image"
-                app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/magnetometer_line"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="?dialogPreferredPadding"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/accelerometer_line">
-
-        <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/magnetometer_accuracy_image"
-                android:layout_width="@dimen/sensor_alert_dialog_icon_size"
-                android:layout_height="@dimen/sensor_alert_dialog_icon_size"
-                android:layout_marginEnd="@dimen/sensor_alert_dialog_icon_padding"
-                android:contentDescription="@string/accuracy_image_description"
-                android:src="@drawable/ic_sensor_no_contact"
-                android:tint="@android:color/tab_indicator_text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/magnetometer_name_text"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/magnetometer_name_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/sensor_name_description"
-                android:text="@string/magnetometer"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/magnetometer_accuracy_image"
                 app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

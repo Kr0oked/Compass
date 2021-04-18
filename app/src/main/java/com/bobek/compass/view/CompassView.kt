@@ -26,6 +26,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import com.bobek.compass.R
+import com.bobek.compass.model.Azimuth
 import kotlin.math.roundToInt
 
 private const val CARDINAL_DIRECTION_TEXT_RATIO = 0.23f
@@ -40,7 +41,7 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
     private lateinit var statusCardinalDirectionText: AppCompatTextView
     private lateinit var compassRoseImage: AppCompatImageView
 
-    private var currentAzimuth = 0
+    private var azimuth = Azimuth(0f)
 
     init {
         inflate(context, R.layout.compass_view, this)
@@ -58,31 +59,26 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
         updateView()
     }
 
-    fun setAzimuth(azimuth: Float) {
-        val roundedAzimuth = azimuth.roundToInt()
-
-        if (currentAzimuth != roundedAzimuth) {
-            currentAzimuth = roundedAzimuth
-            updateView()
-        }
+    fun setAzimuth(azimuth: Azimuth) {
+        this.azimuth = azimuth
+        updateView()
     }
 
     private fun updateView() {
         updateStatusDegreesText()
         updateStatusDirectionText()
 
-        val rotation = currentAzimuth.unaryMinus().toFloat()
+        val rotation = azimuth.degrees.unaryMinus()
         rotateCompassRoseImage(rotation)
         rotateCompassRoseTexts(rotation)
     }
 
     private fun updateStatusDegreesText() {
-        statusDegreesText.text = context.getString(R.string.degrees, currentAzimuth)
+        statusDegreesText.text = context.getString(R.string.degrees, azimuth.degrees.roundToInt())
     }
 
     private fun updateStatusDirectionText() {
-        val cardinalDirection = ViewUtils.determineCardinalDirection(currentAzimuth.toFloat())
-        statusCardinalDirectionText.text = context.getString(cardinalDirection.labelResourceId)
+        statusCardinalDirectionText.text = context.getString(azimuth.cardinalDirection.labelResourceId)
     }
 
     private fun rotateCompassRoseImage(rotation: Float) {

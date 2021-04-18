@@ -19,8 +19,6 @@
 package com.bobek.compass
 
 import android.hardware.Sensor
-import android.hardware.Sensor.TYPE_ACCELEROMETER
-import android.hardware.Sensor.TYPE_MAGNETIC_FIELD
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
@@ -30,26 +28,18 @@ import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import com.bobek.compass.model.CompassModel
-import com.bobek.compass.model.SensorValues
-import com.bobek.compass.model.filter.LowPassFilter
+import com.bobek.compass.model.MathUtils
+import com.bobek.compass.model.RotationVector
+import com.bobek.compass.model.SensorAccuracy
 import com.bobek.compass.view.CompassView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 private const val TAG = "MainActivity"
-private const val SAMPLING_PERIOD_US = SENSOR_DELAY_GAME
-private const val FILTER_TIME_CONSTANT = 0.18f
-private const val X = 0
-private const val Y = 1
-private const val Z = 2
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
@@ -57,11 +47,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private lateinit var sensorManager: SensorManager
 
     private var optionsMenu: Menu? = null
-
-    private var accelerometerAccuracy = SENSOR_STATUS_ACCURACY_HIGH
-    private var magnetometerAccuracy = SENSOR_STATUS_ACCURACY_HIGH
-
-    private var compassModel = CompassModel(LowPassFilter(FILTER_TIME_CONSTANT), LowPassFilter(FILTER_TIME_CONSTANT))
+    private var sensorAccuracy = SensorAccuracy.NO_CONTACT
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_main)
@@ -76,33 +62,20 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onResume() {
         super.onResume()
 
-        compassView.visibility = GONE
-
-        val accelerometer = sensorManager.getDefaultSensor(TYPE_ACCELEROMETER)
-        if (accelerometer == null) {
-            showErrorDialog(R.string.compass_accelerometer_error_message)
-            Log.w(TAG, "No accelerometer available")
+        val rotationVectorSensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
+        if (rotationVectorSensor == null) {
+            showSensorErrorDialog()
+            Log.w(TAG, "Rotation vector sensor not available")
             return
         }
 
-        val magnetometer = sensorManager.getDefaultSensor(TYPE_MAGNETIC_FIELD)
-        if (magnetometer == null) {
-            showErrorDialog(R.string.compass_magnetometer_error_message)
-            Log.w(TAG, "No magnetometer available")
-            return
-        }
-
-        sensorManager.registerListener(this, accelerometer, SAMPLING_PERIOD_US)
-        sensorManager.registerListener(this, magnetometer, SAMPLING_PERIOD_US)
-
-        compassView.visibility = VISIBLE
-
-        Log.i(TAG, "Initialized compass")
+        sensorManager.registerListener(this, rotationVectorSensor, SENSOR_DELAY_FASTEST)
+        Log.i(TAG, "Started compass")
     }
 
-    private fun showErrorDialog(@StringRes messageId: Int) {
+    private fun showSensorErrorDialog() {
         MaterialAlertDialogBuilder(this)
-            .setMessage(messageId)
+            .setMessage(R.string.sensor_error_message)
             .setIcon(android.R.drawable.ic_dialog_alert)
             .setCancelable(false)
             .show()
@@ -111,7 +84,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onPause() {
         super.onPause()
         sensorManager.unregisterListener(this)
-        compassModel.reset()
         Log.i(TAG, "Stopped compass")
     }
 
@@ -144,14 +116,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private fun showSensorStatusPopup() {
         val sensorAccuracyView = layoutInflater.inflate(R.layout.sensor_alert_dialog_view, null)
 
-        sensorAccuracyView.findViewById<AppCompatImageView>(R.id.accelerometer_accuracy_image)
-            .setImageResource(getAccuracyIcon(accelerometerAccuracy))
+        sensorAccuracyView.findViewById<AppCompatImageView>(R.id.sensor_accuracy_image)
+            .setImageResource(sensorAccuracy.iconResourceId)
 
-        sensorAccuracyView.findViewById<AppCompatImageView>(R.id.magnetometer_accuracy_image)
-            .setImageResource(getAccuracyIcon(magnetometerAccuracy))
+        sensorAccuracyView.findViewById<AppCompatTextView>(R.id.sensor_accuracy_text)
+            .setText(sensorAccuracy.textResourceId)
 
         MaterialAlertDialogBuilder(this)
-            .setTitle(R.string.status_sensor)
+            .setTitle(R.string.sensor_status)
             .setView(sensorAccuracyView)
             .setNeutralButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
             .show()
@@ -193,76 +165,55 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
         when (sensor.type) {
-            TYPE_ACCELEROMETER -> setAccelerometerAccuracy(accuracy)
-            TYPE_MAGNETIC_FIELD -> setMagnetometerAccuracy(accuracy)
+            Sensor.TYPE_ROTATION_VECTOR -> updateSensorAccuracy(accuracy)
             else -> Log.w(TAG, "Unexpected accuracy changed event of type ${sensor.type}")
         }
     }
 
-    private fun setAccelerometerAccuracy(accuracy: Int) {
-        Log.v(TAG, "Accelerometer accuracy value $accuracy")
-        accelerometerAccuracy = accuracy
+    private fun updateSensorAccuracy(accuracy: Int) {
+        Log.v(TAG, "Sensor accuracy value $accuracy")
+        sensorAccuracy = adaptAccuracy(accuracy)
         updateSensorStatusIcon()
     }
 
-    private fun setMagnetometerAccuracy(accuracy: Int) {
-        Log.v(TAG, "Magnetometer accuracy value $accuracy")
-        magnetometerAccuracy = accuracy
-        updateSensorStatusIcon()
+    private fun adaptAccuracy(accuracy: Int): SensorAccuracy {
+        return when (accuracy) {
+            SENSOR_STATUS_NO_CONTACT -> SensorAccuracy.NO_CONTACT
+            SENSOR_STATUS_UNRELIABLE -> SensorAccuracy.UNRELIABLE
+            SENSOR_STATUS_ACCURACY_LOW -> SensorAccuracy.LOW
+            SENSOR_STATUS_ACCURACY_MEDIUM -> SensorAccuracy.MEDIUM
+            SENSOR_STATUS_ACCURACY_HIGH -> SensorAccuracy.HIGH
+            else -> {
+                Log.w(TAG, "Encountered unexpected sensor accuracy '$sensorAccuracy'")
+                SensorAccuracy.NO_CONTACT
+            }
+        }
     }
 
     override fun onSensorChanged(event: SensorEvent) {
         when (event.sensor.type) {
-            TYPE_ACCELEROMETER -> handleAccelerometerValues(event.values, event.timestamp)
-            TYPE_MAGNETIC_FIELD -> handleMagneticFieldValues(event.values, event.timestamp)
-            else -> Log.w(TAG, "Unexpected sensor event of type ${event.sensor.type}")
+            Sensor.TYPE_ROTATION_VECTOR -> updateCompass(event)
+            else -> Log.w(TAG, "Unexpected sensor changed event of type ${event.sensor.type}")
         }
-        val azimuth = compassModel.azimuth
-        Log.v(TAG, "Compass azimuth: $azimuth")
+    }
+
+    private fun updateCompass(event: SensorEvent) {
+        val rotationVector = RotationVector(event.values[0], event.values[1], event.values[2])
+        val azimuth = MathUtils.calculateAzimuth(rotationVector)
         compassView.setAzimuth(azimuth)
-    }
-
-    private fun handleAccelerometerValues(values: FloatArray, timestamp: Long) {
-        Log.v(TAG, "Accelerometer - X: ${values[X]} Y: ${values[Y]} Z: ${values[Z]}")
-        compassModel.updateAccelerometer(SensorValues(values[X], values[Y], values[Z], timestamp))
-    }
-
-    private fun handleMagneticFieldValues(values: FloatArray, timestamp: Long) {
-        Log.v(TAG, "Magnetometer - X: ${values[X]} Y: ${values[Y]} Z: ${values[Z]}")
-        compassModel.updateMagneticField(SensorValues(values[X], values[Y], values[Z], timestamp))
+        Log.v(TAG, "Azimuth $azimuth")
     }
 
     private fun updateSensorStatusIcon() {
         optionsMenu
             ?.findItem(R.id.action_sensor_status)
-            ?.setIcon(getSensorStatusIcon())
+            ?.setIcon(sensorAccuracy.iconResourceId)
     }
 
     private fun updateNightModeIcon() {
         optionsMenu
             ?.findItem(R.id.action_night_mode)
             ?.setIcon(getNightModeIcon())
-    }
-
-    @DrawableRes
-    private fun getSensorStatusIcon(): Int {
-        val smallestAccuracy = accelerometerAccuracy.coerceAtMost(magnetometerAccuracy)
-        return getAccuracyIcon(smallestAccuracy)
-    }
-
-    @DrawableRes
-    private fun getAccuracyIcon(accuracy: Int): Int {
-        return when (accuracy) {
-            SENSOR_STATUS_NO_CONTACT -> R.drawable.ic_sensor_no_contact
-            SENSOR_STATUS_UNRELIABLE -> R.drawable.ic_sensor_unreliable
-            SENSOR_STATUS_ACCURACY_LOW -> R.drawable.ic_sensor_low
-            SENSOR_STATUS_ACCURACY_MEDIUM -> R.drawable.ic_sensor_medium
-            SENSOR_STATUS_ACCURACY_HIGH -> R.drawable.ic_sensor_high
-            else -> {
-                Log.w(TAG, "Encountered unexpected sensor accuracy '$accuracy'")
-                R.drawable.ic_sensor_no_contact
-            }
-        }
     }
 
     @DrawableRes

@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2020 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,18 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass.view
+package com.bobek.compass.model
 
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.bobek.compass.R
 
-enum class CardinalDirection(@StringRes val labelResourceId: Int) {
-    NORTH(R.string.cardinal_direction_north),
-    NORTHEAST(R.string.cardinal_direction_northeast),
-    EAST(R.string.cardinal_direction_east),
-    SOUTHEAST(R.string.cardinal_direction_southeast),
-    SOUTH(R.string.cardinal_direction_south),
-    SOUTHWEST(R.string.cardinal_direction_southwest),
-    WEST(R.string.cardinal_direction_west),
-    NORTHWEST(R.string.cardinal_direction_northwest)
+enum class SensorAccuracy(@StringRes val textResourceId: Int, @DrawableRes val iconResourceId: Int) {
+    NO_CONTACT(R.string.sensor_accuracy_no_contact, R.drawable.ic_sensor_no_contact),
+    UNRELIABLE(R.string.sensor_accuracy_unreliable, R.drawable.ic_sensor_unreliable),
+    LOW(R.string.sensor_accuracy_low, R.drawable.ic_sensor_low),
+    MEDIUM(R.string.sensor_accuracy_medium, R.drawable.ic_sensor_medium),
+    HIGH(R.string.sensor_accuracy_high, R.drawable.ic_sensor_high)
 }

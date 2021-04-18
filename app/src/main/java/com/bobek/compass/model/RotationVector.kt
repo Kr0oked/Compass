@@ -16,13 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass.model.filter
+package com.bobek.compass.model
 
-import com.bobek.compass.model.SensorValues
+data class RotationVector(val x: Float, val y: Float, val z: Float) {
 
-interface SensorFilter {
-
-    fun filter(values: SensorValues): SensorValues
-
-    fun reset()
+    fun toArray(): FloatArray = floatArrayOf(x, y, z)
 }
