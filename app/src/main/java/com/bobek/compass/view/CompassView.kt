@@ -54,11 +54,6 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
         compassRoseImage = findViewById(R.id.compass_rose_image)
     }
 
-    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        super.onLayout(changed, left, top, right, bottom)
-        updateView()
-    }
-
     fun setAzimuth(azimuth: Azimuth) {
         this.azimuth = azimuth
         updateView()
