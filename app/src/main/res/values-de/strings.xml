@@ -80,4 +80,6 @@
     <string name="sensor_accuracy_image_description">Zeigt grafisch die Genauigkeit des Sensors an</string>
     <string name="sensor_accuracy_text_description">Beschreibt die Genauigkeit des Sensors</string>
     <string name="sensor_error_message">Sensor nicht verfügbar</string>
+    <string name="sensor_calibration_text">Sie können jederzeit versuchen die Genauigkeit ihres Sensors zu erhöhen indem sie das Gerät mehrfach in Form einer 8 rotieren.</string>
+    <string name="sensor_calibration_text_description">Eklärt wie die Genauigkeit des Sensors erhöht werden kann</string>
 </resources>
