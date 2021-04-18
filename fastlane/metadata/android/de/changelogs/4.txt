@@ -1,0 +1,2 @@
+- Kompass zittert nicht mehr
+- Hinweis zum Kalibirieren des Sensors hinzugefügt
