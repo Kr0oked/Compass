@@ -50,13 +50,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private var sensorAccuracy = SensorAccuracy.NO_CONTACT
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
         compassView = findViewById(R.id.compass)
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
-
-        super.onCreate(savedInstanceState)
     }
 
     override fun onResume() {
