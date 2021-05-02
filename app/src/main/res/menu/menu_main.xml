@@ -24,15 +24,21 @@
         tools:context="com.bobek.compass.MainActivity">
 
     <item
-            android:id="@+id/action_sensor_status"
-            android:icon="@drawable/ic_sensor_no_contact"
-            android:title="@string/sensor_status"
+            android:id="@+id/action_screen_rotation"
+            android:icon="@drawable/ic_screen_rotation"
+            android:title="@string/action_screen_rotation"
             app:showAsAction="ifRoom" />
 
     <item
             android:id="@+id/action_night_mode"
             android:icon="@drawable/ic_night_mode_auto"
             android:title="@string/action_night_mode"
+            app:showAsAction="ifRoom" />
+
+    <item
+            android:id="@+id/action_sensor_status"
+            android:icon="@drawable/ic_sensor_no_contact"
+            android:title="@string/sensor_status"
             app:showAsAction="ifRoom" />
 
     <item

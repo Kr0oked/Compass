@@ -20,6 +20,7 @@ package com.bobek.compass.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.Surface
 import androidx.annotation.IdRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -63,9 +64,20 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
         updateStatusDegreesText()
         updateStatusDirectionText()
 
-        val rotation = azimuth.degrees.unaryMinus()
+        val rotation = calculateRotation()
         rotateCompassRoseImage(rotation)
         rotateCompassRoseTexts(rotation)
+    }
+
+    private fun calculateRotation(): Float {
+        val rotation = azimuth.degrees.unaryMinus()
+
+        return when (display.rotation) {
+            Surface.ROTATION_90 -> rotation + 90
+            Surface.ROTATION_180 -> rotation + 180
+            Surface.ROTATION_270 -> rotation + 270
+            else -> rotation
+        }
     }
 
     private fun updateStatusDegreesText() {

@@ -22,6 +22,7 @@
     <string name="app_name">Compass</string>
 
     <string name="sensor_status">Sensor status</string>
+    <string name="action_screen_rotation">Lock screen rotation</string>
     <string name="action_night_mode">Change night mode</string>
     <string name="about">About</string>
 

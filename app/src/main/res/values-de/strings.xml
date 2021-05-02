@@ -22,6 +22,7 @@
     <string name="app_name">Kompass</string>
 
     <string name="sensor_status">Sensor Status</string>
+    <string name="action_screen_rotation">Bildschirmausrichtung sperren</string>
     <string name="action_night_mode">Nachtmodus wechseln</string>
     <string name="about">Über die App</string>
 

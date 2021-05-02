@@ -18,6 +18,8 @@
 
 package com.bobek.compass
 
+import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LOCKED
+import android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -90,6 +92,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         menuInflater.inflate(R.menu.menu_main, menu)
         optionsMenu = menu
         updateSensorStatusIcon()
+        updateScreenRotationIcon()
         updateNightModeIcon()
         return super.onCreateOptionsMenu(menu)
     }
@@ -98,6 +101,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         return when (item.itemId) {
             R.id.action_sensor_status -> {
                 showSensorStatusPopup()
+                true
+            }
+            R.id.action_screen_rotation -> {
+                toggleScreenRotationMode()
                 true
             }
             R.id.action_night_mode -> {
@@ -128,15 +135,30 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             .show()
     }
 
-    private fun toggleNightMode() {
-        val nextNightMode = when (getDefaultNightMode()) {
-            MODE_NIGHT_NO -> MODE_NIGHT_YES
-            MODE_NIGHT_YES -> MODE_NIGHT_FOLLOW_SYSTEM
-            else -> MODE_NIGHT_NO
+    private fun toggleScreenRotationMode() {
+        when (requestedOrientation) {
+            SCREEN_ORIENTATION_UNSPECIFIED -> changeScreenRotationMode(SCREEN_ORIENTATION_LOCKED)
+            else -> changeScreenRotationMode(SCREEN_ORIENTATION_UNSPECIFIED)
         }
+    }
 
-        Log.d(TAG, "Setting night mode to value $nextNightMode")
-        setDefaultNightMode(nextNightMode)
+    private fun changeScreenRotationMode(screenOrientation: Int) {
+        Log.d(TAG, "Setting requested orientation to value $screenOrientation")
+        requestedOrientation = screenOrientation
+        updateScreenRotationIcon()
+    }
+
+    private fun toggleNightMode() {
+        when (getDefaultNightMode()) {
+            MODE_NIGHT_NO -> changeNightMode(MODE_NIGHT_YES)
+            MODE_NIGHT_YES -> changeNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+            else -> changeNightMode(MODE_NIGHT_NO)
+        }
+    }
+
+    private fun changeNightMode(@NightMode mode: Int) {
+        Log.d(TAG, "Setting night mode to value $mode")
+        setDefaultNightMode(mode)
         updateNightModeIcon()
     }
 
@@ -207,6 +229,20 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         optionsMenu
             ?.findItem(R.id.action_sensor_status)
             ?.setIcon(sensorAccuracy.iconResourceId)
+    }
+
+    private fun updateScreenRotationIcon() {
+        optionsMenu
+            ?.findItem(R.id.action_screen_rotation)
+            ?.setIcon(getScreenRotationIcon())
+    }
+
+    @DrawableRes
+    private fun getScreenRotationIcon(): Int {
+        return when (requestedOrientation) {
+            SCREEN_ORIENTATION_UNSPECIFIED -> R.drawable.ic_screen_rotation
+            else -> R.drawable.ic_screen_rotation_lock
+        }
     }
 
     private fun updateNightModeIcon() {
