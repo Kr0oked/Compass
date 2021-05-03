@@ -72,7 +72,7 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
     private fun calculateRotation(): Float {
         val rotation = azimuth.degrees.unaryMinus()
 
-        return when (display.rotation) {
+        return when (display?.rotation) {
             Surface.ROTATION_90 -> rotation + 90
             Surface.ROTATION_180 -> rotation + 180
             Surface.ROTATION_270 -> rotation + 270
