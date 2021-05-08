@@ -31,14 +31,8 @@ object MathUtils {
         val rotationMatrix = FloatArray(ROTATION_MATRIX_SIZE)
         SensorManager.getRotationMatrixFromVector(rotationMatrix, rotationVector.toArray())
         val orientationAnglesInRadians = SensorManager.getOrientation(rotationMatrix, FloatArray(AXIS_SIZE))
-        val azimuthInRadians = orientationAnglesInRadians[AZIMUTH]
-        val azimuth = Math.toDegrees(azimuthInRadians.toDouble()).toFloat()
-        val normalizedAzimuth = normalizeAngle(azimuth)
-        return Azimuth(normalizedAzimuth)
-    }
-
-    @JvmStatic
-    fun normalizeAngle(angleInDegrees: Float): Float {
-        return (angleInDegrees + 360f) % 360f
+        val radians = orientationAnglesInRadians[AZIMUTH]
+        val degrees = Math.toDegrees(radians.toDouble()).toFloat()
+        return Azimuth(degrees)
     }
 }

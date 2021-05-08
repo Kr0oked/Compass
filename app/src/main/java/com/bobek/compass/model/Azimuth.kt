@@ -18,12 +18,11 @@
 
 package com.bobek.compass.model
 
-data class Azimuth(val degrees: Float) {
+class Azimuth(_degrees: Float) {
 
-    init {
-        require(degrees >= 0f && degrees != Float.MIN_VALUE) { "Degrees must be greater or equal 0" }
-        require(degrees < 360f) { "Degrees must be smaller than 360" }
-    }
+    operator fun plus(degrees: Float) = Azimuth(this.degrees + degrees)
+
+    val degrees = normalizeAngle(_degrees)
 
     val cardinalDirection: CardinalDirection = when (degrees) {
         in 22.5f until 67.5f -> CardinalDirection.NORTHEAST
@@ -34,6 +33,29 @@ data class Azimuth(val degrees: Float) {
         in 247.5f until 292.5f -> CardinalDirection.WEST
         in 292.5f until 337.5f -> CardinalDirection.NORTHWEST
         else -> CardinalDirection.NORTH
+    }
+
+    private fun normalizeAngle(angleInDegrees: Float): Float {
+        return (angleInDegrees + 360f) % 360f
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Azimuth
+
+        if (degrees != other.degrees) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return degrees.hashCode()
+    }
+
+    override fun toString(): String {
+        return "Azimuth(degrees=$degrees)"
     }
 }
 

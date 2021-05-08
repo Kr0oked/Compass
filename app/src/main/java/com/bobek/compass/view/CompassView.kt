@@ -55,29 +55,27 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
         compassRoseImage = findViewById(R.id.compass_rose_image)
     }
 
-    fun setAzimuth(azimuth: Azimuth) {
-        this.azimuth = azimuth
+    fun update(azimuth: Azimuth) {
+        this.azimuth = azimuth + displayRotation()
         updateView()
+    }
+
+    private fun displayRotation(): Float {
+        return when (display?.rotation) {
+            Surface.ROTATION_90 -> 90f
+            Surface.ROTATION_180 -> 180f
+            Surface.ROTATION_270 -> 270f
+            else -> 0f
+        }
     }
 
     private fun updateView() {
         updateStatusDegreesText()
         updateStatusDirectionText()
 
-        val rotation = calculateRotation()
+        val rotation = azimuth.degrees.unaryMinus()
         rotateCompassRoseImage(rotation)
         rotateCompassRoseTexts(rotation)
-    }
-
-    private fun calculateRotation(): Float {
-        val rotation = azimuth.degrees.unaryMinus()
-
-        return when (display?.rotation) {
-            Surface.ROTATION_90 -> rotation + 90
-            Surface.ROTATION_180 -> rotation + 180
-            Surface.ROTATION_270 -> rotation + 270
-            else -> rotation
-        }
     }
 
     private fun updateStatusDegreesText() {

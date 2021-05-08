@@ -221,7 +221,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private fun updateCompass(event: SensorEvent) {
         val rotationVector = RotationVector(event.values[0], event.values[1], event.values[2])
         val azimuth = MathUtils.calculateAzimuth(rotationVector)
-        compassView.setAzimuth(azimuth)
+        compassView.update(azimuth)
         Log.v(TAG, "Azimuth $azimuth")
     }
 
