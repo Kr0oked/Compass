@@ -1,0 +1,4 @@
+- Option to lock or follow screen rotation
+- Improved compass scaling
+- Dutch translation
+- Finnish translation

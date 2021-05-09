@@ -1,0 +1,4 @@
+- Option zum Sperren oder Folgen der Bildschirmausrichtung
+- Verbesserte Skalierung des Kompass
+- Niederländische Übersetzung
+- Finnische Übersetzung
