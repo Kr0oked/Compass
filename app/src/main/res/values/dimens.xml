@@ -21,12 +21,6 @@
 <resources>
     <dimen name="root_layout_padding">8dp</dimen>
 
-    <dimen name="status_text_size">30dp</dimen>
-    <dimen name="cardinal_direction_radius">100dp</dimen>
-    <dimen name="cardinal_direction_text_size">30dp</dimen>
-    <dimen name="degree_text_size">10dp</dimen>
-    <dimen name="degree_radius">160dp</dimen>
-
     <dimen name="sensor_alert_dialog_icon_size">30dp</dimen>
     <dimen name="sensor_alert_dialog_icon_padding">8dp</dimen>
 </resources>

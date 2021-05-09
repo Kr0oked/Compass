@@ -19,8 +19,7 @@
   -->
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/center_horizontal_guideline"
@@ -60,11 +59,9 @@
             android:contentDescription="@string/status_degrees_text_description"
             android:text="@string/zero_degrees"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/status_text_size"
             app:layout_constraintBottom_toTopOf="@id/center_horizontal_guideline"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="SpUsage" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/status_cardinal_direction_text"
@@ -73,202 +70,120 @@
             android:contentDescription="@string/status_cardinal_direction_text_description"
             android:text="@string/cardinal_direction_north"
             android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/status_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/center_horizontal_guideline"
-            tools:ignore="SpUsage" />
+            app:layout_constraintTop_toBottomOf="@id/center_horizontal_guideline" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cardinal_direction_north_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cardinal_direction_north_abbreviation"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/cardinal_direction_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="0"
-            app:layout_constraintCircleRadius="@dimen/cardinal_direction_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cardinal_direction_east_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cardinal_direction_east_abbreviation"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/cardinal_direction_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="90"
-            app:layout_constraintCircleRadius="@dimen/cardinal_direction_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cardinal_direction_south_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cardinal_direction_south_abbreviation"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/cardinal_direction_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="180"
-            app:layout_constraintCircleRadius="@dimen/cardinal_direction_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/cardinal_direction_west_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cardinal_direction_west_abbreviation"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/cardinal_direction_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="270"
-            app:layout_constraintCircleRadius="@dimen/cardinal_direction_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_0_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/degree_0_text"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/degree_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="0"
-            app:layout_constraintCircleRadius="@dimen/degree_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_30_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/degree_30_text"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/degree_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="30"
-            app:layout_constraintCircleRadius="@dimen/degree_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_60_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/degree_60_text"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/degree_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="60"
-            app:layout_constraintCircleRadius="@dimen/degree_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_90_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/degree_90_text"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/degree_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="90"
-            app:layout_constraintCircleRadius="@dimen/degree_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_120_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/degree_120_text"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/degree_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="120"
-            app:layout_constraintCircleRadius="@dimen/degree_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_150_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/degree_150_text"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/degree_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="150"
-            app:layout_constraintCircleRadius="@dimen/degree_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_180_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/degree_180_text"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/degree_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="180"
-            app:layout_constraintCircleRadius="@dimen/degree_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_210_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/degree_210_text"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/degree_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="210"
-            app:layout_constraintCircleRadius="@dimen/degree_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_240_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/degree_240_text"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/degree_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="240"
-            app:layout_constraintCircleRadius="@dimen/degree_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_270_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/degree_270_text"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/degree_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="270"
-            app:layout_constraintCircleRadius="@dimen/degree_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_300_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/degree_300_text"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/degree_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="300"
-            app:layout_constraintCircleRadius="@dimen/degree_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/degree_330_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/degree_330_text"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="@dimen/degree_text_size"
-            app:layout_constraintCircle="@id/compass_rose_image"
-            app:layout_constraintCircleAngle="330"
-            app:layout_constraintCircleRadius="@dimen/degree_radius"
-            tools:ignore="MissingConstraints,SpUsage" />
+            android:textColor="?android:attr/textColorPrimary" />
 
 </merge>
