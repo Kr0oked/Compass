@@ -22,13 +22,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion '30.0.3'
 
     defaultConfig {
         applicationId 'com.bobek.compass'
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 4
         versionName '1.3'
     }
