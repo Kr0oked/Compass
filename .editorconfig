@@ -8,7 +8,7 @@ insert_final_newline = true
 end_of_line = lf
 trim_trailing_whitespace = true
 max_line_length = 120
-continuation_indent_size = 8
+ij_continuation_indent_size = 8
 
 [*.bat]
 end_of_line = crlf
