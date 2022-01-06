@@ -2,7 +2,7 @@
 
 <!--
   ~ This file is part of Compass.
-  ~ Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~ Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -25,13 +25,13 @@
         android:viewportHeight="200">
 
     <path
-            android:fillColor="?android:attr/colorAccent"
+            android:fillColor="@color/colorSecondary"
             android:pathData="M100,20 L97,26 L103,26 Z" />
 
     <path
             android:pathData="M100,25 L100,35"
             android:strokeWidth="2"
-            android:strokeColor="?android:attr/colorAccent" />
+            android:strokeColor="@color/colorSecondary" />
 
     <group
             android:pivotX="100"
