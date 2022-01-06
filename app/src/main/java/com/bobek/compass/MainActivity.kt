@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,19 +33,19 @@ import android.view.MenuItem
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.*
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
+import com.bobek.compass.databinding.AboutAlertDialogViewBinding
+import com.bobek.compass.databinding.ActivityMainBinding
+import com.bobek.compass.databinding.SensorAlertDialogViewBinding
 import com.bobek.compass.model.MathUtils
 import com.bobek.compass.model.RotationVector
 import com.bobek.compass.model.SensorAccuracy
-import com.bobek.compass.view.CompassView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
-    private lateinit var compassView: CompassView
+    private lateinit var binding: ActivityMainBinding
     private lateinit var sensorManager: SensorManager
 
     private var optionsMenu: Menu? = null
@@ -53,10 +53,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
 
-        compassView = findViewById(R.id.compass)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
     }
 
@@ -120,17 +122,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun showSensorStatusPopup() {
-        val sensorAccuracyView = layoutInflater.inflate(R.layout.sensor_alert_dialog_view, null)
+        val sensorAccuracyBinding = SensorAlertDialogViewBinding.inflate(layoutInflater)
 
-        sensorAccuracyView.findViewById<AppCompatImageView>(R.id.sensor_accuracy_image)
-            .setImageResource(sensorAccuracy.iconResourceId)
-
-        sensorAccuracyView.findViewById<AppCompatTextView>(R.id.sensor_accuracy_text)
-            .setText(sensorAccuracy.textResourceId)
+        sensorAccuracyBinding.sensorAccuracyImage.setImageResource(sensorAccuracy.iconResourceId)
+        sensorAccuracyBinding.sensorAccuracyText.setText(sensorAccuracy.textResourceId)
 
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.sensor_status)
-            .setView(sensorAccuracyView)
+            .setView(sensorAccuracyBinding.root)
             .setNeutralButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
             .show()
     }
@@ -163,23 +162,16 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun showAboutPopup() {
-        val aboutView = layoutInflater.inflate(R.layout.about_alert_dialog_view, null)
+        val aboutBinding = AboutAlertDialogViewBinding.inflate(layoutInflater)
 
-        val version = aboutView.findViewById<AppCompatTextView>(R.id.version)
-        version.text = getString(R.string.version, BuildConfig.VERSION_NAME)
-
-        val copyright = aboutView.findViewById<AppCompatTextView>(R.id.copyright)
-        copyright.movementMethod = LinkMovementMethod.getInstance()
-
-        val license = aboutView.findViewById<AppCompatTextView>(R.id.license)
-        license.movementMethod = LinkMovementMethod.getInstance()
-
-        val sourceCode = aboutView.findViewById<AppCompatTextView>(R.id.source_code)
-        sourceCode.movementMethod = LinkMovementMethod.getInstance()
+        aboutBinding.version.text = getString(R.string.version, BuildConfig.VERSION_NAME)
+        aboutBinding.copyright.movementMethod = LinkMovementMethod.getInstance()
+        aboutBinding.license.movementMethod = LinkMovementMethod.getInstance()
+        aboutBinding.sourceCode.movementMethod = LinkMovementMethod.getInstance()
 
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.app_name)
-            .setView(aboutView)
+            .setView(aboutBinding.root)
             .setNeutralButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
             .show()
     }
@@ -221,7 +213,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private fun updateCompass(event: SensorEvent) {
         val rotationVector = RotationVector(event.values[0], event.values[1], event.values[2])
         val azimuth = MathUtils.calculateAzimuth(rotationVector)
-        compassView.azimuth = azimuth
+        binding.contentMain.compass.azimuth = azimuth
         Log.v(TAG, "Azimuth $azimuth")
     }
 
