@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Compass.
+  ~ Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Compass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">Компас</string>
+
+    <string name="sensor_status">Состояние датчика</string>
+    <string name="action_screen_rotation">Заблокировать поворот экрана</string>
+    <string name="action_night_mode">Переключить ночной режим</string>
+    <string name="about">О программе</string>
+
+    <string name="compass_rose_image_description">Роза компаса показывает на магнитный север</string>
+    <string name="device_heading_indicator_image_description">Показывает, в каком направлении указывает устройство</string>
+
+    <string name="status_degrees_text_description">Градусы по компасу</string>
+    <string name="status_cardinal_direction_text_description">Кардинальное направление компаса</string>
+
+    <string name="zero_degrees">0°</string>
+    <string name="degrees">%1$d°</string>
+
+    <string name="cardinal_direction_north">Север</string>
+    <string name="cardinal_direction_northeast">Северо-Восток</string>
+    <string name="cardinal_direction_east">Восток</string>
+    <string name="cardinal_direction_southeast">Юго-Восток</string>
+    <string name="cardinal_direction_south">Юг</string>
+    <string name="cardinal_direction_southwest">Юго-Запад</string>
+    <string name="cardinal_direction_west">Запад</string>
+    <string name="cardinal_direction_northwest">Северо-запад</string>
+
+    <string name="cardinal_direction_north_abbreviation">С</string>
+    <string name="cardinal_direction_east_abbreviation">В</string>
+    <string name="cardinal_direction_south_abbreviation">Ю</string>
+    <string name="cardinal_direction_west_abbreviation">З</string>
+
+    <string name="degree_0_text">0</string>
+    <string name="degree_30_text">30</string>
+    <string name="degree_60_text">60</string>
+    <string name="degree_90_text">90</string>
+    <string name="degree_120_text">120</string>
+    <string name="degree_150_text">150</string>
+    <string name="degree_180_text">180</string>
+    <string name="degree_210_text">210</string>
+    <string name="degree_240_text">240</string>
+    <string name="degree_270_text">270</string>
+    <string name="degree_300_text">300</string>
+    <string name="degree_330_text">330</string>
+
+    <string name="ok">OK</string>
+
+    <string name="version">Версия %s</string>
+    <string name="version_description">Название версии</string>
+    <string name="copyright">Авторское право @ 2021 <a href="mailto:philipp.bobek@mailbox.org">Philipp Bobek</a></string>
+    <string name="copyright_description">Уведомление об авторских правах</string>
+    <string name="license">Лицензия <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></string>
+    <string name="license_description">Лицензия на программное обеспечение</string>
+    <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Исходный код</a></string>
+    <string name="source_code_description">Ссылка на управление исходным кодом</string>
+
+    <string name="sensor_accuracy_no_contact">Датчик недоступен</string>
+    <string name="sensor_accuracy_unreliable">Значения датчиков ненадежны</string>
+    <string name="sensor_accuracy_low">Низкая точность</string>
+    <string name="sensor_accuracy_medium">Средняя точность</string>
+    <string name="sensor_accuracy_high">Максимальная точность</string>
+    <string name="sensor_accuracy_image_description">Графически отображает точность датчиков</string>
+    <string name="sensor_accuracy_text_description">Описывает точность датчиков</string>
+    <string name="sensor_error_message">Датчик недоступен</string>
+    <string name="sensor_calibration_text">Вы можете попытаться повысить точность датчика в любое время, повернув устройство в воздухе виде восьмерки несколько раз.</string>
+    <string name="sensor_calibration_text_description">Объясняет, как повысить точность датчика</string>
+</resources>
