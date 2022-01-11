@@ -21,8 +21,10 @@ package com.bobek.compass.view
 import android.content.Context
 import android.graphics.Canvas
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.util.TypedValue.COMPLEX_UNIT_PX
 import android.view.Surface
+import androidx.annotation.AnyRes
 import androidx.annotation.IdRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
@@ -30,13 +32,6 @@ import com.bobek.compass.R
 import com.bobek.compass.databinding.CompassViewBinding
 import com.bobek.compass.model.Azimuth
 import kotlin.math.roundToInt
-
-private const val CARDINAL_DIRECTION_TEXT_RATIO = 0.23f
-private const val DEGREE_TEXT_RATIO = 0.08f
-
-private const val STATUS_TEXT_SIZE_FACTOR = 0.08f
-private const val CARDINAL_DIRECTION_TEXT_SIZE_FACTOR = 0.08f
-private const val DEGREE_TEXT_SIZE_FACTOR = 0.03f
 
 class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayout(context, attributeSet) {
 
@@ -58,13 +53,17 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
 
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
         super.onSizeChanged(width, height, oldWidth, oldHeight)
-        updateStatusTextSize(width * STATUS_TEXT_SIZE_FACTOR)
-        updateCardinalDirectionTextSize(width * CARDINAL_DIRECTION_TEXT_SIZE_FACTOR)
-        updateDegreeTextSize(width * DEGREE_TEXT_SIZE_FACTOR)
+        updateStatusDegreesTextSize(width * getFloat(R.dimen.status_degrees_text_size_factor))
+        updateStatusCardinalDirectionTextSize(width * getFloat(R.dimen.status_cardinal_direction_text_size_factor))
+        updateCardinalDirectionTextSize(width * getFloat(R.dimen.cardinal_direction_text_size_factor))
+        updateDegreeTextSize(width * getFloat(R.dimen.degree_text_size_factor))
     }
 
-    private fun updateStatusTextSize(textSize: Float) {
+    private fun updateStatusDegreesTextSize(textSize: Float) {
         binding.statusDegreesText.setTextSize(COMPLEX_UNIT_PX, textSize)
+    }
+
+    private fun updateStatusCardinalDirectionTextSize(textSize: Float) {
         binding.statusCardinalDirectionText.setTextSize(COMPLEX_UNIT_PX, textSize)
     }
 
@@ -136,7 +135,7 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
     }
 
     private fun rotateCardinalDirectionTexts(constraintSet: ConstraintSet, rotation: Float) {
-        val radius = calculateTextRadius(CARDINAL_DIRECTION_TEXT_RATIO)
+        val radius = calculateTextRadius(getFloat(R.dimen.cardinal_direction_text_ratio))
 
         constraintSet.constrainCircle(R.id.cardinal_direction_north_text, center, radius, rotation)
         constraintSet.constrainCircle(R.id.cardinal_direction_east_text, center, radius, rotation + 90)
@@ -145,7 +144,7 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
     }
 
     private fun rotateDegreeTexts(constraintSet: ConstraintSet, rotation: Float) {
-        val radius = calculateTextRadius(DEGREE_TEXT_RATIO)
+        val radius = calculateTextRadius(getFloat(R.dimen.degree_text_ratio))
 
         constraintSet.constrainCircle(R.id.degree_0_text, center, radius, rotation)
         constraintSet.constrainCircle(R.id.degree_30_text, center, radius, rotation + 30)
@@ -159,6 +158,12 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
         constraintSet.constrainCircle(R.id.degree_270_text, center, radius, rotation + 270)
         constraintSet.constrainCircle(R.id.degree_300_text, center, radius, rotation + 300)
         constraintSet.constrainCircle(R.id.degree_330_text, center, radius, rotation + 330)
+    }
+
+    private fun getFloat(@AnyRes id: Int): Float {
+        val tempValue = TypedValue()
+        resources.getValue(id, tempValue, true)
+        return tempValue.float
     }
 
     private fun calculateTextRadius(ratio: Float): Int {

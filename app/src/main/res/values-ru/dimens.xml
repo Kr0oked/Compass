@@ -19,16 +19,5 @@
   -->
 
 <resources>
-    <dimen name="root_layout_padding">8dp</dimen>
-
-    <dimen name="sensor_alert_dialog_icon_size">30dp</dimen>
-    <dimen name="sensor_alert_dialog_icon_padding">8dp</dimen>
-
-    <dimen name="cardinal_direction_text_ratio">0.23f</dimen>
-    <dimen name="degree_text_ratio">0.08f</dimen>
-
-    <dimen name="status_degrees_text_size_factor">0.08f</dimen>
-    <dimen name="status_cardinal_direction_text_size_factor">0.08f</dimen>
-    <dimen name="cardinal_direction_text_size_factor">0.08f</dimen>
-    <dimen name="degree_text_size_factor">0.03f</dimen>
+    <dimen name="status_cardinal_direction_text_size_factor">0.055f</dimen>
 </resources>
