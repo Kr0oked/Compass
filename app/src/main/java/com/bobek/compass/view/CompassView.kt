@@ -19,7 +19,6 @@
 package com.bobek.compass.view
 
 import android.content.Context
-import android.graphics.Canvas
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.util.TypedValue.COMPLEX_UNIT_PX
@@ -40,8 +39,6 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
 
     private lateinit var binding: CompassViewBinding
 
-    var azimuth = Azimuth(0f)
-
     init {
         inflate(context, R.layout.compass_view, this)
     }
@@ -53,6 +50,7 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
 
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
         super.onSizeChanged(width, height, oldWidth, oldHeight)
+        visibility = INVISIBLE
         updateStatusDegreesTextSize(width * getFloat(R.dimen.status_degrees_text_size_factor))
         updateStatusCardinalDirectionTextSize(width * getFloat(R.dimen.status_cardinal_direction_text_size_factor))
         updateCardinalDirectionTextSize(width * getFloat(R.dimen.cardinal_direction_text_size_factor))
@@ -89,9 +87,9 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
         binding.degree330Text.setTextSize(COMPLEX_UNIT_PX, textSize)
     }
 
-    override fun dispatchDraw(canvas: Canvas?) {
+    fun setAzimuth(azimuth: Azimuth) {
         updateViews(azimuth + displayRotation())
-        super.dispatchDraw(canvas)
+        visibility = VISIBLE
     }
 
     private fun displayRotation(): Float {

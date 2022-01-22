@@ -36,16 +36,21 @@ import androidx.appcompat.app.AppCompatDelegate.*
 import com.bobek.compass.databinding.AboutAlertDialogViewBinding
 import com.bobek.compass.databinding.ActivityMainBinding
 import com.bobek.compass.databinding.SensorAlertDialogViewBinding
+import com.bobek.compass.model.Azimuth
 import com.bobek.compass.model.MathUtils
 import com.bobek.compass.model.RotationVector
 import com.bobek.compass.model.SensorAccuracy
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
+const val OPTION_INSTRUMENTED_TEST = "INSTRUMENTED_TEST"
+
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var mainBinding: ActivityMainBinding
+    private lateinit var sensorAlertDialogBinding: SensorAlertDialogViewBinding
+    private lateinit var aboutAlertDialogBinding: AboutAlertDialogViewBinding
     private lateinit var sensorManager: SensorManager
 
     private var optionsMenu: Menu? = null
@@ -54,10 +59,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        mainBinding = ActivityMainBinding.inflate(layoutInflater)
+        sensorAlertDialogBinding = SensorAlertDialogViewBinding.inflate(layoutInflater)
+        aboutAlertDialogBinding = AboutAlertDialogViewBinding.inflate(layoutInflater)
 
-        setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
+        setContentView(mainBinding.root)
+        setSupportActionBar(mainBinding.toolbar)
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
     }
@@ -72,7 +79,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             return
         }
 
-        sensorManager.registerListener(this, rotationVectorSensor, SENSOR_DELAY_FASTEST)
+        if (isInstrumentedTest()) {
+            Log.i(TAG, "Skipping registration of sensor listener")
+        } else {
+            sensorManager.registerListener(this, rotationVectorSensor, SENSOR_DELAY_FASTEST)
+        }
+
         Log.i(TAG, "Started compass")
     }
 
@@ -83,6 +95,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             .setCancelable(false)
             .show()
     }
+
+    private fun isInstrumentedTest() = intent.extras?.getBoolean(OPTION_INSTRUMENTED_TEST) ?: false
 
     override fun onPause() {
         super.onPause()
@@ -122,14 +136,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun showSensorStatusPopup() {
-        val sensorAccuracyBinding = SensorAlertDialogViewBinding.inflate(layoutInflater)
-
-        sensorAccuracyBinding.sensorAccuracyImage.setImageResource(sensorAccuracy.iconResourceId)
-        sensorAccuracyBinding.sensorAccuracyText.setText(sensorAccuracy.textResourceId)
-
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.sensor_status)
-            .setView(sensorAccuracyBinding.root)
+            .setView(sensorAlertDialogBinding.root)
             .setNeutralButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
             .show()
     }
@@ -162,30 +171,35 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun showAboutPopup() {
-        val aboutBinding = AboutAlertDialogViewBinding.inflate(layoutInflater)
-
-        aboutBinding.version.text = getString(R.string.version, BuildConfig.VERSION_NAME)
-        aboutBinding.copyright.movementMethod = LinkMovementMethod.getInstance()
-        aboutBinding.license.movementMethod = LinkMovementMethod.getInstance()
-        aboutBinding.sourceCode.movementMethod = LinkMovementMethod.getInstance()
+        aboutAlertDialogBinding.version.text = getString(R.string.version, BuildConfig.VERSION_NAME)
+        aboutAlertDialogBinding.copyright.movementMethod = LinkMovementMethod.getInstance()
+        aboutAlertDialogBinding.license.movementMethod = LinkMovementMethod.getInstance()
+        aboutAlertDialogBinding.sourceCode.movementMethod = LinkMovementMethod.getInstance()
 
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.app_name)
-            .setView(aboutBinding.root)
+            .setView(aboutAlertDialogBinding.root)
             .setNeutralButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
             .show()
     }
 
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
         when (sensor.type) {
-            Sensor.TYPE_ROTATION_VECTOR -> updateSensorAccuracy(accuracy)
+            Sensor.TYPE_ROTATION_VECTOR -> setAccuracy(accuracy)
             else -> Log.w(TAG, "Unexpected accuracy changed event of type ${sensor.type}")
         }
     }
 
-    private fun updateSensorAccuracy(accuracy: Int) {
+    private fun setAccuracy(accuracy: Int) {
         Log.v(TAG, "Sensor accuracy value $accuracy")
-        sensorAccuracy = adaptAccuracy(accuracy)
+        val sensorAccuracy = adaptAccuracy(accuracy)
+        setAccuracy(sensorAccuracy)
+    }
+
+    internal fun setAccuracy(accuracy: SensorAccuracy) {
+        sensorAccuracy = accuracy
+        sensorAlertDialogBinding.sensorAccuracyImage.setImageResource(sensorAccuracy.iconResourceId)
+        sensorAlertDialogBinding.sensorAccuracyText.setText(sensorAccuracy.textResourceId)
         updateSensorStatusIcon()
     }
 
@@ -213,7 +227,11 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private fun updateCompass(event: SensorEvent) {
         val rotationVector = RotationVector(event.values[0], event.values[1], event.values[2])
         val azimuth = MathUtils.calculateAzimuth(rotationVector)
-        binding.contentMain.compass.azimuth = azimuth
+        setAzimuth(azimuth)
+    }
+
+    internal fun setAzimuth(azimuth: Azimuth) {
+        mainBinding.contentMain.compass.setAzimuth(azimuth)
         Log.v(TAG, "Azimuth $azimuth")
     }
 
