@@ -22,7 +22,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.util.TypedValue.COMPLEX_UNIT_PX
-import android.view.Surface
 import androidx.annotation.AnyRes
 import androidx.annotation.IdRes
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -88,26 +87,14 @@ class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayo
     }
 
     fun setAzimuth(azimuth: Azimuth) {
-        updateViews(azimuth + displayRotation())
-        visibility = VISIBLE
-    }
-
-    private fun displayRotation(): Float {
-        return when (display?.rotation) {
-            Surface.ROTATION_90 -> 90f
-            Surface.ROTATION_180 -> 180f
-            Surface.ROTATION_270 -> 270f
-            else -> 0f
-        }
-    }
-
-    private fun updateViews(azimuth: Azimuth) {
         updateStatusDegreesText(azimuth)
         updateStatusDirectionText(azimuth)
 
         val rotation = azimuth.degrees.unaryMinus()
         rotateCompassRoseImage(rotation)
         rotateCompassRoseTexts(rotation)
+
+        visibility = VISIBLE
     }
 
     private fun updateStatusDegreesText(azimuth: Azimuth) {

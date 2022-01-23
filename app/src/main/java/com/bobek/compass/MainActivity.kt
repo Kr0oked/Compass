@@ -30,16 +30,14 @@ import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.Surface
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.*
 import com.bobek.compass.databinding.AboutAlertDialogViewBinding
 import com.bobek.compass.databinding.ActivityMainBinding
 import com.bobek.compass.databinding.SensorAlertDialogViewBinding
-import com.bobek.compass.model.Azimuth
-import com.bobek.compass.model.MathUtils
-import com.bobek.compass.model.RotationVector
-import com.bobek.compass.model.SensorAccuracy
+import com.bobek.compass.model.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 const val OPTION_INSTRUMENTED_TEST = "INSTRUMENTED_TEST"
@@ -226,8 +224,18 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private fun updateCompass(event: SensorEvent) {
         val rotationVector = RotationVector(event.values[0], event.values[1], event.values[2])
-        val azimuth = MathUtils.calculateAzimuth(rotationVector)
+        val displayRotation = getDisplayRotation()
+        val azimuth = MathUtils.calculateAzimuth(rotationVector, displayRotation)
         setAzimuth(azimuth)
+    }
+
+    private fun getDisplayRotation(): DisplayRotation {
+        return when (windowManager.defaultDisplay.rotation) {
+            Surface.ROTATION_90 -> DisplayRotation.ROTATION_90
+            Surface.ROTATION_180 -> DisplayRotation.ROTATION_180
+            Surface.ROTATION_270 -> DisplayRotation.ROTATION_270
+            else -> DisplayRotation.ROTATION_0
+        }
     }
 
     internal fun setAzimuth(azimuth: Azimuth) {
