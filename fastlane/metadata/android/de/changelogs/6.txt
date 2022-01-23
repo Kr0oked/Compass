@@ -1,0 +1,3 @@
+- Russische Übersetzung
+- Größere Kompass Anzeige
+- Korrektur von falscher Anzeige bei horizontaler Bildschirmausrichtung
