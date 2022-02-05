@@ -25,9 +25,11 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.hardware.SensorManager.*
+import android.os.Build
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.util.Log
+import android.view.Display
 import android.view.Menu
 import android.view.MenuItem
 import android.view.Surface
@@ -230,11 +232,19 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun getDisplayRotation(): DisplayRotation {
-        return when (windowManager.defaultDisplay.rotation) {
+        return when (getDisplayCompat()?.rotation) {
             Surface.ROTATION_90 -> DisplayRotation.ROTATION_90
             Surface.ROTATION_180 -> DisplayRotation.ROTATION_180
             Surface.ROTATION_270 -> DisplayRotation.ROTATION_270
             else -> DisplayRotation.ROTATION_0
+        }
+    }
+
+    private fun getDisplayCompat(): Display? {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            display
+        } else {
+            windowManager.defaultDisplay
         }
     }
 
