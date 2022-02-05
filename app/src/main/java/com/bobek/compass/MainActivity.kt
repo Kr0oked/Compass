@@ -72,20 +72,29 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     override fun onResume() {
         super.onResume()
 
-        val rotationVectorSensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
-        if (rotationVectorSensor == null) {
-            showSensorErrorDialog()
-            Log.w(TAG, "Rotation vector sensor not available")
-            return
-        }
-
         if (isInstrumentedTest()) {
             Log.i(TAG, "Skipping registration of sensor listener")
         } else {
-            sensorManager.registerListener(this, rotationVectorSensor, SENSOR_DELAY_FASTEST)
+            registerSensorListener()
         }
 
         Log.i(TAG, "Started compass")
+    }
+
+    private fun registerSensorListener() {
+        val rotationVectorSensor: Sensor? = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
+        if (rotationVectorSensor == null) {
+            Log.w(TAG, "Rotation vector sensor not available")
+            showSensorErrorDialog()
+            return
+        }
+
+        val success = sensorManager.registerListener(this, rotationVectorSensor, SENSOR_DELAY_FASTEST)
+        if (!success) {
+            Log.w(TAG, "Could not enable rotation vector sensor")
+            showSensorErrorDialog()
+            return
+        }
     }
 
     private fun showSensorErrorDialog() {
