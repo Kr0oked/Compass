@@ -145,7 +145,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val alertDialogBuilder = MaterialAlertDialogBuilder(this)
         val dialogContextInflater = LayoutInflater.from(alertDialogBuilder.context)
 
-        val dialogBinding = SensorAlertDialogViewBinding.inflate(dialogContextInflater)
+        val dialogBinding = SensorAlertDialogViewBinding.inflate(dialogContextInflater, null, false)
         dialogBinding.sensorAccuracy = sensorAccuracy
 
         alertDialogBuilder
@@ -186,7 +186,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val alertDialogBuilder = MaterialAlertDialogBuilder(this)
         val dialogContextInflater = LayoutInflater.from(alertDialogBuilder.context)
 
-        val dialogBinding = AboutAlertDialogViewBinding.inflate(dialogContextInflater)
+        val dialogBinding = AboutAlertDialogViewBinding.inflate(dialogContextInflater, null, false)
         dialogBinding.version = getString(R.string.version, BuildConfig.VERSION_NAME)
         dialogBinding.copyrightText.movementMethod = LinkMovementMethod.getInstance()
         dialogBinding.licenseText.movementMethod = LinkMovementMethod.getInstance()
