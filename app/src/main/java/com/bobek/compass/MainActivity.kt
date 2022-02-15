@@ -29,17 +29,20 @@ import android.os.Build
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.util.Log
-import android.view.Display
-import android.view.Menu
-import android.view.MenuItem
-import android.view.Surface
+import android.view.*
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.*
+import androidx.databinding.DataBindingUtil
 import com.bobek.compass.databinding.AboutAlertDialogViewBinding
 import com.bobek.compass.databinding.ActivityMainBinding
 import com.bobek.compass.databinding.SensorAlertDialogViewBinding
-import com.bobek.compass.model.*
+import com.bobek.compass.model.Azimuth
+import com.bobek.compass.model.DisplayRotation
+import com.bobek.compass.model.RotationVector
+import com.bobek.compass.model.SensorAccuracy
+import com.bobek.compass.util.MathUtils
+import com.bobek.compass.view.ObservableSensorAccuracy
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 const val OPTION_INSTRUMENTED_TEST = "INSTRUMENTED_TEST"
@@ -48,23 +51,17 @@ private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
-    private lateinit var mainBinding: ActivityMainBinding
-    private lateinit var sensorAlertDialogBinding: SensorAlertDialogViewBinding
-    private lateinit var aboutAlertDialogBinding: AboutAlertDialogViewBinding
+    private lateinit var binding: ActivityMainBinding
     private lateinit var sensorManager: SensorManager
 
     private var optionsMenu: Menu? = null
-    private var sensorAccuracy = SensorAccuracy.NO_CONTACT
+    private var sensorAccuracy = ObservableSensorAccuracy(SensorAccuracy.NO_CONTACT)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        mainBinding = ActivityMainBinding.inflate(layoutInflater)
-        sensorAlertDialogBinding = SensorAlertDialogViewBinding.inflate(layoutInflater)
-        aboutAlertDialogBinding = AboutAlertDialogViewBinding.inflate(layoutInflater)
-
-        setContentView(mainBinding.root)
-        setSupportActionBar(mainBinding.toolbar)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        setSupportActionBar(binding.toolbar)
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
     }
@@ -145,9 +142,15 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun showSensorStatusPopup() {
-        MaterialAlertDialogBuilder(this)
+        val alertDialogBuilder = MaterialAlertDialogBuilder(this)
+        val dialogContextInflater = LayoutInflater.from(alertDialogBuilder.context)
+
+        val dialogBinding = SensorAlertDialogViewBinding.inflate(dialogContextInflater)
+        dialogBinding.sensorAccuracy = sensorAccuracy
+
+        alertDialogBuilder
             .setTitle(R.string.sensor_status)
-            .setView(sensorAlertDialogBinding.root)
+            .setView(dialogBinding.root)
             .setNeutralButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
             .show()
     }
@@ -180,14 +183,18 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun showAboutPopup() {
-        aboutAlertDialogBinding.version.text = getString(R.string.version, BuildConfig.VERSION_NAME)
-        aboutAlertDialogBinding.copyright.movementMethod = LinkMovementMethod.getInstance()
-        aboutAlertDialogBinding.license.movementMethod = LinkMovementMethod.getInstance()
-        aboutAlertDialogBinding.sourceCode.movementMethod = LinkMovementMethod.getInstance()
+        val alertDialogBuilder = MaterialAlertDialogBuilder(this)
+        val dialogContextInflater = LayoutInflater.from(alertDialogBuilder.context)
 
-        MaterialAlertDialogBuilder(this)
+        val dialogBinding = AboutAlertDialogViewBinding.inflate(dialogContextInflater)
+        dialogBinding.version = getString(R.string.version, BuildConfig.VERSION_NAME)
+        dialogBinding.copyrightText.movementMethod = LinkMovementMethod.getInstance()
+        dialogBinding.licenseText.movementMethod = LinkMovementMethod.getInstance()
+        dialogBinding.sourceCodeText.movementMethod = LinkMovementMethod.getInstance()
+
+        alertDialogBuilder
             .setTitle(R.string.app_name)
-            .setView(aboutAlertDialogBinding.root)
+            .setView(dialogBinding.root)
             .setNeutralButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
             .show()
     }
@@ -206,9 +213,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     internal fun setAccuracy(accuracy: SensorAccuracy) {
-        sensorAccuracy = accuracy
-        sensorAlertDialogBinding.sensorAccuracyImage.setImageResource(sensorAccuracy.iconResourceId)
-        sensorAlertDialogBinding.sensorAccuracyText.setText(sensorAccuracy.textResourceId)
+        sensorAccuracy.set(accuracy)
         updateSensorStatusIcon()
     }
 
@@ -258,11 +263,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     internal fun setAzimuth(azimuth: Azimuth) {
-        mainBinding.contentMain.compass.setAzimuth(azimuth)
+        binding.contentMain.compass.setAzimuth(azimuth)
         Log.v(TAG, "Azimuth $azimuth")
     }
 
     private fun updateSensorStatusIcon() {
+        val sensorAccuracy = sensorAccuracy.get() ?: SensorAccuracy.NO_CONTACT
+
         optionsMenu
             ?.findItem(R.id.action_sensor_status)
             ?.setIcon(sensorAccuracy.iconResourceId)

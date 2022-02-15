@@ -18,176 +18,180 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/device_heading_indicator"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/device_heading_indicator_image_description"
-            android:src="@drawable/img_device_heading_indicator"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <merge>
 
-    <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/compass_rose_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:adjustViewBounds="true"
-            android:contentDescription="@string/compass_rose_image_description"
-            android:src="@drawable/img_compass_rose"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/status_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/status_degrees_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/status_degrees_text_description"
-                android:text="@string/zero_degrees"
-                android:textColor="?android:attr/textColorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/device_heading_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/device_heading_indicator_image_description"
+                android:src="@drawable/img_device_heading_indicator"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/status_cardinal_direction_text"
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/compass_rose_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/compass_rose_image_description"
+                android:src="@drawable/img_compass_rose"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/status_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/status_cardinal_direction_text_description"
-                android:text="@string/cardinal_direction_north"
-                android:textColor="?android:attr/textColorPrimary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/status_degrees_text" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/status_degrees_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/status_degrees_text_description"
+                    android:text="@string/zero_degrees"
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/cardinal_direction_north_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cardinal_direction_north_abbreviation"
-            android:textColor="?android:attr/textColorPrimary" />
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/status_cardinal_direction_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/status_cardinal_direction_text_description"
+                    android:text="@string/cardinal_direction_north"
+                    android:textColor="?android:attr/textColorPrimary"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/status_degrees_text" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/cardinal_direction_east_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cardinal_direction_east_abbreviation"
-            android:textColor="?android:attr/textColorPrimary" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/cardinal_direction_south_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cardinal_direction_south_abbreviation"
-            android:textColor="?android:attr/textColorPrimary" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/cardinal_direction_north_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cardinal_direction_north_abbreviation"
+                android:textColor="?android:attr/textColorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/cardinal_direction_west_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/cardinal_direction_west_abbreviation"
-            android:textColor="?android:attr/textColorPrimary" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/cardinal_direction_east_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cardinal_direction_east_abbreviation"
+                android:textColor="?android:attr/textColorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/degree_0_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/degree_0_text"
-            android:textColor="?android:attr/textColorPrimary" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/cardinal_direction_south_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cardinal_direction_south_abbreviation"
+                android:textColor="?android:attr/textColorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/degree_30_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/degree_30_text"
-            android:textColor="?android:attr/textColorPrimary" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/cardinal_direction_west_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cardinal_direction_west_abbreviation"
+                android:textColor="?android:attr/textColorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/degree_60_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/degree_60_text"
-            android:textColor="?android:attr/textColorPrimary" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/degree_0_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree_0_text"
+                android:textColor="?android:attr/textColorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/degree_90_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/degree_90_text"
-            android:textColor="?android:attr/textColorPrimary" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/degree_30_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree_30_text"
+                android:textColor="?android:attr/textColorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/degree_120_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/degree_120_text"
-            android:textColor="?android:attr/textColorPrimary" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/degree_60_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree_60_text"
+                android:textColor="?android:attr/textColorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/degree_150_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/degree_150_text"
-            android:textColor="?android:attr/textColorPrimary" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/degree_90_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree_90_text"
+                android:textColor="?android:attr/textColorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/degree_180_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/degree_180_text"
-            android:textColor="?android:attr/textColorPrimary" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/degree_120_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree_120_text"
+                android:textColor="?android:attr/textColorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/degree_210_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/degree_210_text"
-            android:textColor="?android:attr/textColorPrimary" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/degree_150_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree_150_text"
+                android:textColor="?android:attr/textColorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/degree_240_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/degree_240_text"
-            android:textColor="?android:attr/textColorPrimary" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/degree_180_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree_180_text"
+                android:textColor="?android:attr/textColorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/degree_270_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/degree_270_text"
-            android:textColor="?android:attr/textColorPrimary" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/degree_210_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree_210_text"
+                android:textColor="?android:attr/textColorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/degree_300_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/degree_300_text"
-            android:textColor="?android:attr/textColorPrimary" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/degree_240_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree_240_text"
+                android:textColor="?android:attr/textColorPrimary" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/degree_330_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/degree_330_text"
-            android:textColor="?android:attr/textColorPrimary" />
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/degree_270_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree_270_text"
+                android:textColor="?android:attr/textColorPrimary" />
 
-</merge>
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/degree_300_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree_300_text"
+                android:textColor="?android:attr/textColorPrimary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/degree_330_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/degree_330_text"
+                android:textColor="?android:attr/textColorPrimary" />
+
+    </merge>
+
+</layout>

@@ -22,6 +22,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.util.TypedValue.COMPLEX_UNIT_PX
+import android.view.LayoutInflater
 import androidx.annotation.AnyRes
 import androidx.annotation.IdRes
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -31,20 +32,16 @@ import com.bobek.compass.databinding.CompassViewBinding
 import com.bobek.compass.model.Azimuth
 import kotlin.math.roundToInt
 
-class CompassView(context: Context, attributeSet: AttributeSet) : ConstraintLayout(context, attributeSet) {
+class CompassView(context: Context, attributes: AttributeSet) : ConstraintLayout(context, attributes) {
 
     @IdRes
     private val center = R.id.compass_rose_image
 
-    private lateinit var binding: CompassViewBinding
+    private var binding: CompassViewBinding
 
     init {
-        inflate(context, R.layout.compass_view, this)
-    }
-
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        binding = CompassViewBinding.bind(this)
+        val layoutInflater = LayoutInflater.from(context)
+        binding = CompassViewBinding.inflate(layoutInflater, this, true)
     }
 
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {

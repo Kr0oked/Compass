@@ -96,10 +96,10 @@ class InstrumentedTest {
             .check(matches(isDisplayed()))
             .perform(click())
 
-        onView(withId(R.id.version)).check(matches(isDisplayed()))
-        onView(withId(R.id.copyright)).check(matches(withText(R.string.copyright)))
-        onView(withId(R.id.license)).check(matches(withText(R.string.license)))
-        onView(withId(R.id.source_code))
+        onView(withId(R.id.version_text)).check(matches(isDisplayed()))
+        onView(withId(R.id.copyright_text)).check(matches(withText(R.string.copyright)))
+        onView(withId(R.id.license_text)).check(matches(withText(R.string.license)))
+        onView(withId(R.id.source_code_text))
             .check(matches(withText(R.string.source_code)))
             .check(matches(hasLinks()))
 

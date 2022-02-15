@@ -16,10 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass.model
+package com.bobek.compass.util
 
 import android.hardware.SensorManager
+import com.bobek.compass.model.Azimuth
+import com.bobek.compass.model.DisplayRotation
 import com.bobek.compass.model.DisplayRotation.*
+import com.bobek.compass.model.RotationVector
 
 private const val AZIMUTH = 0
 private const val AXIS_SIZE = 3

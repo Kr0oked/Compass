@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,13 +18,13 @@
 
 package com.bobek.compass.model
 
-class Azimuth(_degrees: Float) {
+class Azimuth(degrees: Float) {
 
     operator fun plus(degrees: Float) = Azimuth(this.degrees + degrees)
 
-    val degrees = normalizeAngle(_degrees)
+    val degrees = normalizeAngle(degrees)
 
-    val cardinalDirection: CardinalDirection = when (degrees) {
+    val cardinalDirection: CardinalDirection = when (this.degrees) {
         in 22.5f until 67.5f -> CardinalDirection.NORTHEAST
         in 67.5f until 112.5f -> CardinalDirection.EAST
         in 112.5f until 157.5f -> CardinalDirection.SOUTHEAST
