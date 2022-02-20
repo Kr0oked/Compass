@@ -1,0 +1,1 @@
+- Fehler behoben der die App abstürzen lässt wenn Über die App Dialog mehrmals geöffnet wird
