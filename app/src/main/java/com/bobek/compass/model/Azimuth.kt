@@ -18,13 +18,13 @@
 
 package com.bobek.compass.model
 
-class Azimuth(degrees: Float) {
+class Azimuth(_degrees: Float) {
 
     operator fun plus(degrees: Float) = Azimuth(this.degrees + degrees)
 
-    val degrees = normalizeAngle(degrees)
+    val degrees = normalizeAngle(_degrees)
 
-    val cardinalDirection: CardinalDirection = when (this.degrees) {
+    val cardinalDirection: CardinalDirection = when (degrees) {
         in 22.5f until 67.5f -> CardinalDirection.NORTHEAST
         in 67.5f until 112.5f -> CardinalDirection.EAST
         in 112.5f until 157.5f -> CardinalDirection.SOUTHEAST

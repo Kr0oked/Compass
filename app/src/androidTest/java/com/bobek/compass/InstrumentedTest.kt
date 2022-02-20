@@ -111,6 +111,6 @@ class InstrumentedTest {
     }
 
     private fun setAccuracy(accuracy: SensorAccuracy) {
-        activityRule.scenario.onActivity { mainActivity -> mainActivity.setAccuracy(accuracy) }
+        activityRule.scenario.onActivity { mainActivity -> mainActivity.setSensorAccuracy(accuracy) }
     }
 }

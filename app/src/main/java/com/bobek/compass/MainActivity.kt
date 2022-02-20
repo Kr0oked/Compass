@@ -51,11 +51,12 @@ private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
 
+    private val observableSensorAccuracy = ObservableSensorAccuracy(SensorAccuracy.NO_CONTACT)
+
     private lateinit var binding: ActivityMainBinding
     private lateinit var sensorManager: SensorManager
 
     private var optionsMenu: Menu? = null
-    private var sensorAccuracy = ObservableSensorAccuracy(SensorAccuracy.NO_CONTACT)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -146,7 +147,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val dialogContextInflater = LayoutInflater.from(alertDialogBuilder.context)
 
         val dialogBinding = SensorAlertDialogViewBinding.inflate(dialogContextInflater, null, false)
-        dialogBinding.sensorAccuracy = sensorAccuracy
+        dialogBinding.sensorAccuracy = observableSensorAccuracy
 
         alertDialogBuilder
             .setTitle(R.string.sensor_status)
@@ -187,7 +188,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         val dialogContextInflater = LayoutInflater.from(alertDialogBuilder.context)
 
         val dialogBinding = AboutAlertDialogViewBinding.inflate(dialogContextInflater, null, false)
-        dialogBinding.version = getString(R.string.version, BuildConfig.VERSION_NAME)
+        dialogBinding.version = BuildConfig.VERSION_NAME
         dialogBinding.copyrightText.movementMethod = LinkMovementMethod.getInstance()
         dialogBinding.licenseText.movementMethod = LinkMovementMethod.getInstance()
         dialogBinding.sourceCodeText.movementMethod = LinkMovementMethod.getInstance()
@@ -201,23 +202,23 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
         when (sensor.type) {
-            Sensor.TYPE_ROTATION_VECTOR -> setAccuracy(accuracy)
+            Sensor.TYPE_ROTATION_VECTOR -> setSensorAccuracy(accuracy)
             else -> Log.w(TAG, "Unexpected accuracy changed event of type ${sensor.type}")
         }
     }
 
-    private fun setAccuracy(accuracy: Int) {
+    private fun setSensorAccuracy(accuracy: Int) {
         Log.v(TAG, "Sensor accuracy value $accuracy")
-        val sensorAccuracy = adaptAccuracy(accuracy)
-        setAccuracy(sensorAccuracy)
+        val sensorAccuracy = adaptSensorAccuracy(accuracy)
+        setSensorAccuracy(sensorAccuracy)
     }
 
-    internal fun setAccuracy(accuracy: SensorAccuracy) {
-        sensorAccuracy.set(accuracy)
+    internal fun setSensorAccuracy(sensorAccuracy: SensorAccuracy) {
+        observableSensorAccuracy.set(sensorAccuracy)
         updateSensorStatusIcon()
     }
 
-    private fun adaptAccuracy(accuracy: Int): SensorAccuracy {
+    private fun adaptSensorAccuracy(accuracy: Int): SensorAccuracy {
         return when (accuracy) {
             SENSOR_STATUS_NO_CONTACT -> SensorAccuracy.NO_CONTACT
             SENSOR_STATUS_UNRELIABLE -> SensorAccuracy.UNRELIABLE
@@ -225,7 +226,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             SENSOR_STATUS_ACCURACY_MEDIUM -> SensorAccuracy.MEDIUM
             SENSOR_STATUS_ACCURACY_HIGH -> SensorAccuracy.HIGH
             else -> {
-                Log.w(TAG, "Encountered unexpected sensor accuracy '$sensorAccuracy'")
+                Log.w(TAG, "Encountered unexpected sensor accuracy value '$accuracy'")
                 SensorAccuracy.NO_CONTACT
             }
         }
@@ -268,7 +269,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun updateSensorStatusIcon() {
-        val sensorAccuracy = sensorAccuracy.get() ?: SensorAccuracy.NO_CONTACT
+        val sensorAccuracy = observableSensorAccuracy.get() ?: SensorAccuracy.NO_CONTACT
 
         optionsMenu
             ?.findItem(R.id.action_sensor_status)
