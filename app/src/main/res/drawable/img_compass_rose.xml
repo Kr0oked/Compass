@@ -25,13 +25,13 @@
         android:viewportHeight="200">
 
     <path
-            android:fillColor="@color/colorSecondary"
+            android:fillColor="@color/color_secondary"
             android:pathData="M100,12 L96,18 L104,18 Z" />
 
     <path
             android:pathData="M100,17 L100,27"
             android:strokeWidth="2"
-            android:strokeColor="@color/colorSecondary" />
+            android:strokeColor="@color/color_secondary" />
 
     <group
             android:pivotX="100"

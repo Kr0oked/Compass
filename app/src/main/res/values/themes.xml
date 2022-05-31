@@ -21,12 +21,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Theme.Compass" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
-        <item name="colorOnPrimary">@color/colorPrimaryText</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="colorSecondaryVariant">@color/colorSecondaryDark</item>
-        <item name="colorOnSecondary">@color/colorSecondaryText</item>
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryVariant">@color/color_primary_dark</item>
+        <item name="colorOnPrimary">@color/color_primary_text</item>
+        <item name="colorSecondary">@color/color_secondary</item>
+        <item name="colorSecondaryVariant">@color/color_secondary_dark</item>
+        <item name="colorOnSecondary">@color/color_secondary_text</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
 
