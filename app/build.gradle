@@ -24,12 +24,12 @@ plugins {
 
 android {
     namespace 'com.bobek.compass'
-    compileSdkVersion 31
+    compileSdkVersion 32
 
     defaultConfig {
         applicationId 'com.bobek.compass'
         minSdk 22
-        targetSdk 31
+        targetSdk 32
         versionCode 7
         versionName '1.6'
 
