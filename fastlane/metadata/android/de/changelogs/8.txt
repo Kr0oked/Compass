@@ -1,0 +1,1 @@
+- Korrektur von falschem Grad wenn der Bildschirm um 180° gedreht ist
