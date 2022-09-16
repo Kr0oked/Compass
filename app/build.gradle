@@ -49,6 +49,17 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    testOptions {
+        managedDevices {
+            devices {
+                pixel2api31(com.android.build.api.dsl.ManagedVirtualDevice) {
+                    device = "Pixel 2"
+                    apiLevel = 31
+                    systemImageSource = "aosp"
+                }
+            }
+        }
+    }
     buildFeatures {
         dataBinding true
     }
