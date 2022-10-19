@@ -32,9 +32,6 @@
     <string name="status_degrees_text_description">Degrees of the compass</string>
     <string name="status_cardinal_direction_text_description">Cardinal direction of the compass</string>
 
-    <string name="zero_degrees">0°</string>
-    <string name="degrees">%1$d°</string>
-
     <string name="cardinal_direction_north">North</string>
     <string name="cardinal_direction_northeast">Northeast</string>
     <string name="cardinal_direction_east">East</string>
@@ -48,19 +45,6 @@
     <string name="cardinal_direction_east_abbreviation">E</string>
     <string name="cardinal_direction_south_abbreviation">S</string>
     <string name="cardinal_direction_west_abbreviation">W</string>
-
-    <string name="degree_0_text">0</string>
-    <string name="degree_30_text">30</string>
-    <string name="degree_60_text">60</string>
-    <string name="degree_90_text">90</string>
-    <string name="degree_120_text">120</string>
-    <string name="degree_150_text">150</string>
-    <string name="degree_180_text">180</string>
-    <string name="degree_210_text">210</string>
-    <string name="degree_240_text">240</string>
-    <string name="degree_270_text">270</string>
-    <string name="degree_300_text">300</string>
-    <string name="degree_330_text">330</string>
 
     <string name="ok">OK</string>
 
@@ -83,4 +67,20 @@
     <string name="sensor_error_message">Sensor not available</string>
     <string name="sensor_calibration_text">You can try to improve your sensor accuracy at any time by rotating the device in a figure 8 pattern.</string>
     <string name="sensor_calibration_text_description">Explains how to improve the sensor accuracy</string>
+
+    <string name="zero_degrees" translatable="false">0°</string>
+    <string name="degrees" translatable="false">%1$d°</string>
+
+    <string name="degree_0_text" translatable="false">0</string>
+    <string name="degree_30_text" translatable="false">30</string>
+    <string name="degree_60_text" translatable="false">60</string>
+    <string name="degree_90_text" translatable="false">90</string>
+    <string name="degree_120_text" translatable="false">120</string>
+    <string name="degree_150_text" translatable="false">150</string>
+    <string name="degree_180_text" translatable="false">180</string>
+    <string name="degree_210_text" translatable="false">210</string>
+    <string name="degree_240_text" translatable="false">240</string>
+    <string name="degree_270_text" translatable="false">270</string>
+    <string name="degree_300_text" translatable="false">300</string>
+    <string name="degree_330_text" translatable="false">330</string>
 </resources>

@@ -2,7 +2,7 @@
 
 <!--
   ~ This file is part of Compass.
-  ~ Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~ Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -32,9 +32,6 @@
     <string name="status_degrees_text_description">Градусы по компасу</string>
     <string name="status_cardinal_direction_text_description">Кардинальное направление компаса</string>
 
-    <string name="zero_degrees">0°</string>
-    <string name="degrees">%1$d°</string>
-
     <string name="cardinal_direction_north">Север</string>
     <string name="cardinal_direction_northeast">Северо-Восток</string>
     <string name="cardinal_direction_east">Восток</string>
@@ -48,19 +45,6 @@
     <string name="cardinal_direction_east_abbreviation">В</string>
     <string name="cardinal_direction_south_abbreviation">Ю</string>
     <string name="cardinal_direction_west_abbreviation">З</string>
-
-    <string name="degree_0_text">0</string>
-    <string name="degree_30_text">30</string>
-    <string name="degree_60_text">60</string>
-    <string name="degree_90_text">90</string>
-    <string name="degree_120_text">120</string>
-    <string name="degree_150_text">150</string>
-    <string name="degree_180_text">180</string>
-    <string name="degree_210_text">210</string>
-    <string name="degree_240_text">240</string>
-    <string name="degree_270_text">270</string>
-    <string name="degree_300_text">300</string>
-    <string name="degree_330_text">330</string>
 
     <string name="ok">OK</string>
 
