@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Compass.
+  ~ Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Compass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">Kompas</string>
+
+    <string name="sensor_status">Status senzora</string>
+    <string name="action_screen_rotation">Zaključaj rotaciju ekrana</string>
+    <string name="action_night_mode">Promijeni u noćni režim</string>
+    <string name="about">O aplikaciji</string>
+
+    <string name="compass_rose_image_description">Ruža kompasa pokazuje prema magnetnom sjeveru</string>
+    <string name="device_heading_indicator_image_description">Označava u kom smjeru uređaj pokazuje</string>
+
+    <string name="status_degrees_text_description">Stepeni kompasa</string>
+    <string name="status_cardinal_direction_text_description">Kardinalni smjer kompasa</string>
+
+    <string name="cardinal_direction_north">Sjever</string>
+    <string name="cardinal_direction_northeast">Sjeveroistok</string>
+    <string name="cardinal_direction_east">Istok</string>
+    <string name="cardinal_direction_southeast">Jugoistok</string>
+    <string name="cardinal_direction_south">Jug</string>
+    <string name="cardinal_direction_southwest">Jugozapad</string>
+    <string name="cardinal_direction_west">Zapad</string>
+    <string name="cardinal_direction_northwest">Sjeverozapad</string>
+
+    <string name="cardinal_direction_north_abbreviation">S</string>
+    <string name="cardinal_direction_east_abbreviation">I</string>
+    <string name="cardinal_direction_south_abbreviation">J</string>
+    <string name="cardinal_direction_west_abbreviation">Z</string>
+
+    <string name="ok">Uredu</string>
+
+    <string name="version">Verzija %s</string>
+    <string name="version_description">Naziv verzije</string>
+    <string name="copyright">Autorska prava @ 2022 <a href="mailto:philipp.bobek@mailbox.org">Philipp Bobek</a></string>
+    <string name="copyright_description">Obaveštenje o autorskim pravima</string>
+    <string name="license">Licenca <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></string>
+    <string name="license_description">Licenca za softver</string>
+    <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Source code</a></string>
+    <string name="source_code_description">Veza do upravljanja izvornim kodom</string>
+
+    <string name="sensor_accuracy_no_contact">Senzor nije dostupan</string>
+    <string name="sensor_accuracy_unreliable">Vrijednosti senzora su nepouzdane</string>
+    <string name="sensor_accuracy_low">Niska tačnost</string>
+    <string name="sensor_accuracy_medium">Prosječna tačnost</string>
+    <string name="sensor_accuracy_high">Maksimalna tačnost</string>
+    <string name="sensor_accuracy_image_description">Grafički pokazuje tačnost senzora</string>
+    <string name="sensor_accuracy_text_description">Opisuje tačnost senzora</string>
+    <string name="sensor_error_message">Senzor nije dostupan</string>
+    <string name="sensor_calibration_text">Možete pokušati poboljšati tačnost senzora u bilo kom trenutku rotiranjem uređaja u obliku osmice.</string>
+    <string name="sensor_calibration_text_description">Objašnjava kako poboljšati tačnost senzora</string>
+</resources>
