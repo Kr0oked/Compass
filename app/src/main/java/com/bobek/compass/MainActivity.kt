@@ -33,6 +33,7 @@ import android.view.*
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.*
+import androidx.core.view.WindowCompat
 import androidx.databinding.DataBindingUtil
 import com.bobek.compass.databinding.AboutAlertDialogViewBinding
 import com.bobek.compass.databinding.ActivityMainBinding
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private var optionsMenu: Menu? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        WindowCompat.setDecorFitsSystemWindows(window, true)
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)

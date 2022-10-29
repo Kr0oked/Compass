@@ -18,15 +18,12 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-        android:width="200dp"
-        android:height="200dp"
-        android:viewportWidth="200"
-        android:viewportHeight="200">
+<resources>
 
-    <path
-            android:pathData="M100,2 L100,27"
-            android:strokeWidth="4"
-            android:strokeColor="?attr/colorPrimary" />
+    <style name="Theme.Compass" parent="Base.Theme.Compass">
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
+    </style>
 
-</vector>
+</resources>
