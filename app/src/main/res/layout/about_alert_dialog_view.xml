@@ -21,51 +21,57 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:padding="?android:dialogPreferredPadding">
 
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/version_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/version_description"
-                android:text="@{@string/version(version)}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/copyright_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="?android:dialogPreferredPadding"
-                android:contentDescription="@string/copyright_description"
-                android:text="@string/copyright"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/version_text" />
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/version_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/version_description"
+                    android:text="@{@string/version(version)}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/license_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="?android:dialogPreferredPadding"
-                android:contentDescription="@string/license_description"
-                android:text="@string/license"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/copyright_text" />
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/copyright_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="?android:dialogPreferredPadding"
+                    android:contentDescription="@string/copyright_description"
+                    android:text="@string/copyright"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/version_text" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/source_code_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="?android:dialogPreferredPadding"
-                android:contentDescription="@string/source_code_description"
-                android:text="@string/source_code"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/license_text" />
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/license_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="?android:dialogPreferredPadding"
+                    android:contentDescription="@string/license_description"
+                    android:text="@string/license"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/copyright_text" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/source_code_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="?android:dialogPreferredPadding"
+                    android:contentDescription="@string/source_code_description"
+                    android:text="@string/source_code"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/license_text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
     <data>
 
