@@ -301,9 +301,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     @DrawableRes
     private fun getNightModeIcon(): Int {
         return when (getDefaultNightMode()) {
-            MODE_NIGHT_NO -> R.drawable.ic_night_mode_no
-            MODE_NIGHT_YES -> R.drawable.ic_night_mode_yes
-            else -> R.drawable.ic_night_mode_auto
+            MODE_NIGHT_NO -> R.drawable.ic_light_mode
+            MODE_NIGHT_YES -> R.drawable.ic_dark_mode
+            else -> R.drawable.ic_auto_mode
         }
     }
 }
