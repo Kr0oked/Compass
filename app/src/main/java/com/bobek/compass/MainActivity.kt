@@ -42,6 +42,7 @@ import com.bobek.compass.model.Azimuth
 import com.bobek.compass.model.DisplayRotation
 import com.bobek.compass.model.RotationVector
 import com.bobek.compass.model.SensorAccuracy
+import com.bobek.compass.preference.PreferenceStore
 import com.bobek.compass.util.MathUtils
 import com.bobek.compass.view.ObservableSensorAccuracy
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -56,6 +57,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var sensorManager: SensorManager
+    private lateinit var preferenceStore: PreferenceStore
 
     private var optionsMenu: Menu? = null
 
@@ -67,6 +69,10 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         setSupportActionBar(binding.toolbar)
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
+
+        preferenceStore = PreferenceStore(this)
+        preferenceStore.screenOrientationLocked.observe(this) { setScreenRotationMode(it) }
+        preferenceStore.nightMode.observe(this) { setNightMode(it) }
     }
 
     override fun onResume() {
@@ -113,6 +119,11 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         Log.i(TAG, "Stopped compass")
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        preferenceStore.close()
+    }
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         optionsMenu = menu
@@ -129,7 +140,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                 true
             }
             R.id.action_screen_rotation -> {
-                toggleScreenRotationMode()
+                toggleRotationScreenLocked()
                 true
             }
             R.id.action_night_mode -> {
@@ -158,31 +169,20 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             .show()
     }
 
-    private fun toggleScreenRotationMode() {
-        when (requestedOrientation) {
-            SCREEN_ORIENTATION_UNSPECIFIED -> changeScreenRotationMode(SCREEN_ORIENTATION_LOCKED)
-            else -> changeScreenRotationMode(SCREEN_ORIENTATION_UNSPECIFIED)
+    private fun toggleRotationScreenLocked() {
+        preferenceStore.screenOrientationLocked.value?.let {
+            preferenceStore.screenOrientationLocked.value = it.not()
         }
-    }
-
-    private fun changeScreenRotationMode(screenOrientation: Int) {
-        Log.d(TAG, "Setting requested orientation to value $screenOrientation")
-        requestedOrientation = screenOrientation
-        updateScreenRotationIcon()
     }
 
     private fun toggleNightMode() {
-        when (getDefaultNightMode()) {
-            MODE_NIGHT_NO -> changeNightMode(MODE_NIGHT_YES)
-            MODE_NIGHT_YES -> changeNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
-            else -> changeNightMode(MODE_NIGHT_NO)
+        preferenceStore.nightMode.value?.let {
+            when (it) {
+                MODE_NIGHT_NO -> preferenceStore.nightMode.value = MODE_NIGHT_YES
+                MODE_NIGHT_YES -> preferenceStore.nightMode.value = MODE_NIGHT_FOLLOW_SYSTEM
+                else -> preferenceStore.nightMode.value = MODE_NIGHT_NO
+            }
         }
-    }
-
-    private fun changeNightMode(@NightMode mode: Int) {
-        Log.d(TAG, "Setting night mode to value $mode")
-        setDefaultNightMode(mode)
-        updateNightModeIcon()
     }
 
     private fun showAboutPopup() {
@@ -268,6 +268,26 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     internal fun setAzimuth(azimuth: Azimuth) {
         binding.contentMain.compass.setAzimuth(azimuth)
         Log.v(TAG, "Azimuth $azimuth")
+    }
+
+    private fun setScreenRotationMode(screenOrientationLocked: Boolean) {
+        if (screenOrientationLocked) {
+            setScreenRotationMode(SCREEN_ORIENTATION_LOCKED)
+        } else {
+            setScreenRotationMode(SCREEN_ORIENTATION_UNSPECIFIED)
+        }
+    }
+
+    private fun setScreenRotationMode(screenOrientation: Int) {
+        Log.d(TAG, "Setting requested orientation to value $screenOrientation")
+        requestedOrientation = screenOrientation
+        updateScreenRotationIcon()
+    }
+
+    private fun setNightMode(@NightMode mode: Int) {
+        Log.d(TAG, "Setting night mode to value $mode")
+        setDefaultNightMode(mode)
+        updateNightModeIcon()
     }
 
     private fun updateSensorStatusIcon() {
