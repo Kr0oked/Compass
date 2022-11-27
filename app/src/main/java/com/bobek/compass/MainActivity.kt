@@ -70,9 +70,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
 
+        initPreferenceStore()
+    }
+
+    private fun initPreferenceStore() {
         preferenceStore = PreferenceStore(this)
         preferenceStore.screenOrientationLocked.observe(this) { setScreenRotationMode(it) }
         preferenceStore.nightMode.observe(this) { setNightMode(it) }
+        Log.d(TAG, "Initialized preference store")
     }
 
     override fun onResume() {
@@ -121,7 +126,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onDestroy() {
         super.onDestroy()
+        closePreferenceStore()
+    }
+
+    private fun closePreferenceStore() {
         preferenceStore.close()
+        Log.d(TAG, "Closed preference store")
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -320,7 +330,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     @DrawableRes
     private fun getNightModeIcon(): Int {
-        return when (getDefaultNightMode()) {
+        return when (preferenceStore.nightMode.value) {
             MODE_NIGHT_NO -> R.drawable.ic_light_mode
             MODE_NIGHT_YES -> R.drawable.ic_dark_mode
             else -> R.drawable.ic_auto_mode

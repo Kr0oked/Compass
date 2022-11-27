@@ -35,6 +35,8 @@ class PreferenceStore(context: Context) {
     val nightMode = MutableLiveData<Int>()
 
     private val sharedPreferenceChangeListener = SharedPreferenceChangeListener()
+    private val screenOrientationLockedObserver = getScreenOrientationLockedObserver()
+    private val nightModeObserver = getNightModeObserver()
 
     private val sharedPreferences: SharedPreferences
 
@@ -44,49 +46,53 @@ class PreferenceStore(context: Context) {
         updateScreenOrientationLocked()
         updateNightMode()
 
-        screenOrientationLocked.observeForever {
-            val edit = sharedPreferences.edit()
-            edit.putBoolean(SCREEN_ORIENTATION_LOCKED, it)
-            edit.apply()
-            Log.d(TAG, "Persisted screenOrientationLocked: $it")
-        }
-
-        nightMode.observeForever {
-            val edit = sharedPreferences.edit()
-            edit.putInt(NIGHT_MODE, it)
-            edit.apply()
-            Log.d(TAG, "Persisted nightMode: $it")
-        }
+        screenOrientationLocked.observeForever(screenOrientationLockedObserver)
+        nightMode.observeForever(nightModeObserver)
 
         sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener)
-        Log.d(TAG, "Registered sharedPreferenceChangeListener")
     }
 
     fun close() {
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferenceChangeListener)
-        Log.d(TAG, "Unregistered sharedPreferenceChangeListener")
+
+        screenOrientationLocked.removeObserver(screenOrientationLockedObserver)
+        nightMode.removeObserver(nightModeObserver)
     }
 
-    inner class SharedPreferenceChangeListener : SharedPreferences.OnSharedPreferenceChangeListener {
+    private inner class SharedPreferenceChangeListener : SharedPreferences.OnSharedPreferenceChangeListener {
         override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {
             when (key) {
                 SCREEN_ORIENTATION_LOCKED -> updateScreenOrientationLocked()
-                NIGHT_MODE -> updateScreenOrientationLocked()
+                NIGHT_MODE -> updateNightMode()
             }
         }
     }
 
     private fun updateScreenOrientationLocked() {
-        val value = sharedPreferences.getBoolean(SCREEN_ORIENTATION_LOCKED, false)
-        if (screenOrientationLocked.value != value) {
-            screenOrientationLocked.value = value
+        val storedValue = sharedPreferences.getBoolean(SCREEN_ORIENTATION_LOCKED, false)
+        if (screenOrientationLocked.value != storedValue) {
+            screenOrientationLocked.value = storedValue
         }
     }
 
     private fun updateNightMode() {
-        val value = sharedPreferences.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        if (nightMode.value != value) {
-            nightMode.value = value
+        val storedValue = sharedPreferences.getInt(NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+        if (nightMode.value != storedValue) {
+            nightMode.value = storedValue
         }
+    }
+
+    private fun getScreenOrientationLockedObserver(): (t: Boolean) -> Unit = {
+        val edit = sharedPreferences.edit()
+        edit.putBoolean(SCREEN_ORIENTATION_LOCKED, it)
+        edit.apply()
+        Log.d(TAG, "Persisted screenOrientationLocked: $it")
+    }
+
+    private fun getNightModeObserver(): (t: Int) -> Unit = {
+        val edit = sharedPreferences.edit()
+        edit.putInt(NIGHT_MODE, it)
+        edit.apply()
+        Log.d(TAG, "Persisted nightMode: $it")
     }
 }
