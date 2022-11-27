@@ -39,7 +39,7 @@
     <string name="cardinal_direction_south">Југ</string>
     <string name="cardinal_direction_southwest">Југозапад</string>
     <string name="cardinal_direction_west">Запад</string>
-    <string name="cardinal_direction_northwest">Northwest</string>
+    <string name="cardinal_direction_northwest">Северозапад</string>
 
     <string name="cardinal_direction_north_abbreviation">С</string>
     <string name="cardinal_direction_east_abbreviation">И</string>

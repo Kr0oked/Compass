@@ -1,0 +1,6 @@
+- Material 3 Design
+- Bosnische Übersetzung
+- Kroatische Übersetzung
+- Serbische Übersetzung
+- Neue Icons für die Nachtmodus Einstellungen
+- Speicherung der App Einstellungen
