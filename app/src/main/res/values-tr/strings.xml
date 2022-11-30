@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Compass.
+  ~ Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Compass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">Pusula</string>
+
+    <string name="sensor_status">Sensör durumu</string>
+    <string name="action_screen_rotation">Kilit ekranı döndürmesi</string>
+    <string name="action_night_mode">Gece modunu değiştir</string>
+    <string name="about">Hakkında</string>
+
+    <string name="compass_rose_image_description">Manyetik kuzeyi gösteren pusula gülü</string>
+    <string name="device_heading_indicator_image_description">Cihazın baktığı yönü gösterir</string>
+
+    <string name="status_degrees_text_description">Pusula açısı</string>
+    <string name="status_cardinal_direction_text_description">Pusulanın kardinal yönü</string>
+
+    <string name="cardinal_direction_north">Kuzey</string>
+    <string name="cardinal_direction_northeast">Kuzeydoğu</string>
+    <string name="cardinal_direction_east">Doğu</string>
+    <string name="cardinal_direction_southeast">Güneydoğu</string>
+    <string name="cardinal_direction_south">Güney</string>
+    <string name="cardinal_direction_southwest">Güneybatı</string>
+    <string name="cardinal_direction_west">Batı</string>
+    <string name="cardinal_direction_northwest">Kuzeybatı</string>
+
+    <string name="cardinal_direction_north_abbreviation">K</string>
+    <string name="cardinal_direction_east_abbreviation">D</string>
+    <string name="cardinal_direction_south_abbreviation">G</string>
+    <string name="cardinal_direction_west_abbreviation">B</string>
+
+    <string name="ok">Tamam</string>
+
+    <string name="version">Sürüm %s</string>
+    <string name="version_description">Sürüm adı</string>
+    <string name="copyright">Telif hakkı @ 2022<a href="mailto:philipp.bobek@mailbox.org">Philipp Bobek</a></string>
+    <string name="copyright_description">Telif hakkı bildirimi</string>
+    <string name="license">Lisans<a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></string>
+    <string name="license_description">Yazılım lisansı</string>
+    <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Kaynak</a></string>
+    <string name="source_code_description">Kaynak kodu yönetimi bağlantısı</string>
+
+    <string name="sensor_accuracy_no_contact">Sensör kullanılamıyor</string>
+    <string name="sensor_accuracy_unreliable">Sensör değerleri sağlıklı değil</string>
+    <string name="sensor_accuracy_low">Düşük doğruluk</string>
+    <string name="sensor_accuracy_medium">Ortalama doğruluk</string>
+    <string name="sensor_accuracy_high">En yüksek doğruluk</string>
+    <string name="sensor_accuracy_image_description">Sensörlerin doğruluğunu grafikle gösterir</string>
+    <string name="sensor_accuracy_text_description">Sensörlerin doğruluğunu tanımlar</string>
+    <string name="sensor_error_message">Sensör kullanılamıyor</string>
+    <string name="sensor_calibration_text">Sensör doğruluğunu, cihazı 8 şeklinde döndürerek arttırmayı deneyebilirsiniz</string>
+    <string name="sensor_calibration_text_description">Sensör doğruluğunun nasıl arttırılacağını gösterir</string>
+
+    <string name="zero_degrees" translatable="false">0°</string>
+    <string name="degrees" translatable="false">%1$d°</string>
+
+    <string name="degree_0_text" translatable="false">0</string>
+    <string name="degree_30_text" translatable="false">30</string>
+    <string name="degree_60_text" translatable="false">60</string>
+    <string name="degree_90_text" translatable="false">90</string>
+    <string name="degree_120_text" translatable="false">120</string>
+    <string name="degree_150_text" translatable="false">150</string>
+    <string name="degree_180_text" translatable="false">180</string>
+    <string name="degree_210_text" translatable="false">210</string>
+    <string name="degree_240_text" translatable="false">240</string>
+    <string name="degree_270_text" translatable="false">270</string>
+    <string name="degree_300_text" translatable="false">300</string>
+    <string name="degree_330_text" translatable="false">330</string>
+</resources>
