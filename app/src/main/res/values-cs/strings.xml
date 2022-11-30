@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Compass.
+  ~ Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Compass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">Kompas</string>
+
+    <string name="sensor_status">Sensor status</string>
+    <string name="action_screen_rotation">Uzamknout otáčení obrazovky</string>
+    <string name="action_night_mode">Změnit noční režim</string>
+    <string name="about">O aplikaci</string>
+
+    <string name="compass_rose_image_description">Kompasová růžice ukazuje na magnetický sever</string>
+    <string name="device_heading_indicator_image_description">Ukazuje, kterým směrem míří zařízení</string>
+
+    <string name="status_degrees_text_description">Stupně kompasu</string>
+    <string name="status_cardinal_direction_text_description">Kardinální směr kompasu</string>
+
+    <string name="cardinal_direction_north">Sever</string>
+    <string name="cardinal_direction_northeast">Severovýchod</string>
+    <string name="cardinal_direction_east">Východ</string>
+    <string name="cardinal_direction_southeast">Jihovýchod</string>
+    <string name="cardinal_direction_south">Jih</string>
+    <string name="cardinal_direction_southwest">Jihozápad</string>
+    <string name="cardinal_direction_west">Západ</string>
+    <string name="cardinal_direction_northwest">Severozápad</string>
+
+    <string name="cardinal_direction_north_abbreviation">S</string>
+    <string name="cardinal_direction_east_abbreviation">V</string>
+    <string name="cardinal_direction_south_abbreviation">J</string>
+    <string name="cardinal_direction_west_abbreviation">Z</string>
+
+    <string name="ok">OK</string>
+
+    <string name="version">Verze %s</string>
+    <string name="version_description">Název verze</string>
+    <string name="copyright">Copyright @ 2022 <a href="mailto:philipp.bobek@mailbox.org">Philipp Bobek</a></string>
+    <string name="copyright_description">Oznámení o autorských právech</string>
+    <string name="license">Licence <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></string>
+    <string name="license_description">Softwarová licence</string>
+    <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Zdrojový kód</a></string>
+    <string name="source_code_description">Odkaz na správu zdrojového kódu</string>
+
+    <string name="sensor_accuracy_no_contact">Senzor není dostupný</string>
+    <string name="sensor_accuracy_unreliable">Hodnoty senzoru jsou nespolehlivé</string>
+    <string name="sensor_accuracy_low">Nízká přesnost</string>
+    <string name="sensor_accuracy_medium">Průměrná přesnost</string>
+    <string name="sensor_accuracy_high">Nejvyšší přesnost</string>
+    <string name="sensor_accuracy_image_description">Graficky značí přesnost senzoru</string>
+    <string name="sensor_accuracy_text_description">Popisuje přesnost senzoru</string>
+    <string name="sensor_error_message">Senzor není dostupný</string>
+    <string name="sensor_calibration_text">Přesnost snímače můžete kdykoli zkusit zlepšit otáčením zařízení ve tvaru osmičky.</string>
+    <string name="sensor_calibration_text_description">Popisuje, jak zlepšit přesnost senzoru</string>
+
+    <string name="zero_degrees" translatable="false">0°</string>
+    <string name="degrees" translatable="false">%1$d°</string>
+
+    <string name="degree_0_text" translatable="false">0</string>
+    <string name="degree_30_text" translatable="false">30</string>
+    <string name="degree_60_text" translatable="false">60</string>
+    <string name="degree_90_text" translatable="false">90</string>
+    <string name="degree_120_text" translatable="false">120</string>
+    <string name="degree_150_text" translatable="false">150</string>
+    <string name="degree_180_text" translatable="false">180</string>
+    <string name="degree_210_text" translatable="false">210</string>
+    <string name="degree_240_text" translatable="false">240</string>
+    <string name="degree_270_text" translatable="false">270</string>
+    <string name="degree_300_text" translatable="false">300</string>
+    <string name="degree_330_text" translatable="false">330</string>
+</resources>
