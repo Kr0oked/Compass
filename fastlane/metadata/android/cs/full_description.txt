@@ -1,0 +1,12 @@
+Získáte přesně to, co očekáváte.
+Jednoduchý a pěkný kompas, který ukazuje na magnetický sever.
+
+Funkce:
+* Ukazuje na magnetický sever
+* Zobrazuje přesné stupně a kardinální směr
+* Zobrazuje stav senzoru
+* Automatický tmavý režim
+* Bez reklam
+* Bez otravností
+
+Bavte se!
