@@ -27,8 +27,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/root_layout_padding"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:padding="@dimen/root_layout_padding">
 
         <com.bobek.compass.view.CompassView
                 android:id="@+id/compass"
