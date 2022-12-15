@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,10 +51,10 @@ class AzimuthTest {
     fun normalizationPrecision() {
         val delta = 0.0001f
 
-        assertEquals(0.0123456789f, Azimuth(360.0123456789f).degrees, delta)
-        assertEquals(90.0123456789f, Azimuth(450.0123456789f).degrees, delta)
-        assertEquals(180.0123456789f, Azimuth(540.0123456789f).degrees, delta)
-        assertEquals(270.0123456789f, Azimuth(630.0123456789f).degrees, delta)
+        assertEquals(0.012345678f, Azimuth(360.01236f).degrees, delta)
+        assertEquals(90.012344f, Azimuth(450.01236f).degrees, delta)
+        assertEquals(180.01234f, Azimuth(540.0123f).degrees, delta)
+        assertEquals(270.01236f, Azimuth(630.0123f).degrees, delta)
     }
 
     @Test
