@@ -18,8 +18,20 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-    <background android:drawable="@drawable/ic_launcher_background" />
-    <foreground android:drawable="@drawable/ic_launcher_foreground" />
-    <monochrome android:drawable="@drawable/ic_launcher_monochrome" />
-</adaptive-icon>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="108dp"
+        android:height="108dp"
+        android:viewportWidth="108"
+        android:viewportHeight="108">
+
+    <group
+            android:scaleX="0.135"
+            android:scaleY="0.135">
+
+        <path
+                android:fillColor="#000000"
+                android:pathData="M400,150 L440,360 L650,400 L440,440 L400,650 L360,440 L150,400 L360,360 Z" />
+
+    </group>
+
+</vector>
