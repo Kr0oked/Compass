@@ -30,7 +30,28 @@
 
         <path
                 android:fillColor="#000000"
-                android:pathData="M400,150 L440,360 L650,400 L440,440 L400,650 L360,440 L150,400 L360,360 Z" />
+                android:pathData="M400,150 L360,360 L360,390 L400,175 Z" />
+        <path
+                android:fillColor="#000000"
+                android:pathData="M400,150 L440,360 L400,400 Z" />
+        <path
+                android:fillColor="#000000"
+                android:pathData="M650,400 L440,360 L410,360 L625,400 Z" />
+        <path
+                android:fillColor="#000000"
+                android:pathData="M650,400 L440,440 L400,400 Z" />
+        <path
+                android:fillColor="#000000"
+                android:pathData="M400,650 L440,440 L440,410 L400,625 Z" />
+        <path
+                android:fillColor="#000000"
+                android:pathData="M400,650 L360,440 L400,400 Z" />
+        <path
+                android:fillColor="#000000"
+                android:pathData="M150,400 L360,440 L390,440 L175,400 Z" />
+        <path
+                android:fillColor="#000000"
+                android:pathData="M150,400 L360,360 L400,400 Z" />
 
     </group>
 
