@@ -1,0 +1,5 @@
+- Tschechische Übersetzung
+- Türkische Übersetzung
+- Griechische Übersetzung
+- Größerer Kompass im Landscape Modus
+- Monochromes Icon
