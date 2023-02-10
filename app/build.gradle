@@ -52,9 +52,9 @@ android {
         managedDevices {
             devices {
                 pixel2api31(com.android.build.api.dsl.ManagedVirtualDevice) {
-                    device = "Pixel 2"
+                    device = 'Pixel 2'
                     apiLevel = 31
-                    systemImageSource = "aosp"
+                    systemImageSource = 'aosp'
                 }
             }
         }
@@ -65,11 +65,11 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     implementation 'androidx.preference:preference:1.2.0'
 
-    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'com.google.android.material:material:1.8.0'
 
     testImplementation 'junit:junit:4.13.2'
 
