@@ -33,6 +33,8 @@ android {
         versionName '1.9'
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+        resConfigs 'bs', 'cs', 'de', 'el', 'fi', 'hr', 'mk', 'nl', 'ru', 'sr', 'tr'
     }
 
     buildTypes {
