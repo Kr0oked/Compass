@@ -2,7 +2,7 @@
 
 <!--
   ~ This file is part of Compass.
-  ~ Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~ Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -19,12 +19,10 @@
   -->
 
 <resources>
-    <string name="app_name">Kompas</string>
+    <string name="compass">Kompas</string>
 
     <string name="sensor_status">Stav senzoru</string>
     <string name="action_screen_rotation">Uzamknout otáčení obrazovky</string>
-    <string name="action_night_mode">Změnit noční režim</string>
-    <string name="about">O aplikaci</string>
 
     <string name="compass_rose_image_description">Kompasová růžice ukazuje na magnetický sever</string>
     <string name="device_heading_indicator_image_description">Ukazuje, kterým směrem míří zařízení</string>
@@ -48,15 +46,6 @@
 
     <string name="ok">OK</string>
 
-    <string name="version">Verze %s</string>
-    <string name="version_description">Název verze</string>
-    <string name="copyright">Copyright @ 2022 <a href="mailto:philipp.bobek@mailbox.org">Philipp Bobek</a></string>
-    <string name="copyright_description">Oznámení o autorských právech</string>
-    <string name="license">Licence <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></string>
-    <string name="license_description">Softwarová licence</string>
-    <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Zdrojový kód</a></string>
-    <string name="source_code_description">Odkaz na správu zdrojového kódu</string>
-
     <string name="sensor_accuracy_no_contact">Senzor není dostupný</string>
     <string name="sensor_accuracy_unreliable">Hodnoty senzoru jsou nespolehlivé</string>
     <string name="sensor_accuracy_low">Nízká přesnost</string>
@@ -67,4 +56,18 @@
     <string name="sensor_error_message">Senzor není dostupný</string>
     <string name="sensor_calibration_text">Přesnost snímače můžete kdykoli zkusit zlepšit otáčením zařízení ve tvaru osmičky.</string>
     <string name="sensor_calibration_text_description">Popisuje, jak zlepšit přesnost senzoru</string>
+
+    <string name="settings">Nastavení</string>
+
+    <string name="display">Ukázat</string>
+    <string name="night_mode">Noční režim</string>
+    <string name="night_mode_follow_system">Systém</string>
+    <string name="night_mode_no">Den</string>
+    <string name="night_mode_yes">Noc</string>
+
+    <string name="about">O aplikaci</string>
+    <string name="author">Autor</string>
+    <string name="license">Licence</string>
+    <string name="source_code">Zdrojový kód</string>
+    <string name="version">Verze</string>
 </resources>

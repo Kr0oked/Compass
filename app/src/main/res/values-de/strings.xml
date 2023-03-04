@@ -2,7 +2,7 @@
 
 <!--
   ~ This file is part of Compass.
-  ~ Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~ Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -19,12 +19,10 @@
   -->
 
 <resources>
-    <string name="app_name">Kompass</string>
+    <string name="compass">Kompass</string>
 
     <string name="sensor_status">Sensor Status</string>
     <string name="action_screen_rotation">Bildschirmausrichtung sperren</string>
-    <string name="action_night_mode">Nachtmodus wechseln</string>
-    <string name="about">Über die App</string>
 
     <string name="compass_rose_image_description">Windrose die den magnetischen Norden anzeigt</string>
     <string name="device_heading_indicator_image_description">Gibt die Richtung an in die das Gerät zeigt</string>
@@ -48,15 +46,6 @@
 
     <string name="ok">OK</string>
 
-    <string name="version">Version %s</string>
-    <string name="version_description">Versionsname</string>
-    <string name="copyright">Copyright @ 2021 <a href="mailto:philipp.bobek@mailbox.org">Philipp Bobek</a></string>
-    <string name="copyright_description">Copyright Hinweis</string>
-    <string name="license">Lizenz <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></string>
-    <string name="license_description">Softwarelizenz</string>
-    <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Quelltext</a></string>
-    <string name="source_code_description">Link zur Quelltext Verwaltung</string>
-
     <string name="sensor_accuracy_no_contact">Sensor nicht verfügbar</string>
     <string name="sensor_accuracy_unreliable">Sensor Werte sind unzuverlässig</string>
     <string name="sensor_accuracy_low">Niedrige Genauigkeit</string>
@@ -67,4 +56,18 @@
     <string name="sensor_error_message">Sensor nicht verfügbar</string>
     <string name="sensor_calibration_text">Sie können jederzeit versuchen die Genauigkeit ihres Sensors zu erhöhen indem sie das Gerät mehrfach in Form einer 8 rotieren.</string>
     <string name="sensor_calibration_text_description">Eklärt wie die Genauigkeit des Sensors erhöht werden kann</string>
+
+    <string name="settings">Einstellungen</string>
+
+    <string name="display">Anzeige</string>
+    <string name="night_mode">Nachtmodus</string>
+    <string name="night_mode_follow_system">System</string>
+    <string name="night_mode_no">Tag</string>
+    <string name="night_mode_yes">Nacht</string>
+
+    <string name="about">Über die App</string>
+    <string name="author">Author</string>
+    <string name="license">Lizenz</string>
+    <string name="source_code">Quelltext</string>
+    <string name="version">Version</string>
 </resources>

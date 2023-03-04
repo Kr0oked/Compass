@@ -2,7 +2,7 @@
 
 <!--
   ~ This file is part of Compass.
-  ~ Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~ Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -19,12 +19,10 @@
   -->
 
 <resources>
-    <string name="app_name">Compass</string>
+    <string name="compass">Compass</string>
 
     <string name="sensor_status">Sensor status</string>
     <string name="action_screen_rotation">Lock screen rotation</string>
-    <string name="action_night_mode">Change night mode</string>
-    <string name="about">About</string>
 
     <string name="compass_rose_image_description">Compass rose showing to magnetic north</string>
     <string name="device_heading_indicator_image_description">Indicates in which direction the device is pointing</string>
@@ -48,15 +46,6 @@
 
     <string name="ok">OK</string>
 
-    <string name="version">Version %s</string>
-    <string name="version_description">Version name</string>
-    <string name="copyright">Copyright @ 2022 <a href="mailto:philipp.bobek@mailbox.org">Philipp Bobek</a></string>
-    <string name="copyright_description">Copyright notice</string>
-    <string name="license">License <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></string>
-    <string name="license_description">Software license</string>
-    <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Source code</a></string>
-    <string name="source_code_description">Link to the Source code management</string>
-
     <string name="sensor_accuracy_no_contact">Sensor not available</string>
     <string name="sensor_accuracy_unreliable">Sensor values are unreliable</string>
     <string name="sensor_accuracy_low">Low accuracy</string>
@@ -67,6 +56,24 @@
     <string name="sensor_error_message">Sensor not available</string>
     <string name="sensor_calibration_text">You can try to improve your sensor accuracy at any time by rotating the device in a figure 8 pattern.</string>
     <string name="sensor_calibration_text_description">Explains how to improve the sensor accuracy</string>
+
+    <string name="settings">Settings</string>
+
+    <string name="display">Display</string>
+    <string name="night_mode">Night mode</string>
+    <string name="night_mode_follow_system">System</string>
+    <string name="night_mode_no">Day</string>
+    <string name="night_mode_yes">Night</string>
+
+    <string name="about">About</string>
+    <string name="author">Author</string>
+    <string name="license">License</string>
+    <string name="source_code">Source code</string>
+    <string name="version">Version</string>
+
+    <string name="source_code_name" translatable="false">Git Hub</string>
+    <string name="license_name" translatable="false">GNU GPLv3</string>
+    <string name="author_name" translatable="false">Philipp Bobek</string>
 
     <string name="zero_degrees" translatable="false">0°</string>
     <string name="degrees" translatable="false">%1$d°</string>

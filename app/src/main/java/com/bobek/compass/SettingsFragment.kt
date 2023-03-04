@@ -18,17 +18,18 @@
 
 package com.bobek.compass
 
-import android.app.Application
-import com.bobek.compass.preference.PreferenceMigrations
-import com.google.android.material.color.DynamicColors
+import android.os.Bundle
+import androidx.preference.Preference
+import androidx.preference.Preference.SummaryProvider
+import androidx.preference.PreferenceFragmentCompat
+import com.bobek.compass.preference.PreferenceConstants
 
-class CompassApplication : Application() {
+class SettingsFragment : PreferenceFragmentCompat() {
 
-    override fun onCreate() {
-        super.onCreate()
-        DynamicColors.applyToActivitiesIfAvailable(this)
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.preferences, rootKey)
 
-        val preferenceMigrations = PreferenceMigrations(applicationContext)
-        preferenceMigrations.migrateV5()
+        findPreference<Preference>(PreferenceConstants.VERSION)?.summaryProvider =
+            SummaryProvider<Preference> { BuildConfig.VERSION_NAME }
     }
 }

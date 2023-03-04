@@ -16,19 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass
+package com.bobek.compass.preference
 
-import android.app.Application
-import com.bobek.compass.preference.PreferenceMigrations
-import com.google.android.material.color.DynamicColors
+object PreferenceConstants {
 
-class CompassApplication : Application() {
+    const val SCREEN_ORIENTATION_LOCKED = "screen_orientation_locked"
 
-    override fun onCreate() {
-        super.onCreate()
-        DynamicColors.applyToActivitiesIfAvailable(this)
+    const val NIGHT_MODE = "night_mode"
+    const val NIGHT_MODE_VALUE_FOLLOW_SYSTEM = "follow_system"
+    const val NIGHT_MODE_VALUE_NO = "no"
+    const val NIGHT_MODE_VALUE_YES = "yes"
 
-        val preferenceMigrations = PreferenceMigrations(applicationContext)
-        preferenceMigrations.migrateV5()
-    }
+    const val VERSION = "version"
 }

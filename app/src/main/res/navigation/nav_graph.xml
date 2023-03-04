@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Compass.
+  ~ Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Compass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_graph"
+        app:startDestination="@id/CompassFragment">
+
+    <fragment
+            android:id="@+id/CompassFragment"
+            android:name="com.bobek.compass.CompassFragment"
+            android:label="@string/compass"
+            tools:layout="@layout/fragment_compass">
+
+        <action
+                android:id="@+id/action_CompassFragment_to_SettingsFragment"
+                app:destination="@id/SettingsFragment" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/SettingsFragment"
+            android:name="com.bobek.compass.SettingsFragment"
+            android:label="@string/settings">
+
+        <action
+                android:id="@+id/action_SettingsFragment_to_CompassFragment"
+                app:destination="@id/CompassFragment" />
+    </fragment>
+
+</navigation>

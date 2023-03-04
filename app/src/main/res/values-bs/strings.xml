@@ -2,7 +2,7 @@
 
 <!--
   ~ This file is part of Compass.
-  ~ Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~ Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -19,12 +19,10 @@
   -->
 
 <resources>
-    <string name="app_name">Kompas</string>
+    <string name="compass">Kompas</string>
 
     <string name="sensor_status">Status senzora</string>
     <string name="action_screen_rotation">Zaključaj rotaciju ekrana</string>
-    <string name="action_night_mode">Promijeni u noćni režim</string>
-    <string name="about">O aplikaciji</string>
 
     <string name="compass_rose_image_description">Ruža kompasa pokazuje prema magnetnom sjeveru</string>
     <string name="device_heading_indicator_image_description">Označava u kom smjeru uređaj pokazuje</string>
@@ -48,15 +46,6 @@
 
     <string name="ok">Uredu</string>
 
-    <string name="version">Verzija %s</string>
-    <string name="version_description">Naziv verzije</string>
-    <string name="copyright">Autorska prava @ 2022 <a href="mailto:philipp.bobek@mailbox.org">Philipp Bobek</a></string>
-    <string name="copyright_description">Obaveštenje o autorskim pravima</string>
-    <string name="license">Licenca <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></string>
-    <string name="license_description">Licenca za softver</string>
-    <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Source code</a></string>
-    <string name="source_code_description">Veza do upravljanja izvornim kodom</string>
-
     <string name="sensor_accuracy_no_contact">Senzor nije dostupan</string>
     <string name="sensor_accuracy_unreliable">Vrijednosti senzora su nepouzdane</string>
     <string name="sensor_accuracy_low">Niska tačnost</string>
@@ -67,4 +56,18 @@
     <string name="sensor_error_message">Senzor nije dostupan</string>
     <string name="sensor_calibration_text">Možete pokušati poboljšati tačnost senzora u bilo kom trenutku rotiranjem uređaja u obliku osmice.</string>
     <string name="sensor_calibration_text_description">Objašnjava kako poboljšati tačnost senzora</string>
+
+    <!--TODO<string name="settings">Settings</string>-->
+
+    <!--TODO<string name="display">Display</string>-->
+    <!--TODO<string name="night_mode">Night mode</string>-->
+    <!--TODO<string name="night_mode_follow_system">System</string>-->
+    <!--TODO<string name="night_mode_no">Day</string>-->
+    <!--TODO<string name="night_mode_yes">Night</string>-->
+
+    <string name="about">O aplikaciji</string>
+    <!--TODO<string name="author">Author</string>-->
+    <string name="license">Licenca</string>
+    <!--TODO<string name="source_code">Source code</string>-->
+    <string name="version">Verzija</string>
 </resources>

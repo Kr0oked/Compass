@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,16 +19,15 @@
 package com.bobek.compass
 
 import android.content.Intent
+import androidx.navigation.fragment.NavHostFragment
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import androidx.test.platform.app.InstrumentationRegistry
 import com.bobek.compass.model.Azimuth
 import com.bobek.compass.model.SensorAccuracy
 import org.hamcrest.Matchers.not
@@ -66,8 +65,7 @@ class InstrumentedTest {
 
     @Test
     fun sensorStatusDialog() {
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().targetContext)
-        onView(withText(R.string.sensor_status))
+        onView(withId(R.id.action_sensor_status))
             .check(matches(isDisplayed()))
             .perform(click())
 
@@ -89,28 +87,26 @@ class InstrumentedTest {
         onView(withText(R.string.ok)).perform(click())
     }
 
-    @Test
-    fun aboutDialog() {
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().targetContext)
-        onView(withText(R.string.about))
-            .check(matches(isDisplayed()))
-            .perform(click())
-
-        onView(withId(R.id.version_text)).check(matches(isDisplayed()))
-        onView(withId(R.id.copyright_text)).check(matches(withText(R.string.copyright)))
-        onView(withId(R.id.license_text)).check(matches(withText(R.string.license)))
-        onView(withId(R.id.source_code_text))
-            .check(matches(withText(R.string.source_code)))
-            .check(matches(hasLinks()))
-
-        onView(withText(R.string.ok)).perform(click())
-    }
-
     private fun setAzimuth(degrees: Float) {
-        activityRule.scenario.onActivity { mainActivity -> mainActivity.setAzimuth(Azimuth(degrees)) }
+        activityRule.scenario.onActivity { mainActivity ->
+            findCompassFragment(mainActivity)!!.setAzimuth(Azimuth(degrees))
+        }
     }
 
     private fun setAccuracy(accuracy: SensorAccuracy) {
-        activityRule.scenario.onActivity { mainActivity -> mainActivity.setSensorAccuracy(accuracy) }
+        activityRule.scenario.onActivity { mainActivity ->
+            findCompassFragment(mainActivity)!!.setSensorAccuracy(accuracy)
+        }
     }
+
+    private fun findCompassFragment(mainActivity: MainActivity): CompassFragment? {
+        return findNavHostFragment(mainActivity)
+            ?.childFragmentManager
+            ?.primaryNavigationFragment as CompassFragment?
+    }
+
+    private fun findNavHostFragment(mainActivity: MainActivity) =
+        mainActivity
+            .supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment?
 }

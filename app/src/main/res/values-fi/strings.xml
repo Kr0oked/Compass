@@ -2,7 +2,7 @@
 
 <!--
   ~ This file is part of Compass.
-  ~ Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~ Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -19,12 +19,10 @@
   -->
 
 <resources>
-    <string name="app_name">Kompassi</string>
+    <string name="compass">Kompassi</string>
 
     <string name="sensor_status">Anturin tila</string>
     <string name="action_screen_rotation">Lukitse näytön kierto</string>
-    <string name="action_night_mode">Vaihda teemaa</string>
-    <string name="about">Tietoja</string>
 
     <string name="compass_rose_image_description">Kompassiruusu näyttää magneettisen pohjoisen</string>
     <string name="device_heading_indicator_image_description">Ilmaisee, mihin suuntaan laite osoittaa</string>
@@ -48,15 +46,6 @@
 
     <string name="ok">Valmis</string>
 
-    <string name="version">Versio %s</string>
-    <string name="version_description">Version nimi</string>
-    <string name="copyright">Tekijänoikeudet @ 2022 <a href="mailto:philipp.bobek@mailbox.org">Philipp Bobek</a></string>
-    <string name="copyright_description">Tekijänoikeusilmoitus</string>
-    <string name="license">Lisenssi <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></string>
-    <string name="license_description">Ohjelmistolisenssi</string>
-    <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Lähdekoodi</a></string>
-    <string name="source_code_description">Linkki lähdekoodiin</string>
-
     <string name="sensor_accuracy_no_contact">Anturia ei ole saatavilla</string>
     <string name="sensor_accuracy_unreliable">Anturiarvot ovat epäluotettavia</string>
     <string name="sensor_accuracy_low">Matala tarkkuus</string>
@@ -67,4 +56,18 @@
     <string name="sensor_error_message">Anturia ei ole saatavilla</string>
     <string name="sensor_calibration_text">Voit yrittää parantaa tarkuutta kiertämällä laitetta kahdeksikon muodossa.</string>
     <string name="sensor_calibration_text_description">Selittää, kuinka parantaa antureiden tarkuutta</string>
+
+    <!--TODO<string name="settings">Settings</string>-->
+
+    <!--TODO<string name="display">Display</string>-->
+    <!--TODO<string name="night_mode">Night mode</string>-->
+    <!--TODO<string name="night_mode_follow_system">System</string>-->
+    <!--TODO<string name="night_mode_no">Day</string>-->
+    <!--TODO<string name="night_mode_yes">Night</string>-->
+
+    <string name="about">Tietoja</string>
+    <!--TODO<string name="author">Author</string>-->
+    <string name="license">Lisenssi</string>
+    <!--TODO<string name="source_code">Source code</string>-->
+    <string name="version">Versio</string>
 </resources>
