@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Compass.
+  ~ Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Compass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="app_name">Boussole</string>
+
+    <string name="sensor_status">État du capteur</string>
+    <string name="action_screen_rotation">Bloquer la rotation de l'écran</string>
+    <string name="action_night_mode">Passer au mode nuit</string>
+    <string name="about">À propos</string>
+
+    <string name="compass_rose_image_description">Rose des vents indiquant le nord magnétique</string>
+    <string name="device_heading_indicator_image_description">Indique dans quelle direction l'appareil est orienté</string>
+
+    <string name="status_degrees_text_description">Degrées de la boussole</string>
+    <string name="status_cardinal_direction_text_description">Direction cardinale de la boussole</string>
+
+    <string name="cardinal_direction_north">Nord</string>
+    <string name="cardinal_direction_northeast">Nord-Est</string>
+    <string name="cardinal_direction_east">Est</string>
+    <string name="cardinal_direction_southeast">Sud-Est</string>
+    <string name="cardinal_direction_south">Sud</string>
+    <string name="cardinal_direction_southwest">Sud-Ouest</string>
+    <string name="cardinal_direction_west">Ouest</string>
+    <string name="cardinal_direction_northwest">Nord-Ouest</string>
+
+    <string name="cardinal_direction_north_abbreviation">N</string>
+    <string name="cardinal_direction_east_abbreviation">E</string>
+    <string name="cardinal_direction_south_abbreviation">S</string>
+    <string name="cardinal_direction_west_abbreviation">O</string>
+
+    <string name="ok">OK</string>
+
+    <string name="version">Version %s</string>
+    <string name="version_description">Nom de la version</string>
+    <string name="copyright">Copyright @ 2022 <a href="mailto:philipp.bobek@mailbox.org">Philipp Bobek</a></string>
+    <string name="copyright_description">Avis de copyright</string>
+    <string name="license">Licence <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></string>
+    <string name="license_description">Licence du logiciel</string>
+    <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Code source</a></string>
+    <string name="source_code_description">Lien vers la gestion du code source</string>
+
+	<string name="sensor_accuracy_no_contact">Capteur non disponible</string>
+    <string name="sensor_accuracy_unreliable">Valeurs des capteurs non fiables</string>
+    <string name="sensor_accuracy_low">Précision faible</string>
+    <string name="sensor_accuracy_medium">Précision moyenne</string>
+    <string name="sensor_accuracy_high">Précision maximale</string>
+    <string name="sensor_accuracy_image_description">Affichage graphique de la précision du capteur</string>
+    <string name="sensor_accuracy_text_description">Décrit la précsion du capteur</string>
+    <string name="sensor_error_message">Capteur non disponible</string>
+	<string name="sensor_calibration_text">Vous pouvez améliorer la précision de votre capteur à n'importe quel moment en tournant l'appareil en faisant un 8.</string>
+    <string name="sensor_calibration_text_description">Explique comment améliorer la précision du capteur</string>
+
+    <string name="zero_degrees" translatable="false">0°</string>
+    <string name="degrees" translatable="false">%1$d°</string>
+
+    <string name="degree_0_text" translatable="false">0</string>
+    <string name="degree_30_text" translatable="false">30</string>
+    <string name="degree_60_text" translatable="false">60</string>
+    <string name="degree_90_text" translatable="false">90</string>
+    <string name="degree_120_text" translatable="false">120</string>
+    <string name="degree_150_text" translatable="false">150</string>
+    <string name="degree_180_text" translatable="false">180</string>
+    <string name="degree_210_text" translatable="false">210</string>
+    <string name="degree_240_text" translatable="false">240</string>
+    <string name="degree_270_text" translatable="false">270</string>
+    <string name="degree_300_text" translatable="false">300</string>
+    <string name="degree_330_text" translatable="false">330</string>
+</resources>
