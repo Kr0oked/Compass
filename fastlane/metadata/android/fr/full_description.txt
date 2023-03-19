@@ -1,0 +1,18 @@
+Vous obtiendrez excactement ce à quoi vous vous attendez:
+Une jolie boussole simple pointant vers le nord magnétique
+
+Features:
+* Pointe le nord magnétique
+* Montre les degré
+You’ll get exactly what you expect.
+A simple and beautiful compass that points to magnetic north.
+
+Features:
+* Points to magnetic north
+* Indique les degrés exacts et la direction cardinale
+* Affiche l'état du capteur
+* Mode nuit automatique
+* Pas de publicités
+* Pas d'ennuis
+
+Amusez vous!
