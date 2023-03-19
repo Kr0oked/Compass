@@ -34,7 +34,7 @@ android {
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        resConfigs 'bs', 'cs', 'de', 'el', 'fi', 'hr', 'mk', 'nl', 'ru', 'sr', 'tr'
+        resConfigs 'bs', 'cs', 'de', 'el', 'fi', 'fr', 'hr', 'mk', 'nl', 'ru', 'sr', 'tr'
     }
 
     buildTypes {
