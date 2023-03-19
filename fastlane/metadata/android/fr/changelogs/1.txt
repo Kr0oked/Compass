@@ -1,0 +1,5 @@
+- Rotate la rose des vents
+- Texte pour les degrés
+- Text pour la direction cardinale
+- Mode jour & nuit
+- Traduction en anglais et en allemand

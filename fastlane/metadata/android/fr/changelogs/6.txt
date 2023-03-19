@@ -1,0 +1,3 @@
+- Traduction en russe
+- Vue de la boussole plus grande
+- Correction d'un relèvement incorrect en orientation paysage

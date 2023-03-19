@@ -1,0 +1,3 @@
+- Page à propos
+- Icone de l'application retravaillé
+- Amélioration de la gestion du mode nuit
