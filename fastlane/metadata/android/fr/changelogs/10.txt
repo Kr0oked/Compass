@@ -1,0 +1,5 @@
+- Traduction en tchèque
+- Traduction en turc
+- Traduction en grec
+- Boussole plus grande en mode paysage
+- Icône en monochrone

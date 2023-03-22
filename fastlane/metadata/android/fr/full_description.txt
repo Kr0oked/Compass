@@ -1,0 +1,13 @@
+Vous obtiendrez excactement ce à quoi vous vous attendez:
+Une jolie boussole simple pointant vers le nord magnétique
+
+Fonctionnalités:
+* Pointe le nord magnétique
+* Montre les degré
+* Indique les degrés exacts et la direction cardinale
+* Affiche l'état du capteur
+* Mode nuit automatique
+* Pas de publicités
+* Pas d'ennuis
+
+Amusez vous!

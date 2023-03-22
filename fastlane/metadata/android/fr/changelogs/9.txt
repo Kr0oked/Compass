@@ -1,0 +1,6 @@
+- Material 3 design
+- Traduction en bosnien
+- Traduction en croate
+- Traduction en serbe
+- Nouveaux icônes pour le mode nuit
+- Préférences de l'application persistante
