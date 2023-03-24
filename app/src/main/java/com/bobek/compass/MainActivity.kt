@@ -18,10 +18,16 @@
 
 package com.bobek.compass
 
+import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.content.pm.ActivityInfo
+import android.content.pm.PackageManager.PERMISSION_DENIED
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -32,12 +38,13 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.bobek.compass.databinding.ActivityMainBinding
 import com.bobek.compass.model.AppNightMode
 import com.bobek.compass.preference.PreferenceStore
-
-const val OPTION_INSTRUMENTED_TEST = "INSTRUMENTED_TEST"
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
+
+    private val accessCoarseLocationPermissionRequest = registerAccessCoarseLocationPermissionRequest()
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -60,12 +67,86 @@ class MainActivity : AppCompatActivity() {
     private fun initPreferenceStore() {
         preferenceStore = PreferenceStore(this, lifecycle)
         preferenceStore.nightMode.observe(this) { setNightMode(it) }
+        preferenceStore.screenOrientationLocked.observe(this) { setScreenRotationMode(it) }
+        preferenceStore.trueNorth.observe(this) { setupTrueNorthFunctionality(it) }
     }
 
     private fun setNightMode(appNightMode: AppNightMode) {
         Log.d(TAG, "Setting night mode to $appNightMode")
         setDefaultNightMode(appNightMode.systemValue)
     }
+
+    private fun setScreenRotationMode(screenOrientationLocked: Boolean) {
+        if (screenOrientationLocked) {
+            setScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED)
+        } else {
+            setScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+        }
+    }
+
+    private fun setScreenOrientation(screenOrientation: Int) {
+        Log.d(TAG, "Setting requested orientation to value $screenOrientation")
+        requestedOrientation = screenOrientation
+    }
+
+    private fun setupTrueNorthFunctionality(trueNorth: Boolean?) {
+        if (trueNorth == true) {
+            handleAccessCoarseLocationPermission()
+        }
+    }
+
+    private fun handleAccessCoarseLocationPermission() {
+        if (neverRequestedAccessCoarseLocationPermission() && accessCoarseLocationPermissionDenied()) {
+            startAccessCoarseLocationPermissionRequestWorkflow()
+        }
+    }
+
+    private fun neverRequestedAccessCoarseLocationPermission() =
+        preferenceStore.accessCoarseLocationPermissionRequested.value != true
+
+    private fun accessCoarseLocationPermissionDenied() =
+        ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_DENIED
+
+    private fun startAccessCoarseLocationPermissionRequestWorkflow() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_COARSE_LOCATION)) {
+            showRequestNotificationsPermissionRationale()
+        } else {
+            launchAccessCoarseLocationPermissionRequest()
+        }
+    }
+
+    private fun showRequestNotificationsPermissionRationale() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.access_coarse_location_permission_rationale_title)
+            .setMessage(R.string.access_coarse_location_permission_rationale_message)
+            .setCancelable(false)
+            .setNeutralButton(R.string.ok) { dialog, _ ->
+                launchAccessCoarseLocationPermissionRequest()
+                dialog.dismiss()
+            }
+            .setNegativeButton(R.string.no_thanks) { dialog, _ ->
+                Log.i(TAG, "Continuing without requesting ACCESS_COARSE_LOCATION permission")
+                preferenceStore.accessCoarseLocationPermissionRequested.value = true
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun launchAccessCoarseLocationPermissionRequest() {
+        Log.i(TAG, "Requesting ACCESS_COARSE_LOCATION permission")
+        accessCoarseLocationPermissionRequest.launch(ACCESS_COARSE_LOCATION)
+    }
+
+    private fun registerAccessCoarseLocationPermissionRequest() =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+            if (granted) {
+                Log.i(TAG, "Permission ACCESS_COARSE_LOCATION granted")
+            } else {
+                Log.i(TAG, "Permission ACCESS_COARSE_LOCATION denied")
+                preferenceStore.accessCoarseLocationPermissionRequested.value = true
+            }
+        }
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = getNavController()

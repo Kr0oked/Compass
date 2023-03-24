@@ -22,13 +22,10 @@
     <string name="compass">Компас</string>
 
     <string name="sensor_status">Статус на сензорот</string>
-    <string name="action_screen_rotation">Заклучи ротација на екранот</string>
+    <string name="lock_screen_rotation">Заклучи ротација на екранот</string>
 
     <string name="compass_rose_image_description">Компасот покажува кон магнетен север</string>
     <string name="device_heading_indicator_image_description">Покажува во која насока е насочен уредот</string>
-
-    <string name="status_degrees_text_description">Степени на компасот</string>
-    <string name="status_cardinal_direction_text_description">Кардинална насока на компасот</string>
 
     <string name="cardinal_direction_north">Север</string>
     <string name="cardinal_direction_northeast">Североисток</string>
@@ -44,20 +41,25 @@
     <string name="cardinal_direction_south_abbreviation">Ј</string>
     <string name="cardinal_direction_west_abbreviation">З</string>
 
-    <string name="ok">Во ред</string>
-
     <string name="sensor_accuracy_no_contact">Сензорот не е достапен</string>
     <string name="sensor_accuracy_unreliable">Вредностите на сензорот се несигурни</string>
     <string name="sensor_accuracy_low">Слаба точност</string>
     <string name="sensor_accuracy_medium">Просечна точност</string>
     <string name="sensor_accuracy_high">Максимална точност</string>
     <string name="sensor_accuracy_image_description">Графички ја порикажува точноста на сензорите</string>
-    <string name="sensor_accuracy_text_description">Ја опишува точноста на сензорите</string>
     <string name="sensor_error_message">Сензорот не е достапен</string>
     <string name="sensor_calibration_text">Можете да се обидете да ја подобрите точноста на сензорот во секое време со вртење на уредот во форма на осмица.</string>
-    <string name="sensor_calibration_text_description">Објаснува како да се подобри точноста на сензорот</string>
+
+    <!--TODO<string name="location_loading">Waiting for location update</string>-->
+    <!--TODO<string name="location_error_message">Location not available</string>-->
+    <!--TODO<string name="access_coarse_location_permission_rationale_title">We need permission to access your course location</string>-->
+    <!--TODO<string name="access_coarse_location_permission_rationale_message">For showing to true north this app needs to determine the magnetic declination based on your current location.</string>-->
+    <!--TODO<string name="access_coarse_location_permission_denied">Missing permission to access coarse location. Falling back to magnetic north.</string>-->
 
     <!--TODO<string name="settings">Settings</string>-->
+
+    <!--TODO<string name="true_north">True North</string>-->
+    <!--TODO<string name="true_north_summary">Correct the magnetic declination and show to true north. Requires access to your coarse location.</string>-->
 
     <!--TODO<string name="display">Display</string>-->
     <!--TODO<string name="night_mode">Night mode</string>-->
@@ -70,4 +72,10 @@
     <string name="license">Лиценца</string>
     <!--TODO<string name="source_code">Source code</string>-->
     <string name="version">Верзија</string>
+
+    <!--TODO<string name="error_message">An error occurred.\nMessage: %1$s\nCode: %2$s</string>-->
+
+    <!--TODO<string name="error">Error</string>-->
+    <string name="ok">Во ред</string>
+    <!--TODO<string name="no_thanks">No thanks</string>-->
 </resources>

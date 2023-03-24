@@ -16,20 +16,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass.preference
+package com.bobek.compass.view
 
-object PreferenceConstants {
+import android.location.Location
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.bobek.compass.model.SensorAccuracy
 
-    const val TRUE_NORTH = "true_north"
+class CompassViewModel : ViewModel() {
 
-    const val SCREEN_ORIENTATION_LOCKED = "screen_orientation_locked"
-
-    const val NIGHT_MODE = "night_mode"
-    const val NIGHT_MODE_VALUE_FOLLOW_SYSTEM = "follow_system"
-    const val NIGHT_MODE_VALUE_NO = "no"
-    const val NIGHT_MODE_VALUE_YES = "yes"
-
-    const val ACCESS_COARSE_LOCATION_PERMISSION_REQUESTED = "access_coarse_location_permission_requested"
-
-    const val VERSION = "version"
+    val sensorAccuracy = MutableLiveData(SensorAccuracy.NO_CONTACT)
+    val trueNorth = MutableLiveData(false)
+    val accessCoarseLocationPermissionGranted = MutableLiveData(false)
+    val location = MutableLiveData<Location>()
 }

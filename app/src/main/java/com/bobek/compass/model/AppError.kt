@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass.view
+package com.bobek.compass.model
 
-import androidx.databinding.ObservableField
-import com.bobek.compass.model.SensorAccuracy
+import androidx.annotation.StringRes
+import com.bobek.compass.R
 
-class ObservableSensorAccuracy(value: SensorAccuracy) : ObservableField<SensorAccuracy>(value)
+enum class AppError(@StringRes val messageId: Int) {
+    SENSOR_MANAGER_NOT_PRESENT(R.string.sensor_error_message),
+    ROTATION_VECTOR_SENSOR_NOT_AVAILABLE(R.string.sensor_error_message),
+    ROTATION_VECTOR_SENSOR_FAILED(R.string.sensor_error_message),
+    LOCATION_MANAGER_NOT_PRESENT(R.string.location_error_message)
+}

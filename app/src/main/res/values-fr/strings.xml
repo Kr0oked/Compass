@@ -19,18 +19,13 @@
   -->
 
 <resources>
-    <string name="app_name">Boussole</string>
+    <string name="compass">Boussole</string>
 
     <string name="sensor_status">État du capteur</string>
-    <string name="action_screen_rotation">Bloquer la rotation de l\'écran</string>
-    <string name="action_night_mode">Passer au mode nuit</string>
-    <string name="about">À propos</string>
+    <string name="lock_screen_rotation">Bloquer la rotation de l\'écran</string>
 
-    <string name="compass_rose_image_description">Rose des vents indiquant le nord magnétique</string>
+    <string name="compass_rose_image_description">Rose des vents indiquant le nord</string>
     <string name="device_heading_indicator_image_description">Indique dans quelle direction l\'appareil est orienté</string>
-
-    <string name="status_degrees_text_description">Degrées de la boussole</string>
-    <string name="status_cardinal_direction_text_description">Direction cardinale de la boussole</string>
 
     <string name="cardinal_direction_north">Nord</string>
     <string name="cardinal_direction_northeast">Nord-Est</string>
@@ -46,25 +41,41 @@
     <string name="cardinal_direction_south_abbreviation">S</string>
     <string name="cardinal_direction_west_abbreviation">O</string>
 
-    <string name="ok">OK</string>
-
-    <string name="version">Version %s</string>
-    <string name="version_description">Nom de la version</string>
-    <string name="copyright">Copyright @ 2022 <a href="mailto:philipp.bobek@mailbox.org">Philipp Bobek</a></string>
-    <string name="copyright_description">Avis de copyright</string>
-    <string name="license">Licence <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GNU GPLv3</a></string>
-    <string name="license_description">Licence du logiciel</string>
-    <string name="source_code"><a href="https://github.com/Kr0oked/Compass">Code source</a></string>
-    <string name="source_code_description">Lien vers la gestion du code source</string>
-
-	<string name="sensor_accuracy_no_contact">Capteur non disponible</string>
+    <string name="sensor_accuracy_no_contact">Capteur non disponible</string>
     <string name="sensor_accuracy_unreliable">Valeurs des capteurs non fiables</string>
     <string name="sensor_accuracy_low">Précision faible</string>
     <string name="sensor_accuracy_medium">Précision moyenne</string>
     <string name="sensor_accuracy_high">Précision maximale</string>
     <string name="sensor_accuracy_image_description">Affichage graphique de la précision du capteur</string>
-    <string name="sensor_accuracy_text_description">Décrit la précsion du capteur</string>
     <string name="sensor_error_message">Capteur non disponible</string>
     <string name="sensor_calibration_text">Vous pouvez améliorer la précision de votre capteur à n\'importe quel moment en tournant l\'appareil en faisant un 8.</string>
-    <string name="sensor_calibration_text_description">Explique comment améliorer la précision du capteur</string>
+
+    <!--TODO<string name="location_loading">Waiting for location update</string>-->
+    <!--TODO<string name="location_error_message">Location not available</string>-->
+    <!--TODO<string name="access_coarse_location_permission_rationale_title">We need permission to access your course location</string>-->
+    <!--TODO<string name="access_coarse_location_permission_rationale_message">For showing to true north this app needs to determine the magnetic declination based on your current location.</string>-->
+    <!--TODO<string name="access_coarse_location_permission_denied">Missing permission to access coarse location. Falling back to magnetic north.</string>-->
+
+    <!--TODO<string name="settings">Settings</string>-->
+
+    <!--TODO<string name="true_north">True North</string>-->
+    <!--TODO<string name="true_north_summary">Correct the magnetic declination and show to true north. Requires access to your coarse location.</string>-->
+
+    <!--TODO<string name="display">Display</string>-->
+    <!--TODO<string name="night_mode">Night mode</string>-->
+    <!--TODO<string name="night_mode_follow_system">System</string>-->
+    <!--TODO<string name="night_mode_no">Day</string>-->
+    <!--TODO<string name="night_mode_yes">Night</string>-->
+
+    <string name="about">À propos</string>
+    <!--TODO<string name="author">Author</string>-->
+    <string name="license">Licence</string>
+    <string name="source_code">Code source</string>
+    <string name="version">Version</string>
+
+    <!--TODO<string name="error_message">An error occurred.\nMessage: %1$s\nCode: %2$s</string>-->
+
+    <!--TODO<string name="error">Error</string>-->
+    <string name="ok">OK</string>
+    <!--TODO<string name="no_thanks">No thanks</string>-->
 </resources>

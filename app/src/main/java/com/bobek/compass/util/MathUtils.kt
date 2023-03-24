@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,7 +18,9 @@
 
 package com.bobek.compass.util
 
+import android.hardware.GeomagneticField
 import android.hardware.SensorManager
+import android.location.Location
 import com.bobek.compass.model.Azimuth
 import com.bobek.compass.model.DisplayRotation
 import com.bobek.compass.model.DisplayRotation.*
@@ -59,5 +61,15 @@ object MathUtils {
         val remappedRotationMatrix = FloatArray(ROTATION_MATRIX_SIZE)
         SensorManager.remapCoordinateSystem(rotationMatrix, newX, newY, remappedRotationMatrix)
         return remappedRotationMatrix
+    }
+
+    @JvmStatic
+    fun getMagneticDeclination(location: Location): Float {
+        val latitude = location.latitude.toFloat()
+        val longitude = location.longitude.toFloat()
+        val altitude = location.altitude.toFloat()
+        val time = location.time
+        val geomagneticField = GeomagneticField(latitude, longitude, altitude, time)
+        return geomagneticField.declination
     }
 }

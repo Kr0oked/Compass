@@ -22,13 +22,10 @@
     <string name="compass">Kompassi</string>
 
     <string name="sensor_status">Anturin tila</string>
-    <string name="action_screen_rotation">Lukitse näytön kierto</string>
+    <string name="lock_screen_rotation">Lukitse näytön kierto</string>
 
     <string name="compass_rose_image_description">Kompassiruusu näyttää magneettisen pohjoisen</string>
     <string name="device_heading_indicator_image_description">Ilmaisee, mihin suuntaan laite osoittaa</string>
-
-    <string name="status_degrees_text_description">Kompassin asteet</string>
-    <string name="status_cardinal_direction_text_description">Kompassin pääilmansuunnat</string>
 
     <string name="cardinal_direction_north">Pohjoinen</string>
     <string name="cardinal_direction_northeast">Koilinen</string>
@@ -44,20 +41,25 @@
     <string name="cardinal_direction_south_abbreviation">S</string>
     <string name="cardinal_direction_west_abbreviation">W</string>
 
-    <string name="ok">Valmis</string>
-
     <string name="sensor_accuracy_no_contact">Anturia ei ole saatavilla</string>
     <string name="sensor_accuracy_unreliable">Anturiarvot ovat epäluotettavia</string>
     <string name="sensor_accuracy_low">Matala tarkkuus</string>
     <string name="sensor_accuracy_medium">Hyvä tarkkuus</string>
     <string name="sensor_accuracy_high">Suuri tarkkuus</string>
     <string name="sensor_accuracy_image_description">Ilmaisee graafisesti anturin tarkkuuden</string>
-    <string name="sensor_accuracy_text_description">Kuvaa anturin tarkkuutta</string>
     <string name="sensor_error_message">Anturia ei ole saatavilla</string>
     <string name="sensor_calibration_text">Voit yrittää parantaa tarkuutta kiertämällä laitetta kahdeksikon muodossa.</string>
-    <string name="sensor_calibration_text_description">Selittää, kuinka parantaa antureiden tarkuutta</string>
+
+    <!--TODO<string name="location_loading">Waiting for location update</string>-->
+    <!--TODO<string name="location_error_message">Location not available</string>-->
+    <!--TODO<string name="access_coarse_location_permission_rationale_title">We need permission to access your course location</string>-->
+    <!--TODO<string name="access_coarse_location_permission_rationale_message">For showing to true north this app needs to determine the magnetic declination based on your current location.</string>-->
+    <!--TODO<string name="access_coarse_location_permission_denied">Missing permission to access coarse location. Falling back to magnetic north.</string>-->
 
     <!--TODO<string name="settings">Settings</string>-->
+
+    <!--TODO<string name="true_north">True North</string>-->
+    <!--TODO<string name="true_north_summary">Correct the magnetic declination and show to true north. Requires access to your coarse location.</string>-->
 
     <!--TODO<string name="display">Display</string>-->
     <!--TODO<string name="night_mode">Night mode</string>-->
@@ -70,4 +72,10 @@
     <string name="license">Lisenssi</string>
     <!--TODO<string name="source_code">Source code</string>-->
     <string name="version">Versio</string>
+
+    <!--TODO<string name="error_message">An error occurred.\nMessage: %1$s\nCode: %2$s</string>-->
+
+    <!--TODO<string name="error">Error</string>-->
+    <string name="ok">Valmis</string>
+    <!--TODO<string name="no_thanks">No thanks</string>-->
 </resources>

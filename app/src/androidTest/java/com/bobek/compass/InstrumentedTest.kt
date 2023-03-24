@@ -70,19 +70,29 @@ class InstrumentedTest {
             .perform(click())
 
         setAccuracy(SensorAccuracy.NO_CONTACT)
-        onView(withId(R.id.sensor_accuracy_text)).check(matches(withText(R.string.sensor_accuracy_no_contact)))
+        onView(withId(R.id.sensor_accuracy_text))
+            .check(matches(isDisplayed()))
+            .check(matches(withText(R.string.sensor_accuracy_no_contact)))
 
         setAccuracy(SensorAccuracy.UNRELIABLE)
-        onView(withId(R.id.sensor_accuracy_text)).check(matches(withText(R.string.sensor_accuracy_unreliable)))
+        onView(withId(R.id.sensor_accuracy_text))
+            .check(matches(isDisplayed()))
+            .check(matches(withText(R.string.sensor_accuracy_unreliable)))
 
         setAccuracy(SensorAccuracy.LOW)
-        onView(withId(R.id.sensor_accuracy_text)).check(matches(withText(R.string.sensor_accuracy_low)))
+        onView(withId(R.id.sensor_accuracy_text))
+            .check(matches(isDisplayed()))
+            .check(matches(withText(R.string.sensor_accuracy_low)))
 
         setAccuracy(SensorAccuracy.MEDIUM)
-        onView(withId(R.id.sensor_accuracy_text)).check(matches(withText(R.string.sensor_accuracy_medium)))
+        onView(withId(R.id.sensor_accuracy_text))
+            .check(matches(isDisplayed()))
+            .check(matches(withText(R.string.sensor_accuracy_medium)))
 
         setAccuracy(SensorAccuracy.HIGH)
-        onView(withId(R.id.sensor_accuracy_text)).check(matches(withText(R.string.sensor_accuracy_high)))
+        onView(withId(R.id.sensor_accuracy_text))
+            .check(matches(isDisplayed()))
+            .check(matches(withText(R.string.sensor_accuracy_high)))
 
         onView(withText(R.string.ok)).perform(click())
     }

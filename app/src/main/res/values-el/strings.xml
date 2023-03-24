@@ -22,13 +22,10 @@
     <string name="compass">Πυξίδα</string>
 
     <string name="sensor_status">Κατάσταση αισθητήρα</string>
-    <string name="action_screen_rotation">Κλείδωμα αυτόματης περιστροφής</string>
+    <string name="lock_screen_rotation">Κλείδωμα αυτόματης περιστροφής</string>
 
     <string name="compass_rose_image_description">Πυξίδα που δείχνει το μαγνητικό βορρά</string>
     <string name="device_heading_indicator_image_description">Υποδεικνύει σε πια κατεύθυνση δείχνει η συσκευή</string>
-
-    <string name="status_degrees_text_description">Μοίρες της πυξίδας</string>
-    <string name="status_cardinal_direction_text_description">Κύρια κατεύθυνση της πυξίδας</string>
 
     <string name="cardinal_direction_north">Βοράς</string>
     <string name="cardinal_direction_northeast">Βορειοανατολικά</string>
@@ -44,20 +41,25 @@
     <string name="cardinal_direction_south_abbreviation">Ν</string>
     <string name="cardinal_direction_west_abbreviation">Δ</string>
 
-    <string name="ok">Εντάξει</string>
-
     <string name="sensor_accuracy_no_contact">Μη διαθέσιμος αισθητήρας</string>
     <string name="sensor_accuracy_unreliable">Οι τιμές του αισθητήρα είναι αναξιόπιστες</string>
     <string name="sensor_accuracy_low">Χαμηλή ακρίβεια</string>
     <string name="sensor_accuracy_medium">Μέτρια ακρίβεια</string>
     <string name="sensor_accuracy_high">Μέγιστη ακρίβεια</string>
     <string name="sensor_accuracy_image_description">Εμφανίζει γραφικά την ακρίβεια του αισθητήρα</string>
-    <string name="sensor_accuracy_text_description">Περιγράφει την ακρίβεια του αισθητήρα</string>
     <string name="sensor_error_message">Μη διαθέσιμος αισθητήρας</string>
     <string name="sensor_calibration_text">Μπορείτε να βελτιώσετε οποιαδήποτε στιγμή την ακρίβεια αισθητήρα περιστρέφοντας την συσκευή σε σχήμα του 8.</string>
-    <string name="sensor_calibration_text_description">Εξηγεί πως να βελτιωθεί η αρκίβεια του αισθητήρα</string>
+
+    <!--TODO<string name="location_loading">Waiting for location update</string>-->
+    <!--TODO<string name="location_error_message">Location not available</string>-->
+    <!--TODO<string name="access_coarse_location_permission_rationale_title">We need permission to access your course location</string>-->
+    <!--TODO<string name="access_coarse_location_permission_rationale_message">For showing to true north this app needs to determine the magnetic declination based on your current location.</string>-->
+    <!--TODO<string name="access_coarse_location_permission_denied">Missing permission to access coarse location. Falling back to magnetic north.</string>-->
 
     <!--TODO<string name="settings">Settings</string>-->
+
+    <!--TODO<string name="true_north">True North</string>-->
+    <!--TODO<string name="true_north_summary">Correct the magnetic declination and show to true north. Requires access to your coarse location.</string>-->
 
     <!--TODO<string name="display">Display</string>-->
     <!--TODO<string name="night_mode">Night mode</string>-->
@@ -70,4 +72,10 @@
     <string name="license">Άδεια</string>
     <!--TODO<string name="source_code">Source code</string>-->
     <string name="version">Έκδοση</string>
+
+    <!--TODO<string name="error_message">An error occurred.\nMessage: %1$s\nCode: %2$s</string>-->
+
+    <!--TODO<string name="error">Error</string>-->
+    <string name="ok">Εντάξει</string>
+    <!--TODO<string name="no_thanks">No thanks</string>-->
 </resources>

@@ -22,6 +22,19 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
+            app:key="compass_category"
+            app:title="@string/compass"
+            app:icon="@drawable/ic_compass">
+
+        <SwitchPreferenceCompat
+                app:key="true_north"
+                app:title="@string/true_north"
+                app:summary="@string/true_north_summary"
+                app:defaultValue="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
             app:key="display_category"
             app:title="@string/display"
             app:icon="@drawable/ic_display_settings">

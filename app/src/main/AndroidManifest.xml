@@ -30,6 +30,8 @@
             android:name="android.hardware.sensor.gyroscope"
             android:required="true" />
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
             android:name=".CompassApplication"
             android:allowBackup="true"

@@ -32,21 +32,29 @@ private const val TAG = "PreferenceStore"
 
 class PreferenceStore(context: Context, lifecycle: Lifecycle) {
 
+    val trueNorth = MutableLiveData<Boolean>()
     val screenOrientationLocked = MutableLiveData<Boolean>()
     val nightMode = MutableLiveData<AppNightMode>()
+    val accessCoarseLocationPermissionRequested = MutableLiveData<Boolean>()
 
     private val preferenceStoreLifecycleObserver = PreferenceStoreLifecycleObserver()
+
     private val sharedPreferenceChangeListener = SharedPreferenceChangeListener()
+
+    private val trueNorthObserver = getTrueNorthObserver()
     private val screenOrientationLockedObserver = getScreenOrientationLockedObserver()
     private val nightModeObserver = getNightModeObserver()
+    private val accessCoarseLocationPermissionRequestedObserver = getAccessCoarseLocationPermissionRequestedObserver()
 
     private val sharedPreferences: SharedPreferences
 
     init {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
+        updateTrueNorth()
         updateScreenOrientationLocked()
         updateNightMode()
+        updateAccessCoarseLocationPermissionRequested()
 
         lifecycle.addObserver(preferenceStoreLifecycleObserver)
     }
@@ -54,8 +62,10 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
     private inner class PreferenceStoreLifecycleObserver : DefaultLifecycleObserver {
 
         override fun onCreate(owner: LifecycleOwner) {
+            trueNorth.observeForever(trueNorthObserver)
             screenOrientationLocked.observeForever(screenOrientationLockedObserver)
             nightMode.observeForever(nightModeObserver)
+            accessCoarseLocationPermissionRequested.observeForever(accessCoarseLocationPermissionRequestedObserver)
 
             sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener)
         }
@@ -63,17 +73,30 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
         override fun onDestroy(owner: LifecycleOwner) {
             sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferenceChangeListener)
 
+            trueNorth.removeObserver(trueNorthObserver)
             screenOrientationLocked.removeObserver(screenOrientationLockedObserver)
             nightMode.removeObserver(nightModeObserver)
+            accessCoarseLocationPermissionRequested.removeObserver(accessCoarseLocationPermissionRequestedObserver)
         }
     }
 
     private inner class SharedPreferenceChangeListener : SharedPreferences.OnSharedPreferenceChangeListener {
         override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {
             when (key) {
+                PreferenceConstants.TRUE_NORTH -> updateTrueNorth()
                 PreferenceConstants.SCREEN_ORIENTATION_LOCKED -> updateScreenOrientationLocked()
                 PreferenceConstants.NIGHT_MODE -> updateNightMode()
+                PreferenceConstants.ACCESS_COARSE_LOCATION_PERMISSION_REQUESTED -> {
+                    updateAccessCoarseLocationPermissionRequested()
+                }
             }
+        }
+    }
+
+    private fun updateTrueNorth() {
+        val storedValue = sharedPreferences.getBoolean(PreferenceConstants.TRUE_NORTH, false)
+        if (trueNorth.value != storedValue) {
+            trueNorth.value = storedValue
         }
     }
 
@@ -95,6 +118,21 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
         }
     }
 
+    private fun updateAccessCoarseLocationPermissionRequested() {
+        val storedValue =
+            sharedPreferences.getBoolean(PreferenceConstants.ACCESS_COARSE_LOCATION_PERMISSION_REQUESTED, false)
+        if (accessCoarseLocationPermissionRequested.value != storedValue) {
+            accessCoarseLocationPermissionRequested.value = storedValue
+        }
+    }
+
+    private fun getTrueNorthObserver(): (t: Boolean) -> Unit = {
+        val edit = sharedPreferences.edit()
+        edit.putBoolean(PreferenceConstants.TRUE_NORTH, it)
+        edit.apply()
+        Log.d(TAG, "Persisted trueNorth: $it")
+    }
+
     private fun getScreenOrientationLockedObserver(): (t: Boolean) -> Unit = {
         val edit = sharedPreferences.edit()
         edit.putBoolean(PreferenceConstants.SCREEN_ORIENTATION_LOCKED, it)
@@ -107,5 +145,12 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
         edit.putString(PreferenceConstants.NIGHT_MODE, it.preferenceValue)
         edit.apply()
         Log.d(TAG, "Persisted nightMode: $it")
+    }
+
+    private fun getAccessCoarseLocationPermissionRequestedObserver(): (t: Boolean) -> Unit = {
+        val edit = sharedPreferences.edit()
+        edit.putBoolean(PreferenceConstants.ACCESS_COARSE_LOCATION_PERMISSION_REQUESTED, it)
+        edit.apply()
+        Log.d(TAG, "Persisted accessCoarseLocationPermissionRequested: $it")
     }
 }

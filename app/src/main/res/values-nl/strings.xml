@@ -22,13 +22,10 @@
     <string name="compass">Kompas</string>
 
     <string name="sensor_status">Sensorstatus</string>
-    <string name="action_screen_rotation">Vergrendel schermrotatie</string>
+    <string name="lock_screen_rotation">Vergrendel schermrotatie</string>
 
     <string name="compass_rose_image_description">Kompasroos toont naar het magnetische noorde</string>
     <string name="device_heading_indicator_image_description">Geeft aan in welke richting het apparaat wijst</string>
-
-    <string name="status_degrees_text_description">Graden van het kompas</string>
-    <string name="status_cardinal_direction_text_description">Kardinale richting van het kompas </string>
 
     <string name="cardinal_direction_north">noorden</string>
     <string name="cardinal_direction_northeast">Noordoosten</string>
@@ -44,20 +41,25 @@
     <string name="cardinal_direction_south_abbreviation">Z</string>
     <string name="cardinal_direction_west_abbreviation">W</string>
 
-    <string name="ok">OK</string>
-
     <string name="sensor_accuracy_no_contact">Sensor niet beschikbaar</string>
     <string name="sensor_accuracy_unreliable">Sensorwaarden zijn onbetrouwbaar</string>
     <string name="sensor_accuracy_low">Lage nauwkeurigheid</string>
     <string name="sensor_accuracy_medium">Gemiddelde nauwkeurigheid</string>
     <string name="sensor_accuracy_high">Maximale nauwkeurigheid</string>
     <string name="sensor_accuracy_image_description">Geeft grafisch de nauwkeurigheid van de sensoren weer</string>
-    <string name="sensor_accuracy_text_description">Beschrijft de nauwkeurigheid van de sensoren</string>
     <string name="sensor_error_message">Sensor niet beschikbaar </string>
     <string name="sensor_calibration_text"> kunt op elk moment proberen de nauwkeurigheid van uw sensor te verbeteren door het apparaat in een figuur 8-patroon te draaien.</string>
-    <string name="sensor_calibration_text_description">Legt uit hoe u de sensornauwkeurigheid kunt verbeteren</string>
+
+    <!--TODO<string name="location_loading">Waiting for location update</string>-->
+    <!--TODO<string name="location_error_message">Location not available</string>-->
+    <!--TODO<string name="access_coarse_location_permission_rationale_title">We need permission to access your course location</string>-->
+    <!--TODO<string name="access_coarse_location_permission_rationale_message">For showing to true north this app needs to determine the magnetic declination based on your current location.</string>-->
+    <!--TODO<string name="access_coarse_location_permission_denied">Missing permission to access coarse location. Falling back to magnetic north.</string>-->
 
     <!--TODO<string name="settings">Settings</string>-->
+
+    <!--TODO<string name="true_north">True North</string>-->
+    <!--TODO<string name="true_north_summary">Correct the magnetic declination and show to true north. Requires access to your coarse location.</string>-->
 
     <!--TODO<string name="display">Display</string>-->
     <!--TODO<string name="night_mode">Night mode</string>-->
@@ -70,4 +72,10 @@
     <string name="license">Licentie</string>
     <!--TODO<string name="source_code">Source code</string>-->
     <string name="version">Versie</string>
+
+    <!--TODO<string name="error_message">An error occurred.\nMessage: %1$s\nCode: %2$s</string>-->
+
+    <!--TODO<string name="error">Error</string>-->
+    <string name="ok">OK</string>
+    <!--TODO<string name="no_thanks">No thanks</string>-->
 </resources>
