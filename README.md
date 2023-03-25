@@ -16,7 +16,7 @@ This project is intended to offer a simple and good looking compass for Android.
 
 ## Features
 
-* Points to magnetic north
+* Can point to magnetic north as well as true north
 * Shows exact degrees and cardinal direction
 * Displays sensor status
 * Automatic night mode

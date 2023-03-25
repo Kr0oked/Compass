@@ -1,8 +1,8 @@
 Du bekommst genau das was du erwartest.
-Einen einfachen und schönen Kompass der zum magnetischen Nordpol zeigt.
+Einen einfachen und schönen Kompass.
 
 Inhalt:
-* Zeigt zum magnetischen Nordpol
+* Kann sowohl zum magnetischen Nordpol als auch zum geografischen Nordpol zeigen
 * Zeigt die exakte Gradzahl und Himmelsrichtung an
 * Zeigt den Sensor Status an
 * Automatischer Nachtmodus

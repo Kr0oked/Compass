@@ -1,8 +1,8 @@
 You’ll get exactly what you expect.
-A simple and beautiful compass that points to magnetic north.
+A simple and beautiful compass.
 
 Features:
-* Points to magnetic north
+* Can point to magnetic north as well as true north
 * Shows exact degrees and cardinal direction
 * Displays sensor status
 * Automatic night mode

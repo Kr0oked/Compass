@@ -1,0 +1,4 @@
+- Zeigen zum geografischer Norden
+- Anwendungseinstellungen
+- Französische Übersetzung
+- Unterstützung von verschiedenen Sprachen pro Anwendung
