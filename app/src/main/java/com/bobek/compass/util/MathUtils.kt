@@ -25,6 +25,7 @@ import com.bobek.compass.model.Azimuth
 import com.bobek.compass.model.DisplayRotation
 import com.bobek.compass.model.DisplayRotation.*
 import com.bobek.compass.model.RotationVector
+import kotlin.math.roundToInt
 
 private const val AZIMUTH = 0
 private const val AXIS_SIZE = 3
@@ -72,4 +73,7 @@ object MathUtils {
         val geomagneticField = GeomagneticField(latitude, longitude, altitude, time)
         return geomagneticField.declination
     }
+
+    fun getClosestNumberFromInterval(number: Float, interval: Float): Float =
+        (number / interval).roundToInt() * interval
 }

@@ -22,6 +22,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.util.TypedValue.COMPLEX_UNIT_PX
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import androidx.annotation.AnyRes
 import androidx.annotation.IdRes
@@ -30,12 +31,17 @@ import androidx.constraintlayout.widget.ConstraintSet
 import com.bobek.compass.R
 import com.bobek.compass.databinding.CompassViewBinding
 import com.bobek.compass.model.Azimuth
+import com.bobek.compass.util.MathUtils
 import kotlin.math.roundToInt
+
+private const val HAPTIC_FEEDBACK_INTERVAL = 2.0f
 
 class CompassView(context: Context, attributes: AttributeSet) : ConstraintLayout(context, attributes) {
 
     @IdRes
     private val center = R.id.compass_rose_image
+
+    private var lastHapticFeedbackPoint: Azimuth? = null
 
     private var binding: CompassViewBinding
 
@@ -90,6 +96,7 @@ class CompassView(context: Context, attributes: AttributeSet) : ConstraintLayout
         val rotation = azimuth.degrees.unaryMinus()
         rotateCompassRoseImage(rotation)
         rotateCompassRoseTexts(rotation)
+        handleHapticFeedback(azimuth)
 
         visibility = VISIBLE
     }
@@ -150,5 +157,33 @@ class CompassView(context: Context, attributes: AttributeSet) : ConstraintLayout
 
     private fun calculateTextRadius(ratio: Float): Int {
         return width / 2 - (width * ratio).toInt()
+    }
+
+    private fun handleHapticFeedback(azimuth: Azimuth) {
+        lastHapticFeedbackPoint
+            ?.also { checkHapticFeedback(azimuth, it) }
+            ?: run { initializeLastHapticFeedbackPoint(azimuth) }
+    }
+
+    private fun checkHapticFeedback(azimuth: Azimuth, lastHapticFeedbackkPoint: Azimuth) {
+        val boundaryStart = lastHapticFeedbackkPoint - HAPTIC_FEEDBACK_INTERVAL
+        val boundaryEnd = lastHapticFeedbackkPoint + HAPTIC_FEEDBACK_INTERVAL
+
+        if (azimuth < boundaryStart) {
+            this.lastHapticFeedbackPoint = boundaryStart
+            performHapticFeedback()
+        } else if (azimuth > boundaryEnd) {
+            this.lastHapticFeedbackPoint = boundaryEnd
+            performHapticFeedback()
+        }
+    }
+
+    private fun performHapticFeedback() {
+        performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+    }
+
+    private fun initializeLastHapticFeedbackPoint(azimuth: Azimuth) {
+        val closestIntervalPoint = MathUtils.getClosestNumberFromInterval(azimuth.degrees, HAPTIC_FEEDBACK_INTERVAL)
+        lastHapticFeedbackPoint = Azimuth(closestIntervalPoint)
     }
 }

@@ -91,6 +91,7 @@ class CompassFragment : Fragment() {
     private fun initPreferenceStore() {
         preferenceStore = PreferenceStore(requireContext(), lifecycle)
         preferenceStore.trueNorth.observe(viewLifecycleOwner) { compassViewModel.trueNorth.value = it }
+        preferenceStore.hapticFeedback.observe(viewLifecycleOwner) { compassViewModel.hapticFeedback.value = it }
     }
 
     private fun setupSystemServices() {

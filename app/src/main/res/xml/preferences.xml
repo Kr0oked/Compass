@@ -32,6 +32,12 @@
                 app:summary="@string/true_north_summary"
                 app:defaultValue="false" />
 
+        <SwitchPreferenceCompat
+                app:key="haptic_feedback"
+                app:title="@string/haptic_feedback"
+                app:summary="@string/haptic_feedback_summary"
+                app:defaultValue="true" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

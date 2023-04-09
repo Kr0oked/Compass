@@ -61,6 +61,9 @@
     <string name="true_north">True North</string>
     <string name="true_north_summary">Correct the magnetic declination and show to true north. Requires access to your coarse location.</string>
 
+    <string name="haptic_feedback">Haptic feedback</string>
+    <string name="haptic_feedback_summary">The compass vibrates when the direction changes.</string>
+
     <string name="display">Display</string>
     <string name="night_mode">Night mode</string>
     <string name="night_mode_follow_system">System</string>

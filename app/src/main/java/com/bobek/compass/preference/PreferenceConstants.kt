@@ -22,6 +22,8 @@ object PreferenceConstants {
 
     const val TRUE_NORTH = "true_north"
 
+    const val HAPTIC_FEEDBACK = "haptic_feedback"
+
     const val SCREEN_ORIENTATION_LOCKED = "screen_orientation_locked"
 
     const val NIGHT_MODE = "night_mode"

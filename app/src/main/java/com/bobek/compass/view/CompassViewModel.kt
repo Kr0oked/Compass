@@ -27,6 +27,7 @@ class CompassViewModel : ViewModel() {
 
     val sensorAccuracy = MutableLiveData(SensorAccuracy.NO_CONTACT)
     val trueNorth = MutableLiveData(false)
+    val hapticFeedback = MutableLiveData(true)
     val accessCoarseLocationPermissionGranted = MutableLiveData(false)
     val location = MutableLiveData<Location>()
 }
