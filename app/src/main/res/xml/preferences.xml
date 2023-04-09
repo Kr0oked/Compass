@@ -83,7 +83,7 @@
         <Preference
                 app:key="version"
                 app:title="@string/version"
-                android:selectable="false" />
+                app:selectable="false" />
 
     </PreferenceCategory>
 
