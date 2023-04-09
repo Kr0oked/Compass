@@ -61,6 +61,9 @@
     <string name="true_north">Geografischer Norden</string>
     <string name="true_north_summary">Die magnetische Deklination wird korrigiert um zum geografischen Norden zu zeigen. Dafür muss auf ihren groben Standort zugegriffen werden.</string>
 
+    <string name="haptic_feedback">Haptisches Feedback</string>
+    <string name="haptic_feedback_summary">Der Kompass vibriert wenn sich die Richtung ändert.</string>
+
     <string name="display">Anzeige</string>
     <string name="night_mode">Nachtmodus</string>
     <string name="night_mode_follow_system">System</string>

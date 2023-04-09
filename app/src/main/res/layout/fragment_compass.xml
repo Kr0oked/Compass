@@ -32,6 +32,7 @@
                 android:id="@+id/compass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hapticFeedbackEnabled="@{model.hapticFeedback}"
                 android:keepScreenOn="true"
                 app:layout_constraintBottom_toTopOf="@id/location_container"
                 app:layout_constraintEnd_toEndOf="parent"

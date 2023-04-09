@@ -33,6 +33,7 @@ private const val TAG = "PreferenceStore"
 class PreferenceStore(context: Context, lifecycle: Lifecycle) {
 
     val trueNorth = MutableLiveData<Boolean>()
+    val hapticFeedback = MutableLiveData<Boolean>()
     val screenOrientationLocked = MutableLiveData<Boolean>()
     val nightMode = MutableLiveData<AppNightMode>()
     val accessCoarseLocationPermissionRequested = MutableLiveData<Boolean>()
@@ -42,6 +43,7 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
     private val sharedPreferenceChangeListener = SharedPreferenceChangeListener()
 
     private val trueNorthObserver = getTrueNorthObserver()
+    private val hapticFeedbackObserver = getHapticFeedbackObserver()
     private val screenOrientationLockedObserver = getScreenOrientationLockedObserver()
     private val nightModeObserver = getNightModeObserver()
     private val accessCoarseLocationPermissionRequestedObserver = getAccessCoarseLocationPermissionRequestedObserver()
@@ -52,6 +54,7 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
         updateTrueNorth()
+        updateHapticFeedback()
         updateScreenOrientationLocked()
         updateNightMode()
         updateAccessCoarseLocationPermissionRequested()
@@ -63,6 +66,7 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
 
         override fun onCreate(owner: LifecycleOwner) {
             trueNorth.observeForever(trueNorthObserver)
+            hapticFeedback.observeForever(hapticFeedbackObserver)
             screenOrientationLocked.observeForever(screenOrientationLockedObserver)
             nightMode.observeForever(nightModeObserver)
             accessCoarseLocationPermissionRequested.observeForever(accessCoarseLocationPermissionRequestedObserver)
@@ -74,6 +78,7 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
             sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferenceChangeListener)
 
             trueNorth.removeObserver(trueNorthObserver)
+            hapticFeedback.removeObserver(hapticFeedbackObserver)
             screenOrientationLocked.removeObserver(screenOrientationLockedObserver)
             nightMode.removeObserver(nightModeObserver)
             accessCoarseLocationPermissionRequested.removeObserver(accessCoarseLocationPermissionRequestedObserver)
@@ -84,6 +89,7 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
         override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String?) {
             when (key) {
                 PreferenceConstants.TRUE_NORTH -> updateTrueNorth()
+                PreferenceConstants.HAPTIC_FEEDBACK -> updateHapticFeedback()
                 PreferenceConstants.SCREEN_ORIENTATION_LOCKED -> updateScreenOrientationLocked()
                 PreferenceConstants.NIGHT_MODE -> updateNightMode()
                 PreferenceConstants.ACCESS_COARSE_LOCATION_PERMISSION_REQUESTED -> {
@@ -97,6 +103,13 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
         val storedValue = sharedPreferences.getBoolean(PreferenceConstants.TRUE_NORTH, false)
         if (trueNorth.value != storedValue) {
             trueNorth.value = storedValue
+        }
+    }
+
+    private fun updateHapticFeedback() {
+        val storedValue = sharedPreferences.getBoolean(PreferenceConstants.HAPTIC_FEEDBACK, true)
+        if (hapticFeedback.value != storedValue) {
+            hapticFeedback.value = storedValue
         }
     }
 
@@ -131,6 +144,13 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
         edit.putBoolean(PreferenceConstants.TRUE_NORTH, it)
         edit.apply()
         Log.d(TAG, "Persisted trueNorth: $it")
+    }
+
+    private fun getHapticFeedbackObserver(): (t: Boolean) -> Unit = {
+        val edit = sharedPreferences.edit()
+        edit.putBoolean(PreferenceConstants.HAPTIC_FEEDBACK, it)
+        edit.apply()
+        Log.d(TAG, "Persisted hapticFeedback: $it")
     }
 
     private fun getScreenOrientationLockedObserver(): (t: Boolean) -> Unit = {

@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -109,5 +109,37 @@ class AzimuthTest {
         assertEquals(Azimuth(0f), Azimuth(0f) + 360f)
         assertEquals(Azimuth(20f), Azimuth(300f) + 80f)
         assertEquals(Azimuth(301.5f), Azimuth(300f) + 1.5f)
+    }
+
+    @Test
+    fun minus() {
+        assertEquals(Azimuth(270f), Azimuth(0f) - 90f)
+        assertEquals(Azimuth(180f), Azimuth(0f) - 180f)
+        assertEquals(Azimuth(0f), Azimuth(0f) - 360f)
+        assertEquals(Azimuth(220f), Azimuth(300f) - 80f)
+        assertEquals(Azimuth(298.5f), Azimuth(300f) - 1.5f)
+    }
+
+    @Test
+    fun compareTo() {
+        assertEquals(true, Azimuth(180f) < Azimuth(181f))
+        assertEquals(false, Azimuth(180f) < Azimuth(179f))
+        assertEquals(false, Azimuth(180f) < Azimuth(180f))
+
+        assertEquals(true, Azimuth(180f) > Azimuth(179f))
+        assertEquals(false, Azimuth(180f) > Azimuth(181f))
+        assertEquals(false, Azimuth(180f) > Azimuth(180f))
+
+        assertEquals(true, Azimuth(180f) <= Azimuth(181f))
+        assertEquals(false, Azimuth(180f) <= Azimuth(179f))
+        assertEquals(true, Azimuth(180f) <= Azimuth(180f))
+
+        assertEquals(true, Azimuth(180f) >= Azimuth(179f))
+        assertEquals(false, Azimuth(180f) >= Azimuth(181f))
+        assertEquals(true, Azimuth(180f) >= Azimuth(180f))
+
+        assertEquals(false, Azimuth(180f) == Azimuth(179f))
+        assertEquals(false, Azimuth(180f) == Azimuth(181f))
+        assertEquals(true, Azimuth(180f) == Azimuth(180f))
     }
 }

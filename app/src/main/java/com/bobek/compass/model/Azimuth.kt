@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,8 +19,6 @@
 package com.bobek.compass.model
 
 class Azimuth(_degrees: Float) {
-
-    operator fun plus(degrees: Float) = Azimuth(this.degrees + degrees)
 
     val degrees = normalizeAngle(_degrees)
 
@@ -57,6 +55,12 @@ class Azimuth(_degrees: Float) {
     override fun toString(): String {
         return "Azimuth(degrees=$degrees)"
     }
+
+    operator fun plus(degrees: Float) = Azimuth(this.degrees + degrees)
+
+    operator fun minus(degrees: Float) = Azimuth(this.degrees - degrees)
+
+    operator fun compareTo(azimuth: Azimuth) = this.degrees.compareTo(azimuth.degrees)
 }
 
 private data class SemiClosedFloatRange(val fromInclusive: Float, val toExclusive: Float)
