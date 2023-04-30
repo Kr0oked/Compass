@@ -18,7 +18,10 @@
 
 package com.bobek.compass.util
 
+import com.bobek.compass.model.Azimuth
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class MathUtilsTest {
@@ -59,5 +62,21 @@ class MathUtilsTest {
         assertEquals(0.4f, MathUtils.getClosestNumberFromInterval(0.30f, 0.2f))
         assertEquals(0.4f, MathUtils.getClosestNumberFromInterval(0.39f, 0.2f))
         assertEquals(0.4f, MathUtils.getClosestNumberFromInterval(0.40f, 0.2f))
+    }
+
+    @Test
+    fun isAzimuthBetweenTwoPoints() {
+        assertTrue(MathUtils.isAzimuthBetweenTwoPoints(Azimuth(10f), Azimuth(0f), Azimuth(20f)))
+        assertTrue(MathUtils.isAzimuthBetweenTwoPoints(Azimuth(20f), Azimuth(10f), Azimuth(30f)))
+
+        assertFalse(MathUtils.isAzimuthBetweenTwoPoints(Azimuth(180f), Azimuth(0f), Azimuth(20f)))
+        assertFalse(MathUtils.isAzimuthBetweenTwoPoints(Azimuth(180f), Azimuth(10f), Azimuth(30f)))
+
+        assertTrue(MathUtils.isAzimuthBetweenTwoPoints(Azimuth(359f), Azimuth(358f), Azimuth(2f)))
+        assertTrue(MathUtils.isAzimuthBetweenTwoPoints(Azimuth(0f), Azimuth(358f), Azimuth(2f)))
+        assertTrue(MathUtils.isAzimuthBetweenTwoPoints(Azimuth(1f), Azimuth(358f), Azimuth(2f)))
+
+        assertFalse(MathUtils.isAzimuthBetweenTwoPoints(Azimuth(357f), Azimuth(358f), Azimuth(2f)))
+        assertFalse(MathUtils.isAzimuthBetweenTwoPoints(Azimuth(3f), Azimuth(358f), Azimuth(2f)))
     }
 }

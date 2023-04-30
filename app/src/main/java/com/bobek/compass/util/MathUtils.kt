@@ -23,7 +23,10 @@ import android.hardware.SensorManager
 import android.location.Location
 import com.bobek.compass.model.Azimuth
 import com.bobek.compass.model.DisplayRotation
-import com.bobek.compass.model.DisplayRotation.*
+import com.bobek.compass.model.DisplayRotation.ROTATION_0
+import com.bobek.compass.model.DisplayRotation.ROTATION_180
+import com.bobek.compass.model.DisplayRotation.ROTATION_270
+import com.bobek.compass.model.DisplayRotation.ROTATION_90
 import com.bobek.compass.model.RotationVector
 import kotlin.math.roundToInt
 
@@ -76,4 +79,13 @@ object MathUtils {
 
     fun getClosestNumberFromInterval(number: Float, interval: Float): Float =
         (number / interval).roundToInt() * interval
+
+    /**
+     * @see <a href="https://math.stackexchange.com/questions/2275439/check-if-point-on-circle-is-between-two-other-points-on-circle">Stackexchange</a>
+     */
+    fun isAzimuthBetweenTwoPoints(azimuth: Azimuth, pointA: Azimuth, pointB: Azimuth): Boolean {
+        val aToB = (pointB.degrees - pointA.degrees + 360f) % 360f
+        val aToAzimuth = (azimuth.degrees - pointA.degrees + 360f) % 360f
+        return aToB <= 180f != aToAzimuth > aToB
+    }
 }
