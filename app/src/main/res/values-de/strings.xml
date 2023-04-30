@@ -50,11 +50,11 @@
     <string name="sensor_error_message">Sensor nicht verfügbar</string>
     <string name="sensor_calibration_text">Sie können jederzeit versuchen die Genauigkeit ihres Sensors zu erhöhen indem sie das Gerät mehrfach in Form einer 8 rotieren.</string>
 
-    <string name="location_loading">Warten auf Standordt Aktualisierung</string>
+    <string name="location_loading">Warten auf Standort Aktualisierung</string>
     <string name="location_error_message">Standort nicht verfügbar</string>
     <string name="access_coarse_location_permission_rationale_title">Wir brauchen Ihre Zustimmung um auf Ihren groben Standort zuzugreifen</string>
     <string name="access_coarse_location_permission_rationale_message">Um zum geografischen Nordpol zu zeigen muss die App die Deklination basierend auf Ihrem derzeitigen Standort ermitteln.</string>
-    <string name="access_coarse_location_permission_denied">Fehlende Berechtigung um auf den groben Standordt zuzugreifen. Es wird auf den magnetischen Norden zurückgegriffen.</string>
+    <string name="access_coarse_location_permission_denied">Fehlende Berechtigung um auf den groben Standort zuzugreifen. Es wird auf den magnetischen Norden zurückgegriffen.</string>
 
     <string name="settings">Einstellungen</string>
 
