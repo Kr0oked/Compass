@@ -89,7 +89,9 @@ class CompassView(context: Context, attributes: AttributeSet) : ConstraintLayout
         binding.degree330Text.setTextSize(COMPLEX_UNIT_PX, textSize)
     }
 
-    fun setAzimuth(azimuth: Azimuth) {
+    fun setAzimuth(value: Float) {
+        val azimuth = Azimuth(value)
+
         updateStatusDegreesText(azimuth)
         updateStatusDirectionText(azimuth)
 

@@ -32,7 +32,14 @@ import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import android.util.Log
-import android.view.*
+import android.view.Display
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.Surface
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresPermission
 import androidx.core.app.ActivityCompat
@@ -44,7 +51,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.bobek.compass.databinding.FragmentCompassBinding
 import com.bobek.compass.databinding.SensorAlertDialogViewBinding
-import com.bobek.compass.model.*
+import com.bobek.compass.model.AppError
+import com.bobek.compass.model.Azimuth
+import com.bobek.compass.model.DisplayRotation
+import com.bobek.compass.model.RotationVector
+import com.bobek.compass.model.SensorAccuracy
 import com.bobek.compass.preference.PreferenceStore
 import com.bobek.compass.util.MathUtils
 import com.bobek.compass.view.CompassViewModel
@@ -346,11 +357,11 @@ class CompassFragment : Fragment() {
 
     internal fun setSensorAccuracy(sensorAccuracy: SensorAccuracy) {
         compassViewModel.sensorAccuracy.value = sensorAccuracy
-        Log.v(TAG, "Sensor accuracy value $sensorAccuracy")
+        Log.v(TAG, "Sensor accuracy $sensorAccuracy")
     }
 
     internal fun setAzimuth(azimuth: Azimuth) {
-        binding.compass.setAzimuth(azimuth)
+        compassViewModel.azimuth.value = azimuth
         Log.v(TAG, "Azimuth $azimuth")
     }
 }

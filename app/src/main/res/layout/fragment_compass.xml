@@ -34,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:hapticFeedbackEnabled="@{model.hapticFeedback}"
                 android:keepScreenOn="true"
+                app:azimuth="@{model.azimuth.degrees}"
                 app:layout_constraintBottom_toTopOf="@id/location_container"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
