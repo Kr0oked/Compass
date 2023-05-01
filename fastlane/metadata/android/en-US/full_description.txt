@@ -5,6 +5,7 @@ Features:
 * Can point to magnetic north as well as true north
 * Shows exact degrees and cardinal direction
 * Displays sensor status
+* Haptic feedback
 * Automatic night mode
 * No advertisements
 * No annoyance

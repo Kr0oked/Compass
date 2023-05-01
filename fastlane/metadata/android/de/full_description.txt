@@ -5,6 +5,7 @@ Inhalt:
 * Kann sowohl zum magnetischen Nordpol als auch zum geografischen Nordpol zeigen
 * Zeigt die exakte Gradzahl und Himmelsrichtung an
 * Zeigt den Sensor Status an
+* Haptisches Feedback
 * Automatischer Nachtmodus
 * Keine Werbung
 * Keine Belästigung

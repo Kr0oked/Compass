@@ -19,6 +19,7 @@ This project is intended to offer a simple and good looking compass for Android.
 * Can point to magnetic north as well as true north
 * Shows exact degrees and cardinal direction
 * Displays sensor status
+* Haptic feedback
 * Automatic night mode
 * No advertisements
 * No annoyance
