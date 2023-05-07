@@ -24,10 +24,10 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.location.Criteria
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import android.location.LocationManager.NETWORK_PROVIDER
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
@@ -65,7 +65,7 @@ const val OPTION_INSTRUMENTED_TEST = "INSTRUMENTED_TEST"
 
 private const val TAG = "CompassFragment"
 
-private const val LOCATION_UPDATES_MIN_TIME_MS = 1000L
+private const val LOCATION_UPDATES_MIN_TIME_MS = 1_000L
 private const val LOCATION_UPDATES_MIN_DISTANCE_M = 10.0f
 
 class CompassFragment : Fragment() {
@@ -172,16 +172,31 @@ class CompassFragment : Fragment() {
     @RequiresPermission(value = ACCESS_COARSE_LOCATION)
     private fun registerCoarseLocationListener() {
         locationManager?.also { locationManager ->
-            locationManager.requestLocationUpdates(
-                NETWORK_PROVIDER,
-                LOCATION_UPDATES_MIN_TIME_MS,
-                LOCATION_UPDATES_MIN_DISTANCE_M,
-                compassLocationListener
-            )
+            val criteria = getLocationManagerCriteria()
+            val bestProvider = locationManager.getBestProvider(criteria, true)
+
+            bestProvider?.also { provider ->
+                locationManager.requestLocationUpdates(
+                    provider,
+                    LOCATION_UPDATES_MIN_TIME_MS,
+                    LOCATION_UPDATES_MIN_DISTANCE_M,
+                    compassLocationListener
+                )
+            } ?: run {
+                Log.w(TAG, "No LocationProvider available")
+                showErrorDialog(AppError.NO_LOCATION_PROVIDER_AVAILABLE)
+            }
         } ?: run {
             Log.w(TAG, "LocationManager not present")
             showErrorDialog(AppError.LOCATION_MANAGER_NOT_PRESENT)
         }
+    }
+
+    private fun getLocationManagerCriteria(): Criteria {
+        val criteria = Criteria()
+        criteria.accuracy = Criteria.ACCURACY_COARSE
+        criteria.powerRequirement = Criteria.POWER_LOW
+        return criteria
     }
 
     private fun showErrorDialog(appError: AppError) {
