@@ -32,7 +32,6 @@ import com.bobek.compass.R
 import com.bobek.compass.databinding.CompassViewBinding
 import com.bobek.compass.model.Azimuth
 import com.bobek.compass.util.MathUtils
-import kotlin.math.roundToInt
 
 private const val HAPTIC_FEEDBACK_INTERVAL = 2.0f
 
@@ -104,7 +103,7 @@ class CompassView(context: Context, attributes: AttributeSet) : ConstraintLayout
     }
 
     private fun updateStatusDegreesText(azimuth: Azimuth) {
-        binding.statusDegreesText.text = context.getString(R.string.degrees, azimuth.degrees.roundToInt())
+        binding.statusDegreesText.text = context.getString(R.string.degrees, azimuth.roundedDegrees)
     }
 
     private fun updateStatusDirectionText(azimuth: Azimuth) {

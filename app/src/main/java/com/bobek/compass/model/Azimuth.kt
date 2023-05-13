@@ -18,9 +18,19 @@
 
 package com.bobek.compass.model
 
+import kotlin.math.roundToInt
+
 class Azimuth(_degrees: Float) {
 
+    init {
+        if (!_degrees.isFinite()) {
+            throw IllegalArgumentException("Degrees must be finite but was '$_degrees'")
+        }
+    }
+
     val degrees = normalizeAngle(_degrees)
+
+    val roundedDegrees = normalizeAngle(_degrees.roundToInt().toFloat()).toInt()
 
     val cardinalDirection: CardinalDirection = when (degrees) {
         in 22.5f until 67.5f -> CardinalDirection.NORTHEAST

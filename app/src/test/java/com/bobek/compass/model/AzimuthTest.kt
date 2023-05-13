@@ -19,9 +19,25 @@
 package com.bobek.compass.model
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertThrows
 import org.junit.Test
 
 class AzimuthTest {
+
+    @Test
+    fun azimuthThrowsIllegalArgumentExceptionWhenDegreesAreNegativeInfinity() {
+        assertThrows(IllegalArgumentException::class.java) { Azimuth(Float.NEGATIVE_INFINITY) }
+    }
+
+    @Test
+    fun azimuthThrowsIllegalArgumentExceptionWhenDegreesArePositiveInfinity() {
+        assertThrows(IllegalArgumentException::class.java) { Azimuth(Float.NEGATIVE_INFINITY) }
+    }
+
+    @Test
+    fun azimuthThrowsIllegalArgumentExceptionWhenDegreesAreNotANumber() {
+        assertThrows(IllegalArgumentException::class.java) { Azimuth(Float.NaN) }
+    }
 
     @Test
     fun normalizationKeepsValue() {
@@ -61,9 +77,33 @@ class AzimuthTest {
     fun normalizeAngleHandlesSpecialCases() {
         assertEquals(0f, Azimuth(Float.MIN_VALUE).degrees)
         assertEquals(0f, Azimuth(Float.MAX_VALUE).degrees)
-        assertEquals(Float.NaN, Azimuth(Float.NEGATIVE_INFINITY).degrees)
-        assertEquals(Float.NaN, Azimuth(Float.POSITIVE_INFINITY).degrees)
-        assertEquals(Float.NaN, Azimuth(Float.NaN).degrees)
+    }
+
+    @Test
+    fun roundedDegrees() {
+        assertEquals(0, Azimuth(0.0f).roundedDegrees)
+        assertEquals(0, Azimuth(0.1f).roundedDegrees)
+        assertEquals(0, Azimuth(0.2f).roundedDegrees)
+        assertEquals(0, Azimuth(0.3f).roundedDegrees)
+        assertEquals(0, Azimuth(0.4f).roundedDegrees)
+        assertEquals(1, Azimuth(0.5f).roundedDegrees)
+        assertEquals(1, Azimuth(0.6f).roundedDegrees)
+        assertEquals(1, Azimuth(0.7f).roundedDegrees)
+        assertEquals(1, Azimuth(0.8f).roundedDegrees)
+        assertEquals(1, Azimuth(0.9f).roundedDegrees)
+        assertEquals(1, Azimuth(1.0f).roundedDegrees)
+
+        assertEquals(359, Azimuth(359.0f).roundedDegrees)
+        assertEquals(359, Azimuth(359.1f).roundedDegrees)
+        assertEquals(359, Azimuth(359.2f).roundedDegrees)
+        assertEquals(359, Azimuth(359.3f).roundedDegrees)
+        assertEquals(359, Azimuth(359.4f).roundedDegrees)
+        assertEquals(0, Azimuth(359.5f).roundedDegrees)
+        assertEquals(0, Azimuth(359.6f).roundedDegrees)
+        assertEquals(0, Azimuth(359.7f).roundedDegrees)
+        assertEquals(0, Azimuth(359.8f).roundedDegrees)
+        assertEquals(0, Azimuth(359.9f).roundedDegrees)
+        assertEquals(0, Azimuth(360.0f).roundedDegrees)
     }
 
     @Test
