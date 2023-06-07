@@ -1,0 +1,4 @@
+- Always show 0° and never 360° when rounding up
+- Norwegian translation
+- Complete Finish translation
+- Complete Russian translation

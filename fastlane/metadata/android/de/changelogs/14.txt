@@ -1,0 +1,4 @@
+- Zeige immer 0° und nicht 360° wenn aufgerundet wird
+- Norwegische Übersetzung
+- Vervollständigte Finnische Übersetzung
+- Vervollständigte Russische Übersetzung
