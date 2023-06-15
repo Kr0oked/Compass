@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Compass.
+  ~ Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Compass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="compass">Компас</string>
+
+    <string name="sensor_status">Състояние на сензора</string>
+    <string name="lock_screen_rotation">Заключване завъртането на екрана</string>
+
+    <string name="compass_rose_image_description">Компасът е насочен на север</string>
+    <string name="device_heading_indicator_image_description">Показва в коя посока е насочено устройството</string>
+
+    <string name="cardinal_direction_north">Север</string>
+    <string name="cardinal_direction_northeast">Североизток</string>
+    <string name="cardinal_direction_east">Изток</string>
+    <string name="cardinal_direction_southeast">Югоизток</string>
+    <string name="cardinal_direction_south">Юг</string>
+    <string name="cardinal_direction_southwest">Югозапад</string>
+    <string name="cardinal_direction_west">Запад</string>
+    <string name="cardinal_direction_northwest">Северозапад</string>
+
+    <string name="cardinal_direction_north_abbreviation">С</string>
+    <string name="cardinal_direction_east_abbreviation">И</string>
+    <string name="cardinal_direction_south_abbreviation">Ю</string>
+    <string name="cardinal_direction_west_abbreviation">З</string>
+
+    <string name="sensor_accuracy_no_contact">Сензорът не е достъпен</string>
+    <string name="sensor_accuracy_unreliable">Не може да се разчита на стойността на сензора</string>
+    <string name="sensor_accuracy_low">Ниска точност</string>
+    <string name="sensor_accuracy_medium">Средна точност</string>
+    <string name="sensor_accuracy_high">Висока точност</string>
+    <string name="sensor_accuracy_image_description">Показва графично точността на сензора</string>
+    <string name="sensor_error_message">Сензорът не е наличен</string>
+    <string name="sensor_calibration_text">Можете да се опитате да подобрите точността на сензора, като завъртите устройството няколко пъти с движение, наподобяващо осмица (8).</string>
+
+    <string name="location_loading">Изчакване на местоположение...</string>
+    <string name="location_error_message">Местоположението не е налично</string>
+    <string name="access_coarse_location_permission_rationale_title">Нужно е разрешение, за да се достъпи приблизителното местоположение на устройството.</string>
+    <string name="access_coarse_location_permission_rationale_message">За да се показва истинския север, приложението трябва да определи магнитната деклинация, базирана на текущото местоположение.</string>
+    <string name="access_coarse_location_permission_denied">Липсва разрешение за достъп до приблизителното местоположение. Ще се показва магнитния север.</string>
+
+    <string name="settings">Настройки</string>
+
+    <string name="true_north">Истински север</string>
+    <string name="true_north_summary">Коригиране на магнитния север и показване на истинския север. Изисква достъп до приблизителното местоположение на устройството.</string>
+
+    <string name="haptic_feedback">Тактическа обратна връзка</string>
+    <string name="haptic_feedback_summary">Компасът вибрира, когато посоката се промени.</string>
+
+    <string name="display">Дисплей</string>
+    <string name="night_mode">Нощен режим</string>
+    <string name="night_mode_follow_system">Система</string>
+    <string name="night_mode_no">Ден</string>
+    <string name="night_mode_yes">Нощ</string>
+
+    <string name="about">За приложението</string>
+    <string name="author">Автор</string>
+    <string name="license">Лиценз</string>
+    <string name="source_code">Изходен код на приложението</string>
+    <string name="version">Версия</string>
+
+    <string name="error_message">Възникна грешка.\nСъобщение: %1$s\nКод: %2$s</string>
+
+    <string name="error">Грешка</string>
+    <string name="ok">Добре</string>
+    <string name="no_thanks">Не, благодаря!</string>
+</resources>
