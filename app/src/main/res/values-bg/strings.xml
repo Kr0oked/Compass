@@ -50,7 +50,7 @@
     <string name="sensor_error_message">Сензорът не е наличен</string>
     <string name="sensor_calibration_text">Можете да се опитате да подобрите точността на сензора, като завъртите устройството няколко пъти с движение, наподобяващо осмица (8).</string>
 
-    <string name="location_loading">Изчакване на местоположение...</string>
+    <string name="location_loading">Изчакване на местоположение…</string>
     <string name="location_error_message">Местоположението не е налично</string>
     <string name="access_coarse_location_permission_rationale_title">Нужно е разрешение, за да се достъпи приблизителното местоположение на устройството.</string>
     <string name="access_coarse_location_permission_rationale_message">За да се показва истинския север, приложението трябва да определи магнитната деклинация, базирана на текущото местоположение.</string>
