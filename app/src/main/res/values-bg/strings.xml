@@ -48,7 +48,7 @@
     <string name="sensor_accuracy_high">Висока точност</string>
     <string name="sensor_accuracy_image_description">Показва графично точността на сензора</string>
     <string name="sensor_error_message">Сензорът не е наличен</string>
-    <string name="sensor_calibration_text">Можете да се опитате да подобрите точността на сензора като завъртите устройството в движение, наподобяващо осмица (8).</string>
+    <string name="sensor_calibration_text">Можете да се опитате да подобрите точността на сензора, като завъртите устройството няколко пъти с движение, наподобяващо осмица (8).</string>
 
     <string name="location_loading">Изчакване на местоположение...</string>
     <string name="location_error_message">Местоположението не е налично</string>
@@ -62,9 +62,9 @@
     <string name="true_north_summary">Коригиране на магнитния север и показване на истинския север. Изисква достъп до приблизителното местоположение на устройството.</string>
 
     <string name="haptic_feedback">Тактическа обратна връзка</string>
-    <string name="haptic_feedback_summary">Компасът вибрира когато посоката се промени.</string>
+    <string name="haptic_feedback_summary">Компасът вибрира, когато посоката се промени.</string>
 
-    <string name="display">Екран</string>
+    <string name="display">Дисплей</string>
     <string name="night_mode">Нощен режим</string>
     <string name="night_mode_follow_system">Система</string>
     <string name="night_mode_no">Ден</string>
@@ -73,7 +73,7 @@
     <string name="about">За приложението</string>
     <string name="author">Автор</string>
     <string name="license">Лиценз</string>
-    <string name="source_code">Код на приложението</string>
+    <string name="source_code">Изходен код на приложението</string>
     <string name="version">Версия</string>
 
     <string name="error_message">Възникна грешка.\nСъобщение: %1$s\nКод: %2$s</string>
