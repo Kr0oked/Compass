@@ -17,7 +17,23 @@ android {
 
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        resourceConfigurations += ['bg', 'bs', 'cs', 'de', 'el', 'fi', 'fr', 'hr', 'mk', 'nl', 'nn', 'ru', 'sr', 'tr']
+        resourceConfigurations += [
+                'bg',
+                'bs',
+                'cs',
+                'de',
+                'el',
+                'en',
+                'fi',
+                'fr',
+                'hr',
+                'mk',
+                'nb',
+                'nl',
+                'ru',
+                'sr',
+                'tr'
+        ]
     }
 
     buildTypes {
