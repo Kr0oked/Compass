@@ -50,19 +50,19 @@
     <string name="sensor_error_message">Senzor není dostupný</string>
     <string name="sensor_calibration_text">Přesnost snímače můžete kdykoli zkusit zlepšit otáčením zařízení ve tvaru osmičky.</string>
 
-    <!--TODO<string name="location_loading">Waiting for location update</string>-->
-    <!--TODO<string name="location_error_message">Location not available</string>-->
-    <!--TODO<string name="access_coarse_location_permission_rationale_title">We need permission to access your course location</string>-->
-    <!--TODO<string name="access_coarse_location_permission_rationale_message">For showing to true north this app needs to determine the magnetic declination based on your current location.</string>-->
-    <!--TODO<string name="access_coarse_location_permission_denied">Missing permission to access coarse location. Falling back to magnetic north.</string>-->
+    <string name="location_loading">Probíhá aktualizace polohy</string>
+    <string name="location_error_message">Poloha není k dispozici</string>
+    <string name="access_coarse_location_permission_rationale_title">Pro přístup k poloze je potřeba udělit oprávnění</string>
+    <string name="access_coarse_location_permission_rationale_message">Pro zobrazení skutečného severu musí aplikace určit magnetickou deklinaci na základě vaší aktuální polohy.</string>
+    <string name="access_coarse_location_permission_denied">Chybí oprávnění pro přístup k poloze. Bude použit magnetický sever.</string>
 
     <string name="settings">Nastavení</string>
 
-    <!--TODO<string name="true_north">True North</string>-->
-    <!--TODO<string name="true_north_summary">Correct the magnetic declination and show to true north. Requires access to your coarse location.</string>-->
+    <string name="true_north">Skutečný sever</string>
+    <string name="true_north_summary">Opravit magnetickou deklinaci a zobrazit pravý sever. Vyžaduje přístup k přibližné poloze.</string>
 
-    <!--TODO<string name="haptic_feedback">Haptic feedback</string>-->
-    <!--TODO<string name="haptic_feedback_summary">The compass vibrates when the direction changes.</string>-->
+    <string name="haptic_feedback">Haptická odezva</string>
+    <string name="haptic_feedback_summary">Při změně směru kompas vibruje.</string>-->
 
     <string name="display">Ukázat</string>
     <string name="night_mode">Noční režim</string>
@@ -76,9 +76,9 @@
     <string name="source_code">Zdrojový kód</string>
     <string name="version">Verze</string>
 
-    <!--TODO<string name="error_message">An error occurred.\nMessage: %1$s\nCode: %2$s</string>-->
+    <string name="error_message">Došlo k chybě.\nZpráva: %1$s\nKód: %2$s</string>
 
-    <!--TODO<string name="error">Error</string>-->
+    <string name="error">Chyba</string>
     <string name="ok">OK</string>
-    <!--TODO<string name="no_thanks">No thanks</string>-->
+    <string name="no_thanks">Ne, díky</string>
 </resources>
