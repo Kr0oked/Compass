@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace 'com.bobek.compass'
-    compileSdkVersion 33
+    compileSdk 33
 
     defaultConfig {
         applicationId 'com.bobek.compass'
