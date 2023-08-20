@@ -26,8 +26,9 @@
     <locale android:name="el" />
     <locale android:name="en" />
     <locale android:name="fi" />
-	<locale android:name="fr" />
+    <locale android:name="fr" />
     <locale android:name="hr" />
+    <locale android:name="it" />
     <locale android:name="mk" />
     <locale android:name="nb" />
     <locale android:name="nl" />
