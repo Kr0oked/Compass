@@ -278,6 +278,7 @@ class CompassFragment : Fragment() {
             return if (VERSION.SDK_INT >= VERSION_CODES.R) {
                 requireContext().display
             } else {
+                @Suppress("DEPRECATION")
                 requireActivity().windowManager.defaultDisplay
             }
         }
