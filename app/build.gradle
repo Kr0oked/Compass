@@ -33,7 +33,8 @@ android {
                 'nl',
                 'ru',
                 'sr',
-                'tr'
+                'tr',
+                'vi'
         ]
     }
 
