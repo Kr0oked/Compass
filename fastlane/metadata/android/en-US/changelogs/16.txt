@@ -1,0 +1,3 @@
+- Complete Czech translation
+- Add Italian translation
+- Add Vietnamese translation
