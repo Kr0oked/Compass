@@ -1,0 +1,13 @@
+Avrai esattamente ciò che ti aspetti.
+Una bussola semplice e gradevole.
+
+Funzioni:
+* Può puntare sia al nord magnetico che al nord geografico
+* Mostra gradi esatti e direzione cardinale
+* Mostra lo stato del sensore
+* Risposta tattile
+* Modalità notte automatica
+* Nessuna pubblicità
+* Zero seccature
+
+Divertiti!
