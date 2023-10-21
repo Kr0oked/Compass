@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
             .setTitle(R.string.access_coarse_location_permission_rationale_title)
             .setMessage(R.string.access_coarse_location_permission_rationale_message)
             .setCancelable(false)
-            .setNeutralButton(R.string.ok) { dialog, _ ->
+            .setPositiveButton(R.string.ok) { dialog, _ ->
                 launchAccessCoarseLocationPermissionRequest()
                 dialog.dismiss()
             }
