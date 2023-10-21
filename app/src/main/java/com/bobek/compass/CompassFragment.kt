@@ -204,7 +204,7 @@ class CompassFragment : Fragment() {
             .setTitle(R.string.error)
             .setIcon(R.drawable.ic_error)
             .setMessage(getString(R.string.error_message, getString(appError.messageId), appError.name))
-            .setNeutralButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
+            .setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
             .show()
     }
 
@@ -355,7 +355,7 @@ class CompassFragment : Fragment() {
             alertDialogBuilder
                 .setTitle(R.string.sensor_status)
                 .setView(dialogBinding.root)
-                .setNeutralButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
+                .setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
                 .show()
         }
 
