@@ -28,23 +28,23 @@ height="80">](https://play.google.com/store/apps/details?id=com.bobek.compass)
 
 | Code      | Language         | App                | Metadata           | Complete           |
 |-----------|------------------|--------------------|--------------------|--------------------|
-| *default* | English          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| bg        | Bulgarian        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| bs        | Bosnian          | :heavy_check_mark: | :heavy_check_mark: | :x:                |
-| cs        | Czech            | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| de        | German           | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| el        | Greek            | :heavy_check_mark: | :heavy_check_mark: | :x:                |
-| fi        | Finnish          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| fr        | French           | :heavy_check_mark: | :heavy_check_mark: | :x:                |
-| hr        | Croatian         | :heavy_check_mark: | :heavy_check_mark: | :x:                |
-| it        | Italian          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| mk        | Macedonian       | :heavy_check_mark: | :heavy_check_mark: | :x:                |
-| nb        | Norwegian Bokmål | :heavy_check_mark: | :x:                | :x:                |
-| nl        | Dutch            | :heavy_check_mark: | :x:                | :x:                |
-| ru        | Russian          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| sr        | Serbian          | :heavy_check_mark: | :heavy_check_mark: | :x:                |
-| tr        | Turkish          | :heavy_check_mark: | :heavy_check_mark: | :x:                |
-| vi        | Vietnamese       | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| *default* | English          | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| bg        | Bulgarian        | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| bs        | Bosnian          | :white_check_mark: | :white_check_mark: | :x:                |
+| cs        | Czech            | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| de        | German           | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| el        | Greek            | :white_check_mark: | :white_check_mark: | :x:                |
+| fi        | Finnish          | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| fr        | French           | :white_check_mark: | :white_check_mark: | :x:                |
+| hr        | Croatian         | :white_check_mark: | :white_check_mark: | :x:                |
+| it        | Italian          | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| mk        | Macedonian       | :white_check_mark: | :white_check_mark: | :x:                |
+| nb        | Norwegian Bokmål | :white_check_mark: | :x:                | :x:                |
+| nl        | Dutch            | :white_check_mark: | :x:                | :x:                |
+| ru        | Russian          | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| sr        | Serbian          | :white_check_mark: | :white_check_mark: | :x:                |
+| tr        | Turkish          | :white_check_mark: | :white_check_mark: | :x:                |
+| vi        | Vietnamese       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 ## License
 
