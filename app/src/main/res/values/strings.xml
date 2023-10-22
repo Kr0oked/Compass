@@ -65,10 +65,10 @@
     <string name="haptic_feedback_summary">The compass vibrates when the direction changes.</string>
 
     <string name="display">Display</string>
-    <string name="night_mode">Night mode</string>
-    <string name="night_mode_follow_system">System</string>
-    <string name="night_mode_no">Day</string>
-    <string name="night_mode_yes">Night</string>
+    <string name="night_mode">Theme</string>
+    <string name="night_mode_follow_system">Follow system</string>
+    <string name="night_mode_no">Light</string>
+    <string name="night_mode_yes">Dark</string>
 
     <string name="about">About</string>
     <string name="author">Author</string>

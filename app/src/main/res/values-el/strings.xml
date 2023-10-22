@@ -65,10 +65,10 @@
     <!--TODO<string name="haptic_feedback_summary">The compass vibrates when the direction changes.</string>-->
 
     <!--TODO<string name="display">Display</string>-->
-    <!--TODO<string name="night_mode">Night mode</string>-->
-    <!--TODO<string name="night_mode_follow_system">System</string>-->
-    <!--TODO<string name="night_mode_no">Day</string>-->
-    <!--TODO<string name="night_mode_yes">Night</string>-->
+    <!--TODO<string name="night_mode">Theme</string>-->
+    <!--TODO<string name="night_mode_follow_system">Follow system</string>-->
+    <!--TODO<string name="night_mode_no">Light</string>-->
+    <!--TODO<string name="night_mode_yes">Dark</string>-->
 
     <string name="about">Σχετικά</string>
     <!--TODO<string name="author">Author</string>-->

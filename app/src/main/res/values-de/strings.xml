@@ -65,10 +65,10 @@
     <string name="haptic_feedback_summary">Der Kompass vibriert wenn sich die Richtung ändert.</string>
 
     <string name="display">Anzeige</string>
-    <string name="night_mode">Nachtmodus</string>
-    <string name="night_mode_follow_system">System</string>
-    <string name="night_mode_no">Tag</string>
-    <string name="night_mode_yes">Nacht</string>
+    <string name="night_mode">Design</string>
+    <string name="night_mode_follow_system">System folgen</string>
+    <string name="night_mode_no">Hell</string>
+    <string name="night_mode_yes">Dunkel</string>
 
     <string name="about">Über die App</string>
     <string name="author">Author</string>
