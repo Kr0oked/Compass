@@ -31,6 +31,7 @@ import android.location.LocationManager
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.Display
 import android.view.LayoutInflater
@@ -118,7 +119,7 @@ class CompassFragment : Fragment() {
         super.onResume()
 
         if (isInstrumentedTest()) {
-            Log.i(TAG, "Skipping registration of sensor listener")
+            Log.i(TAG, "Skipping start of system service functionalities")
         } else {
             startSystemServiceFunctionalities()
         }
@@ -138,25 +139,33 @@ class CompassFragment : Fragment() {
 
     private fun registerSensorListener() {
         sensorManager?.also { sensorManager ->
-            sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)?.also { rotationVectorSensor ->
-                val success = sensorManager.registerListener(
-                    compassSensorEventListener,
-                    rotationVectorSensor,
-                    SensorManager.SENSOR_DELAY_FASTEST
-                )
-                if (success) {
-                    Log.d(TAG, "Registered listener for rotation vector sensor")
-                } else {
-                    Log.w(TAG, "Could not enable rotation vector sensor")
-                    showErrorDialog(AppError.ROTATION_VECTOR_SENSOR_FAILED)
-                }
-            } ?: run {
-                Log.w(TAG, "Rotation vector sensor not available")
-                showErrorDialog(AppError.ROTATION_VECTOR_SENSOR_NOT_AVAILABLE)
-            }
+            registerSensorListener(sensorManager)
         } ?: run {
             Log.w(TAG, "SensorManager not present")
             showErrorDialog(AppError.SENSOR_MANAGER_NOT_PRESENT)
+        }
+    }
+
+    private fun registerSensorListener(sensorManager: SensorManager) {
+        sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)?.also { rotationVectorSensor ->
+            registerSensorListener(sensorManager, rotationVectorSensor)
+        } ?: run {
+            Log.w(TAG, "Rotation vector sensor not available")
+            showErrorDialog(AppError.ROTATION_VECTOR_SENSOR_NOT_AVAILABLE)
+        }
+    }
+
+    private fun registerSensorListener(sensorManager: SensorManager, rotationVectorSensor: Sensor) {
+        val success = sensorManager.registerListener(
+            compassSensorEventListener,
+            rotationVectorSensor,
+            SensorManager.SENSOR_DELAY_FASTEST
+        )
+        if (success) {
+            Log.d(TAG, "Registered listener for rotation vector sensor")
+        } else {
+            Log.w(TAG, "Could not enable rotation vector sensor")
+            showErrorDialog(AppError.ROTATION_VECTOR_SENSOR_FAILED)
         }
     }
 
@@ -172,23 +181,52 @@ class CompassFragment : Fragment() {
     @RequiresPermission(value = ACCESS_COARSE_LOCATION)
     private fun registerCoarseLocationListener() {
         locationManager?.also { locationManager ->
-            val criteria = getLocationManagerCriteria()
-            val bestProvider = locationManager.getBestProvider(criteria, true)
-
-            bestProvider?.also { provider ->
-                locationManager.requestLocationUpdates(
-                    provider,
-                    LOCATION_UPDATES_MIN_TIME_MS,
-                    LOCATION_UPDATES_MIN_DISTANCE_M,
-                    compassLocationListener
-                )
-            } ?: run {
-                Log.w(TAG, "No LocationProvider available")
-                showErrorDialog(AppError.NO_LOCATION_PROVIDER_AVAILABLE)
-            }
+            registerCoarseLocationListener(locationManager)
         } ?: run {
             Log.w(TAG, "LocationManager not present")
             showErrorDialog(AppError.LOCATION_MANAGER_NOT_PRESENT)
+        }
+    }
+
+    @RequiresPermission(value = ACCESS_COARSE_LOCATION)
+    private fun registerCoarseLocationListener(locationManager: LocationManager) {
+        if (isLocationEnabled(locationManager)) {
+            requestCoarseLocationUpdates(locationManager)
+        } else {
+            Log.w(TAG, "Location is disabled")
+            showErrorDialog(AppError.LOCATION_DISABLED)
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun isLocationEnabled(locationManager: LocationManager): Boolean {
+        return if (VERSION.SDK_INT >= VERSION_CODES.P) {
+            locationManager.isLocationEnabled
+        } else {
+            val locationSetting: Int = Settings.Secure.getInt(
+                requireContext().contentResolver,
+                Settings.Secure.LOCATION_MODE,
+                Settings.Secure.LOCATION_MODE_OFF
+            )
+            locationSetting != Settings.Secure.LOCATION_MODE_OFF
+        }
+    }
+
+    @RequiresPermission(value = ACCESS_COARSE_LOCATION)
+    private fun requestCoarseLocationUpdates(locationManager: LocationManager) {
+        val criteria = getLocationManagerCriteria()
+        val bestProvider = locationManager.getBestProvider(criteria, true)
+
+        bestProvider?.also { provider ->
+            locationManager.requestLocationUpdates(
+                provider,
+                LOCATION_UPDATES_MIN_TIME_MS,
+                LOCATION_UPDATES_MIN_DISTANCE_M,
+                compassLocationListener
+            )
+        } ?: run {
+            Log.w(TAG, "No LocationProvider available")
+            showErrorDialog(AppError.NO_LOCATION_PROVIDER_AVAILABLE)
         }
     }
 
@@ -332,14 +370,17 @@ class CompassFragment : Fragment() {
                     showSensorStatusPopup()
                     true
                 }
+
                 R.id.action_screen_rotation -> {
                     toggleRotationScreenLocked()
                     true
                 }
+
                 R.id.action_settings -> {
                     showSettings()
                     true
                 }
+
                 else -> false
             }
         }
