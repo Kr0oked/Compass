@@ -36,57 +36,100 @@
                 android:keepScreenOn="true"
                 app:azimuth="@{model.azimuth.degrees}"
                 app:layout_constraintBottom_toTopOf="@id/location_container"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/location_container"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="@{model.trueNorth ? View.VISIBLE : View.INVISIBLE}"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/compass">
 
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                    android:id="@+id/location_loading_indicator"
-                    android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:indeterminate="true"
-                    android:visibility="@{(model.accessCoarseLocationPermissionGranted &amp;&amp; model.location == null) ? View.VISIBLE : View.INVISIBLE}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:visibility="@{model.locationStatus == LocationStatus.NOT_PRESENT ? View.VISIBLE : View.INVISIBLE}"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/location_loading_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/location_loading"
-                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                    android:textColor="?android:attr/textColorPrimary"
-                    android:visibility="@{(model.accessCoarseLocationPermissionGranted &amp;&amp; model.location == null) ? View.VISIBLE : View.INVISIBLE}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/location_loading_indicator" />
+                <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/location_not_present_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_warning"
+                        android:drawableTint="?android:attr/textColorHighlight"
+                        android:gravity="center"
+                        android:text="@string/location_not_present"
+                        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                        android:textColor="?android:attr/textColorHighlight"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/location_missing_permission_text"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.button.MaterialButton
+                        android:id="@+id/location_reload_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/location_reload"
+                        app:icon="@drawable/ic_refresh"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/location_not_present_text" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableTop="@drawable/ic_warning"
-                    android:drawableTint="?android:attr/textColorHighlight"
-                    android:gravity="center"
-                    android:text="@string/access_coarse_location_permission_denied"
-                    android:textAppearance="@android:style/TextAppearance.Material.Medium"
-                    android:textColor="?android:attr/textColorHighlight"
-                    android:visibility="@{model.accessCoarseLocationPermissionGranted == false ? View.VISIBLE : View.INVISIBLE}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:visibility="@{(model.locationStatus == LocationStatus.LOADING) ? View.VISIBLE : View.INVISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/location_loading_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/location_loading_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/location_loading"
+                        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                        android:textColor="?android:attr/textColorPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/location_loading_indicator" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{model.locationStatus == LocationStatus.PERMISSION_DENIED ? View.VISIBLE : View.INVISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/location_missing_permission_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@drawable/ic_warning"
+                        android:drawableTint="?android:attr/textColorHighlight"
+                        android:gravity="center"
+                        android:text="@string/access_location_permission_denied"
+                        android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                        android:textColor="?android:attr/textColorHighlight"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -95,6 +138,8 @@
     <data>
 
         <import type="android.view.View" />
+
+        <import type="com.bobek.compass.model.LocationStatus" />
 
         <variable
                 name="model"

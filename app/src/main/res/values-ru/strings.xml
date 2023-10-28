@@ -52,18 +52,16 @@
 
     <string name="location_loading">Ожидание обновления местоположения</string>-->
     <string name="location_error_message">Местоположение недоступно</string>-->
-    <string name="access_coarse_location_permission_rationale_title">Нобходимо предоставить разрешение на доступ к местоположению</string>
-    -->
-    <string name="access_coarse_location_permission_rationale_message">Для отображения истинного севера этому приложению необходимо определить магнитное склонение на основе вашего текущего местоположения</string>
-    -->
-    <string name="access_coarse_location_permission_denied">Отсутствует разрешение на доступ к приблизительному местоположению. Будет по прежнему использоваться магнитный север</string>
-    -->
+    <!--TODO<string name="location_not_present">Location could not be determined. Falling back to magnetic north.</string>-->
+    <!--TODO<string name="location_reload">Reload location</string>-->
+    <string name="access_location_permission_rationale_title">Нобходимо предоставить разрешение на доступ к местоположению</string>
+    <string name="access_location_permission_rationale_message">Для отображения истинного севера этому приложению необходимо определить магнитное склонение на основе вашего текущего местоположения</string>
+    <string name="access_location_permission_denied">Отсутствует разрешение на доступ к приблизительному местоположению. Будет по прежнему использоваться магнитный север</string>
 
     <string name="settings">Настройки</string>-->
 
     <string name="true_north">Истинный север</string>-->
     <string name="true_north_summary">Показ истинного севера на основании коррекции магнитного склонения. Для этой функции требуется доступ к местоположению (допустимо дать разрешение только на приблизительное местоположение)</string>
-    -->
 
     <string name="haptic_feedback">Тактильная обратная связь</string>-->
     <string name="haptic_feedback_summary">Компас вибрирует при изменении направления</string>-->

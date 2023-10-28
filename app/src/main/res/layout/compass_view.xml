@@ -56,7 +56,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/status_degrees_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/status_cardinal_direction_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -78,112 +78,112 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/cardinal_direction_north_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cardinal_direction_north_abbreviation"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/cardinal_direction_east_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cardinal_direction_east_abbreviation"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/cardinal_direction_south_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cardinal_direction_south_abbreviation"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/cardinal_direction_west_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cardinal_direction_west_abbreviation"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/degree_0_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/degree_0_text"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/degree_30_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/degree_30_text"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/degree_60_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/degree_60_text"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/degree_90_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/degree_90_text"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/degree_120_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/degree_120_text"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/degree_150_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/degree_150_text"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/degree_180_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/degree_180_text"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/degree_210_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/degree_210_text"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/degree_240_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/degree_240_text"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/degree_270_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/degree_270_text"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/degree_300_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/degree_300_text"
                 android:textColor="?android:attr/textColorPrimary" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/degree_330_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

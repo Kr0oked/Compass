@@ -52,14 +52,16 @@
 
     <string name="location_loading">Warten auf Standort Aktualisierung</string>
     <string name="location_error_message">Standort nicht verfügbar</string>
-    <string name="access_coarse_location_permission_rationale_title">Wir brauchen Ihre Zustimmung um auf Ihren groben Standort zuzugreifen</string>
-    <string name="access_coarse_location_permission_rationale_message">Um zum geografischen Nordpol zu zeigen muss die App die Deklination basierend auf Ihrem derzeitigen Standort ermitteln.</string>
-    <string name="access_coarse_location_permission_denied">Fehlende Berechtigung um auf den groben Standort zuzugreifen. Es wird auf den magnetischen Norden zurückgegriffen.</string>
+    <string name="location_not_present">Standort konnte nicht bestimmt werden. Es wird auf den magnetischen Norden zurückgegriffen.</string>
+    <string name="location_reload">Standort neuladen</string>
+    <string name="access_location_permission_rationale_title">Wir brauchen Ihre Zustimmung um auf Ihren Standort zuzugreifen</string>
+    <string name="access_location_permission_rationale_message">Um zum geografischen Nordpol zu zeigen muss die App die Deklination basierend auf Ihrem derzeitigen Standort ermitteln.</string>
+    <string name="access_location_permission_denied">Fehlende Berechtigung um auf den Standort zuzugreifen. Es wird auf den magnetischen Norden zurückgegriffen.</string>
 
     <string name="settings">Einstellungen</string>
 
     <string name="true_north">Geografischer Norden</string>
-    <string name="true_north_summary">Die magnetische Deklination wird korrigiert um zum geografischen Norden zu zeigen. Dafür muss auf ihren groben Standort zugegriffen werden.</string>
+    <string name="true_north_summary">Die magnetische Deklination wird korrigiert um zum geografischen Norden zu zeigen. Dafür muss auf ihren Standort zugegriffen werden.</string>
 
     <string name="haptic_feedback">Haptisches Feedback</string>
     <string name="haptic_feedback_summary">Der Kompass vibriert wenn sich die Richtung ändert.</string>

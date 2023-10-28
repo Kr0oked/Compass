@@ -52,9 +52,11 @@
 
     <string name="location_loading">Venter på posisjonsoppdatering</string>
     <string name="location_error_message">Posisjon ikke tilgjengelig</string>
-    <string name="access_coarse_location_permission_rationale_title">Tillatelse kreves for å få tilgang til omtrentlig posisjon</string>
-    <string name="access_coarse_location_permission_rationale_message">For å vise mot geografisk nord trenger denne appen å bestemme misvisningen basert på din aktuelle posisjon.</string>
-    <string name="access_coarse_location_permission_denied">Mangler tillatelse for tilgang til omtrentlig posisjon. Faller tilbake til magnetisk nord.</string>
+    <!--TODO<string name="location_not_present">Location could not be determined. Falling back to magnetic north.</string>-->
+    <!--TODO<string name="location_reload">Reload location</string>-->
+    <string name="access_location_permission_rationale_title">Tillatelse kreves for å få tilgang til omtrentlig posisjon</string>
+    <string name="access_location_permission_rationale_message">For å vise mot geografisk nord trenger denne appen å bestemme misvisningen basert på din aktuelle posisjon.</string>
+    <string name="access_location_permission_denied">Mangler tillatelse for tilgang til omtrentlig posisjon. Faller tilbake til magnetisk nord.</string>
 
     <string name="settings">Innstillinger</string>
 

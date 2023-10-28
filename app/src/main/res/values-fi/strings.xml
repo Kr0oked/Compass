@@ -52,9 +52,11 @@
 
     <string name="location_loading">Odotetaan sijaintipäivitystä</string>
     <string name="location_error_message">Sijaintia ei saatavilla</string>
-    <string name="access_coarse_location_permission_rationale_title">Lupa sijaintiisi tarvitaan</string>
-    <string name="access_coarse_location_permission_rationale_message">Maantieteelliseen pohjoiseen osoittaakseen tämän sovelluksen on määritettävä eranto nykyisen sijaintisi perusteella.</string>
-    <string name="access_coarse_location_permission_denied">Sijainnin käyttöoikeus puuttuu. Palataan takaisin magneettiseen pohjoiseen.</string>
+    <!--TODO<string name="location_not_present">Location could not be determined. Falling back to magnetic north.</string>-->
+    <!--TODO<string name="location_reload">Reload location</string>-->
+    <string name="access_location_permission_rationale_title">Lupa sijaintiisi tarvitaan</string>
+    <string name="access_location_permission_rationale_message">Maantieteelliseen pohjoiseen osoittaakseen tämän sovelluksen on määritettävä eranto nykyisen sijaintisi perusteella.</string>
+    <string name="access_location_permission_denied">Sijainnin käyttöoikeus puuttuu. Palataan takaisin magneettiseen pohjoiseen.</string>
 
     <string name="settings">Asetukset</string>
 

@@ -19,6 +19,7 @@
 package com.bobek.compass
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -31,6 +32,7 @@ import android.location.LocationManager
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
+import android.os.CancellationSignal
 import android.provider.Settings
 import android.util.Log
 import android.view.Display
@@ -55,19 +57,18 @@ import com.bobek.compass.databinding.SensorAlertDialogViewBinding
 import com.bobek.compass.model.AppError
 import com.bobek.compass.model.Azimuth
 import com.bobek.compass.model.DisplayRotation
+import com.bobek.compass.model.LocationStatus
 import com.bobek.compass.model.RotationVector
 import com.bobek.compass.model.SensorAccuracy
 import com.bobek.compass.preference.PreferenceStore
 import com.bobek.compass.util.MathUtils
 import com.bobek.compass.view.CompassViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.util.concurrent.Executor
 
 const val OPTION_INSTRUMENTED_TEST = "INSTRUMENTED_TEST"
 
 private const val TAG = "CompassFragment"
-
-private const val LOCATION_UPDATES_MIN_TIME_MS = 1_000L
-private const val LOCATION_UPDATES_MIN_DISTANCE_M = 10.0f
 
 class CompassFragment : Fragment() {
 
@@ -81,6 +82,7 @@ class CompassFragment : Fragment() {
 
     private var sensorManager: SensorManager? = null
     private var locationManager: LocationManager? = null
+    private var locationRequestCancellationSignal: CancellationSignal? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentCompassBinding.inflate(inflater, container, false)
@@ -98,6 +100,7 @@ class CompassFragment : Fragment() {
     private fun initBinding() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.model = compassViewModel
+        binding.locationReloadButton.setOnClickListener { requestLocation() }
     }
 
     private fun initPreferenceStore() {
@@ -132,27 +135,27 @@ class CompassFragment : Fragment() {
     private fun startSystemServiceFunctionalities() {
         registerSensorListener()
 
-        if (preferenceStore.trueNorth.value == true) {
-            handleAccessCoarseLocationPermission()
+        if (compassViewModel.trueNorth.value == true && compassViewModel.location.value == null) {
+            requestLocation()
         }
     }
 
     private fun registerSensorListener() {
-        sensorManager?.also { sensorManager ->
-            registerSensorListener(sensorManager)
-        } ?: run {
-            Log.w(TAG, "SensorManager not present")
-            showErrorDialog(AppError.SENSOR_MANAGER_NOT_PRESENT)
-        }
+        sensorManager
+            ?.also(::registerSensorListener)
+            ?: run {
+                Log.w(TAG, "SensorManager not present")
+                showErrorDialog(AppError.SENSOR_MANAGER_NOT_PRESENT)
+            }
     }
 
     private fun registerSensorListener(sensorManager: SensorManager) {
-        sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)?.also { rotationVectorSensor ->
-            registerSensorListener(sensorManager, rotationVectorSensor)
-        } ?: run {
-            Log.w(TAG, "Rotation vector sensor not available")
-            showErrorDialog(AppError.ROTATION_VECTOR_SENSOR_NOT_AVAILABLE)
-        }
+        sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
+            ?.also { rotationVectorSensor -> registerSensorListener(sensorManager, rotationVectorSensor) }
+            ?: run {
+                Log.w(TAG, "Rotation vector sensor not available")
+                showErrorDialog(AppError.ROTATION_VECTOR_SENSOR_NOT_AVAILABLE)
+            }
     }
 
     private fun registerSensorListener(sensorManager: SensorManager, rotationVectorSensor: Sensor) {
@@ -169,31 +172,34 @@ class CompassFragment : Fragment() {
         }
     }
 
-    private fun handleAccessCoarseLocationPermission() {
-        if (ContextCompat.checkSelfPermission(requireContext(), ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED) {
-            compassViewModel.accessCoarseLocationPermissionGranted.value = true
-            registerCoarseLocationListener()
+    private fun requestLocation() {
+        if (ContextCompat.checkSelfPermission(requireContext(), ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED ||
+            ContextCompat.checkSelfPermission(requireContext(), ACCESS_FINE_LOCATION) == PERMISSION_GRANTED
+        ) {
+            registerLocationListener()
         } else {
-            compassViewModel.accessCoarseLocationPermissionGranted.value = false
+            compassViewModel.locationStatus.value = LocationStatus.PERMISSION_DENIED
         }
     }
 
-    @RequiresPermission(value = ACCESS_COARSE_LOCATION)
-    private fun registerCoarseLocationListener() {
-        locationManager?.also { locationManager ->
-            registerCoarseLocationListener(locationManager)
-        } ?: run {
-            Log.w(TAG, "LocationManager not present")
-            showErrorDialog(AppError.LOCATION_MANAGER_NOT_PRESENT)
-        }
+    @RequiresPermission(anyOf = [ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION])
+    private fun registerLocationListener() {
+        locationManager
+            ?.also(::registerLocationListener)
+            ?: run {
+                Log.w(TAG, "LocationManager not present")
+                setLocation(null)
+                showErrorDialog(AppError.LOCATION_MANAGER_NOT_PRESENT)
+            }
     }
 
-    @RequiresPermission(value = ACCESS_COARSE_LOCATION)
-    private fun registerCoarseLocationListener(locationManager: LocationManager) {
+    @RequiresPermission(anyOf = [ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION])
+    private fun registerLocationListener(locationManager: LocationManager) {
         if (isLocationEnabled(locationManager)) {
-            requestCoarseLocationUpdates(locationManager)
+            requestLocation(locationManager)
         } else {
             Log.w(TAG, "Location is disabled")
+            setLocation(null)
             showErrorDialog(AppError.LOCATION_DISABLED)
         }
     }
@@ -212,28 +218,45 @@ class CompassFragment : Fragment() {
         }
     }
 
-    @RequiresPermission(value = ACCESS_COARSE_LOCATION)
-    private fun requestCoarseLocationUpdates(locationManager: LocationManager) {
+    @RequiresPermission(anyOf = [ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION])
+    private fun requestLocation(locationManager: LocationManager) {
         val criteria = getLocationManagerCriteria()
-        val bestProvider = locationManager.getBestProvider(criteria, true)
 
-        bestProvider?.also { provider ->
-            locationManager.requestLocationUpdates(
+        locationManager.getBestProvider(criteria, true)
+            ?.also { provider -> requestLocation(locationManager, provider) }
+            ?: run {
+                Log.w(TAG, "No LocationProvider available")
+                setLocation(null)
+                showErrorDialog(AppError.NO_LOCATION_PROVIDER_AVAILABLE)
+            }
+    }
+
+    @RequiresPermission(anyOf = [ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION])
+    private fun requestLocation(locationManager: LocationManager, provider: String) {
+        Log.i(TAG, "Requesting location from provider '$provider'")
+
+        compassViewModel.locationStatus.value = LocationStatus.LOADING
+
+        if (VERSION.SDK_INT >= VERSION_CODES.R) {
+            locationRequestCancellationSignal = CancellationSignal()
+            locationManager.getCurrentLocation(
                 provider,
-                LOCATION_UPDATES_MIN_TIME_MS,
-                LOCATION_UPDATES_MIN_DISTANCE_M,
-                compassLocationListener
+                locationRequestCancellationSignal,
+                getExecutor(),
+                ::setLocation
             )
-        } ?: run {
-            Log.w(TAG, "No LocationProvider available")
-            showErrorDialog(AppError.NO_LOCATION_PROVIDER_AVAILABLE)
+        } else {
+            @Suppress("DEPRECATION")
+            locationManager.requestSingleUpdate(provider, compassLocationListener, null)
         }
     }
 
+    private fun getExecutor(): Executor = ContextCompat.getMainExecutor(requireContext())
+
     private fun getLocationManagerCriteria(): Criteria {
         val criteria = Criteria()
-        criteria.accuracy = Criteria.ACCURACY_COARSE
-        criteria.powerRequirement = Criteria.POWER_LOW
+        criteria.accuracy = Criteria.ACCURACY_FINE
+        criteria.powerRequirement = Criteria.POWER_HIGH
         return criteria
     }
 
@@ -250,7 +273,83 @@ class CompassFragment : Fragment() {
         super.onPause()
         sensorManager?.unregisterListener(compassSensorEventListener)
         locationManager?.removeUpdates(compassLocationListener)
+        locationRequestCancellationSignal?.cancel()
         Log.i(TAG, "Stopped compass")
+    }
+
+
+    private inner class CompassMenuProvider : MenuProvider {
+
+        private var optionsMenu: Menu? = null
+
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            menuInflater.inflate(R.menu.menu_metronome, menu)
+            optionsMenu = menu
+            compassViewModel.sensorAccuracy.observe(viewLifecycleOwner) { updateSensorStatusIcon(it) }
+            preferenceStore.screenOrientationLocked.observe(viewLifecycleOwner) { updateScreenRotationIcon(it) }
+        }
+
+        private fun updateSensorStatusIcon(sensorAccuracy: SensorAccuracy) {
+            optionsMenu
+                ?.findItem(R.id.action_sensor_status)
+                ?.setIcon(sensorAccuracy.iconResourceId)
+        }
+
+        private fun updateScreenRotationIcon(screenOrientationLocked: Boolean) {
+            optionsMenu
+                ?.findItem(R.id.action_screen_rotation)
+                ?.setIcon(getScreenRotationIcon(screenOrientationLocked))
+        }
+
+        @DrawableRes
+        private fun getScreenRotationIcon(screenOrientationLocked: Boolean): Int =
+            if (screenOrientationLocked) R.drawable.ic_screen_rotation_lock else R.drawable.ic_screen_rotation
+
+        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+            return when (menuItem.itemId) {
+                R.id.action_sensor_status -> {
+                    showSensorStatusPopup()
+                    true
+                }
+
+                R.id.action_screen_rotation -> {
+                    toggleRotationScreenLocked()
+                    true
+                }
+
+                R.id.action_settings -> {
+                    showSettings()
+                    true
+                }
+
+                else -> false
+            }
+        }
+
+        private fun showSensorStatusPopup() {
+            val alertDialogBuilder = MaterialAlertDialogBuilder(requireContext())
+            val dialogContextInflater = LayoutInflater.from(alertDialogBuilder.context)
+
+            val dialogBinding = SensorAlertDialogViewBinding.inflate(dialogContextInflater, null, false)
+            dialogBinding.model = compassViewModel
+            dialogBinding.lifecycleOwner = viewLifecycleOwner
+
+            alertDialogBuilder
+                .setTitle(R.string.sensor_status)
+                .setView(dialogBinding.root)
+                .setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
+                .show()
+        }
+
+        private fun toggleRotationScreenLocked() {
+            preferenceStore.screenOrientationLocked.value?.let {
+                preferenceStore.screenOrientationLocked.value = it.not()
+            }
+        }
+
+        private fun showSettings() {
+            findNavController().navigate(R.id.action_CompassFragment_to_SettingsFragment)
+        }
     }
 
 
@@ -330,95 +429,28 @@ class CompassFragment : Fragment() {
 
 
     private inner class CompassLocationListener : LocationListener {
-        override fun onLocationChanged(location: Location) {
-            Log.v(TAG, "Location changed to $location")
-            compassViewModel.location.value = location
-        }
+        override fun onLocationChanged(location: Location) = setLocation(location)
     }
 
 
-    private inner class CompassMenuProvider : MenuProvider {
+    private fun setLocation(location: Location?) {
+        Log.i(TAG, "Location $location")
+        compassViewModel.location.value = location
 
-        private var optionsMenu: Menu? = null
-
-        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-            menuInflater.inflate(R.menu.menu_metronome, menu)
-            optionsMenu = menu
-            compassViewModel.sensorAccuracy.observe(viewLifecycleOwner) { updateSensorStatusIcon(it) }
-            preferenceStore.screenOrientationLocked.observe(viewLifecycleOwner) { updateScreenRotationIcon(it) }
-        }
-
-        private fun updateSensorStatusIcon(sensorAccuracy: SensorAccuracy) {
-            optionsMenu
-                ?.findItem(R.id.action_sensor_status)
-                ?.setIcon(sensorAccuracy.iconResourceId)
-        }
-
-        private fun updateScreenRotationIcon(screenOrientationLocked: Boolean) {
-            optionsMenu
-                ?.findItem(R.id.action_screen_rotation)
-                ?.setIcon(getScreenRotationIcon(screenOrientationLocked))
-        }
-
-        @DrawableRes
-        private fun getScreenRotationIcon(screenOrientationLocked: Boolean): Int =
-            if (screenOrientationLocked) R.drawable.ic_screen_rotation_lock else R.drawable.ic_screen_rotation
-
-        override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-            return when (menuItem.itemId) {
-                R.id.action_sensor_status -> {
-                    showSensorStatusPopup()
-                    true
-                }
-
-                R.id.action_screen_rotation -> {
-                    toggleRotationScreenLocked()
-                    true
-                }
-
-                R.id.action_settings -> {
-                    showSettings()
-                    true
-                }
-
-                else -> false
-            }
-        }
-
-        private fun showSensorStatusPopup() {
-            val alertDialogBuilder = MaterialAlertDialogBuilder(requireContext())
-            val dialogContextInflater = LayoutInflater.from(alertDialogBuilder.context)
-
-            val dialogBinding = SensorAlertDialogViewBinding.inflate(dialogContextInflater, null, false)
-            dialogBinding.model = compassViewModel
-            dialogBinding.lifecycleOwner = viewLifecycleOwner
-
-            alertDialogBuilder
-                .setTitle(R.string.sensor_status)
-                .setView(dialogBinding.root)
-                .setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
-                .show()
-        }
-
-        private fun toggleRotationScreenLocked() {
-            preferenceStore.screenOrientationLocked.value?.let {
-                preferenceStore.screenOrientationLocked.value = it.not()
-            }
-        }
-
-        private fun showSettings() {
-            findNavController().navigate(R.id.action_CompassFragment_to_SettingsFragment)
+        if (location == null) {
+            compassViewModel.locationStatus.value = LocationStatus.NOT_PRESENT
+        } else {
+            compassViewModel.locationStatus.value = LocationStatus.PRESENT
         }
     }
-
 
     internal fun setSensorAccuracy(sensorAccuracy: SensorAccuracy) {
+        Log.i(TAG, "Sensor accuracy $sensorAccuracy")
         compassViewModel.sensorAccuracy.value = sensorAccuracy
-        Log.v(TAG, "Sensor accuracy $sensorAccuracy")
     }
 
     internal fun setAzimuth(azimuth: Azimuth) {
-        compassViewModel.azimuth.value = azimuth
         Log.v(TAG, "Azimuth $azimuth")
+        compassViewModel.azimuth.value = azimuth
     }
 }

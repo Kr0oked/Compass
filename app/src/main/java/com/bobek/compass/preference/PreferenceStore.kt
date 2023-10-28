@@ -36,7 +36,7 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
     val hapticFeedback = MutableLiveData<Boolean>()
     val screenOrientationLocked = MutableLiveData<Boolean>()
     val nightMode = MutableLiveData<AppNightMode>()
-    val accessCoarseLocationPermissionRequested = MutableLiveData<Boolean>()
+    val accessLocationPermissionRequested = MutableLiveData<Boolean>()
 
     private val preferenceStoreLifecycleObserver = PreferenceStoreLifecycleObserver()
 
@@ -46,7 +46,7 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
     private val hapticFeedbackObserver = getHapticFeedbackObserver()
     private val screenOrientationLockedObserver = getScreenOrientationLockedObserver()
     private val nightModeObserver = getNightModeObserver()
-    private val accessCoarseLocationPermissionRequestedObserver = getAccessCoarseLocationPermissionRequestedObserver()
+    private val accessLocationPermissionRequestedObserver = getAccessLocationPermissionRequestedObserver()
 
     private val sharedPreferences: SharedPreferences
 
@@ -57,7 +57,7 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
         updateHapticFeedback()
         updateScreenOrientationLocked()
         updateNightMode()
-        updateAccessCoarseLocationPermissionRequested()
+        updateAccessLocationPermissionRequested()
 
         lifecycle.addObserver(preferenceStoreLifecycleObserver)
     }
@@ -69,7 +69,7 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
             hapticFeedback.observeForever(hapticFeedbackObserver)
             screenOrientationLocked.observeForever(screenOrientationLockedObserver)
             nightMode.observeForever(nightModeObserver)
-            accessCoarseLocationPermissionRequested.observeForever(accessCoarseLocationPermissionRequestedObserver)
+            accessLocationPermissionRequested.observeForever(accessLocationPermissionRequestedObserver)
 
             sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener)
         }
@@ -81,7 +81,7 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
             hapticFeedback.removeObserver(hapticFeedbackObserver)
             screenOrientationLocked.removeObserver(screenOrientationLockedObserver)
             nightMode.removeObserver(nightModeObserver)
-            accessCoarseLocationPermissionRequested.removeObserver(accessCoarseLocationPermissionRequestedObserver)
+            accessLocationPermissionRequested.removeObserver(accessLocationPermissionRequestedObserver)
         }
     }
 
@@ -92,8 +92,8 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
                 PreferenceConstants.HAPTIC_FEEDBACK -> updateHapticFeedback()
                 PreferenceConstants.SCREEN_ORIENTATION_LOCKED -> updateScreenOrientationLocked()
                 PreferenceConstants.NIGHT_MODE -> updateNightMode()
-                PreferenceConstants.ACCESS_COARSE_LOCATION_PERMISSION_REQUESTED -> {
-                    updateAccessCoarseLocationPermissionRequested()
+                PreferenceConstants.ACCESS_LOCATION_PERMISSION_REQUESTED -> {
+                    updateAccessLocationPermissionRequested()
                 }
             }
         }
@@ -131,11 +131,11 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
         }
     }
 
-    private fun updateAccessCoarseLocationPermissionRequested() {
+    private fun updateAccessLocationPermissionRequested() {
         val storedValue =
-            sharedPreferences.getBoolean(PreferenceConstants.ACCESS_COARSE_LOCATION_PERMISSION_REQUESTED, false)
-        if (accessCoarseLocationPermissionRequested.value != storedValue) {
-            accessCoarseLocationPermissionRequested.value = storedValue
+            sharedPreferences.getBoolean(PreferenceConstants.ACCESS_LOCATION_PERMISSION_REQUESTED, false)
+        if (accessLocationPermissionRequested.value != storedValue) {
+            accessLocationPermissionRequested.value = storedValue
         }
     }
 
@@ -167,10 +167,10 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
         Log.d(TAG, "Persisted nightMode: $it")
     }
 
-    private fun getAccessCoarseLocationPermissionRequestedObserver(): (t: Boolean) -> Unit = {
+    private fun getAccessLocationPermissionRequestedObserver(): (t: Boolean) -> Unit = {
         val edit = sharedPreferences.edit()
-        edit.putBoolean(PreferenceConstants.ACCESS_COARSE_LOCATION_PERMISSION_REQUESTED, it)
+        edit.putBoolean(PreferenceConstants.ACCESS_LOCATION_PERMISSION_REQUESTED, it)
         edit.apply()
-        Log.d(TAG, "Persisted accessCoarseLocationPermissionRequested: $it")
+        Log.d(TAG, "Persisted accessLocationPermissionRequested: $it")
     }
 }

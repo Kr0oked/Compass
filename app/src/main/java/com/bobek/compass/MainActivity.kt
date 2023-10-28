@@ -19,6 +19,7 @@
 package com.bobek.compass
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
+import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager.PERMISSION_DENIED
 import android.os.Bundle
@@ -44,7 +45,7 @@ private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
-    private val accessCoarseLocationPermissionRequest = registerAccessCoarseLocationPermissionRequest()
+    private val accessLocationPermissionRequest = registerAccessLocationPermissionRequest()
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -91,59 +92,70 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupTrueNorthFunctionality(trueNorth: Boolean?) {
         if (trueNorth == true) {
-            handleAccessCoarseLocationPermission()
+            handleLocationPermission()
         }
     }
 
-    private fun handleAccessCoarseLocationPermission() {
-        if (neverRequestedAccessCoarseLocationPermission() && accessCoarseLocationPermissionDenied()) {
-            startAccessCoarseLocationPermissionRequestWorkflow()
+    private fun handleLocationPermission() {
+        if (neverRequestedAccessLocationPermission() && accessLocationPermissionDenied()) {
+            startAccessLocationPermissionRequestWorkflow()
         }
     }
 
-    private fun neverRequestedAccessCoarseLocationPermission() =
-        preferenceStore.accessCoarseLocationPermissionRequested.value != true
+    private fun neverRequestedAccessLocationPermission() =
+        preferenceStore.accessLocationPermissionRequested.value != true
 
-    private fun accessCoarseLocationPermissionDenied() =
+    private fun accessLocationPermissionDenied() =
         ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_DENIED
+                && ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_DENIED
 
-    private fun startAccessCoarseLocationPermissionRequestWorkflow() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_COARSE_LOCATION)) {
+    private fun startAccessLocationPermissionRequestWorkflow() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_COARSE_LOCATION)
+            || ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_FINE_LOCATION)
+        ) {
             showRequestNotificationsPermissionRationale()
         } else {
-            launchAccessCoarseLocationPermissionRequest()
+            launchAccessLocationPermissionRequest()
         }
     }
 
     private fun showRequestNotificationsPermissionRationale() {
         MaterialAlertDialogBuilder(this)
-            .setTitle(R.string.access_coarse_location_permission_rationale_title)
-            .setMessage(R.string.access_coarse_location_permission_rationale_message)
+            .setTitle(R.string.access_location_permission_rationale_title)
+            .setMessage(R.string.access_location_permission_rationale_message)
             .setCancelable(false)
             .setPositiveButton(R.string.ok) { dialog, _ ->
-                launchAccessCoarseLocationPermissionRequest()
+                launchAccessLocationPermissionRequest()
                 dialog.dismiss()
             }
             .setNegativeButton(R.string.no_thanks) { dialog, _ ->
-                Log.i(TAG, "Continuing without requesting ACCESS_COARSE_LOCATION permission")
-                preferenceStore.accessCoarseLocationPermissionRequested.value = true
+                Log.i(TAG, "Continuing without requesting location permission")
+                preferenceStore.accessLocationPermissionRequested.value = true
                 dialog.dismiss()
             }
             .show()
     }
 
-    private fun launchAccessCoarseLocationPermissionRequest() {
-        Log.i(TAG, "Requesting ACCESS_COARSE_LOCATION permission")
-        accessCoarseLocationPermissionRequest.launch(ACCESS_COARSE_LOCATION)
+    private fun launchAccessLocationPermissionRequest() {
+        Log.i(TAG, "Requesting location permission")
+        accessLocationPermissionRequest.launch(arrayOf(ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION))
     }
 
-    private fun registerAccessCoarseLocationPermissionRequest() =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
-            if (granted) {
-                Log.i(TAG, "Permission ACCESS_COARSE_LOCATION granted")
-            } else {
-                Log.i(TAG, "Permission ACCESS_COARSE_LOCATION denied")
-                preferenceStore.accessCoarseLocationPermissionRequested.value = true
+    private fun registerAccessLocationPermissionRequest() =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            when {
+                permissions[ACCESS_FINE_LOCATION] ?: false -> {
+                    Log.i(TAG, "Permission ACCESS_FINE_LOCATION granted")
+                }
+
+                permissions[ACCESS_COARSE_LOCATION] ?: false -> {
+                    Log.i(TAG, "Permission ACCESS_COARSE_LOCATION granted")
+                }
+
+                else -> {
+                    Log.i(TAG, "Location permission denied")
+                    preferenceStore.accessLocationPermissionRequested.value = true
+                }
             }
         }
 

@@ -22,6 +22,7 @@ import android.location.Location
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bobek.compass.model.Azimuth
+import com.bobek.compass.model.LocationStatus
 import com.bobek.compass.model.SensorAccuracy
 
 class CompassViewModel : ViewModel() {
@@ -30,6 +31,6 @@ class CompassViewModel : ViewModel() {
     val sensorAccuracy = MutableLiveData(SensorAccuracy.NO_CONTACT)
     val trueNorth = MutableLiveData(false)
     val hapticFeedback = MutableLiveData(true)
-    val accessCoarseLocationPermissionGranted = MutableLiveData(false)
     val location = MutableLiveData<Location>()
+    val locationStatus = MutableLiveData(LocationStatus.NOT_PRESENT)
 }

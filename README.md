@@ -29,22 +29,22 @@ height="80">](https://play.google.com/store/apps/details?id=com.bobek.compass)
 | Code      | Language         | App                | Metadata           | Complete           |
 |-----------|------------------|--------------------|--------------------|--------------------|
 | *default* | English          | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| bg        | Bulgarian        | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| bg        | Bulgarian        | :white_check_mark: | :white_check_mark: | :x:                |
 | bs        | Bosnian          | :white_check_mark: | :white_check_mark: | :x:                |
-| cs        | Czech            | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| cs        | Czech            | :white_check_mark: | :white_check_mark: | :x:                |
 | de        | German           | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | el        | Greek            | :white_check_mark: | :white_check_mark: | :x:                |
-| fi        | Finnish          | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| fi        | Finnish          | :white_check_mark: | :white_check_mark: | :x:                |
 | fr        | French           | :white_check_mark: | :white_check_mark: | :x:                |
 | hr        | Croatian         | :white_check_mark: | :white_check_mark: | :x:                |
-| it        | Italian          | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| it        | Italian          | :white_check_mark: | :white_check_mark: | :x:                |
 | mk        | Macedonian       | :white_check_mark: | :white_check_mark: | :x:                |
 | nb        | Norwegian Bokmål | :white_check_mark: | :x:                | :x:                |
 | nl        | Dutch            | :white_check_mark: | :x:                | :x:                |
-| ru        | Russian          | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| ru        | Russian          | :white_check_mark: | :white_check_mark: | :x:                |
 | sr        | Serbian          | :white_check_mark: | :white_check_mark: | :x:                |
 | tr        | Turkish          | :white_check_mark: | :white_check_mark: | :x:                |
-| vi        | Vietnamese       | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| vi        | Vietnamese       | :white_check_mark: | :white_check_mark: | :x:                |
 
 ## License
 

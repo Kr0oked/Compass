@@ -52,9 +52,11 @@
 
     <string name="location_loading">In attesa dell\'aggiornamento della posizione</string>
     <string name="location_error_message">Posizione non disponibile</string>
-    <string name="access_coarse_location_permission_rationale_title">Abbiamo bisogno del tuo permesso per accedere alla tua posizione approssimativa</string>
-    <string name="access_coarse_location_permission_rationale_message">Per puntare al nord geografico, quest\'app ha bisogno di determinare la declinazione magnetica basandosi sulla tua posizione corrente.</string>
-    <string name="access_coarse_location_permission_denied">Permesso mancante per accedere alla posizione approssimativa. Ritorno al nord magnetico.</string>
+    <!--TODO<string name="location_not_present">Location could not be determined. Falling back to magnetic north.</string>-->
+    <!--TODO<string name="location_reload">Reload location</string>-->
+    <string name="access_location_permission_rationale_title">Abbiamo bisogno del tuo permesso per accedere alla tua posizione approssimativa</string>
+    <string name="access_location_permission_rationale_message">Per puntare al nord geografico, quest\'app ha bisogno di determinare la declinazione magnetica basandosi sulla tua posizione corrente.</string>
+    <string name="access_location_permission_denied">Permesso mancante per accedere alla posizione approssimativa. Ritorno al nord magnetico.</string>
 
     <string name="settings">Impostazioni</string>
 

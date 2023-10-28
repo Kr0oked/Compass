@@ -52,9 +52,11 @@
 
     <string name="location_loading">Đang chờ cập nhật vị trí</string>
     <string name="location_error_message">Vị trí không có sẵn</string>
-    <string name="access_coarse_location_permission_rationale_title">Chúng tôi cần có quyền truy cập vào vị trí của bạn</string>
-    <string name="access_coarse_location_permission_rationale_message">Để hiển thị về phía bắc thực, ứng dụng này cần xác định độ từ thiên từ dựa trên vị trí hiện tại của bạn.</string>
-    <string name="access_coarse_location_permission_denied">Thiếu quyền truy cập vị trí thực. Quay trở lại phía bắc từ tính.</string>
+    <!--TODO<string name="location_not_present">Location could not be determined. Falling back to magnetic north.</string>-->
+    <!--TODO<string name="location_reload">Reload location</string>-->
+    <string name="access_location_permission_rationale_title">Chúng tôi cần có quyền truy cập vào vị trí của bạn</string>
+    <string name="access_location_permission_rationale_message">Để hiển thị về phía bắc thực, ứng dụng này cần xác định độ từ thiên từ dựa trên vị trí hiện tại của bạn.</string>
+    <string name="access_location_permission_denied">Thiếu quyền truy cập vị trí thực. Quay trở lại phía bắc từ tính.</string>
 
     <string name="settings">Cài đặt</string>
 
