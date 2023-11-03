@@ -18,7 +18,8 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
 
     <uses-feature
             android:name="android.hardware.sensor.accelerometer"
@@ -43,7 +44,8 @@
             android:localeConfig="@xml/locales_config"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/Theme.Compass">
+            android:theme="@style/Theme.Compass"
+            tools:targetApi="33">
 
         <activity
                 android:name=".MainActivity"
