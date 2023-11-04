@@ -25,7 +25,6 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import android.location.Criteria
 import android.location.Location
 import android.location.LocationManager
 import android.os.Build.VERSION
@@ -204,9 +203,7 @@ class CompassFragment : Fragment() {
 
     @RequiresPermission(anyOf = [ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION])
     private fun requestLocation(locationManager: LocationManager) {
-        val criteria = getLocationManagerCriteria()
-
-        locationManager.getBestProvider(criteria, true)
+        getBestLocationProvider(locationManager)
             ?.also { provider -> requestLocation(locationManager, provider) }
             ?: run {
                 Log.w(TAG, "No LocationProvider available")
@@ -235,11 +232,34 @@ class CompassFragment : Fragment() {
 
     private fun getExecutor(): Executor = ContextCompat.getMainExecutor(requireContext())
 
-    private fun getLocationManagerCriteria(): Criteria {
-        val criteria = Criteria()
-        criteria.accuracy = Criteria.ACCURACY_FINE
-        criteria.powerRequirement = Criteria.POWER_HIGH
-        return criteria
+    private fun getBestLocationProvider(locationManager: LocationManager): String? {
+        val availableProviders = locationManager.getProviders(true)
+
+        for (preferredProvider in getPreferredProviders()) {
+            if (availableProviders.contains(preferredProvider)) {
+                return preferredProvider
+            }
+        }
+
+        return null
+    }
+
+    private fun getPreferredProviders(): List<String> {
+        val preferredProviders = mutableListOf<String>()
+
+        if (VERSION.SDK_INT >= VERSION_CODES.S) {
+            preferredProviders.add(LocationManager.FUSED_PROVIDER)
+        }
+
+        if (ContextCompat.checkSelfPermission(requireContext(), ACCESS_FINE_LOCATION) == PERMISSION_GRANTED) {
+            preferredProviders.add(LocationManager.GPS_PROVIDER)
+        }
+
+        if (ContextCompat.checkSelfPermission(requireContext(), ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED) {
+            preferredProviders.add(LocationManager.NETWORK_PROVIDER)
+        }
+
+        return preferredProviders
     }
 
     private fun showErrorDialog(appError: AppError) {
