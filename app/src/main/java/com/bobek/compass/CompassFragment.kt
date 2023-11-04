@@ -27,13 +27,10 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.location.Criteria
 import android.location.Location
-import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import android.os.Bundle
-import android.os.CancellationSignal
-import android.provider.Settings
 import android.util.Log
 import android.view.Display
 import android.view.LayoutInflater
@@ -47,6 +44,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.RequiresPermission
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.location.LocationManagerCompat
+import androidx.core.os.CancellationSignal
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -75,7 +74,6 @@ class CompassFragment : Fragment() {
     private val compassViewModel: CompassViewModel by viewModels()
     private val compassMenuProvider = CompassMenuProvider()
     private val compassSensorEventListener = CompassSensorEventListener()
-    private val compassLocationListener = CompassLocationListener()
 
     private lateinit var binding: FragmentCompassBinding
     private lateinit var preferenceStore: PreferenceStore
@@ -195,26 +193,12 @@ class CompassFragment : Fragment() {
 
     @RequiresPermission(anyOf = [ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION])
     private fun registerLocationListener(locationManager: LocationManager) {
-        if (isLocationEnabled(locationManager)) {
+        if (LocationManagerCompat.isLocationEnabled(locationManager)) {
             requestLocation(locationManager)
         } else {
             Log.w(TAG, "Location is disabled")
             setLocation(null)
             showErrorDialog(AppError.LOCATION_DISABLED)
-        }
-    }
-
-    @Suppress("DEPRECATION")
-    private fun isLocationEnabled(locationManager: LocationManager): Boolean {
-        return if (VERSION.SDK_INT >= VERSION_CODES.P) {
-            locationManager.isLocationEnabled
-        } else {
-            val locationSetting: Int = Settings.Secure.getInt(
-                requireContext().contentResolver,
-                Settings.Secure.LOCATION_MODE,
-                Settings.Secure.LOCATION_MODE_OFF
-            )
-            locationSetting != Settings.Secure.LOCATION_MODE_OFF
         }
     }
 
@@ -237,18 +221,16 @@ class CompassFragment : Fragment() {
 
         compassViewModel.locationStatus.value = LocationStatus.LOADING
 
-        if (VERSION.SDK_INT >= VERSION_CODES.R) {
-            locationRequestCancellationSignal = CancellationSignal()
-            locationManager.getCurrentLocation(
-                provider,
-                locationRequestCancellationSignal,
-                getExecutor(),
-                ::setLocation
-            )
-        } else {
-            @Suppress("DEPRECATION")
-            locationManager.requestSingleUpdate(provider, compassLocationListener, null)
-        }
+        locationRequestCancellationSignal?.cancel()
+        locationRequestCancellationSignal = CancellationSignal()
+
+        LocationManagerCompat.getCurrentLocation(
+            locationManager,
+            provider,
+            locationRequestCancellationSignal,
+            getExecutor(),
+            ::setLocation
+        )
     }
 
     private fun getExecutor(): Executor = ContextCompat.getMainExecutor(requireContext())
@@ -272,7 +254,6 @@ class CompassFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         sensorManager?.unregisterListener(compassSensorEventListener)
-        locationManager?.removeUpdates(compassLocationListener)
         locationRequestCancellationSignal?.cancel()
         Log.i(TAG, "Stopped compass")
     }
@@ -425,11 +406,6 @@ class CompassFragment : Fragment() {
                 ?.let(MathUtils::getMagneticDeclination)
                 ?: 0.0f
         }
-    }
-
-
-    private inner class CompassLocationListener : LocationListener {
-        override fun onLocationChanged(location: Location) = setLocation(location)
     }
 
 
