@@ -1,0 +1,6 @@
+- Der Standort wird nur noch einmal abgerufen um Batterie zu sparen
+- Extra Fehlercode wenn die Standort Funktion nicht aktiviert ist
+- Upgrade zu Android 14
+- Verbesserte Dialoge
+- Verbesserte Theme Namen
+- Tippfehler korrigiert
