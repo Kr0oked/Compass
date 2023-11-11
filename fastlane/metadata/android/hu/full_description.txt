@@ -1,0 +1,13 @@
+Pontosan azt kapja, amire számít.
+Egy egyszerű és szép iránytűt.
+
+Funkciók:
+* A mágneses észak vagy a valódi észak irányába is mutathat.
+* Megmutatja a pontos fokokat és a kardinális irányt
+* Megjeleníti az érzékelő állapotát
+* Haptikus visszajelzés
+* Automatikus éjszakai üzemmód
+* Nincsenek reklámok
+* Nem bosszantó
+
+Jó szórakozást!
