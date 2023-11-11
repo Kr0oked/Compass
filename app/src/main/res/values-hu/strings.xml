@@ -56,7 +56,7 @@
     <string name="location_reload">Tartózkodási hely frissítése</string>
     <string name="access_location_permission_rationale_title">Engedélyre van szükség a tartózkodási helyéhez való hozzáféréshez</string>
     <string name="access_location_permission_rationale_message">A valódi északra való igazításhoz ennek az alkalmazásnak meg kell határoznia a mágneses deklinációt az aktuális helyzete alapján.</string>
-    <string name="access_location_permission_denied">Missing permission to access location. Falling back to magnetic north.</string>
+    <string name="access_location_permission_denied">Hiányzik a tartózkodási hely eléréséhez szükséges engedély. A mágneses észak használata.</string>
 
     <string name="settings">Beállítások</string>
 
@@ -83,24 +83,4 @@
     <string name="error">Hiba</string>
     <string name="ok">OK</string>
     <string name="no_thanks">Nem, köszönöm</string>
-
-    <string name="source_code_name" translatable="false">GitHub</string>
-    <string name="license_name" translatable="false">GNU GPLv3</string>
-    <string name="author_name" translatable="false">Philipp Bobek</string>
-
-    <string name="zero_degrees" translatable="false">0°</string>
-    <string name="degrees" translatable="false">%1$d°</string>
-
-    <string name="degree_0_text" translatable="false">0</string>
-    <string name="degree_30_text" translatable="false">30</string>
-    <string name="degree_60_text" translatable="false">60</string>
-    <string name="degree_90_text" translatable="false">90</string>
-    <string name="degree_120_text" translatable="false">120</string>
-    <string name="degree_150_text" translatable="false">150</string>
-    <string name="degree_180_text" translatable="false">180</string>
-    <string name="degree_210_text" translatable="false">210</string>
-    <string name="degree_240_text" translatable="false">240</string>
-    <string name="degree_270_text" translatable="false">270</string>
-    <string name="degree_300_text" translatable="false">300</string>
-    <string name="degree_330_text" translatable="false">330</string>
 </resources>
