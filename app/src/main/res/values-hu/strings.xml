@@ -42,7 +42,7 @@
     <string name="cardinal_direction_west_abbreviation">Ny</string>
 
     <string name="sensor_accuracy_no_contact">Az érzékelő nem elérhető</string>
-    <string name="sensor_accuracy_unreliable">Az érzékelő értékei megbízhatatlanok/string>
+    <string name="sensor_accuracy_unreliable">Az érzékelő értékei megbízhatatlanok</string>
     <string name="sensor_accuracy_low">Alacsony pontosság</string>
     <string name="sensor_accuracy_medium">Átlagos pontosság</string>
     <string name="sensor_accuracy_high">Legnagyobb pontosság</string>
