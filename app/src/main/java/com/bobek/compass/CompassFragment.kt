@@ -148,14 +148,21 @@ class CompassFragment : Fragment() {
 
     private fun registerSensorListener(sensorManager: SensorManager) {
         sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
-            ?.also { rotationVectorSensor -> registerSensorListener(sensorManager, rotationVectorSensor) }
+            ?.also { rotationVectorSensor -> registerRotationVectorSensorListener(sensorManager, rotationVectorSensor) }
             ?: run {
                 Log.w(TAG, "Rotation vector sensor not available")
                 showErrorDialog(AppError.ROTATION_VECTOR_SENSOR_NOT_AVAILABLE)
             }
+
+        sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
+            ?.also { magneticFieldSensor -> registerMagneticFieldSensorListener(sensorManager, magneticFieldSensor) }
+            ?: run {
+                Log.w(TAG, "Magnetic field sensor not available")
+                showErrorDialog(AppError.MAGNETIC_FIELD_SENSOR_NOT_AVAILABLE)
+            }
     }
 
-    private fun registerSensorListener(sensorManager: SensorManager, rotationVectorSensor: Sensor) {
+    private fun registerRotationVectorSensorListener(sensorManager: SensorManager, rotationVectorSensor: Sensor) {
         val success = sensorManager.registerListener(
             compassSensorEventListener,
             rotationVectorSensor,
@@ -166,6 +173,20 @@ class CompassFragment : Fragment() {
         } else {
             Log.w(TAG, "Could not enable rotation vector sensor")
             showErrorDialog(AppError.ROTATION_VECTOR_SENSOR_FAILED)
+        }
+    }
+
+    private fun registerMagneticFieldSensorListener(sensorManager: SensorManager, magneticFieldSensor: Sensor) {
+        val success = sensorManager.registerListener(
+            compassSensorEventListener,
+            magneticFieldSensor,
+            SensorManager.SENSOR_DELAY_NORMAL
+        )
+        if (success) {
+            Log.d(TAG, "Registered listener for magnetic field sensor")
+        } else {
+            Log.w(TAG, "Could not enable magnetic field sensor")
+            showErrorDialog(AppError.MAGNETIC_FIELD_SENSOR_FAILED)
         }
     }
 
@@ -358,7 +379,8 @@ class CompassFragment : Fragment() {
 
         override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
             when (sensor.type) {
-                Sensor.TYPE_ROTATION_VECTOR -> setSensorAccuracy(accuracy)
+                Sensor.TYPE_MAGNETIC_FIELD -> setSensorAccuracy(accuracy)
+                Sensor.TYPE_ROTATION_VECTOR -> Log.v(TAG, "Received rotation vector sensor accuracy $accuracy")
                 else -> Log.w(TAG, "Unexpected accuracy changed event of type ${sensor.type}")
             }
         }
@@ -385,6 +407,7 @@ class CompassFragment : Fragment() {
         override fun onSensorChanged(event: SensorEvent) {
             when (event.sensor.type) {
                 Sensor.TYPE_ROTATION_VECTOR -> updateCompass(event)
+                Sensor.TYPE_MAGNETIC_FIELD -> Log.v(TAG, "Received magnetic field sensor event ${event.values}")
                 else -> Log.w(TAG, "Unexpected sensor changed event of type ${event.sensor.type}")
             }
         }
