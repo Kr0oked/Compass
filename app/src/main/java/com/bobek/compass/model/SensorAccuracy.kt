@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2021 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,14 +18,39 @@
 
 package com.bobek.compass.model
 
+import androidx.annotation.AttrRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.bobek.compass.R
 
-enum class SensorAccuracy(@StringRes val textResourceId: Int, @DrawableRes val iconResourceId: Int) {
-    NO_CONTACT(R.string.sensor_accuracy_no_contact, R.drawable.ic_sensor_no_contact),
-    UNRELIABLE(R.string.sensor_accuracy_unreliable, R.drawable.ic_sensor_unreliable),
-    LOW(R.string.sensor_accuracy_low, R.drawable.ic_sensor_low),
-    MEDIUM(R.string.sensor_accuracy_medium, R.drawable.ic_sensor_medium),
-    HIGH(R.string.sensor_accuracy_high, R.drawable.ic_sensor_high)
+enum class SensorAccuracy(
+    @StringRes val textResourceId: Int,
+    @DrawableRes val iconResourceId: Int,
+    @AttrRes val iconTintAttributeResourceId: Int
+) {
+    NO_CONTACT(
+        R.string.sensor_accuracy_no_contact,
+        R.drawable.ic_sensor_no_contact,
+        androidx.appcompat.R.attr.colorError
+    ),
+    UNRELIABLE(
+        R.string.sensor_accuracy_unreliable,
+        R.drawable.ic_sensor_unreliable,
+        androidx.appcompat.R.attr.colorError
+    ),
+    LOW(
+        R.string.sensor_accuracy_low,
+        R.drawable.ic_sensor_low,
+        androidx.appcompat.R.attr.colorError
+    ),
+    MEDIUM(
+        R.string.sensor_accuracy_medium,
+        R.drawable.ic_sensor_medium,
+        androidx.appcompat.R.attr.colorControlNormal
+    ),
+    HIGH(
+        R.string.sensor_accuracy_high,
+        R.drawable.ic_sensor_high,
+        androidx.appcompat.R.attr.colorControlNormal
+    )
 }

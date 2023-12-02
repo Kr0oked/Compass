@@ -34,8 +34,8 @@
                     android:id="@+id/sensor_accuracy_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:compoundDrawableTint="@{model.sensorAccuracy.iconTintAttributeResourceId}"
                     android:drawableStart="@{ContextCompat.getDrawable(context, model.sensorAccuracy.iconResourceId)}"
-                    android:drawableTint="@android:color/tab_indicator_text"
                     android:text="@{model.sensorAccuracy.textResourceId}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

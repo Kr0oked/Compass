@@ -21,6 +21,7 @@ package com.bobek.compass
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.content.res.ColorStateList
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -61,6 +62,7 @@ import com.bobek.compass.model.SensorAccuracy
 import com.bobek.compass.preference.PreferenceStore
 import com.bobek.compass.util.MathUtils
 import com.bobek.compass.view.CompassViewModel
+import com.google.android.material.color.MaterialColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.concurrent.Executor
 
@@ -312,9 +314,15 @@ class CompassFragment : Fragment() {
         }
 
         private fun updateSensorStatusIcon(sensorAccuracy: SensorAccuracy) {
-            optionsMenu
-                ?.findItem(R.id.action_sensor_status)
-                ?.setIcon(sensorAccuracy.iconResourceId)
+            val menuItem = optionsMenu?.findItem(R.id.action_sensor_status)
+            menuItem?.setIcon(sensorAccuracy.iconResourceId)
+
+            if (VERSION.SDK_INT >= VERSION_CODES.O) {
+                sensorAccuracy.iconTintAttributeResourceId
+                    .let { MaterialColors.getColor(requireContext(), it, this::class.simpleName) }
+                    .let { ColorStateList.valueOf(it) }
+                    .also { menuItem?.iconTintList = it }
+            }
         }
 
         private fun updateScreenRotationIcon(screenOrientationLocked: Boolean) {
@@ -456,10 +464,9 @@ class CompassFragment : Fragment() {
         Log.i(TAG, "Location $location")
         compassViewModel.location.value = location
 
-        if (location == null) {
-            compassViewModel.locationStatus.value = LocationStatus.NOT_PRESENT
-        } else {
-            compassViewModel.locationStatus.value = LocationStatus.PRESENT
+        compassViewModel.locationStatus.value = when (location) {
+            null -> LocationStatus.NOT_PRESENT
+            else -> LocationStatus.PRESENT
         }
     }
 
