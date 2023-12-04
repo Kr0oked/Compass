@@ -62,6 +62,7 @@
 
     <string name="true_north">Maantieteellinen pohjoinen</string>
     <string name="true_north_summary">Korjaa eranto ja näytä maantieteelliseen pohjoiseen. Vaatii pääsyn karkeaan sijaintiisi.</string>
+    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
 
     <string name="haptic_feedback">Haptinen palaute</string>
     <string name="haptic_feedback_summary">Kompassi värisee kun suunta muuttuu.</string>

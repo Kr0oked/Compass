@@ -62,6 +62,7 @@
 
     <string name="true_north">Истински север</string>
     <string name="true_north_summary">Коригиране на магнитния север и показване на истинския север. Изисква достъп до приблизителното местоположение на устройството.</string>
+    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
 
     <string name="haptic_feedback">Тактическа обратна връзка</string>
     <string name="haptic_feedback_summary">Компасът вибрира, когато посоката се промени.</string>

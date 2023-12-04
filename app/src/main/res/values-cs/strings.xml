@@ -62,6 +62,7 @@
 
     <string name="true_north">Skutečný sever</string>
     <string name="true_north_summary">Opravit magnetickou deklinaci a zobrazit pravý sever. Vyžaduje přístup k přibližné poloze.</string>
+    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
 
     <string name="haptic_feedback">Haptická odezva</string>
     <string name="haptic_feedback_summary">Při změně směru kompas vibruje.</string>-->

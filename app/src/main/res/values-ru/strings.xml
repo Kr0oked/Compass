@@ -62,6 +62,7 @@
 
     <string name="true_north">Истинный север</string>-->
     <string name="true_north_summary">Показ истинного севера на основании коррекции магнитного склонения. Для этой функции требуется доступ к местоположению (допустимо дать разрешение только на приблизительное местоположение)</string>
+    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
 
     <string name="haptic_feedback">Тактильная обратная связь</string>-->
     <string name="haptic_feedback_summary">Компас вибрирует при изменении направления</string>-->

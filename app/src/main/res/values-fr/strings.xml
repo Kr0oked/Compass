@@ -62,6 +62,7 @@
 
     <!--TODO<string name="true_north">True North</string>-->
     <!--TODO<string name="true_north_summary">Correct the magnetic declination and show to true north. Requires access to your location.</string>-->
+    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
 
     <!--TODO<string name="haptic_feedback">Haptic feedback</string>-->
     <!--TODO<string name="haptic_feedback_summary">The compass vibrates when the direction changes.</string>-->

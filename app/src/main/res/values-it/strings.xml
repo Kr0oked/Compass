@@ -62,6 +62,7 @@
 
     <string name="true_north">Nord geografico</string>
     <string name="true_north_summary">Correggi la declinazione magnetica e mostra il nord geografico. Richiede l\'accesso alla tua posizione approssimativa.</string>
+    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
 
     <string name="haptic_feedback">Risposta tattile</string>
     <string name="haptic_feedback_summary">La bussola vibra quando la direzione cambia.</string>

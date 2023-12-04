@@ -62,6 +62,7 @@
 
     <string name="true_north">Geografisk nord</string>
     <string name="true_north_summary">Korriger for misvisning og vis mot geografisk nordpol. Krever tilgang til omtrentlig posisjon.</string>
+    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
 
     <string name="haptic_feedback">Vibrasjonstilbakemelding</string>
     <string name="haptic_feedback_summary">Kompasset vibrerer når retningen endres.</string>

@@ -62,6 +62,7 @@
 
     <string name="true_north">Bắc thực tế</string>
     <string name="true_north_summary">Hiệu chỉnh độ lệch từ trường và hiển thị hướng bắc thực tế. Yêu cầu quyền truy cập vào vị trí hiện tại của bạn.</string>
+    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
 
     <string name="haptic_feedback">Tương tác</string>
     <string name="haptic_feedback_summary">La bàn sẽ rung mỗi khi hướng thay đổi.</string>
