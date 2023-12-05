@@ -46,7 +46,6 @@
     <string name="sensor_accuracy_low">Lav nøyaktighet</string>
     <string name="sensor_accuracy_medium">Middels nøyaktighet</string>
     <string name="sensor_accuracy_high">Maksimum nøyaktighet</string>
-    <string name="sensor_accuracy_image_description">Indikerer grafisk sensornøyaktigheten</string>
     <string name="sensor_error_message">Sensor ikke tilgjengelig</string>
     <string name="sensor_calibration_text">Du kan prøve å forbedre sensornøyaktigheten når som helst ved å rotere enheten i et åttetallsmønster.</string>
 

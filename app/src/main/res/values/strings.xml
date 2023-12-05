@@ -46,7 +46,6 @@
     <string name="sensor_accuracy_low">Low accuracy</string>
     <string name="sensor_accuracy_medium">Average accuracy</string>
     <string name="sensor_accuracy_high">Maximum accuracy</string>
-    <string name="sensor_accuracy_image_description">Indicates graphically the sensor\'s accuracy</string>
     <string name="sensor_error_message">Sensor not available</string>
     <string name="sensor_calibration_text">You can try to improve your sensor accuracy at any time by rotating the device in a figure 8 pattern.</string>
 

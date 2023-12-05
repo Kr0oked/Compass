@@ -46,7 +46,6 @@
     <string name="sensor_accuracy_low">Nízká přesnost</string>
     <string name="sensor_accuracy_medium">Průměrná přesnost</string>
     <string name="sensor_accuracy_high">Nejvyšší přesnost</string>
-    <string name="sensor_accuracy_image_description">Graficky značí přesnost senzoru</string>
     <string name="sensor_error_message">Senzor není dostupný</string>
     <string name="sensor_calibration_text">Přesnost snímače můžete kdykoli zkusit zlepšit otáčením zařízení ve tvaru osmičky.</string>
 

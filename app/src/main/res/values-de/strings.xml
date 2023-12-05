@@ -46,7 +46,6 @@
     <string name="sensor_accuracy_low">Niedrige Genauigkeit</string>
     <string name="sensor_accuracy_medium">Durchschnittliche Genauigkeit</string>
     <string name="sensor_accuracy_high">Maximale Genauigkeit</string>
-    <string name="sensor_accuracy_image_description">Zeigt grafisch die Genauigkeit des Sensors an</string>
     <string name="sensor_error_message">Sensor nicht verfügbar</string>
     <string name="sensor_calibration_text">Sie können jederzeit versuchen die Genauigkeit ihres Sensors zu erhöhen indem sie das Gerät mehrfach in Form einer 8 rotieren.</string>
 

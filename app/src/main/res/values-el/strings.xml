@@ -46,7 +46,6 @@
     <string name="sensor_accuracy_low">Χαμηλή ακρίβεια</string>
     <string name="sensor_accuracy_medium">Μέτρια ακρίβεια</string>
     <string name="sensor_accuracy_high">Μέγιστη ακρίβεια</string>
-    <string name="sensor_accuracy_image_description">Εμφανίζει γραφικά την ακρίβεια του αισθητήρα</string>
     <string name="sensor_error_message">Μη διαθέσιμος αισθητήρας</string>
     <string name="sensor_calibration_text">Μπορείτε να βελτιώσετε οποιαδήποτε στιγμή την ακρίβεια αισθητήρα περιστρέφοντας την συσκευή σε σχήμα του 8.</string>
 

@@ -46,7 +46,6 @@
     <string name="sensor_accuracy_low">Độ chính xác thấp</string>
     <string name="sensor_accuracy_medium">Độ chính xác trung bình</string>
     <string name="sensor_accuracy_high">Độ chính xác cao</string>
-    <string name="sensor_accuracy_image_description">Hiển thị đồ họa độ chính xác của cảm biến</string>
     <string name="sensor_error_message">Cảm biến không có sẵn</string>
     <string name="sensor_calibration_text">Bạn có thể cải thiện độ chính xác của cảm biến bất kỳ lúc nào bằng cách xoay thiết bị theo hình 8.</string>
 

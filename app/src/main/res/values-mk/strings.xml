@@ -46,7 +46,6 @@
     <string name="sensor_accuracy_low">Слаба точност</string>
     <string name="sensor_accuracy_medium">Просечна точност</string>
     <string name="sensor_accuracy_high">Максимална точност</string>
-    <string name="sensor_accuracy_image_description">Графички ја порикажува точноста на сензорите</string>
     <string name="sensor_error_message">Сензорот не е достапен</string>
     <string name="sensor_calibration_text">Можете да се обидете да ја подобрите точноста на сензорот во секое време со вртење на уредот во форма на осмица.</string>
 

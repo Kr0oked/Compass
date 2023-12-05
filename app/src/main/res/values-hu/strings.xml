@@ -46,7 +46,6 @@
     <string name="sensor_accuracy_low">Alacsony pontosság</string>
     <string name="sensor_accuracy_medium">Átlagos pontosság</string>
     <string name="sensor_accuracy_high">Legnagyobb pontosság</string>
-    <string name="sensor_accuracy_image_description">Grafikusan jelzi az érzékelő pontosságát</string>
     <string name="sensor_error_message">Az érzékelő nem elérhető</string>
     <string name="sensor_calibration_text">Az érzékelő pontosságát bármikor megpróbálhatja javítani a készülék 8-as alakban történő forgatásával.</string>
 

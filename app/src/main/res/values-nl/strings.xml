@@ -46,7 +46,6 @@
     <string name="sensor_accuracy_low">Lage nauwkeurigheid</string>
     <string name="sensor_accuracy_medium">Gemiddelde nauwkeurigheid</string>
     <string name="sensor_accuracy_high">Maximale nauwkeurigheid</string>
-    <string name="sensor_accuracy_image_description">Geeft grafisch de nauwkeurigheid van de sensoren weer</string>
     <string name="sensor_error_message">Sensor niet beschikbaar </string>
     <string name="sensor_calibration_text"> kunt op elk moment proberen de nauwkeurigheid van uw sensor te verbeteren door het apparaat in een figuur 8-patroon te draaien.</string>
 

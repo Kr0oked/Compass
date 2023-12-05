@@ -46,7 +46,6 @@
     <string name="sensor_accuracy_low">Matala tarkkuus</string>
     <string name="sensor_accuracy_medium">Hyvä tarkkuus</string>
     <string name="sensor_accuracy_high">Suuri tarkkuus</string>
-    <string name="sensor_accuracy_image_description">Ilmaisee graafisesti anturin tarkkuuden</string>
     <string name="sensor_error_message">Anturia ei ole saatavilla</string>
     <string name="sensor_calibration_text">Voit yrittää parantaa tarkuutta kiertämällä laitetta kahdeksikon muodossa.</string>
 

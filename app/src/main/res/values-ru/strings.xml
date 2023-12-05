@@ -46,7 +46,6 @@
     <string name="sensor_accuracy_low">Низкая точность</string>
     <string name="sensor_accuracy_medium">Средняя точность</string>
     <string name="sensor_accuracy_high">Максимальная точность</string>
-    <string name="sensor_accuracy_image_description">Графически отображает точность датчиков</string>
     <string name="sensor_error_message">Датчик недоступен</string>
     <string name="sensor_calibration_text">Вы можете попытаться повысить точность датчика в любое время, повернув устройство в воздухе виде восьмерки несколько раз.</string>
 

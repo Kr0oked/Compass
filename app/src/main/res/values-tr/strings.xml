@@ -46,7 +46,6 @@
     <string name="sensor_accuracy_low">Düşük doğruluk</string>
     <string name="sensor_accuracy_medium">Ortalama doğruluk</string>
     <string name="sensor_accuracy_high">En yüksek doğruluk</string>
-    <string name="sensor_accuracy_image_description">Sensörlerin doğruluğunu grafikle gösterir</string>
     <string name="sensor_error_message">Sensör kullanılamıyor</string>
     <string name="sensor_calibration_text">Sensör doğruluğunu, cihazı 8 şeklinde döndürerek arttırmayı deneyebilirsiniz</string>
 

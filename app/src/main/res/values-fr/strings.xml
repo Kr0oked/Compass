@@ -46,7 +46,6 @@
     <string name="sensor_accuracy_low">Précision faible</string>
     <string name="sensor_accuracy_medium">Précision moyenne</string>
     <string name="sensor_accuracy_high">Précision maximale</string>
-    <string name="sensor_accuracy_image_description">Affichage graphique de la précision du capteur</string>
     <string name="sensor_error_message">Capteur non disponible</string>
     <string name="sensor_calibration_text">Vous pouvez améliorer la précision de votre capteur à n\'importe quel moment en tournant l\'appareil en faisant un 8.</string>
 

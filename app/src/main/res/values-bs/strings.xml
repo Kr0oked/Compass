@@ -46,7 +46,6 @@
     <string name="sensor_accuracy_low">Niska tačnost</string>
     <string name="sensor_accuracy_medium">Prosječna tačnost</string>
     <string name="sensor_accuracy_high">Maksimalna tačnost</string>
-    <string name="sensor_accuracy_image_description">Grafički pokazuje tačnost senzora</string>
     <string name="sensor_error_message">Senzor nije dostupan</string>
     <string name="sensor_calibration_text">Možete pokušati poboljšati tačnost senzora u bilo kom trenutku rotiranjem uređaja u obliku osmice.</string>
 
