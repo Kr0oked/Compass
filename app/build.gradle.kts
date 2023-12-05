@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.bobek.compass"
-        minSdk = 22
+        minSdk = 23
         targetSdk = 34
         versionCode = 17
         versionName = "1.12.0"
