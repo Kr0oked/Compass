@@ -2,7 +2,7 @@
 
 <!--
   ~ This file is part of Compass.
-  ~ Copyright (C) 2022 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~ Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources">
     <color name="seed">#008577</color>
     <color name="md_theme_light_primary">#006B5F</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
