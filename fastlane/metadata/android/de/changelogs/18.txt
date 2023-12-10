@@ -1,0 +1,6 @@
+- Hinweis zur verwendeten Deklination hinzugefügt
+- Erklärungsbild zur Sensorkalibrierung hinzugefügt
+- Ungarische Übersetzung hinzugefügt
+- Verbesserte Sensor Status Anzeige
+- Dedizierte Markierung für Norden entfernt
+- minSDK wurde auf 23 angehoben
