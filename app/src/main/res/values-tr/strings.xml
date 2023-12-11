@@ -49,38 +49,38 @@
     <string name="sensor_error_message">Sensör kullanılamıyor</string>
     <string name="sensor_calibration_text">Sensör doğruluğunu, cihazı 8 şeklinde döndürerek arttırmayı deneyebilirsiniz</string>
 
-    <!--TODO<string name="location_loading">Waiting for location update</string>-->
-    <!--TODO<string name="location_error_message">Location not available</string>-->
-    <!--TODO<string name="location_not_present">Location could not be determined. Falling back to magnetic north.</string>-->
-    <!--TODO<string name="location_reload">Reload location</string>-->
-    <!--TODO<string name="access_location_permission_rationale_title">We need permission to access your location</string>-->
-    <!--TODO<string name="access_location_permission_rationale_message">For showing to true north this app needs to determine the magnetic declination based on your current location.</string>-->
-    <!--TODO<string name="access_location_permission_denied">Missing permission to access location. Falling back to magnetic north.</string>-->
+    <string name="location_loading">Konum güncellemesi için bekliyor</string>
+    <string name="location_error_message">Konum mevcut değil</string>
+    <string name="location_not_present">Konum belirlenemedi. Manyetik kuzeye geçiliyor.</string>
+    <string name="location_reload">Konumu yeniden yükle</string>
+    <string name="access_location_permission_rationale_title">Konumunuza erişmek için sizin izninize ihtiyacımız var</string>
+    <string name="access_location_permission_rationale_message">Gerçek kuzeyi göstermek için bu uygulama manyetik sapmayı konumu kullanarak belirlemeli.</string>
+    <string name="access_location_permission_denied">Konum erişimi için izin verilmedi. Manyetik kuzeye geçiliyor.</string>
 
-    <!--TODO<string name="settings">Settings</string>-->
+    <string name="settings">Ayarlar</string>
 
-    <!--TODO<string name="true_north">True North</string>-->
-    <!--TODO<string name="true_north_summary">Correct the magnetic declination and show to true north. Requires access to your location.</string>-->
-    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
+    <string name="true_north">Gerçek (Coğrafi) kuzey</string>
+    <string name="true_north_summary">Manyetik sapmayı doğrula ve gerçek kuzeyi göster. Konum erişimi gerekir.</string>
+    <string name="magnetic_north">Manyetik kuzey</string>
 
-    <!--TODO<string name="haptic_feedback">Haptic feedback</string>-->
-    <!--TODO<string name="haptic_feedback_summary">The compass vibrates when the direction changes.</string>-->
+    <string name="haptic_feedback">Dokunsal geribildirim</string>
+    <string name="haptic_feedback_summary">Yön değişince pusula titreşir.</string>
 
-    <!--TODO<string name="display">Display</string>-->
-    <!--TODO<string name="night_mode">Theme</string>-->
-    <!--TODO<string name="night_mode_follow_system">Follow system</string>-->
-    <!--TODO<string name="night_mode_no">Light</string>-->
-    <!--TODO<string name="night_mode_yes">Dark</string>-->
+    <string name="display">Görüntü</string>
+    <string name="night_mode">Tema</string>
+    <string name="night_mode_follow_system">Sistem ayarı</string>
+    <string name="night_mode_no">Aydınlık mod</string>
+    <string name="night_mode_yes">Karanlık mod</string>
 
     <string name="about">Hakkında</string>
-    <!--TODO<string name="author">Author</string>-->
+    <string name="author">Yaratıcı</string>
     <string name="license">Lisans</string>
-    <!--TODO<string name="source_code">Source code</string>-->
+    <string name="source_code">Kaynak kodu</string>
     <string name="version">Sürüm</string>
 
-    <!--TODO<string name="error_message">An error occurred.\nMessage: %1$s\nCode: %2$s</string>-->
+    <string name="error_message">Bir hata oluştu.\nMesaj: %1$s\nKod: %2$s</string>
 
-    <!--TODO<string name="error">Error</string>-->
+    <string name="error">Hata</string>
     <string name="ok">Tamam</string>
-    <!--TODO<string name="no_thanks">No thanks</string>-->
+    <string name="no_thanks">Hayır, teşekkürler</string>
 </resources>
