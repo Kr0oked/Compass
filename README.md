@@ -44,7 +44,7 @@ height="80">](https://play.google.com/store/apps/details?id=com.bobek.compass)
 | nl        | Dutch            | :white_check_mark: | :x:                | :x:                |
 | ru        | Russian          | :white_check_mark: | :white_check_mark: | :x:                |
 | sr        | Serbian          | :white_check_mark: | :white_check_mark: | :x:                |
-| tr        | Turkish          | :white_check_mark: | :white_check_mark: | :x:                |
+| tr        | Turkish          | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | vi        | Vietnamese       | :white_check_mark: | :white_check_mark: | :x:                |
 
 ## License
