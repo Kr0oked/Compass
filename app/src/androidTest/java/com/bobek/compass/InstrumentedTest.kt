@@ -53,11 +53,13 @@ class InstrumentedTest {
         onView(withId(R.id.status_degrees_text)).check(matches(not(isDisplayed())))
 
         setAzimuth(0f)
+        Thread.sleep(100)
         onView(withId(R.id.status_degrees_text))
             .check(matches(isDisplayed()))
             .check(matches(withText("0°")))
 
         setAzimuth(180f)
+        Thread.sleep(100)
         onView(withId(R.id.status_degrees_text))
             .check(matches(isDisplayed()))
             .check(matches(withText("180°")))
