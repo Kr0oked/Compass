@@ -34,7 +34,7 @@ height="80">](https://play.google.com/store/apps/details?id=com.bobek.compass)
 | cs        | Czech            | :white_check_mark: | :white_check_mark: | :x:                |
 | de        | German           | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | el        | Greek            | :white_check_mark: | :white_check_mark: | :x:                |
-| fi        | Finnish          | :white_check_mark: | :white_check_mark: | :x:                |
+| fi        | Finnish          | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | fr        | French           | :white_check_mark: | :white_check_mark: | :x:                |
 | hr        | Croatian         | :white_check_mark: | :white_check_mark: | :x:                |
 | hu        | Hungarian        | :white_check_mark: | :white_check_mark: | :x:                |
