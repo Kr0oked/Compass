@@ -6,6 +6,8 @@
 
 ### Simple and beautiful compass for Android
 
+This project is intended to offer a simple and good looking compass for Android
+
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
 alt="Get it on F-Droid"
 height="80">](https://f-droid.org/packages/com.bobek.compass/)
