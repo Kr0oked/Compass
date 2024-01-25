@@ -63,5 +63,5 @@ height="80">](https://github.com/Kr0oked/Compass/releases/latest)
 
 ## License
 
-The project is licensed under the GNU GPL v3. 
+The project is licensed under the GNU GPL v3.
 You can find the license text in the [LICENSE file](LICENSE).
