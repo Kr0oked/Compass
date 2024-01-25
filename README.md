@@ -9,11 +9,6 @@ height="80">](https://f-droid.org/packages/com.bobek.compass/)
 alt="Get it on Google Play"
 height="80">](https://play.google.com/store/apps/details?id=com.bobek.compass)
 
-## Screenshots
-
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="Screenshot Night" height="500"/>
-<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" alt="Screenshot Day" height="500"/>
-
 ## Features
 
 * Can point to magnetic north as well as true north
@@ -23,6 +18,13 @@ height="80">](https://play.google.com/store/apps/details?id=com.bobek.compass)
 * Automatic night mode
 * No advertisements
 * No annoyance
+
+## Screenshots
+
+<div>
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="Screenshot Night" height="500"/>
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" alt="Screenshot Day" height="500"/>
+</div>
 
 ## Translations
 
@@ -50,4 +52,4 @@ height="80">](https://play.google.com/store/apps/details?id=com.bobek.compass)
 ## License
 
 The project is licensed under the GNU GPL v3.
-You can find the license text in the LICENSE file.
+You can find the license text in the [LICENSE file](LICENSE).
