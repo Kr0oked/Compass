@@ -8,7 +8,7 @@ Features:
 * Haptic feedback
 * Follow system, Light and Dark theme
 * Automatic Dark theme
-* Localization (18 languages)
+* Localization
 * No advertisements
 * No trackers
 * No annoyance
