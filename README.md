@@ -28,7 +28,7 @@ height="80">](https://github.com/Kr0oked/Compass/releases/latest)
 * Haptic feedback
 * Follow system, Light and Dark theme
 * Automatic Dark theme
-* Localization (18 languages)
+* Localization
 * No advertisements
 * No trackers
 * No annoyance
