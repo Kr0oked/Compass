@@ -6,8 +6,9 @@ Inhalt:
 * Zeigt die exakte Gradzahl und Himmelsrichtung an
 * Zeigt den Sensor Status an
 * Haptisches Feedback
-* Automatischer Nachtmodus
+* Light und Dark Theme
 * Keine Werbung
+* Keine Tracker
 * Keine Belästigung
 
 Viel Spaß!

@@ -6,9 +6,7 @@ Features:
 * Shows exact degrees and cardinal direction
 * Displays sensor status
 * Haptic feedback
-* Follow system, Light and Dark theme
-* Automatic Dark theme
-* Localization
+* Light and Dark theme
 * No advertisements
 * No trackers
 * No annoyance
