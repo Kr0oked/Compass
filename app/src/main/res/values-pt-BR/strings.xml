@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Compass.
+  ~ Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Compass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="compass">Bússola</string>
+
+    <string name="sensor_status">Estado do sensor</string>
+    <string name="lock_screen_rotation">Rotação da tela de bloqueio</string>
+
+    <string name="compass_rose_image_description">Bússola apontando para o norte</string>
+    <string name="device_heading_indicator_image_description">Indica em qual direção o dispositivo está apontando</string>
+
+    <string name="cardinal_direction_north">Norte</string>
+    <string name="cardinal_direction_northeast">Nordeste</string>
+    <string name="cardinal_direction_east">Leste</string>
+    <string name="cardinal_direction_southeast">Sudeste</string>
+    <string name="cardinal_direction_south">Sul</string>
+    <string name="cardinal_direction_southwest">Sudoeste</string>
+    <string name="cardinal_direction_west">Oeste</string>
+    <string name="cardinal_direction_northwest">Noroeste</string>
+
+    <string name="cardinal_direction_north_abbreviation">N</string>
+    <string name="cardinal_direction_east_abbreviation">L</string>
+    <string name="cardinal_direction_south_abbreviation">S</string>
+    <string name="cardinal_direction_west_abbreviation">O</string>
+
+    <string name="sensor_accuracy_no_contact">Sensor não disponível</string>
+    <string name="sensor_accuracy_unreliable">Os valores do sensor não são confiáveis</string>
+    <string name="sensor_accuracy_low">Baixa precisão</string>
+    <string name="sensor_accuracy_medium">Média precisão</string>
+    <string name="sensor_accuracy_high">Máxima precisão</string>
+    <string name="sensor_error_message">Sensor não disponível</string>
+    <string name="sensor_calibration_text">Você pode tentar melhorar a precisão do sensor a qualquer momento girando o dispositivo em um padrão de movimento em 8.</string>
+
+    <string name="location_loading">Aguardando atualização de localização</string>
+    <string name="location_error_message">Localização não disponível.</string>
+    <string name="location_not_present">A localização não pôde ser determinada. Voltando ao norte magnético.</string>
+    <string name="location_reload">Recarregar localização</string>
+    <string name="access_location_permission_rationale_title">Precisamos de permissão para acessar sua localização</string>
+    <string name="access_location_permission_rationale_message">Para mostrar o norte verdadeiro, este aplicativo precisa determinar a declinação magnética com base na sua localização atual.</string>
+    <string name="access_location_permission_denied">Sem permissão para acessar sua localização atual. Alterando para o norte magnético.</string>
+
+    <string name="settings">Configurações</string>
+
+    <string name="true_north">Norte verdadeiro</string>
+    <string name="true_north_summary">Corrigir a declinação magnética e mostre o norte verdadeiro. É necessário acesso à sua localização.</string>
+    <string name="magnetic_north">Norte magnético</string>
+
+    <string name="haptic_feedback">Feedback tátil</string>
+    <string name="haptic_feedback_summary">A bússola vibra quando a direção muda.</string>
+
+    <string name="display">Tela</string>
+    <string name="night_mode">Tema</string>
+    <string name="night_mode_follow_system">De acordo com o sistema</string>
+    <string name="night_mode_no">Claro</string>
+    <string name="night_mode_yes">Escuro</string>
+
+    <string name="about">Sobre</string>
+    <string name="author">Autor</string>
+    <string name="license">Licença</string>
+    <string name="source_code">Código fonte</string>
+    <string name="version">Versão</string>
+
+    <string name="error_message">Ocorreu um erro.\nMensagem: %1$s\nCode: %2$s</string>
+
+    <string name="error">Erro</string>
+    <string name="ok">OK</string>
+    <string name="no_thanks">Não, obrigado</string>
+
+    <string name="source_code_name" translatable="false">GitHub</string>
+    <string name="license_name" translatable="false">GNU GPLv3</string>
+    <string name="author_name" translatable="false">Philipp Bobek</string>
+
+    <string name="zero_degrees" translatable="false">0°</string>
+    <string name="degrees" translatable="false">%1$d°</string>
+
+    <string name="degree_0_text" translatable="false">0</string>
+    <string name="degree_30_text" translatable="false">30</string>
+    <string name="degree_60_text" translatable="false">60</string>
+    <string name="degree_90_text" translatable="false">90</string>
+    <string name="degree_120_text" translatable="false">120</string>
+    <string name="degree_150_text" translatable="false">150</string>
+    <string name="degree_180_text" translatable="false">180</string>
+    <string name="degree_210_text" translatable="false">210</string>
+    <string name="degree_240_text" translatable="false">240</string>
+    <string name="degree_270_text" translatable="false">270</string>
+    <string name="degree_300_text" translatable="false">300</string>
+    <string name="degree_330_text" translatable="false">330</string>
+</resources>
