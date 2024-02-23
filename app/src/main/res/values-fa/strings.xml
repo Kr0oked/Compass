@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Compass.
+  ~ Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Compass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="compass">قطب‌نما</string>
+
+    <string name="sensor_status">وضعیت سنسور</string>
+    <string name="lock_screen_rotation">قفل کردن چرخش صفحه</string>
+
+    <string name="compass_rose_image_description">جهت قطب‌نما به سمت شمال</string>
+    <string name="device_heading_indicator_image_description">نشان می‌دهد که دستگاه به کدام جهت اشاره دارد</string>
+
+    <string name="cardinal_direction_north">شمال</string>
+    <string name="cardinal_direction_northeast">شمال شرقی</string>
+    <string name="cardinal_direction_east">شرق</string>
+    <string name="cardinal_direction_southeast">جنوب شرقی</string>
+    <string name="cardinal_direction_south">جنوب</string>
+    <string name="cardinal_direction_southwest">جنوب غربی</string>
+    <string name="cardinal_direction_west">غرب</string>
+    <string name="cardinal_direction_northwest">شمال غربی</string>
+
+    <string name="cardinal_direction_north_abbreviation">شمال</string>
+    <string name="cardinal_direction_east_abbreviation">شرق</string>
+    <string name="cardinal_direction_south_abbreviation">جنوب</string>
+    <string name="cardinal_direction_west_abbreviation">غرب</string>
+
+    <string name="sensor_accuracy_no_contact">حسگر جهت‌یابی در دسترس نیست</string>
+    <string name="sensor_accuracy_unreliable">مقادیر حسگر جهت‌یابی دقیق نیستند</string>
+    <string name="sensor_accuracy_low">دقت پایین</string>
+    <string name="sensor_accuracy_medium">دقت متوسط</string>
+    <string name="sensor_accuracy_high">حداکثر دقت</string>
+    <string name="sensor_error_message">حسگر جهت‌یابی در دسترس نیست</string>
+    <string name="sensor_calibration_text">شما می‌توانید دقت جهت‌یابی را با چرخش دستگاه به شکل 8 بهبود دهید.</string>
+
+    <string name="location_loading">در انتظار به‌روزرسانی موقعیت</string>
+    <string name="location_error_message">موقعیت در دسترس نیست</string>
+    <string name="location_not_present">موقعیت در دسترس نیست. بازگشت به شمال مغناطیسی</string>
+    <string name="location_reload">بارگزاری مجدد موقعیت</string>
+    <string name="access_location_permission_rationale_title">برای دسترسی به موقعیت به مجوز نیاز داریم.</string>
+    <string name="access_location_permission_rationale_message">برای نشان دادن شمال واقعی، این برنامه نیاز به تعیین انحراف مغناطیسی بر اساس مکان فعلی شما دارد.</string>
+    <string name="access_location_permission_denied">اجازه دسترسی به موقعیت داده نشده است. بازگشت به سمت شمال مغناطیسی.</string>
+
+    <string name="settings">تنظیمات</string>
+
+    <string name="true_north">شمال واقعی</string>
+    <string name="true_north_summary">تصحیح انحراف مغناطیسی برای نمایش جهت شمال واقعی. این تنظیم نیاز به دسترسی به موقعیت مکانی شما دارد.</string>
+    <string name="magnetic_north">شمال مغناطیسی</string>
+
+    <string name="haptic_feedback">بازخورد لرزشی</string>
+    <string name="haptic_feedback_summary">با تغییر جهت قطب‌نما خواهد لرزید.</string>
+
+    <string name="display">نمایش</string>
+    <string name="night_mode">پوسته</string>
+    <string name="night_mode_follow_system">تعیین توسط سیستم</string>
+    <string name="night_mode_no">روشن</string>
+    <string name="night_mode_yes">تاریک</string>
+
+    <string name="about">درباره</string>
+    <string name="author">نویسنده</string>
+    <string name="license">مجوز</string>
+    <string name="source_code">سورس کد</string>
+    <string name="version">نسخه</string>
+
+    <string name="error_message">An error occurred.\nMessage: %1$s\nCode: %2$s</string>
+
+    <string name="error">خطا</string>
+    <string name="ok">باشه</string>
+    <string name="no_thanks">نه ممنون</string>
+
+    <string name="source_code_name" translatable="false">GitHub</string>
+    <string name="license_name" translatable="false">GNU GPLv3</string>
+    <string name="author_name" translatable="false">Philipp Bobek</string>
+
+    <string name="zero_degrees" translatable="false">0°</string>
+    <string name="degrees" translatable="false">%1$d°</string>
+
+    <string name="degree_0_text" translatable="false">0</string>
+    <string name="degree_30_text" translatable="false">30</string>
+    <string name="degree_60_text" translatable="false">60</string>
+    <string name="degree_90_text" translatable="false">90</string>
+    <string name="degree_120_text" translatable="false">120</string>
+    <string name="degree_150_text" translatable="false">150</string>
+    <string name="degree_180_text" translatable="false">180</string>
+    <string name="degree_210_text" translatable="false">210</string>
+    <string name="degree_240_text" translatable="false">240</string>
+    <string name="degree_270_text" translatable="false">270</string>
+    <string name="degree_300_text" translatable="false">300</string>
+    <string name="degree_330_text" translatable="false">330</string>
+</resources>
