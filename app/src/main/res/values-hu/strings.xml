@@ -61,7 +61,7 @@
 
     <string name="true_north">Valódi észak</string>
     <string name="true_north_summary">A mágneses deklináció javítása és a valódi észak mutatása. Hozzáférés szükséges a tartózkodási helyhez.</string>
-    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
+    <string name="magnetic_north">Mágneses észak</string>
 
     <string name="haptic_feedback">Haptikus visszajelzés</string>
     <string name="haptic_feedback_summary">Az iránytű rezeg, amikor az irány megváltozik.</string>
