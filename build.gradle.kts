@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,6 @@
  */
 
 plugins {
-    id("com.android.application") version "8.3.0" apply false
-    id("org.jetbrains.kotlin.android") version "1.8.10" apply false
+    alias(libs.plugins.androidApplication) apply false
+    alias(libs.plugins.jetbrainsKotlinAndroid) apply false
 }

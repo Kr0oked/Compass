@@ -17,8 +17,8 @@
  */
 
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-kapt")
 }
 
@@ -60,7 +60,7 @@ android {
         dataBinding = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
     androidResources {
         generateLocaleConfig = true
@@ -76,21 +76,26 @@ android {
             }
         }
     }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
     lint {
         warning += "MissingTranslation"
     }
 }
 
 dependencies {
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
-    implementation("androidx.preference:preference-ktx:1.2.1")
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.preference.ktx)
 
-    implementation("com.google.android.material:material:1.11.0")
+    implementation(libs.material)
 
-    testImplementation("junit:junit:4.13.2")
+    testImplementation(libs.junit)
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
