@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -307,7 +307,7 @@ class CompassFragment : Fragment() {
         private var optionsMenu: Menu? = null
 
         override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-            menuInflater.inflate(R.menu.menu_metronome, menu)
+            menuInflater.inflate(R.menu.menu_compass, menu)
             optionsMenu = menu
             compassViewModel.sensorAccuracy.observe(viewLifecycleOwner) { updateSensorStatusIcon(it) }
             preferenceStore.screenOrientationLocked.observe(viewLifecycleOwner) { updateScreenRotationIcon(it) }
