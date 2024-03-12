@@ -18,12 +18,28 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<resources>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".ThirdPartyLicenseFragment">
 
-    <style name="Theme.App" parent="Base.Theme.App">
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
-    </style>
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</resources>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_margin"
+                android:autoLink="web"
+                android:text="@{licenseContent}" />
+
+    </androidx.core.widget.NestedScrollView>
+
+    <data>
+
+        <variable
+                name="licenseContent"
+                type="String" />
+    </data>
+
+</layout>

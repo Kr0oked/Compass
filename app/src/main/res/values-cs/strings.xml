@@ -2,7 +2,7 @@
 
 <!--
   ~ This file is part of Compass.
-  ~ Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -75,6 +75,8 @@
     <string name="about">O aplikaci</string>
     <string name="author">Autor</string>
     <string name="license">Licence</string>
+    <!--TODO<string name="third_party_licenses">Third-party licenses</string>-->
+    <!--TODO<string name="third_party_licenses_summary">Licenses of included open source libraries</string>-->
     <string name="source_code">Zdrojový kód</string>
     <string name="version">Verze</string>
 

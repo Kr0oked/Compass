@@ -16,24 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass.preference
+package com.bobek.compass
 
-object PreferenceConstants {
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.bobek.compass.databinding.FragmentThirdPartyLicenseBinding
 
-    const val TRUE_NORTH = "true_north"
+class ThirdPartyLicenseFragment : Fragment() {
 
-    const val HAPTIC_FEEDBACK = "haptic_feedback"
+    private lateinit var binding: FragmentThirdPartyLicenseBinding
 
-    const val SCREEN_ORIENTATION_LOCKED = "screen_orientation_locked"
-
-    const val NIGHT_MODE = "night_mode"
-    const val NIGHT_MODE_VALUE_FOLLOW_SYSTEM = "follow_system"
-    const val NIGHT_MODE_VALUE_NO = "no"
-    const val NIGHT_MODE_VALUE_YES = "yes"
-
-    const val ACCESS_LOCATION_PERMISSION_REQUESTED = "access_location_permission_requested"
-
-    const val THIRD_PARTY_LICENSES = "third_party_licenses"
-
-    const val VERSION = "version"
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        binding = FragmentThirdPartyLicenseBinding.inflate(inflater, container, false)
+        binding.licenseContent = arguments?.getString("licenseContent")
+        return binding.root
+    }
 }

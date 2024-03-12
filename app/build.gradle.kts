@@ -19,6 +19,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.android.gms.oss-licenses-plugin")
     id("kotlin-kapt")
 }
 
@@ -93,6 +94,8 @@ dependencies {
     implementation(libs.androidx.preference.ktx)
 
     implementation(libs.material)
+
+    implementation(libs.oss.licenses.parser)
 
     testImplementation(libs.junit)
 

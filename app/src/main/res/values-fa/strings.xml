@@ -2,7 +2,7 @@
 
 <!--
   ~ This file is part of Compass.
-  ~ Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
   ~
   ~ This program is free software: you can redistribute it and/or modify
   ~ it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@
   ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<resources>
     <string name="compass">قطب‌نما</string>
 
     <string name="sensor_status">وضعیت سنسور</string>
@@ -75,6 +75,8 @@
     <string name="about">درباره</string>
     <string name="author">نویسنده</string>
     <string name="license">مجوز</string>
+    <!--TODO<string name="third_party_licenses">Third-party licenses</string>-->
+    <!--TODO<string name="third_party_licenses_summary">Licenses of included open source libraries</string>-->
     <string name="source_code">سورس کد</string>
     <string name="version">نسخه</string>
 

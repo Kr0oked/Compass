@@ -47,18 +47,18 @@ height="80">](https://github.com/Kr0oked/Compass/releases/latest)
 | de        | German               | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | el        | Greek                | :white_check_mark: | :white_check_mark: | :x:                |
 | fa        | Persian              | :white_check_mark: | :white_check_mark: | :x:                |
-| fi        | Finnish              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| fi        | Finnish              | :white_check_mark: | :white_check_mark: | :x:                |
 | fr        | French               | :white_check_mark: | :white_check_mark: | :x:                |
 | hr        | Croatian             | :white_check_mark: | :white_check_mark: | :x:                |
-| hu        | Hungarian            | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| hu        | Hungarian            | :white_check_mark: | :white_check_mark: | :x:                |
 | it        | Italian              | :white_check_mark: | :white_check_mark: | :x:                |
 | mk        | Macedonian           | :white_check_mark: | :white_check_mark: | :x:                |
 | nb        | Norwegian Bokmål     | :white_check_mark: | :x:                | :x:                |
-| pt-BR     | Brazilian Portuguese | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| pt-BR     | Brazilian Portuguese | :white_check_mark: | :white_check_mark: | :x:                |
 | nl        | Dutch                | :white_check_mark: | :x:                | :x:                |
 | ru        | Russian              | :white_check_mark: | :white_check_mark: | :x:                |
 | sr        | Serbian              | :white_check_mark: | :white_check_mark: | :x:                |
-| tr        | Turkish              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| tr        | Turkish              | :white_check_mark: | :white_check_mark: | :x:                |
 | vi        | Vietnamese           | :white_check_mark: | :white_check_mark: | :x:                |
 
 ## License
