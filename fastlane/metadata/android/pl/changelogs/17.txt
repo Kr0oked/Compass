@@ -1,0 +1,6 @@
+- Żądaj tylko jednej lokalizacji, aby oszczędzać baterię
+- Dodatkowy kod błędu, gdy lokalizacja jest wyłączona
+- Zaktualizowano do Androida 14
+- Ulepszone okna dialogowe
+- Poprawione nazewnictwo motywów
+- Naprawiono literówki

@@ -1,0 +1,4 @@
+- Możliwość zablokowania lub śledzenia obrotu ekranu
+- Poprawione skalowanie kompasu
+- Tłumaczenie niderlandzkie
+- Tłumaczenie fińskie

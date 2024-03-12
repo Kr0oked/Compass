@@ -1,0 +1,1 @@
+- Naprawiono awarię aplikacji występującą kiedy dialog informacyjny otwarty został kilka razy

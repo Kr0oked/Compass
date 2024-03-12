@@ -1,0 +1,2 @@
+- Kompas już nie drga
+- Dodano wskazówkę dot. kalibracji sensora

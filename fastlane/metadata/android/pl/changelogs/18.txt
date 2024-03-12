@@ -1,0 +1,6 @@
+- Dodano wskazówkę dotyczącą deklinacji
+- Dodano obraz objaśniający kalibrację czujnika
+- Dodano tłumaczenie węgierskie
+- Ulepszone wyświetlanie stanu sensora
+- Usunięto dedykowane oznaczenie północy na róży kompasu
+- Zwiększono minSDK do 23

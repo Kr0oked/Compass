@@ -1,0 +1,6 @@
+- Material 3 design
+- Tłumaczenie na język bośniacki
+- Tłumaczenie chorwackie
+- Tłumaczenie serbskie
+- Nowe ikony preferencji trybu nocnego
+- Utrzymowanie preferencji aplikacji
