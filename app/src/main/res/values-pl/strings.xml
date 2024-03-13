@@ -78,6 +78,8 @@ Aby wyświetlić północ geograficzną, aplikacja musi określić deklinację m
     <string name="about">O nas</string>
     <string name="author">Autor</string>
     <string name="license">Licencja</string>
+    <string name="third_party_licenses">Licencje stron trzecich</string>
+    <string name="third_party_licenses_summary">Licencje dołączonych bibliotek open source</string>
     <string name="source_code">Kod źródłowy</string>
     <string name="version">Wersja</string>
 
