@@ -1,0 +1,4 @@
+- Przy zaokrąglaniu w górę zawsze pokazuj 0°, a nie 360°
+- Tłumaczenie norweskie
+- Kompletne tłumaczenie fińskie
+- Kompletne tłumaczenie rosyjskie

@@ -1,0 +1,1 @@
+- Naprawiono błędne stopnie po obrocie ekranu o 180°

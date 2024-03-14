@@ -1,0 +1,1 @@
+- Naprawiono awarię występującą gdy system nie udostępnia dostawcy lokalizacji sieci
