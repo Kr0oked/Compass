@@ -1,0 +1,5 @@
+- Added view to display third-party licenses
+- Added Tamil translation
+- Added Brazilian Portuguese translation
+- Added Persian translation
+- Added Polish translation

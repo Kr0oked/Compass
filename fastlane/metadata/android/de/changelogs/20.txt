@@ -1,0 +1,5 @@
+- Anzeige von Drittanbieter-Lizenzen wurde hinzugefügt
+- Übersetzung für Talmil wurde hinzugefügt
+- Übersetzung für brasilianisches Portugiesisch wurde hinzugefügt
+- Übersetzung für Persisch wurde hinzugefügt
+- Übersetzung für Polnisch wurde hinzugefügt
