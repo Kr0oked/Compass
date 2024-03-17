@@ -1,0 +1,14 @@
+Obtendrá exactamente lo que espera.
+Una simple y hermosa brújula.
+
+Características:
+* Puede apuntar tanto al norte magnético como al norte verdadero
+* Muestra grados exactos y dirección cardinal.
+* Muestra el estado del sensor
+* Retroalimentación táctil
+* Tema claro y oscuro
+* Sin publicidad
+* Sin rastreadores
+* Sin molestias
+
+¡Diviértase!
