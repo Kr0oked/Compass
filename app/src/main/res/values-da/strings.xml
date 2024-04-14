@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Compass.
+  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Compass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="compass">Kompas</string>
+
+    <string name="sensor_status">Sensorstatus</string>
+    <string name="lock_screen_rotation">Lås skærmrotation</string>
+
+    <string name="compass_rose_image_description">Kompasrose peger mod nord</string>
+    <string name="device_heading_indicator_image_description">Angiver hvilken retning enheden peger i</string>
+
+    <string name="cardinal_direction_north">Nord</string>
+    <string name="cardinal_direction_northeast">Nordøst</string>
+    <string name="cardinal_direction_east">Øst</string>
+    <string name="cardinal_direction_southeast">Sydøst</string>
+    <string name="cardinal_direction_south">Syd</string>
+    <string name="cardinal_direction_southwest">Sydvest</string>
+    <string name="cardinal_direction_west">Vest</string>
+    <string name="cardinal_direction_northwest">Nordvest</string>
+
+    <string name="cardinal_direction_north_abbreviation">N</string>
+    <string name="cardinal_direction_east_abbreviation">Ø</string>
+    <string name="cardinal_direction_south_abbreviation">S</string>
+    <string name="cardinal_direction_west_abbreviation">V</string>
+
+    <string name="sensor_accuracy_no_contact">Sensor ikke tilgængelig</string>
+    <string name="sensor_accuracy_unreliable">Sensorværdier er upålidelige</string>
+    <string name="sensor_accuracy_low">Lav nøjagtighed</string>
+    <string name="sensor_accuracy_medium">Middel nøjagtighed</string>
+    <string name="sensor_accuracy_high">Maksimal nøjagtighed</string>
+    <string name="sensor_error_message">Sensor ikke tilgængelig</string>
+    <string name="sensor_calibration_text">Du kan forsøge at forbedre din sensors nøjagtighed  ved at rotere enheden i et ottetal mønster.</string>
+
+    <string name="location_loading">Henter lokation</string>
+    <string name="location_error_message">Lokation ikke tilgængelig</string>
+    <string name="location_not_present">Lokation kunne ikke fastslås. Skifter tilbage til magnetisk nord.</string>
+    <string name="location_reload">Genindlæs lokation</string>
+    <string name="access_location_permission_rationale_title">Appen skal bruge tilladelse til at få adgang til din lokation</string>
+    <string name="access_location_permission_rationale_message">For at vise korrekt mod nord skal denne app bestemme den magnetiske deklination baseret på din nuværende lokalitet.</string>
+    <string name="access_location_permission_denied">Manglende tilladelse til at få adgang til lokation. Skifter tilbage til magnetisk nord.</string>
+
+    <string name="settings">Indstillinger</string>
+
+    <string name="true_north">Sand Nord</string>
+    <string name="true_north_summary">Korriger den magnetiske deklination og vis mod sand nord. Kræver adgang til din lokation.</string>
+    <string name="magnetic_north">Magnetisk Nord</string>
+
+    <string name="haptic_feedback">Haptisk feedback</string>
+    <string name="haptic_feedback_summary">Kompasset vibrerer, når retningen ændres.</string>
+
+    <string name="display">Visning</string>
+    <string name="night_mode">Tema</string>
+    <string name="night_mode_follow_system">Følg systemet</string>
+    <string name="night_mode_no">Lyst</string>
+    <string name="night_mode_yes">Mørkt</string>
+
+    <string name="about">Om</string>
+    <string name="author">Forfatter</string>
+    <string name="license">Licens</string>
+    <string name="third_party_licenses">Tredjepartslicenser</string>
+    <string name="third_party_licenses_summary">Licenser af inkluderede open source biblioteker</string>
+    <string name="source_code">Kildekode</string>
+    <string name="version">Version</string>
+
+    <string name="error_message">En fejl opstod.\nBesked: %1$s\nFejlkode: %2$s</string>
+
+    <string name="error">Fejl</string>
+    <string name="ok">OK</string>
+    <string name="no_thanks">Nej tak</string>
+</resources>

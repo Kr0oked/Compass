@@ -44,6 +44,7 @@ height="80">](https://github.com/Kr0oked/Compass/releases/latest)
 | bg        | Bulgarian            | :white_check_mark: | :white_check_mark: | :x:                |
 | bs        | Bosnian              | :white_check_mark: | :white_check_mark: | :x:                |
 | cs        | Czech                | :white_check_mark: | :white_check_mark: | :x:                |
+| da        | Danish               | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | de        | German               | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | el        | Greek                | :white_check_mark: | :white_check_mark: | :x:                |
 | es        | Spanish              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
