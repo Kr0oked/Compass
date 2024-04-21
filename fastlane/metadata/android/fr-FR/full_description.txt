@@ -1,13 +1,15 @@
-Vous obtiendrez excactement ce à quoi vous vous attendez:
-Une jolie boussole simple pointant vers le nord magnétique
+Tu obtiens exactement ce que tu attends.
+Une boussole simple et belle.
 
-Fonctionnalités:
-* Pointe le nord magnétique
-* Montre les degré
-* Indique les degrés exacts et la direction cardinale
-* Affiche l'état du capteur
-* Mode nuit automatique
-* Pas de publicités
-* Pas d'ennuis
+Contenu :
+* Peut pointer aussi bien vers le pôle nord magnétique que vers le pôle
+nord géographique.
+* Affiche les degrés exacts et la direction cardinale
+* Indique l'état du capteur
+* Retour haptique
+* Thème Sombre et Clair
+* Pas de publicité
+* Pas de traqueurs
+* Pas de harcèlement
 
-Amusez vous!
+Amusez-vous bien !
