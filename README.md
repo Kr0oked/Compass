@@ -50,7 +50,7 @@ height="80">](https://github.com/Kr0oked/Compass/releases/latest)
 | es        | Spanish              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | fa        | Persian              | :white_check_mark: | :white_check_mark: | :x:                |
 | fi        | Finnish              | :white_check_mark: | :white_check_mark: | :x:                |
-| fr        | French               | :white_check_mark: | :white_check_mark: | :x:                |
+| fr        | French               | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | hr        | Croatian             | :white_check_mark: | :white_check_mark: | :x:                |
 | hu        | Hungarian            | :white_check_mark: | :white_check_mark: | :x:                |
 | it        | Italian              | :white_check_mark: | :white_check_mark: | :x:                |

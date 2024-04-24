@@ -49,40 +49,40 @@
     <string name="sensor_error_message">Capteur non disponible</string>
     <string name="sensor_calibration_text">Vous pouvez améliorer la précision de votre capteur à n\'importe quel moment en tournant l\'appareil en faisant un 8.</string>
 
-    <!--TODO<string name="location_loading">Waiting for location update</string>-->
-    <!--TODO<string name="location_error_message">Location not available</string>-->
-    <!--TODO<string name="location_not_present">Location could not be determined. Falling back to magnetic north.</string>-->
-    <!--TODO<string name="location_reload">Reload location</string>-->
-    <!--TODO<string name="access_location_permission_rationale_title">We need permission to access your location</string>-->
-    <!--TODO<string name="access_location_permission_rationale_message">For showing to true north this app needs to determine the magnetic declination based on your current location.</string>-->
-    <!--TODO<string name="access_location_permission_denied">Missing permission to access location. Falling back to magnetic north.</string>-->
+    <string name="location_loading">En attente d\'une mise à jour de la position</string>
+    <string name="location_error_message">Position non disponible</string>
+    <string name="location_not_present">La position n\'a pas pu être déterminé. Retour vers le nord magnétique.</string>
+    <string name="location_reload">Mise à jour de la position</string>
+    <string name="access_location_permission_rationale_title">Nous avons besoin d\'une autorisation pour accéder à votre localisposition</string>
+    <string name="access_location_permission_rationale_message">Pour indiquer le nord géographique, cette application doit déterminer la déclinaison magnétique en fonction de votre position actuelle.</string>
+    <string name="access_location_permission_denied">Absence d\'autorisation d\'accès à la position. Retomber au nord magnétique.</string>
 
-    <!--TODO<string name="settings">Settings</string>-->
+    <string name="settings">Paramètres</string>
 
-    <!--TODO<string name="true_north">True North</string>-->
-    <!--TODO<string name="true_north_summary">Correct the magnetic declination and show to true north. Requires access to your location.</string>-->
-    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
+    <string name="true_north">Nord géographique</string>
+    <string name="true_north_summary">Corrigez la déclinaison magnétique et affichez le nord géographique. Nécessite l\'accès à votre position.</string>
+    <string name="magnetic_north">Nord magnétique</string>
 
-    <!--TODO<string name="haptic_feedback">Haptic feedback</string>-->
-    <!--TODO<string name="haptic_feedback_summary">The compass vibrates when the direction changes.</string>-->
+    <string name="haptic_feedback">Retour haptique</string>
+    <string name="haptic_feedback_summary">La boussole vibre lorsque la direction change.</string>
 
-    <!--TODO<string name="display">Display</string>-->
-    <!--TODO<string name="night_mode">Theme</string>-->
-    <!--TODO<string name="night_mode_follow_system">Follow system</string>-->
-    <!--TODO<string name="night_mode_no">Light</string>-->
-    <!--TODO<string name="night_mode_yes">Dark</string>-->
+    <string name="display">Affichage</string>
+    <string name="night_mode">Thème</string>
+    <string name="night_mode_follow_system">Suivre le système</string>
+    <string name="night_mode_no">Clair</string>
+    <string name="night_mode_yes">Sombre</string>
 
     <string name="about">À propos</string>
-    <!--TODO<string name="author">Author</string>-->
+    <string name="author">Auteur</string>
     <string name="license">Licence</string>
-    <!--TODO<string name="third_party_licenses">Third-party licenses</string>-->
-    <!--TODO<string name="third_party_licenses_summary">Licenses of included open source libraries</string>-->
+    <string name="third_party_licenses">Licences tierces</string>
+    <string name="third_party_licenses_summary">Licences des bibliothèques libres incluses</string>
     <string name="source_code">Code source</string>
     <string name="version">Version</string>
 
-    <!--TODO<string name="error_message">An error occurred.\nMessage: %1$s\nCode: %2$s</string>-->
+    <string name="error_message">Une erreur s\'est produite.\nMessage: %1$s\nCode: %2$s</string>
 
-    <!--TODO<string name="error">Error</string>-->
+    <string name="error">Ertreur</string>
     <string name="ok">OK</string>
-    <!--TODO<string name="no_thanks">No thanks</string>-->
+    <string name="no_thanks">Non merci</string>
 </resources>
