@@ -51,8 +51,8 @@
 
     <string name="location_loading">Venter på posisjonsoppdatering</string>
     <string name="location_error_message">Posisjon ikke tilgjengelig</string>
-    <!--TODO<string name="location_not_present">Location could not be determined. Falling back to magnetic north.</string>-->
-    <!--TODO<string name="location_reload">Reload location</string>-->
+    <string name="location_not_present">Posisjon kan ikke bestemmes. Faller tilbake til magnetisk nord.</string>
+    <string name="location_reload">Last posisjon på nytt</string>
     <string name="access_location_permission_rationale_title">Tillatelse kreves for å få tilgang til omtrentlig posisjon</string>
     <string name="access_location_permission_rationale_message">For å vise mot geografisk nord trenger denne appen å bestemme misvisningen basert på din aktuelle posisjon.</string>
     <string name="access_location_permission_denied">Mangler tillatelse for tilgang til omtrentlig posisjon. Faller tilbake til magnetisk nord.</string>
@@ -61,7 +61,7 @@
 
     <string name="true_north">Geografisk nord</string>
     <string name="true_north_summary">Korriger for misvisning og vis mot geografisk nordpol. Krever tilgang til omtrentlig posisjon.</string>
-    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
+    <string name="magnetic_north">Magnetisk nord</string>
 
     <string name="haptic_feedback">Vibrasjonstilbakemelding</string>
     <string name="haptic_feedback_summary">Kompasset vibrerer når retningen endres.</string>
@@ -75,8 +75,8 @@
     <string name="about">Om</string>
     <string name="author">Utvikler</string>
     <string name="license">Lisens</string>
-    <!--TODO<string name="third_party_licenses">Third-party licenses</string>-->
-    <!--TODO<string name="third_party_licenses_summary">Licenses of included open source libraries</string>-->
+    <string name="third_party_licenses">Tredjeparts lisenser</string>
+    <string name="third_party_licenses_summary">Lisenser til inkluderte åpen-kildekode-biblioteker</string>
     <string name="source_code">Kildekode</string>
     <string name="version">Versjon</string>
 
