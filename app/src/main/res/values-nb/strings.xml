@@ -67,10 +67,10 @@
     <string name="haptic_feedback_summary">Kompasset vibrerer når retningen endres.</string>
 
     <string name="display">Visning</string>
-    <string name="night_mode">Nattmodus</string>
-    <string name="night_mode_follow_system">System</string>
-    <string name="night_mode_no">Dag</string>
-    <string name="night_mode_yes">Natt</string>
+    <string name="night_mode">Tema</string>
+    <string name="night_mode_follow_system">Følg system</string>
+    <string name="night_mode_no">Lyst</string>
+    <string name="night_mode_yes">Mørkt</string>
 
     <string name="about">Om</string>
     <string name="author">Utvikler</string>
