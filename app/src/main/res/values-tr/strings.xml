@@ -75,8 +75,8 @@
     <string name="about">Hakkında</string>
     <string name="author">Yaratıcı</string>
     <string name="license">Lisans</string>
-    <!--TODO<string name="third_party_licenses">Third-party licenses</string>-->
-    <!--TODO<string name="third_party_licenses_summary">Licenses of included open source libraries</string>-->
+    <string name="third_party_licenses">Üçüncü şahıs lisanslar</string>
+    <string name="third_party_licenses_summary">Kullanılan açık kaynak kodlu kütüphanelerin lisansları</string>
     <string name="source_code">Kaynak kodu</string>
     <string name="version">Sürüm</string>
 
