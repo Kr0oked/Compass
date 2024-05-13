@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,11 +30,7 @@ private const val MIGRATION_V11 = "migration_v11"
 
 class PreferenceMigrations(context: Context) {
 
-    private val sharedPreferences: SharedPreferences
-
-    init {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-    }
+    private val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     /**
      * Migrate night_mode preference from integer to string values

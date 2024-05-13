@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,11 +48,9 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
     private val nightModeObserver = getNightModeObserver()
     private val accessLocationPermissionRequestedObserver = getAccessLocationPermissionRequestedObserver()
 
-    private val sharedPreferences: SharedPreferences
+    private val sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     init {
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-
         updateTrueNorth()
         updateHapticFeedback()
         updateScreenOrientationLocked()
