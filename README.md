@@ -62,7 +62,7 @@ height="80">](https://github.com/Kr0oked/Compass/releases/latest)
 | ru        | Russian              | :white_check_mark: | :white_check_mark: | :x:                |
 | sr        | Serbian              | :white_check_mark: | :white_check_mark: | :x:                |
 | ta        | Tamil                | :white_check_mark: | :white_check_mark: | :x:                |
-| tr        | Turkish              | :white_check_mark: | :white_check_mark: | :x:                |
+| tr        | Turkish              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | vi        | Vietnamese           | :white_check_mark: | :white_check_mark: | :x:                |
 
 ## License
