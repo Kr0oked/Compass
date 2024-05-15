@@ -38,6 +38,9 @@ height="80">](https://github.com/Kr0oked/Compass/releases/latest)
 
 ## Translations
 
+If you want to provide a new translation or update an existing one you can find some instructions
+[here](doc/translations.md).
+
 | Code      | Language             | App                | Metadata           | Complete           |
 |-----------|----------------------|--------------------|--------------------|--------------------|
 | *default* | English              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
