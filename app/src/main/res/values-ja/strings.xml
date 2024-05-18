@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Compass.
+  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Compass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="compass">コンパス</string>
+
+    <string name="sensor_status">センサーの状態</string>
+    <string name="lock_screen_rotation">画面の自動回転をロック</string>
+
+    <string name="compass_rose_image_description">コンパスは北を示しています</string>
+    <string name="device_heading_indicator_image_description">デバイスがどの方角を向いているかを示します</string>
+
+    <string name="cardinal_direction_north">北</string>
+    <string name="cardinal_direction_northeast">北東</string>
+    <string name="cardinal_direction_east">東</string>
+    <string name="cardinal_direction_southeast">南東</string>
+    <string name="cardinal_direction_south">南</string>
+    <string name="cardinal_direction_southwest">南東</string>
+    <string name="cardinal_direction_west">西</string>
+    <string name="cardinal_direction_northwest">北西</string>
+
+    <string name="cardinal_direction_north_abbreviation">北</string>
+    <string name="cardinal_direction_east_abbreviation">東</string>
+    <string name="cardinal_direction_south_abbreviation">南</string>
+    <string name="cardinal_direction_west_abbreviation">西</string>
+
+    <string name="sensor_accuracy_no_contact">センサーが使用出来ません</string>
+    <string name="sensor_accuracy_unreliable">センサーの値が不安定</string>
+    <string name="sensor_accuracy_low">精度が低い</string>
+    <string name="sensor_accuracy_medium">平均的な精度</string>
+    <string name="sensor_accuracy_high">精度が高い</string>
+    <string name="sensor_error_message">センサーが使用出来ません</string>
+    <string name="sensor_calibration_text">デバイスを８の字に回転させることで、センサーの精度を向上させることが出来ます。</string>
+    <string name="location_loading">位置情報の更新を待っています</string>
+    <string name="location_error_message">位置情報が利用できません</string>
+    <string name="location_not_present">場所を特定出来ませんでした。磁北に戻ります。</string>
+    <string name="location_reload">位置情報を更新</string>
+    <string name="access_location_permission_rationale_title">あなたの位置情報にアクセスするには許可が必要です</string>
+    <string name="access_location_permission_rationale_message">真北を表示するには、アプリは現在地に基づいて磁気偏角を決定する必要があります。</string>
+    <string name="access_location_permission_denied">位置情報にアクセスする権限がありません。 磁北に戻ります。</string>
+
+    <string name="settings">設定</string>
+
+    <string name="true_north">真北</string>
+    <string name="true_north_summary">磁気偏角を修正し、真北を表示します。現在地へのアクセスが必要です。</string>
+    <string name="magnetic_north">磁北</string>
+
+    <string name="haptic_feedback">触覚フィードバック</string>
+    <string name="haptic_feedback_summary">The compass vibrates when the direction changes.</string>
+
+    <string name="display">画面</string>
+    <string name="night_mode">テーマ</string>
+    <string name="night_mode_follow_system">システムに合わせる</string>
+    <string name="night_mode_no">ライト</string>
+    <string name="night_mode_yes">ダーク</string>
+
+    <string name="about">詳細</string>
+    <string name="author">開発者</string>
+    <string name="license">ライセンス</string>
+    <string name="third_party_licenses">サードパーティーライセンス</string>
+    <string name="third_party_licenses_summary">オープンソースライブラリに含まれているライセンス</string>
+    <string name="source_code">ソースコード</string>
+    <string name="version">バージョン</string>
+
+    <string name="error_message">エラーが発生しました。\nメッセージ：%1$s\nコード：%2$s</string>
+
+    <string name="error">エラー</string>
+    <string name="ok">OK</string>
+    <string name="no_thanks">結構です</string>
+
+    <string name="source_code_name" translatable="false">GitHub</string>
+    <string name="license_name" translatable="false">GNU GPLv3</string>
+    <string name="author_name" translatable="false">Philipp Bobek</string>
+
+    <string name="zero_degrees" translatable="false">0°</string>
+    <string name="degrees" translatable="false">%1$d°</string>
+
+    <string name="degree_0_text" translatable="false">0</string>
+    <string name="degree_30_text" translatable="false">30</string>
+    <string name="degree_60_text" translatable="false">60</string>
+    <string name="degree_90_text" translatable="false">90</string>
+    <string name="degree_120_text" translatable="false">120</string>
+    <string name="degree_150_text" translatable="false">150</string>
+    <string name="degree_180_text" translatable="false">180</string>
+    <string name="degree_210_text" translatable="false">210</string>
+    <string name="degree_240_text" translatable="false">240</string>
+    <string name="degree_270_text" translatable="false">270</string>
+    <string name="degree_300_text" translatable="false">300</string>
+    <string name="degree_330_text" translatable="false">330</string>
+</resources>
