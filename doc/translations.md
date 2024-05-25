@@ -45,8 +45,8 @@ You don't have to include strings with the `translatable="false"` attribute.
 For the app store texts, place them in a new appropriate directory in
 the [fastlane/metadata/android](../fastlane/metadata/android) directory.
 The suffix of this directory is different from the directory of the app texts.
-You can find the correct suffix in
-this [list](https://support.google.com/googleplay/android-developer/answer/9844778?hl=en#zippy=%2Cview-list-of-available-languages).
+You can find the correct suffix in this
+[list](https://support.google.com/googleplay/android-developer/answer/9844778?hl=en#zippy=%2Cview-list-of-available-languages).
 You don't have create any images for your translation like the screenshots.
 I will take care of them later on.
 

@@ -57,6 +57,7 @@ If you want to provide a new translation or update an existing one you can find 
 | hr        | Croatian             | :white_check_mark: | :white_check_mark: | :x:                |
 | hu        | Hungarian            | :white_check_mark: | :white_check_mark: | :x:                |
 | it        | Italian              | :white_check_mark: | :white_check_mark: | :x:                |
+| ja        | Japanese             | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | mk        | Macedonian           | :white_check_mark: | :white_check_mark: | :x:                |
 | nb        | Norwegian Bokmål     | :white_check_mark: | :x:                | :x:                |
 | nl        | Dutch                | :white_check_mark: | :x:                | :x:                |
