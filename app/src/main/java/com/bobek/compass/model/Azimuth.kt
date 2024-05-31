@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,17 +20,17 @@ package com.bobek.compass.model
 
 import kotlin.math.roundToInt
 
-class Azimuth(_degrees: Float) {
+class Azimuth(rawDegrees: Float) {
 
     init {
-        if (!_degrees.isFinite()) {
-            throw IllegalArgumentException("Degrees must be finite but was '$_degrees'")
+        if (!rawDegrees.isFinite()) {
+            throw IllegalArgumentException("Degrees must be finite but was '$rawDegrees'")
         }
     }
 
-    val degrees = normalizeAngle(_degrees)
+    val degrees = normalizeAngle(rawDegrees)
 
-    val roundedDegrees = normalizeAngle(_degrees.roundToInt().toFloat()).toInt()
+    val roundedDegrees = normalizeAngle(rawDegrees.roundToInt().toFloat()).toInt()
 
     val cardinalDirection: CardinalDirection = when (degrees) {
         in 22.5f until 67.5f -> CardinalDirection.NORTHEAST
@@ -53,9 +53,7 @@ class Azimuth(_degrees: Float) {
 
         other as Azimuth
 
-        if (degrees != other.degrees) return false
-
-        return true
+        return degrees == other.degrees
     }
 
     override fun hashCode(): Int {
