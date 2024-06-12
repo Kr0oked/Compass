@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Compass.
+  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Compass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="compass">कंपास</string>
+
+    <string name="sensor_status">सेंसर की स्थिति</string>
+    <string name="lock_screen_rotation">स्क्रीन आवर्तन रोकें</string>
+
+    <string name="compass_rose_image_description">कम्पास उत्तर की ओर दिखा रहा है</string>
+    <string name="device_heading_indicator_image_description">यह सूचित करता है कि आपका यंत्र किस दिशा की ओर इंगित करेगा|</string>
+
+    <string name="cardinal_direction_north">उत्तर</string>
+    <string name="cardinal_direction_northeast">उत्तर-पूर्व</string>
+    <string name="cardinal_direction_east">पूर्व</string>
+    <string name="cardinal_direction_southeast">दक्षिण-पूर्व</string>
+    <string name="cardinal_direction_south">दक्षिण</string>
+    <string name="cardinal_direction_southwest">दक्षिण-पश्चिम</string>
+    <string name="cardinal_direction_west">पश्चिम</string>
+    <string name="cardinal_direction_northwest">उत्तर-पश्चिम</string>
+
+    <string name="cardinal_direction_north_abbreviation">उ</string>
+    <string name="cardinal_direction_east_abbreviation">पू</string>
+    <string name="cardinal_direction_south_abbreviation">द</string>
+    <string name="cardinal_direction_west_abbreviation">प</string>
+
+    <string name="sensor_accuracy_no_contact">सेंसर अनुपलब्ध</string>
+    <string name="sensor_accuracy_unreliable">सेंसर मानक अभी गलत है|</string>
+    <string name="sensor_accuracy_low">सेंसर की सटीकता कम है|</string>
+    <string name="sensor_accuracy_medium">सेंसर की सटीकता मध्यम है|</string>
+    <string name="sensor_accuracy_high">सेंसर की सटीकता उच्चतम है|</string>
+    <string name="sensor_error_message">सेंसर अनुपलब्ध|</string>
+    <string name="sensor_calibration_text">अपने फ़ोन को ८ नंबर की आकृति में घुमा कर अपने सेंसर की सटीकता बढ़ायें|</string>
+
+    <string name="location_loading">स्थान अद्यतन प्रतीक्षारत|</string>
+    <string name="location_error_message">स्थान अनुपलब्ध|</string>
+    <string name="location_not_present">आपके स्थल की जानकारी नहीं मिल पा रही है|दिशा सूचक यंत्र पुनः चुंबकीय उत्तरी ध्रुव की दिशा में इंगित होगा|</string>
+    <string name="location_reload">स्थल पुनः लोड करें|</string>
+    <string name="access_location_permission_rationale_title">कृपया आपके स्थल की जानकारी प्राप्त करने की अनुमति दें|</string>
+    <string name="access_location_permission_rationale_message">भौगोलिक उत्तरी ध्रुव दिखाने के लिए, इस ऐप को आपके वर्तमान स्थल के आधार पर चुंबकीय झुकाव निर्धारित करने की आवश्यकता है|</string>
+    <string name="access_location_permission_denied">आपके स्थल की जानकारी अनुपलब्ध है| दिशा सूचक यंत्र पुनः भौगोलिक उत्तरी ध्रुव की दिशा में इंगित होगा|</string>
+
+    <string name="settings">सेटिंग्स</string>
+
+    <string name="true_north">भौगोलिक उत्तरी ध्रुव</string>
+    <string name="true_north_summary">भौगोलिक उत्तरी ध्रुव एवं चुंबकीय झुकाव को सही प्रकार से देखने के लिए आपके स्थल की जानकारी की आवश्यकता है|</string>
+    <string name="magnetic_north">चुंबकीय उत्तरी ध्रुव</string>
+
+    <string name="haptic_feedback">स्पर्श सप्रेषण प्रतिसाद</string>
+    <string name="haptic_feedback_summary">दिशा बदलने पर दिशा सूचक यंत्र में स्पंदन होगा|</string>
+
+    <string name="display">डिस्प्ले</string>
+    <string name="night_mode">रूपरंग</string>
+    <string name="night_mode_follow_system">सिस्टम के अनुसार?</string>
+    <string name="night_mode_no">श्वेत</string>
+    <string name="night_mode_yes">श्याम</string>
+
+    <string name="about">व्याख्या</string>
+    <string name="author">रचयिता</string>
+    <string name="license">अनुज्ञा</string>
+    <string name="third_party_licenses">तृतीय-पक्ष अनुज्ञा</string>
+    <string name="third_party_licenses_summary">सम्मिलित ओपन सोर्स लाइब्रेरी की अनुज्ञाऐं</string>
+    <string name="source_code">मूल विधि-संग्रह</string>
+    <string name="version">संस्करण</string>
+
+    <string name="error_message">एक त्रुटि प्रकट हुई|.\nसंदेश: %1$s\nकोड: %2$s</string>
+
+    <string name="error">त्रुटि</string>
+    <string name="ok">जी|</string>
+    <string name="no_thanks">जी नहीं| धन्यवाद|</string>
+</resources>

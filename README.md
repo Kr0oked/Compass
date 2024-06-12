@@ -55,6 +55,7 @@ If you want to provide a new translation or update an existing one you can find 
 | fi        | Finnish              | :white_check_mark: | :white_check_mark: | :x:                |
 | fr        | French               | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | hr        | Croatian             | :white_check_mark: | :white_check_mark: | :x:                |
+| hi        | Hindi                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | hu        | Hungarian            | :white_check_mark: | :white_check_mark: | :x:                |
 | it        | Italian              | :white_check_mark: | :white_check_mark: | :x:                |
 | ja        | Japanese             | :white_check_mark: | :white_check_mark: | :white_check_mark: |
