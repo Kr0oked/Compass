@@ -1,0 +1,36 @@
+app_package_name('com.bobek.compass')
+use_tests_in_packages(['com.bobek.compass.screengrab'])
+
+app_apk_path('app/build/outputs/apk/debug/app-debug.apk')
+tests_apk_path('app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk')
+
+locales([
+  'bg',
+  'bs',
+  'cs-CZ',
+  'da-DK',
+  'de-DE',
+  'el-GR',
+  'en-US',
+  'es-ES',
+  'fa',
+  'fi-FL',
+  'fr-FR',
+  'hi-IN',
+  'hr',
+  'hu-HU',
+  'it-IT',
+  'ja-JP',
+  'mk-MK',
+  'nb',
+  'nl-NL',
+  'pl-PL',
+  'pt-BR',
+  'ru-RU',
+  'sr',
+  'ta-IN',
+  'tr-TR',
+  'vi'
+])
+
+use_timestamp_suffix(false)

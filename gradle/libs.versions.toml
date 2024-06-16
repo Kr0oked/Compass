@@ -10,6 +10,7 @@ junitVersion = "1.1.5"
 espressoCore = "3.5.1"
 agp = "8.5.0"
 kotlin = "1.9.24"
+screengrab = "2.1.1"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -22,6 +23,7 @@ oss-licenses-plugin = { module = "com.google.android.gms:oss-licenses-plugin", v
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+screengrab = { group = "tools.fastlane", name = "screengrab", version.ref = "screengrab" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

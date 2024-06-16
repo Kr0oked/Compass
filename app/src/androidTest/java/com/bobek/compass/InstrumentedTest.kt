@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,35 +18,23 @@
 
 package com.bobek.compass
 
-import android.content.Intent
-import androidx.navigation.fragment.NavHostFragment
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.*
-import androidx.test.ext.junit.rules.ActivityScenarioRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.filters.LargeTest
-import com.bobek.compass.model.Azimuth
 import com.bobek.compass.model.SensorAccuracy
 import org.hamcrest.Matchers.not
-import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
 @LargeTest
-class InstrumentedTest {
-
-    private val intent: Intent = Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
+class InstrumentedTest : AbstractAndroidTest() {
 
     init {
         intent.putExtra(OPTION_INSTRUMENTED_TEST, true)
     }
-
-    @get:Rule
-    var activityRule = ActivityScenarioRule<MainActivity>(intent)
 
     @Test
     fun compass() {
@@ -98,27 +86,4 @@ class InstrumentedTest {
 
         onView(withText(R.string.ok)).perform(click())
     }
-
-    private fun setAzimuth(degrees: Float) {
-        activityRule.scenario.onActivity { mainActivity ->
-            findCompassFragment(mainActivity)!!.setAzimuth(Azimuth(degrees))
-        }
-    }
-
-    private fun setAccuracy(accuracy: SensorAccuracy) {
-        activityRule.scenario.onActivity { mainActivity ->
-            findCompassFragment(mainActivity)!!.setSensorAccuracy(accuracy)
-        }
-    }
-
-    private fun findCompassFragment(mainActivity: MainActivity): CompassFragment? {
-        return findNavHostFragment(mainActivity)
-            ?.childFragmentManager
-            ?.primaryNavigationFragment as CompassFragment?
-    }
-
-    private fun findNavHostFragment(mainActivity: MainActivity) =
-        mainActivity
-            .supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment?
 }

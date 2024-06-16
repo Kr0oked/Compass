@@ -9,3 +9,6 @@
 
 ### JetBrains IDEs ###
 *.iml
+
+### Fastlane ###
+fastlane/report.xml

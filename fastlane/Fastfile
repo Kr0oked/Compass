@@ -1,0 +1,57 @@
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    gradle(task: "clean assembleRelease")
+    upload_to_play_store
+  end
+
+  desc "Grab phone screenshot 1"
+  lane :grab_screen_phone_1 do
+   gradle(task: 'assemble', build_type: 'Debug')
+   gradle(task: 'assemble', build_type: 'AndroidTest')
+   screengrab(launch_arguments: ['screenshotName 1'], device_type: 'phone', clear_previous_screenshots: true)
+  end
+
+  desc "Grab phone screenshot 2"
+  lane :grab_screen_phone_2 do
+   gradle(task: 'assemble', build_type: 'Debug')
+   gradle(task: 'assemble', build_type: 'AndroidTest')
+   screengrab(launch_arguments: ['screenshotName 2'], device_type: 'phone')
+  end
+
+  desc "Grab seven inch screenshot 1"
+  lane :grab_screen_seven_inch_1 do
+   gradle(task: 'assemble', build_type: 'Debug')
+   gradle(task: 'assemble', build_type: 'AndroidTest')
+   screengrab(launch_arguments: ['screenshotName 1'], device_type: 'sevenInch', clear_previous_screenshots: true)
+  end
+
+  desc "Grab seven inch screenshot 2"
+  lane :grab_screen_seven_inch_2 do
+   gradle(task: 'assemble', build_type: 'Debug')
+   gradle(task: 'assemble', build_type: 'AndroidTest')
+   screengrab(launch_arguments: ['screenshotName 2'], device_type: 'sevenInch')
+  end
+
+  desc "Grab ten inch screenshot 1"
+  lane :grab_screen_ten_inch_1 do
+   gradle(task: 'assemble', build_type: 'Debug')
+   gradle(task: 'assemble', build_type: 'AndroidTest')
+   screengrab(launch_arguments: ['screenshotName 1'], device_type: 'tenInch', clear_previous_screenshots: true)
+  end
+
+  desc "Grab ten inch screenshot 2"
+  lane :grab_screen_ten_inch_2 do
+   gradle(task: 'assemble', build_type: 'Debug')
+   gradle(task: 'assemble', build_type: 'AndroidTest')
+   screengrab(launch_arguments: ['screenshotName 2'], device_type: 'tenInch')
+  end
+
+end
