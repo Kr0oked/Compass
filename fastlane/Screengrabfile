@@ -6,7 +6,6 @@ tests_apk_path('app/build/outputs/apk/androidTest/debug/app-debug-androidTest.ap
 
 locales([
   'bg',
-  'bs',
   'cs-CZ',
   'da-DK',
   'de-DE',
@@ -14,7 +13,7 @@ locales([
   'en-US',
   'es-ES',
   'fa',
-  'fi-FL',
+  'fi-FI',
   'fr-FR',
   'hi-IN',
   'hr',
@@ -22,7 +21,6 @@ locales([
   'it-IT',
   'ja-JP',
   'mk-MK',
-  'nb',
   'nl-NL',
   'pl-PL',
   'pt-BR',
