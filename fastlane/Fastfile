@@ -6,10 +6,26 @@ platform :android do
     gradle(task: "test")
   end
 
+  desc "Build a new APK"
+  lane :apk do
+    gradle(task: "clean assembleRelease")
+  end
+
   desc "Deploy a new version to the Google Play"
   lane :deploy do
-    gradle(task: "clean assembleRelease")
-    upload_to_play_store
+    gradle(
+      task: "clean bundleRelease",
+      print_command: false,
+      properties: {
+        "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],
+        "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
+        "android.injected.signing.key.password" => ENV["KEY_PASSWORD"],
+      }
+    )
+    upload_to_play_store(
+      json_key: ENV["ANDROID_JSON_KEY_FILE"]
+    )
   end
 
   desc "Grab phone screenshot 1"

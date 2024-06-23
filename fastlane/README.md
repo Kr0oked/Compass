@@ -23,6 +23,14 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Runs all the tests
 
+### android apk
+
+```sh
+[bundle exec] fastlane android apk
+```
+
+Build a new APK
+
 ### android deploy
 
 ```sh
