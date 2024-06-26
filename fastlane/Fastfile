@@ -8,7 +8,16 @@ platform :android do
 
   desc "Build a new APK"
   lane :apk do
-    gradle(task: "clean assembleRelease")
+    gradle(
+      task: "clean assembleRelease",
+      print_command: false,
+      properties: {
+        "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],
+        "android.injected.signing.store.password" => ENV["KEYSTORE_PASSWORD"],
+        "android.injected.signing.key.alias" => ENV["KEY_ALIAS"],
+        "android.injected.signing.key.password" => ENV["KEY_PASSWORD"],
+      }
+    )
   end
 
   desc "Deploy a new version to the Google Play"
