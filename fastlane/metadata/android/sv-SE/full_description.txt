@@ -1,0 +1,12 @@
+Du får precis vad du förväntar dig: en elegant och funktionell kompass!
+
+Funktioner:
+
+* Kan peka mot både magnetisk norr och sann nord
+* Visar exakta grader och exakt kardinalriktning
+* Visar sensorstatus
+* Stöd för haptisk återkoppling
+* Stöd för ljust och mörkt tema
+* Fri från reklam, spårning och andra irritationsmoment!
+
+Ha så kul!

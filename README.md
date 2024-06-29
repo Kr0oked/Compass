@@ -66,6 +66,7 @@ If you want to provide a new translation or update an existing one you can find 
 | pt-BR     | Brazilian Portuguese | :white_check_mark: | :white_check_mark: | :x:                |
 | ru        | Russian              | :white_check_mark: | :white_check_mark: | :x:                |
 | sr        | Serbian              | :white_check_mark: | :white_check_mark: | :x:                |
+| sv        | Swedish              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | ta        | Tamil                | :white_check_mark: | :white_check_mark: | :x:                |
 | tr        | Turkish              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | vi        | Vietnamese           | :white_check_mark: | :white_check_mark: | :x:                |
