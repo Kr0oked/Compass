@@ -69,6 +69,7 @@ If you want to provide a new translation or update an existing one you can find 
 | sv        | Swedish              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | ta        | Tamil                | :white_check_mark: | :white_check_mark: | :x:                |
 | tr        | Turkish              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| uk        | Ukrainian            | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | vi        | Vietnamese           | :white_check_mark: | :white_check_mark: | :x:                |
 
 ## License

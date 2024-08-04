@@ -28,6 +28,7 @@ locales([
   'sv-SE',
   'ta-IN',
   'tr-TR',
+  'uk',
   'vi'
 ])
 
