@@ -29,7 +29,8 @@ locales([
   'ta-IN',
   'tr-TR',
   'uk',
-  'vi'
+  'vi',
+  'zh-CN'
 ])
 
 use_timestamp_suffix(false)

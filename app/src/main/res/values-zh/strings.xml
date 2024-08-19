@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ This file is part of Compass.
+  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
+  ~
+  ~ This program is free software: you can redistribute it and/or modify
+  ~ it under the terms of the GNU General Public License as published by
+  ~ the Free Software Foundation, either version 3 of the License, or
+  ~ (at your option) any later version.
+  ~
+  ~ Compass is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<resources>
+    <string name="compass">Compass</string>
+
+    <string name="sensor_status">传感器状态</string>
+    <string name="lock_screen_rotation">锁定屏幕旋转</string>
+
+    <string name="compass_rose_image_description">指南针指向北方</string>
+    <string name="device_heading_indicator_image_description">指示猫猫指向的方向</string>
+
+    <string name="cardinal_direction_north">北方</string>
+    <string name="cardinal_direction_northeast">东北方</string>
+    <string name="cardinal_direction_east">东方</string>
+    <string name="cardinal_direction_southeast">东南方</string>
+    <string name="cardinal_direction_south">南方</string>
+    <string name="cardinal_direction_southwest">西南方</string>
+    <string name="cardinal_direction_west">西方</string>
+    <string name="cardinal_direction_northwest">西北方</string>
+
+    <string name="cardinal_direction_north_abbreviation">N</string>
+    <string name="cardinal_direction_east_abbreviation">E</string>
+    <string name="cardinal_direction_south_abbreviation">S</string>
+    <string name="cardinal_direction_west_abbreviation">W</string>
+
+    <string name="sensor_accuracy_no_contact">传感器无效</string>
+    <string name="sensor_accuracy_unreliable">传感器值不可靠</string>
+    <string name="sensor_accuracy_low">低准确度</string>
+    <string name="sensor_accuracy_medium">平均准确度</string>
+    <string name="sensor_accuracy_high">最大准确度</string>
+    <string name="sensor_error_message">传感器无效</string>
+    <string name="sensor_calibration_text">您可以在任何时候用猫猫的设备画八字以提高精准度。(猫猫要晕啦~Σ(ﾟдﾟ;))</string>
+
+    <string name="location_loading">等待位置更新</string>
+    <string name="location_error_message">地点不详</string>
+    <string name="location_not_present">无法确定位置。 依然显示地磁北极.</string>
+    <string name="location_reload">重新加载位置</string>
+    <string name="access_location_permission_rationale_title">我们需要获取您的位置权限</string>
+    <string name="access_location_permission_rationale_message">为了展示对的北极，此应用程序需要根据您当前的位置确定地磁偏角。</string>
+    <string name="access_location_permission_denied">未获取位置访问权限。 依然显示地磁北极。</string>
+
+    <string name="settings">设置</string>
+
+    <string name="true_north">正确的北方</string>
+    <string name="true_north_summary">纠正地磁偏角并指向正北。 需要访问您的位置。</string>
+    <string name="magnetic_north">地磁北极</string>
+
+    <string name="haptic_feedback">震动反馈</string>
+    <string name="haptic_feedback_summary">当方向改变时，compass会振动。</string>
+
+    <string name="display">显示</string>
+    <string name="night_mode">主题</string>
+    <string name="night_mode_follow_system">跟随系统设置</string>
+    <string name="night_mode_no">日间</string>
+    <string name="night_mode_yes">夜间</string>
+
+    <string name="about">关于猫猫</string>
+    <string name="author">其她猫猫</string>
+    <string name="license">猫猫证</string>
+    <string name="third_party_licenses">第三方猫猫证</string>
+    <string name="third_party_licenses_summary">包含的开源库的猫猫证</string>
+    <string name="source_code">源代码</string>
+    <string name="version">版本</string>
+
+    <string name="error_message">发生错误。\n详情: %1$s\n代码: %2$s</string>
+
+    <string name="error">猫猫错了</string>
+    <string name="ok">好了喵</string>
+    <string name="no_thanks">不用，谢谢喵～</string>
+</resources>

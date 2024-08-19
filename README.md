@@ -71,6 +71,7 @@ If you want to provide a new translation or update an existing one you can find 
 | tr        | Turkish              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | uk        | Ukrainian            | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | vi        | Vietnamese           | :white_check_mark: | :white_check_mark: | :x:                |
+| zh        | Chinese              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 
 ## License
 
