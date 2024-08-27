@@ -77,3 +77,6 @@ If you want to provide a new translation or update an existing one you can find 
 
 The project is licensed under the GNU GPL v3.
 You can find the license text in the [LICENSE](LICENSE) file.
+
+
+This project is tested with Browserstack
