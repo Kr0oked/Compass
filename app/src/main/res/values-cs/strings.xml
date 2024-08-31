@@ -24,8 +24,8 @@
     <string name="sensor_status">Stav senzoru</string>
     <string name="lock_screen_rotation">Uzamknout otáčení obrazovky</string>
 
-    <string name="compass_rose_image_description">Kompasová růžice ukazuje na magnetický sever</string>
-    <string name="device_heading_indicator_image_description">Ukazuje, kterým směrem míří zařízení</string>
+    <string name="compass_rose_image_description">Směrová růžice ukazuje na magnetický sever</string>
+    <string name="device_heading_indicator_image_description">Ukazuje, kterým směrem zařízení míří</string>
 
     <string name="cardinal_direction_north">Sever</string>
     <string name="cardinal_direction_northeast">Severovýchod</string>
@@ -45,38 +45,38 @@
     <string name="sensor_accuracy_unreliable">Hodnoty senzoru jsou nespolehlivé</string>
     <string name="sensor_accuracy_low">Nízká přesnost</string>
     <string name="sensor_accuracy_medium">Průměrná přesnost</string>
-    <string name="sensor_accuracy_high">Nejvyšší přesnost</string>
+    <string name="sensor_accuracy_high">Maximální přesnost</string>
     <string name="sensor_error_message">Senzor není dostupný</string>
     <string name="sensor_calibration_text">Přesnost snímače můžete kdykoli zkusit zlepšit otáčením zařízení ve tvaru osmičky.</string>
 
     <string name="location_loading">Probíhá aktualizace polohy</string>
     <string name="location_error_message">Poloha není k dispozici</string>
-    <!--TODO<string name="location_not_present">Location could not be determined. Falling back to magnetic north.</string>-->
-    <!--TODO<string name="location_reload">Reload location</string>-->
-    <string name="access_location_permission_rationale_title">Pro přístup k poloze je potřeba udělit oprávnění</string>
+    <string name="location_not_present">Nebylo možné určit polohu. Jako záložní řešení se použije magnetický sever.</string>
+    <string name="location_reload">Aktualizovat polohu</string>
+    <string name="access_location_permission_rationale_title">Je potřeba udělit oprávnění pro přístup k poloze</string>
     <string name="access_location_permission_rationale_message">Pro zobrazení skutečného severu musí aplikace určit magnetickou deklinaci na základě vaší aktuální polohy.</string>
     <string name="access_location_permission_denied">Chybí oprávnění pro přístup k poloze. Bude použit magnetický sever.</string>
 
     <string name="settings">Nastavení</string>
 
     <string name="true_north">Skutečný sever</string>
-    <string name="true_north_summary">Opravit magnetickou deklinaci a zobrazit pravý sever. Vyžaduje přístup k přibližné poloze.</string>
-    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
+    <string name="true_north_summary">Opraví magnetickou deklinaci a zobrazí pravý sever. Vyžaduje přístup k přibližné poloze.</string>
+    <string name="magnetic_north">Magnetický sever</string>
 
     <string name="haptic_feedback">Haptická odezva</string>
-    <string name="haptic_feedback_summary">Při změně směru kompas vibruje.</string>-->
+    <string name="haptic_feedback_summary">Při změně směru kompas vibruje.</string>
 
-    <string name="display">Ukázat</string>
-    <string name="night_mode">Noční režim</string>
-    <string name="night_mode_follow_system">Systém</string>
-    <string name="night_mode_no">Den</string>
-    <string name="night_mode_yes">Noc</string>
+    <string name="display">Zobrazení</string>
+    <string name="night_mode">Motiv</string>
+    <string name="night_mode_follow_system">Podle systému</string>
+    <string name="night_mode_no">Světlý</string>
+    <string name="night_mode_yes">Temný</string>
 
     <string name="about">O aplikaci</string>
     <string name="author">Autor</string>
     <string name="license">Licence</string>
-    <!--TODO<string name="third_party_licenses">Third-party licenses</string>-->
-    <!--TODO<string name="third_party_licenses_summary">Licenses of included open source libraries</string>-->
+    <string name="third_party_licenses">Licence třetích stran</string>
+    <string name="third_party_licenses_summary">License zahrnutých knihoven s otevřeným zdrojovým kódem</string>
     <string name="source_code">Zdrojový kód</string>
     <string name="version">Verze</string>
 
