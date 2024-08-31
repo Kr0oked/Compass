@@ -75,8 +75,8 @@
     <string name="about">இந்த செயலியைப் பற்றிய தகவல்கள்</string>
     <string name="author">உருவாக்கியவர்</string>
     <string name="license">உரிமம்</string>
-    <!--TODO<string name="third_party_licenses">Third-party licenses</string>-->
-    <!--TODO<string name="third_party_licenses_summary">Licenses of included open source libraries</string>-->
+    <string name="third_party_licenses">மூன்றாம் தரப்பு உரிமங்கள்</string>
+    <string name="third_party_licenses_summary">சேர்க்கப்பட்ட ஓப்பன்சோர்ஸ் செயற்கூறுகளின் உரிமங்கள்</string>
     <string name="source_code">மூல குறியீடு</string>
     <string name="version">பதிப்பு</string>
 
