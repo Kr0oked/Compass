@@ -44,7 +44,7 @@ If you want to provide a new translation or update an existing one you can find 
 | Code      | Language             | App                | Metadata           | Complete           |
 |-----------|----------------------|--------------------|--------------------|--------------------|
 | *default* | English              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| bg        | Bulgarian            | :white_check_mark: | :white_check_mark: | :x:                |
+| bg        | Bulgarian            | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | bs        | Bosnian              | :white_check_mark: | :x:                | :x:                |
 | cs        | Czech                | :white_check_mark: | :white_check_mark: | :x:                |
 | da        | Danish               | :white_check_mark: | :white_check_mark: | :white_check_mark: |
