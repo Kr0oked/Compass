@@ -44,12 +44,13 @@ If you want to provide a new translation or update an existing one you can find 
 | Code      | Language             | App                | Metadata           | Complete           |
 |-----------|----------------------|--------------------|--------------------|--------------------|
 | *default* | English              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| ar        | Arabic               | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | bg        | Bulgarian            | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | bs        | Bosnian              | :white_check_mark: | :x:                | :x:                |
-| cs        | Czech                | :white_check_mark: | :white_check_mark: | :x:                |
+| cs        | Czech                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | da        | Danish               | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | de        | German               | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| el        | Greek                | :white_check_mark: | :white_check_mark: | :x:                |
+| el        | Greek                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | es        | Spanish              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | fa        | Persian              | :white_check_mark: | :white_check_mark: | :x:                |
 | fi        | Finnish              | :white_check_mark: | :white_check_mark: | :x:                |
@@ -67,7 +68,7 @@ If you want to provide a new translation or update an existing one you can find 
 | ru        | Russian              | :white_check_mark: | :white_check_mark: | :x:                |
 | sr        | Serbian              | :white_check_mark: | :white_check_mark: | :x:                |
 | sv        | Swedish              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| ta        | Tamil                | :white_check_mark: | :white_check_mark: | :x:                |
+| ta        | Tamil                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | tr        | Turkish              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | uk        | Ukrainian            | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | vi        | Vietnamese           | :white_check_mark: | :white_check_mark: | :x:                |
