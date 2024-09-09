@@ -51,8 +51,8 @@
 
     <string name="location_loading">Изчакване на местоположение…</string>
     <string name="location_error_message">Местоположението не е налично</string>
-    <!--TODO<string name="location_not_present">Location could not be determined. Falling back to magnetic north.</string>-->
-    <!--TODO<string name="location_reload">Reload location</string>-->
+    <string name="location_not_present">Местоположението не може да бъде определено. Връщане към използване на магнитен север.</string>
+    <string name="location_reload">Презареждане на местоположението</string>
     <string name="access_location_permission_rationale_title">Нужно е разрешение, за да се достъпи приблизителното местоположение на устройството.</string>
     <string name="access_location_permission_rationale_message">За да се показва истинския север, приложението трябва да определи магнитната деклинация, базирана на текущото местоположение.</string>
     <string name="access_location_permission_denied">Липсва разрешение за достъп до приблизителното местоположение. Ще се показва магнитния север.</string>
@@ -61,7 +61,7 @@
 
     <string name="true_north">Истински север</string>
     <string name="true_north_summary">Коригиране на магнитния север и показване на истинския север. Изисква достъп до приблизителното местоположение на устройството.</string>
-    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
+    <string name="magnetic_north">Магнитен Север</string>
 
     <string name="haptic_feedback">Тактическа обратна връзка</string>
     <string name="haptic_feedback_summary">Компасът вибрира, когато посоката се промени.</string>
@@ -75,8 +75,8 @@
     <string name="about">За приложението</string>
     <string name="author">Автор</string>
     <string name="license">Лиценз</string>
-    <!--TODO<string name="third_party_licenses">Third-party licenses</string>-->
-    <!--TODO<string name="third_party_licenses_summary">Licenses of included open source libraries</string>-->
+    <string name="third_party_licenses">Лицензи от трети страни</string>
+    <string name="third_party_licenses_summary">Лицензи на използвани библиотеки с отворен код.</string>
     <string name="source_code">Изходен код на приложението</string>
     <string name="version">Версия</string>
 
