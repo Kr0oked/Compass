@@ -43,9 +43,9 @@
 
     <string name="sensor_accuracy_no_contact">传感器不可用</string>
     <string name="sensor_accuracy_unreliable">传感器数据不可靠</string>
-    <string name="sensor_accuracy_low">最低精度</string>
-    <string name="sensor_accuracy_medium">平均精度</string>
-    <string name="sensor_accuracy_high">最高精度</string>
+    <string name="sensor_accuracy_low">较低精度</string>
+    <string name="sensor_accuracy_medium">中等精度</string>
+    <string name="sensor_accuracy_high">较高精度</string>
     <string name="sensor_error_message">传感器不可用</string>
     <string name="sensor_calibration_text">您可以尝试通过以 8 字形旋转设备来提高传感器的精度。</string>
 
@@ -59,9 +59,9 @@
 
     <string name="settings">设置</string>
 
-    <string name="true_north">设置正确的北方</string>
+    <string name="true_north">GPS定位下的北方</string>
     <string name="true_north_summary">需要获得访问您位置信息的权限来修正磁偏角并指向正确的北方。</string>
-    <string name="magnetic_north">磁北极</string>
+    <string name="magnetic_north">地磁北极</string>
 
     <string name="haptic_feedback">触觉反馈</string>
     <string name="haptic_feedback_summary">当指南针方向改变时设备会发出震动反馈。</string>
