@@ -17,8 +17,8 @@
  */
 
 plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     id("com.google.android.gms.oss-licenses-plugin")
     id("kotlin-kapt")
 }
@@ -90,14 +90,12 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.preference.ktx)
-
     implementation(libs.material)
-
     implementation(libs.oss.licenses.parser)
 
     testImplementation(libs.junit)
 
-    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.screengrab)
 }

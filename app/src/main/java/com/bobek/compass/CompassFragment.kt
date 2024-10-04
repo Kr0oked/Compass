@@ -76,16 +76,15 @@ class CompassFragment : Fragment() {
     private val compassMenuProvider = CompassMenuProvider()
     private val compassSensorEventListener = CompassSensorEventListener()
 
-    private lateinit var binding: FragmentCompassBinding
-    private lateinit var preferenceStore: PreferenceStore
-
+    private var binding: FragmentCompassBinding? = null
+    private var preferenceStore: PreferenceStore? = null
     private var sensorManager: SensorManager? = null
     private var locationManager: LocationManager? = null
     private var locationRequestCancellationSignal: CancellationSignal? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentCompassBinding.inflate(inflater, container, false)
-        return binding.root
+        return requireBinding().root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -97,15 +96,19 @@ class CompassFragment : Fragment() {
     }
 
     private fun initBinding() {
+        val binding = requireBinding()
         binding.lifecycleOwner = viewLifecycleOwner
         binding.model = compassViewModel
         binding.locationReloadButton.setOnClickListener { requestLocation() }
     }
 
     private fun initPreferenceStore() {
-        preferenceStore = PreferenceStore(requireContext(), lifecycle)
-        preferenceStore.trueNorth.observe(viewLifecycleOwner) { compassViewModel.trueNorth.value = it }
-        preferenceStore.hapticFeedback.observe(viewLifecycleOwner) { compassViewModel.hapticFeedback.value = it }
+        preferenceStore = PreferenceStore(requireContext(), lifecycle).also { preferenceStore ->
+            preferenceStore.trueNorth.observe(viewLifecycleOwner) { compassViewModel.trueNorth.value = it }
+            preferenceStore.hapticFeedback.observe(viewLifecycleOwner) {
+                compassViewModel.hapticFeedback.value = it
+            }
+        }
     }
 
     private fun setupSystemServices() {
@@ -301,6 +304,14 @@ class CompassFragment : Fragment() {
         Log.i(TAG, "Stopped compass")
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+        preferenceStore = null
+        sensorManager = null
+        locationManager = null
+    }
+
 
     private inner class CompassMenuProvider : MenuProvider {
 
@@ -310,7 +321,7 @@ class CompassFragment : Fragment() {
             menuInflater.inflate(R.menu.menu_compass, menu)
             optionsMenu = menu
             compassViewModel.sensorAccuracy.observe(viewLifecycleOwner) { updateSensorStatusIcon(it) }
-            preferenceStore.screenOrientationLocked.observe(viewLifecycleOwner) { updateScreenRotationIcon(it) }
+            requirePreferenceStore().screenOrientationLocked.observe(viewLifecycleOwner) { updateScreenRotationIcon(it) }
         }
 
         private fun updateSensorStatusIcon(sensorAccuracy: SensorAccuracy) {
@@ -372,8 +383,9 @@ class CompassFragment : Fragment() {
         }
 
         private fun toggleRotationScreenLocked() {
-            preferenceStore.screenOrientationLocked.value?.let {
-                preferenceStore.screenOrientationLocked.value = it.not()
+            val preferenceStore = requirePreferenceStore()
+            preferenceStore.screenOrientationLocked.value?.let { value ->
+                preferenceStore.screenOrientationLocked.value = value.not()
             }
         }
 
@@ -469,6 +481,10 @@ class CompassFragment : Fragment() {
             else -> LocationStatus.PRESENT
         }
     }
+
+    private fun requireBinding(): FragmentCompassBinding = binding!!
+
+    private fun requirePreferenceStore(): PreferenceStore = preferenceStore!!
 
     internal fun setSensorAccuracy(sensorAccuracy: SensorAccuracy) {
         Log.i(TAG, "Sensor accuracy $sensorAccuracy")

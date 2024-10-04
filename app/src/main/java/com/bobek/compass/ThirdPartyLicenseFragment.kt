@@ -27,10 +27,8 @@ import com.bobek.compass.databinding.FragmentThirdPartyLicenseBinding
 
 class ThirdPartyLicenseFragment : Fragment() {
 
-    private lateinit var binding: FragmentThirdPartyLicenseBinding
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = FragmentThirdPartyLicenseBinding.inflate(inflater, container, false)
+        val binding = FragmentThirdPartyLicenseBinding.inflate(inflater, container, false)
         binding.licenseContent = arguments?.getString("licenseContent")
         return binding.root
     }
