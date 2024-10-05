@@ -1,4 +1,4 @@
-# Remove verbose logging
--assumenosideeffects class android.util.Log {
-    public static *** v(...);
-}
+# Retracing stacktraces, see
+#   https://developer.android.com/build/shrink-code#retracing
+-keepattributes LineNumberTable,SourceFile
+-renamesourcefileattribute SourceFile
