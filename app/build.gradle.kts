@@ -29,12 +29,12 @@ kotlin {
 
 android {
     namespace = "com.bobek.compass"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.bobek.compass"
         minSdk = 23
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 24
         versionName = "1.14.4"
 
