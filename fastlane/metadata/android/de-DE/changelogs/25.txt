@@ -1,0 +1,2 @@
+- Übersetzung für Usbekisch wurde hinzugefügt
+- Verbesserte Unterstützung von verschiedenen Bildschirmgrößen
