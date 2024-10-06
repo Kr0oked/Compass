@@ -4,6 +4,7 @@ platform :android do
   desc "Runs all the tests"
   lane :test do
     gradle(task: "test")
+    gradle(task: "pixel9api34Check")
   end
 
   desc "Build a new APK"
