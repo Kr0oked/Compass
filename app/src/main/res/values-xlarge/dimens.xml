@@ -19,13 +19,5 @@
   -->
 
 <resources>
-    <dimen name="root_layout_padding">16dp</dimen>
-
-    <dimen name="cardinal_direction_text_ratio">0.20f</dimen>
-    <dimen name="degree_text_ratio">0.04f</dimen>
-
-    <dimen name="status_degrees_text_size_factor">0.14f</dimen>
-    <dimen name="status_cardinal_direction_text_size_factor">0.055f</dimen>
-    <dimen name="cardinal_direction_text_size_factor">0.08f</dimen>
-    <dimen name="degree_text_size_factor">0.03f</dimen>
+    <dimen name="root_layout_padding">32dp</dimen>
 </resources>
