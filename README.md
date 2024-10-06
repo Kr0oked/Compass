@@ -46,7 +46,7 @@ If you want to provide a new translation or update an existing one you can find 
 | *default* | English              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | ar        | Arabic               | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | bg        | Bulgarian            | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| bs        | Bosnian              | :white_check_mark: | :x:                | :x:                |
+| bs        | Bosnian              | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: |
 | cs        | Czech                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | da        | Danish               | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | de        | German               | :white_check_mark: | :white_check_mark: | :white_check_mark: |
@@ -55,8 +55,8 @@ If you want to provide a new translation or update an existing one you can find 
 | fa        | Persian              | :white_check_mark: | :white_check_mark: | :x:                |
 | fi        | Finnish              | :white_check_mark: | :white_check_mark: | :x:                |
 | fr        | French               | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| hr        | Croatian             | :white_check_mark: | :white_check_mark: | :x:                |
 | hi        | Hindi                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| hr        | Croatian             | :white_check_mark: | :white_check_mark: | :x:                |
 | hu        | Hungarian            | :white_check_mark: | :white_check_mark: | :x:                |
 | it        | Italian              | :white_check_mark: | :white_check_mark: | :x:                |
 | ja        | Japanese             | :white_check_mark: | :white_check_mark: | :white_check_mark: |
@@ -71,7 +71,7 @@ If you want to provide a new translation or update an existing one you can find 
 | ta        | Tamil                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | tr        | Turkish              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | uk        | Ukrainian            | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| uz        | Uzbek                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| uz        | Uzbek                | :white_check_mark: | :heavy_minus_sign: | :white_check_mark: |
 | vi        | Vietnamese           | :white_check_mark: | :white_check_mark: | :x:                |
 | zh        | Chinese              | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 

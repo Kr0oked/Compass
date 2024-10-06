@@ -30,7 +30,6 @@ locales([
   'ta-IN',
   'tr-TR',
   'uk',
-  'uz',
   'vi',
   'zh-CN'
 ])
