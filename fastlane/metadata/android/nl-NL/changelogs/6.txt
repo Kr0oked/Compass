@@ -1,0 +1,3 @@
+- Russian translation
+- Bigger compass view
+- Fixed incorrect bearing in landscape orientation

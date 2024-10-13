@@ -1,0 +1,3 @@
+- About page
+- Reworked app icon
+- Improved night mode handling

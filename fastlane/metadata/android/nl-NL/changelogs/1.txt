@@ -1,0 +1,5 @@
+- Rotating compass rose
+- Degrees text
+- Cardinal directions text
+- Day & Night mode
+- English and German translations

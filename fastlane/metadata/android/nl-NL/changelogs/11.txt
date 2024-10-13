@@ -1,0 +1,4 @@
+- True north functionality
+- Application settings
+- French translation
+- Support per-app language preferences

@@ -1,0 +1,2 @@
+- Bulgarian translation
+- Fix Norwegian language

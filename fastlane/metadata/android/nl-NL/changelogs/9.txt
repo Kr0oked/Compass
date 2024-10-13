@@ -1,0 +1,6 @@
+- Material 3 design
+- Bosnian translation
+- Croation translation
+- Serbian translation
+- New icons for the night mode preference
+- Persist app preference
