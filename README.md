@@ -62,7 +62,7 @@ If you want to provide a new translation or update an existing one you can find 
 | ja        | Japanese             | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | mk        | Macedonian           | :white_check_mark: | :white_check_mark: | :x:                |
 | nb        | Norwegian Bokmål     | :white_check_mark: | :x:                | :x:                |
-| nl        | Dutch                | :white_check_mark: | :white_check_mark: | :x:                |
+| nl        | Dutch                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | pl        | Polish               | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | pt-BR     | Brazilian Portuguese | :white_check_mark: | :white_check_mark: | :x:                |
 | ru        | Russian              | :white_check_mark: | :white_check_mark: | :x:                |
