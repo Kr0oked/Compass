@@ -1,0 +1,6 @@
+- Added declination hint
+- Added sensor calibration explanation image
+- Added Hungarian translation
+- Improved sensor status display
+- Removed dedicated marking for north on compass rose
+- Incremented minSDK to 23

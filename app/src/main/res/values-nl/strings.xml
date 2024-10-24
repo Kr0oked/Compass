@@ -47,42 +47,42 @@
     <string name="sensor_accuracy_medium">Gemiddelde nauwkeurigheid</string>
     <string name="sensor_accuracy_high">Maximale nauwkeurigheid</string>
     <string name="sensor_error_message">Sensor niet beschikbaar </string>
-    <string name="sensor_calibration_text"> kunt op elk moment proberen de nauwkeurigheid van uw sensor te verbeteren door het apparaat in een figuur 8-patroon te draaien.</string>
+    <string name="sensor_calibration_text">U kunt op elk moment proberen de nauwkeurigheid van uw sensor te verbeteren door het apparaat in een figuur 8-patroon te draaien.</string>
 
-    <!--TODO<string name="location_loading">Waiting for location update</string>-->
-    <!--TODO<string name="location_error_message">Location not available</string>-->
-    <!--TODO<string name="location_not_present">Location could not be determined. Falling back to magnetic north.</string>-->
-    <!--TODO<string name="location_reload">Reload location</string>-->
-    <!--TODO<string name="access_location_permission_rationale_title">We need permission to access your location</string>-->
-    <!--TODO<string name="access_location_permission_rationale_message">For showing to true north this app needs to determine the magnetic declination based on your current location.</string>-->
-    <!--TODO<string name="access_location_permission_denied">Missing permission to access location. Falling back to magnetic north.</string>-->
+    <string name="location_loading">Wachten voor locatie om up te daten</string>
+    <string name="location_error_message">Locatie niet beschikbaar</string>
+    <string name="location_not_present">Locatie kon niet vastgestelt worden. Terugschakelen naar magnetisch noorden.</string>
+    <string name="location_reload">Herlaad locatie</string>
+    <string name="access_location_permission_rationale_title">We hebben toestemming nodig voor uw locatie</string>
+    <string name="access_location_permission_rationale_message">Om het ware noorden te tonen moet de app de magnetische declinatie vaststellen op basis van uw locatie.</string>
+    <string name="access_location_permission_denied">Geen toestemming tot uw locatie. Terugvallen naar magnetisch noorden.</string>
 
-    <!--TODO<string name="settings">Settings</string>-->
+    <string name="settings">Instellingen</string>
 
-    <!--TODO<string name="true_north">True North</string>-->
-    <!--TODO<string name="true_north_summary">Correct the magnetic declination and show to true north. Requires access to your location.</string>-->
-    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
+    <string name="true_north">Ware Noorden</string>
+    <string name="true_north_summary">Corrigeer de magnetisch declinatie en toon aan ware noorden. Heeft toegang tot uw locatie nodig.</string>
+    <string name="magnetic_north">Magnetisch Noorden</string>
 
-    <!--TODO<string name="haptic_feedback">Haptic feedback</string>-->
-    <!--TODO<string name="haptic_feedback_summary">The compass vibrates when the direction changes.</string>-->
+    <string name="haptic_feedback">Haptische Feedback</string>
+    <string name="haptic_feedback_summary">Het kompas vibreert als de richting verandert.</string>
 
-    <!--TODO<string name="display">Display</string>-->
-    <!--TODO<string name="night_mode">Theme</string>-->
-    <!--TODO<string name="night_mode_follow_system">Follow system</string>-->
-    <!--TODO<string name="night_mode_no">Light</string>-->
-    <!--TODO<string name="night_mode_yes">Dark</string>-->
+    <string name="display">Scherm</string>
+    <string name="night_mode">Thema</string>
+    <string name="night_mode_follow_system">Volg systeem</string>
+    <string name="night_mode_no">Licht</string>
+    <string name="night_mode_yes">Donker</string>
 
     <string name="about">Over</string>
-    <!--TODO<string name="author">Author</string>-->
+    <string name="author">Auteur</string>
     <string name="license">Licentie</string>
-    <!--TODO<string name="third_party_licenses">Third-party licenses</string>-->
-    <!--TODO<string name="third_party_licenses_summary">Licenses of included open source libraries</string>-->
-    <!--TODO<string name="source_code">Source code</string>-->
+    <string name="third_party_licenses">Third-party licenties</string>
+    <string name="third_party_licenses_summary">Licenties van inbegrpenen open broncode bibliotheken</string>
+    <string name="source_code">Broncode</string>
     <string name="version">Versie</string>
 
-    <!--TODO<string name="error_message">An error occurred.\nMessage: %1$s\nCode: %2$s</string>-->
+    <string name="error_message">Er trad een Error op.\nBericht: %1$s\nCode: %2$s</string>
 
-    <!--TODO<string name="error">Error</string>-->
+    <string name="error">Error</string>
     <string name="ok">OK</string>
-    <!--TODO<string name="no_thanks">No thanks</string>-->
+    <string name="no_thanks">Nee bedankt</string>
 </resources>

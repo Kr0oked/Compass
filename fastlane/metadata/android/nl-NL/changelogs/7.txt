@@ -1,0 +1,1 @@
+- Fixed crash when about dialog was opened multiple times

@@ -1,0 +1,6 @@
+- Only request a single location to save battery
+- Extra error code when location is disabled
+- Upgraded to Android 14
+- Improved dialogs
+- Improved theme naming
+- Fixed typos

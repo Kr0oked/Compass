@@ -1,0 +1,6 @@
+- Added Arabic translation
+- Updated Bulgarian translation
+- Updated Chinese translation
+- Updated Czech translation
+- Updated Greek translation
+- Updated Tamil translation

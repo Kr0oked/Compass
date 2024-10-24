@@ -1,0 +1,2 @@
+- Compass does not shake anymore
+- Added hint for sensor calibration
