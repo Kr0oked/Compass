@@ -1,0 +1,6 @@
+- Deklinazioaren oharra gehitu
+- Sentsorearen kalibrazioa azaltzeko irudia gehitu
+- Hungarierazko itzulpena gehitu
+- Sentsorearen egoeraren bistaratzea hobetu
+- Iparraren marka bereizia kendu iparrorratzaren arrosatik
+- minSDK 23-ra handitu
