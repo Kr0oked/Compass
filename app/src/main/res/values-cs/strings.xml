@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ This file is part of Compass.
-  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ Compass is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
 <resources>
     <string name="compass">Kompas</string>
-
     <string name="sensor_status">Stav senzoru</string>
     <string name="lock_screen_rotation">Uzamknout otáčení obrazovky</string>
-
     <string name="compass_rose_image_description">Směrová růžice ukazuje na magnetický sever</string>
     <string name="device_heading_indicator_image_description">Ukazuje, kterým směrem zařízení míří</string>
-
     <string name="cardinal_direction_north">Sever</string>
     <string name="cardinal_direction_northeast">Severovýchod</string>
     <string name="cardinal_direction_east">Východ</string>
@@ -35,12 +13,10 @@
     <string name="cardinal_direction_southwest">Jihozápad</string>
     <string name="cardinal_direction_west">Západ</string>
     <string name="cardinal_direction_northwest">Severozápad</string>
-
     <string name="cardinal_direction_north_abbreviation">S</string>
     <string name="cardinal_direction_east_abbreviation">V</string>
     <string name="cardinal_direction_south_abbreviation">J</string>
     <string name="cardinal_direction_west_abbreviation">Z</string>
-
     <string name="sensor_accuracy_no_contact">Senzor není dostupný</string>
     <string name="sensor_accuracy_unreliable">Hodnoty senzoru jsou nespolehlivé</string>
     <string name="sensor_accuracy_low">Nízká přesnost</string>
@@ -48,7 +24,6 @@
     <string name="sensor_accuracy_high">Maximální přesnost</string>
     <string name="sensor_error_message">Senzor není dostupný</string>
     <string name="sensor_calibration_text">Přesnost snímače můžete kdykoli zkusit zlepšit otáčením zařízení ve tvaru osmičky.</string>
-
     <string name="location_loading">Probíhá aktualizace polohy</string>
     <string name="location_error_message">Poloha není k dispozici</string>
     <string name="location_not_present">Nebylo možné určit polohu. Jako záložní řešení se použije magnetický sever.</string>
@@ -56,22 +31,17 @@
     <string name="access_location_permission_rationale_title">Je potřeba udělit oprávnění pro přístup k poloze</string>
     <string name="access_location_permission_rationale_message">Pro zobrazení skutečného severu musí aplikace určit magnetickou deklinaci na základě vaší aktuální polohy.</string>
     <string name="access_location_permission_denied">Chybí oprávnění pro přístup k poloze. Bude použit magnetický sever.</string>
-
     <string name="settings">Nastavení</string>
-
     <string name="true_north">Skutečný sever</string>
     <string name="true_north_summary">Opraví magnetickou deklinaci a zobrazí pravý sever. Vyžaduje přístup k přibližné poloze.</string>
     <string name="magnetic_north">Magnetický sever</string>
-
     <string name="haptic_feedback">Haptická odezva</string>
     <string name="haptic_feedback_summary">Při změně směru kompas vibruje.</string>
-
     <string name="display">Zobrazení</string>
     <string name="night_mode">Motiv</string>
     <string name="night_mode_follow_system">Podle systému</string>
     <string name="night_mode_no">Světlý</string>
     <string name="night_mode_yes">Temný</string>
-
     <string name="about">O aplikaci</string>
     <string name="author">Autor</string>
     <string name="license">Licence</string>
@@ -79,9 +49,7 @@
     <string name="third_party_licenses_summary">License zahrnutých knihoven s otevřeným zdrojovým kódem</string>
     <string name="source_code">Zdrojový kód</string>
     <string name="version">Verze</string>
-
     <string name="error_message">Došlo k chybě.\nZpráva: %1$s\nKód: %2$s</string>
-
     <string name="error">Chyba</string>
     <string name="ok">OK</string>
     <string name="no_thanks">Ne, díky</string>

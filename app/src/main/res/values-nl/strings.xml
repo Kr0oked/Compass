@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ This file is part of Compass.
-  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ Compass is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
 <resources>
     <string name="compass">Kompas</string>
-
     <string name="sensor_status">Sensorstatus</string>
     <string name="lock_screen_rotation">Vergrendel schermrotatie</string>
-
     <string name="compass_rose_image_description">Kompasroos toont naar het magnetische noorde</string>
     <string name="device_heading_indicator_image_description">Geeft aan in welke richting het apparaat wijst</string>
-
     <string name="cardinal_direction_north">noorden</string>
     <string name="cardinal_direction_northeast">Noordoosten</string>
     <string name="cardinal_direction_east">Oosten</string>
@@ -35,12 +13,10 @@
     <string name="cardinal_direction_southwest">Zuidwesten</string>
     <string name="cardinal_direction_west">West</string>
     <string name="cardinal_direction_northwest">Noord West</string>
-
     <string name="cardinal_direction_north_abbreviation">N</string>
     <string name="cardinal_direction_east_abbreviation">O</string>
     <string name="cardinal_direction_south_abbreviation">Z</string>
     <string name="cardinal_direction_west_abbreviation">W</string>
-
     <string name="sensor_accuracy_no_contact">Sensor niet beschikbaar</string>
     <string name="sensor_accuracy_unreliable">Sensorwaarden zijn onbetrouwbaar</string>
     <string name="sensor_accuracy_low">Lage nauwkeurigheid</string>
@@ -48,7 +24,6 @@
     <string name="sensor_accuracy_high">Maximale nauwkeurigheid</string>
     <string name="sensor_error_message">Sensor niet beschikbaar </string>
     <string name="sensor_calibration_text">U kunt op elk moment proberen de nauwkeurigheid van uw sensor te verbeteren door het apparaat in een figuur 8-patroon te draaien.</string>
-
     <string name="location_loading">Wachten voor locatie om up te daten</string>
     <string name="location_error_message">Locatie niet beschikbaar</string>
     <string name="location_not_present">Locatie kon niet vastgestelt worden. Terugschakelen naar magnetisch noorden.</string>
@@ -56,22 +31,17 @@
     <string name="access_location_permission_rationale_title">We hebben toestemming nodig voor uw locatie</string>
     <string name="access_location_permission_rationale_message">Om het ware noorden te tonen moet de app de magnetische declinatie vaststellen op basis van uw locatie.</string>
     <string name="access_location_permission_denied">Geen toestemming tot uw locatie. Terugvallen naar magnetisch noorden.</string>
-
     <string name="settings">Instellingen</string>
-
     <string name="true_north">Ware Noorden</string>
     <string name="true_north_summary">Corrigeer de magnetisch declinatie en toon aan ware noorden. Heeft toegang tot uw locatie nodig.</string>
     <string name="magnetic_north">Magnetisch Noorden</string>
-
     <string name="haptic_feedback">Haptische Feedback</string>
     <string name="haptic_feedback_summary">Het kompas vibreert als de richting verandert.</string>
-
     <string name="display">Scherm</string>
     <string name="night_mode">Thema</string>
     <string name="night_mode_follow_system">Volg systeem</string>
     <string name="night_mode_no">Licht</string>
     <string name="night_mode_yes">Donker</string>
-
     <string name="about">Over</string>
     <string name="author">Auteur</string>
     <string name="license">Licentie</string>
@@ -79,9 +49,7 @@
     <string name="third_party_licenses_summary">Licenties van inbegrpenen open broncode bibliotheken</string>
     <string name="source_code">Broncode</string>
     <string name="version">Versie</string>
-
     <string name="error_message">Er trad een Error op.\nBericht: %1$s\nCode: %2$s</string>
-
     <string name="error">Error</string>
     <string name="ok">OK</string>
     <string name="no_thanks">Nee bedankt</string>

@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ This file is part of Compass.
-  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ Compass is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
 <resources>
     <string name="compass">Πυξίδα</string>
-
     <string name="sensor_status">Κατάσταση αισθητήρα</string>
     <string name="lock_screen_rotation">Κλείδωμα αυτόματης περιστροφής</string>
-
     <string name="compass_rose_image_description">Πυξίδα που δείχνει το μαγνητικό βορρά</string>
     <string name="device_heading_indicator_image_description">Υποδεικνύει σε πια κατεύθυνση δείχνει η συσκευή</string>
-
     <string name="cardinal_direction_north">Βοράς</string>
     <string name="cardinal_direction_northeast">Βορειοανατολικά</string>
     <string name="cardinal_direction_east">Ανατολή</string>
@@ -35,12 +13,10 @@
     <string name="cardinal_direction_southwest">Νοτιοδυτικά</string>
     <string name="cardinal_direction_west">Δύση</string>
     <string name="cardinal_direction_northwest">Βορειοδυτικά</string>
-
     <string name="cardinal_direction_north_abbreviation">Β</string>
     <string name="cardinal_direction_east_abbreviation">Α</string>
     <string name="cardinal_direction_south_abbreviation">Ν</string>
     <string name="cardinal_direction_west_abbreviation">Δ</string>
-
     <string name="sensor_accuracy_no_contact">Μη διαθέσιμος αισθητήρας</string>
     <string name="sensor_accuracy_unreliable">Οι τιμές του αισθητήρα είναι αναξιόπιστες</string>
     <string name="sensor_accuracy_low">Χαμηλή ακρίβεια</string>
@@ -48,7 +24,6 @@
     <string name="sensor_accuracy_high">Μέγιστη ακρίβεια</string>
     <string name="sensor_error_message">Μη διαθέσιμος αισθητήρας</string>
     <string name="sensor_calibration_text">Μπορείτε να βελτιώσετε οποιαδήποτε στιγμή την ακρίβεια αισθητήρα περιστρέφοντας την συσκευή σε σχήμα του 8.</string>
-
     <string name="location_loading">Τοποθεσία φορτώνει</string>
     <string name="location_error_message">Η τοποθεσία δεν είναι διαθέσιμη</string>
     <string name="location_not_present">Η τοποθεσία δεν μπορούσε να βρεθεί. Θα χρησιμοποιηθεί ο μαγνητικός Βοράς.</string>
@@ -56,22 +31,17 @@
     <string name="access_location_permission_rationale_title">Χρειάζεται άδεια για την πρόσβαση στην τοποθεσία σας</string>
     <string name="access_location_permission_rationale_message">Για να δείξει τον πραγματικό Βορά, η εφαρμογή χρειάζεται να υπολογίσει την μαγνητική απόκλιση βασισμένη στην περιοχή σας.</string>
     <string name="access_location_permission_denied">Δεν δώθηκε άδεια για πρόσβαση στην τοποθεσία. Θα χρησιμοποιηθεί ο μαγνητικός Βοράς.</string>
-
     <string name="settings">Ρυθμίσεις</string>
-
     <string name="true_north">Πραγματικός Βοράς</string>
     <string name="true_north_summary">Διορθώνει την μαγνητική απόκλιση και δείχνει τον πραγματικό Βορά. Χρειάζεται πρόσβαση στην τοποθεσία σας.</string>
     <string name="magnetic_north">Μαγνητικός Βοράς</string>
-
     <string name="haptic_feedback">Απτική Ανάδραση</string>
     <string name="haptic_feedback_summary">Η πυξίδα δονείται όταν αλλάζει η κατεύθυνση.</string>
-
     <string name="display">Εμφάνιση</string>
     <string name="night_mode">Θεματικό</string>
     <string name="night_mode_follow_system">Θεματικό Συστήματος</string>
     <string name="night_mode_no">Φωτεινό</string>
     <string name="night_mode_yes">Σκοτεινό</string>
-
     <string name="about">Σχετικά</string>
     <string name="author">Δημιουργός</string>
     <string name="license">Άδεια</string>
@@ -79,9 +49,7 @@
     <string name="third_party_licenses_summary">Άδειες βιβλιοθηκών ανοιχτού κώδικα</string>
     <string name="source_code">Πηγαίος Κώδικας</string>
     <string name="version">Έκδοση</string>
-
     <string name="error_message">Υπήρξε σφάλμα.\nΜήνυμα: %1$s\nΚωδικός: %2$s</string>
-
     <string name="error">Σφάλμα</string>
     <string name="ok">Εντάξει</string>
     <string name="no_thanks">Όχι Ευχαριστώ</string>

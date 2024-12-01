@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ This file is part of Compass.
-  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ Compass is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
 <resources>
     <string name="compass">指南针</string>
-
     <string name="sensor_status">传感器状态</string>
     <string name="lock_screen_rotation">锁定屏幕旋转</string>
-
     <string name="compass_rose_image_description">将指南针指向北方</string>
     <string name="device_heading_indicator_image_description">设备指向哪个方向</string>
-
     <string name="cardinal_direction_north">北</string>
     <string name="cardinal_direction_northeast">东北</string>
     <string name="cardinal_direction_east">东</string>
@@ -35,12 +13,10 @@
     <string name="cardinal_direction_southwest">西南</string>
     <string name="cardinal_direction_west">西</string>
     <string name="cardinal_direction_northwest">西北</string>
-
     <string name="cardinal_direction_north_abbreviation">北</string>
     <string name="cardinal_direction_east_abbreviation">东</string>
     <string name="cardinal_direction_south_abbreviation">南</string>
     <string name="cardinal_direction_west_abbreviation">西</string>
-
     <string name="sensor_accuracy_no_contact">传感器不可用</string>
     <string name="sensor_accuracy_unreliable">传感器数据不可靠</string>
     <string name="sensor_accuracy_low">较低精度</string>
@@ -48,7 +24,6 @@
     <string name="sensor_accuracy_high">较高精度</string>
     <string name="sensor_error_message">传感器不可用</string>
     <string name="sensor_calibration_text">您可以尝试通过以 8 字形旋转设备来提高传感器的精度。</string>
-
     <string name="location_loading">等待位置信息更新</string>
     <string name="location_error_message">位置信息不可用</string>
     <string name="location_not_present">无法确定位置信息，指针将回归到默认的北方。</string>
@@ -56,22 +31,17 @@
     <string name="access_location_permission_rationale_title">我们需要获得访问您位置信息的权限</string>
     <string name="access_location_permission_rationale_message">为了指向正确的北方，我们需要根据您当前的位置确定磁偏角。</string>
     <string name="access_location_permission_denied">缺少访问位置信息的权限，指针将回归到默认的北方。</string>
-
     <string name="settings">设置</string>
-
     <string name="true_north">GPS定位下的北方</string>
     <string name="true_north_summary">需要获得访问您位置信息的权限来修正磁偏角并指向正确的北方。</string>
     <string name="magnetic_north">地磁北极</string>
-
     <string name="haptic_feedback">触觉反馈</string>
     <string name="haptic_feedback_summary">当指南针方向改变时设备会发出震动反馈。</string>
-
     <string name="display">显示</string>
     <string name="night_mode">主题</string>
     <string name="night_mode_follow_system">跟随系统主题</string>
     <string name="night_mode_no">亮主题</string>
     <string name="night_mode_yes">暗主题</string>
-
     <string name="about">关于</string>
     <string name="author">作者</string>
     <string name="license">许可</string>
@@ -79,9 +49,7 @@
     <string name="third_party_licenses_summary">软件所有开源库的许可</string>
     <string name="source_code">源代码</string>
     <string name="version">版本</string>
-
     <string name="error_message">发生一处错误!\n信息: %1$s\n日志: %2$s</string>
-
     <string name="error">错误</string>
     <string name="ok">确定</string>
     <string name="no_thanks">不客气</string>

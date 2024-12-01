@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ This file is part of Compass.
-  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ Compass is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
 <resources>
     <string name="compass">Pusula</string>
-
     <string name="sensor_status">Sensör durumu</string>
     <string name="lock_screen_rotation">Kilit ekranı döndürmesi</string>
-
     <string name="compass_rose_image_description">Manyetik kuzeyi gösteren pusula gülü</string>
     <string name="device_heading_indicator_image_description">Cihazın baktığı yönü gösterir</string>
-
     <string name="cardinal_direction_north">Kuzey</string>
     <string name="cardinal_direction_northeast">Kuzeydoğu</string>
     <string name="cardinal_direction_east">Doğu</string>
@@ -35,12 +13,10 @@
     <string name="cardinal_direction_southwest">Güneybatı</string>
     <string name="cardinal_direction_west">Batı</string>
     <string name="cardinal_direction_northwest">Kuzeybatı</string>
-
     <string name="cardinal_direction_north_abbreviation">K</string>
     <string name="cardinal_direction_east_abbreviation">D</string>
     <string name="cardinal_direction_south_abbreviation">G</string>
     <string name="cardinal_direction_west_abbreviation">B</string>
-
     <string name="sensor_accuracy_no_contact">Sensör kullanılamıyor</string>
     <string name="sensor_accuracy_unreliable">Sensör değerleri sağlıklı değil</string>
     <string name="sensor_accuracy_low">Düşük doğruluk</string>
@@ -48,7 +24,6 @@
     <string name="sensor_accuracy_high">En yüksek doğruluk</string>
     <string name="sensor_error_message">Sensör kullanılamıyor</string>
     <string name="sensor_calibration_text">Sensör doğruluğunu, cihazı 8 şeklinde döndürerek arttırmayı deneyebilirsiniz</string>
-
     <string name="location_loading">Konum güncellemesi için bekliyor</string>
     <string name="location_error_message">Konum mevcut değil</string>
     <string name="location_not_present">Konum belirlenemedi. Manyetik kuzeye geçiliyor.</string>
@@ -56,22 +31,17 @@
     <string name="access_location_permission_rationale_title">Konumunuza erişmek için sizin izninize ihtiyacımız var</string>
     <string name="access_location_permission_rationale_message">Gerçek kuzeyi göstermek için bu uygulama manyetik sapmayı konumu kullanarak belirlemeli.</string>
     <string name="access_location_permission_denied">Konum erişimi için izin verilmedi. Manyetik kuzeye geçiliyor.</string>
-
     <string name="settings">Ayarlar</string>
-
     <string name="true_north">Gerçek (Coğrafi) kuzey</string>
     <string name="true_north_summary">Manyetik sapmayı doğrula ve gerçek kuzeyi göster. Konum erişimi gerekir.</string>
     <string name="magnetic_north">Manyetik kuzey</string>
-
     <string name="haptic_feedback">Dokunsal geribildirim</string>
     <string name="haptic_feedback_summary">Yön değişince pusula titreşir.</string>
-
     <string name="display">Görüntü</string>
     <string name="night_mode">Tema</string>
     <string name="night_mode_follow_system">Sistem ayarı</string>
     <string name="night_mode_no">Aydınlık mod</string>
     <string name="night_mode_yes">Karanlık mod</string>
-
     <string name="about">Hakkında</string>
     <string name="author">Yaratıcı</string>
     <string name="license">Lisans</string>
@@ -79,9 +49,7 @@
     <string name="third_party_licenses_summary">Kullanılan açık kaynak kodlu kütüphanelerin lisansları</string>
     <string name="source_code">Kaynak kodu</string>
     <string name="version">Sürüm</string>
-
     <string name="error_message">Bir hata oluştu.\nMesaj: %1$s\nKod: %2$s</string>
-
     <string name="error">Hata</string>
     <string name="ok">Tamam</string>
     <string name="no_thanks">Hayır, teşekkürler</string>

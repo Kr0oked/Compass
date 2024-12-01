@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ This file is part of Compass.
-  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ Compass is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
 <resources>
     <string name="compass">Компас</string>
-
     <string name="sensor_status">Статус сензора</string>
     <string name="lock_screen_rotation">Закључај ротацију екрана</string>
-
     <string name="compass_rose_image_description">Ружа компаса показује према магнетном северу</string>
     <string name="device_heading_indicator_image_description">Означава у ком правцу је уређај усмерен</string>
-
     <string name="cardinal_direction_north">Север</string>
     <string name="cardinal_direction_northeast">Североисток</string>
     <string name="cardinal_direction_east">Исток</string>
@@ -35,12 +13,10 @@
     <string name="cardinal_direction_southwest">Југозапад</string>
     <string name="cardinal_direction_west">Запад</string>
     <string name="cardinal_direction_northwest">Северозапад</string>
-
     <string name="cardinal_direction_north_abbreviation">С</string>
     <string name="cardinal_direction_east_abbreviation">И</string>
     <string name="cardinal_direction_south_abbreviation">Ј</string>
     <string name="cardinal_direction_west_abbreviation">З</string>
-
     <string name="sensor_accuracy_no_contact">Сензор није доступан</string>
     <string name="sensor_accuracy_unreliable">Вредности сензора су непоуздане</string>
     <string name="sensor_accuracy_low">Ниска тачност</string>
@@ -48,41 +24,8 @@
     <string name="sensor_accuracy_high">Максимална тачност</string>
     <string name="sensor_error_message">Сензор није доступан</string>
     <string name="sensor_calibration_text">Можете покушати да побољшате тачност сензора у било ком тренутку тако што ћете окретати уређај у облику осмице.</string>
-
-    <!--TODO<string name="location_loading">Waiting for location update</string>-->
-    <!--TODO<string name="location_error_message">Location not available</string>-->
-    <!--TODO<string name="location_not_present">Location could not be determined. Falling back to magnetic north.</string>-->
-    <!--TODO<string name="location_reload">Reload location</string>-->
-    <!--TODO<string name="access_location_permission_rationale_title">We need permission to access your location</string>-->
-    <!--TODO<string name="access_location_permission_rationale_message">For showing to true north this app needs to determine the magnetic declination based on your current location.</string>-->
-    <!--TODO<string name="access_location_permission_denied">Missing permission to access location. Falling back to magnetic north.</string>-->
-
-    <!--TODO<string name="settings">Settings</string>-->
-
-    <!--TODO<string name="true_north">True North</string>-->
-    <!--TODO<string name="true_north_summary">Correct the magnetic declination and show to true north. Requires access to your location.</string>-->
-    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
-
-    <!--TODO<string name="haptic_feedback">Haptic feedback</string>-->
-    <!--TODO<string name="haptic_feedback_summary">The compass vibrates when the direction changes.</string>-->
-
-    <!--TODO<string name="display">Display</string>-->
-    <!--TODO<string name="night_mode">Theme</string>-->
-    <!--TODO<string name="night_mode_follow_system">Follow system</string>-->
-    <!--TODO<string name="night_mode_no">Light</string>-->
-    <!--TODO<string name="night_mode_yes">Dark</string>-->
-
     <string name="about">О апликацији</string>
-    <!--TODO<string name="author">Author</string>-->
     <string name="license">Лиценца</string>
-    <!--TODO<string name="third_party_licenses">Third-party licenses</string>-->
-    <!--TODO<string name="third_party_licenses_summary">Licenses of included open source libraries</string>-->
-    <!--TODO<string name="source_code">Source code</string>-->
     <string name="version">Верзија</string>
-
-    <!--TODO<string name="error_message">An error occurred.\nMessage: %1$s\nCode: %2$s</string>-->
-
-    <!--TODO<string name="error">Error</string>-->
     <string name="ok">У реду</string>
-    <!--TODO<string name="no_thanks">No thanks</string>-->
 </resources>

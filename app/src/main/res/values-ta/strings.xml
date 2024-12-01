@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ This file is part of Compass.
-  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ Compass is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
 <resources>
     <string name="compass">திசைகாட்டி</string>
-
     <string name="sensor_status">உணரி நிலை</string>
     <string name="lock_screen_rotation">பூட்டுத் திரைச் சுழற்சி</string>
-
     <string name="compass_rose_image_description">திசைகாட்டி வடக்கு நோக்கிக் காட்டுகிறது</string>
     <string name="device_heading_indicator_image_description">கருவி எந்த திசையில் சுட்டிக்காட்டுகிறது என்பதை குறிக்கிறது</string>
-
     <string name="cardinal_direction_north">வடக்கு</string>
     <string name="cardinal_direction_northeast">வடகிழக்கு</string>
     <string name="cardinal_direction_east">கிழக்கு</string>
@@ -35,12 +13,10 @@
     <string name="cardinal_direction_southwest">தென்மேற்கு</string>
     <string name="cardinal_direction_west">மேற்கு</string>
     <string name="cardinal_direction_northwest">வடமேற்கு</string>
-
     <string name="cardinal_direction_north_abbreviation">வ</string>
     <string name="cardinal_direction_east_abbreviation">கி</string>
     <string name="cardinal_direction_south_abbreviation">தெ</string>
     <string name="cardinal_direction_west_abbreviation">மே</string>
-
     <string name="sensor_accuracy_no_contact">உணரி பயன்பாட்டிற்கு இல்லை</string>
     <string name="sensor_accuracy_unreliable">உணரியின் மதிப்புகள் நம்பகத்தன்மையற்றது</string>
     <string name="sensor_accuracy_low">குறைந்த துல்லியம்</string>
@@ -48,7 +24,6 @@
     <string name="sensor_accuracy_high">அதிகபட்ச துல்லியம்</string>
     <string name="sensor_error_message">உணரி பயன்பாட்டிற்கு இல்லை</string>
     <string name="sensor_calibration_text">கருவியை 8 வடிவில் சுழற்றுவதன் மூலம் எந்த நேரத்திலும் உங்கள் உணரியின் துல்லியத்தை மேம்படுத்த முயற்சி செய்யலாம்.</string>
-
     <string name="location_loading">இருப்பிட புதுப்பிப்புக்காக காத்திருக்கிறது</string>
     <string name="location_error_message">இருப்பிடத் தரவு இல்லை</string>
     <string name="location_not_present">இருப்பிடத்தை தீர்மானிக்க முடியவில்லை. காந்த வடக்கிற்கு பயன்பாடு மாற்றியமைக்கப்படுகிறது.</string>
@@ -56,22 +31,17 @@
     <string name="access_location_permission_rationale_title">உங்கள் இருப்பிடத்தை அணுக எங்களுக்கு அனுமதி தேவை</string>
     <string name="access_location_permission_rationale_message">உண்மையான வடக்கைக் காட்ட, உங்கள் தற்போதைய இருப்பிடத்தின் அடிப்படையில் இந்த செயலி காந்தச் சரிவைத் தீர்மானிக்க வேண்டும்.</string>
     <string name="access_location_permission_denied">இருப்பிடத்தை அணுகுவதற்கான அனுமதி இல்லை. காந்த வடக்கிற்கு பயன்பாடு மாற்றியமைக்கப்படுகிறது.</string>
-
     <string name="settings">அமைப்புகள்</string>
-
     <string name="true_north">உண்மையான வடக்கு</string>
     <string name="true_north_summary">காந்தச் சரிவைச் சரிசெய்து, உண்மையான வடக்கைக் காட்டு. உங்கள் இருப்பிடத்திற்கான அணுகல் தேவைப்படுகிறது.</string>
     <string name="magnetic_north">காந்த வடக்கு</string>
-
     <string name="haptic_feedback">அதிர்வு நிலைமை</string>
     <string name="haptic_feedback_summary">திசை மாறும்போது திசைகாட்டி அதிரும்.</string>
-
     <string name="display">திரை</string>
     <string name="night_mode">நிறம்</string>
     <string name="night_mode_follow_system">அமைப்பைப் பின்பற்று</string>
     <string name="night_mode_no">வெளிர்</string>
     <string name="night_mode_yes">இருள்</string>
-
     <string name="about">இந்த செயலியைப் பற்றிய தகவல்கள்</string>
     <string name="author">உருவாக்கியவர்</string>
     <string name="license">உரிமம்</string>
@@ -79,9 +49,7 @@
     <string name="third_party_licenses_summary">சேர்க்கப்பட்ட ஓப்பன்சோர்ஸ் செயற்கூறுகளின் உரிமங்கள்</string>
     <string name="source_code">மூல குறியீடு</string>
     <string name="version">பதிப்பு</string>
-
     <string name="error_message">பிழை ஏற்பட்டது.\nசெய்தி: %1$s\nகுறியீடு: %2$s</string>
-
     <string name="error">பிழை</string>
     <string name="ok">சரி</string>
     <string name="no_thanks">இல்லை நன்றி</string>

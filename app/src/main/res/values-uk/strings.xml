@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ This file is part of Compass.
-  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ Compass is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
 <resources>
     <string name="compass">Компас</string>
-
     <string name="sensor_status">Стан датчика</string>
     <string name="lock_screen_rotation">Заблокувати поворот екрану</string>
-
     <string name="compass_rose_image_description">Роза компаса показує північ</string>
     <string name="device_heading_indicator_image_description">Вказує, в якому напрямку спрямований пристрій</string>
-
     <string name="cardinal_direction_north">Північ</string>
     <string name="cardinal_direction_northeast">Північний схід</string>
     <string name="cardinal_direction_east">Схід</string>
@@ -35,12 +13,10 @@
     <string name="cardinal_direction_southwest">Південний захід</string>
     <string name="cardinal_direction_west">Захід</string>
     <string name="cardinal_direction_northwest">Північний захід</string>
-
     <string name="cardinal_direction_north_abbreviation">Пн</string>
     <string name="cardinal_direction_east_abbreviation">Сх</string>
     <string name="cardinal_direction_south_abbreviation">Пд</string>
     <string name="cardinal_direction_west_abbreviation">Зх</string>
-
     <string name="sensor_accuracy_no_contact">Датчик недоступний</string>
     <string name="sensor_accuracy_unreliable">Значення датчика ненадійні</string>
     <string name="sensor_accuracy_low">Низька точність</string>
@@ -48,7 +24,6 @@
     <string name="sensor_accuracy_high">Максимальна точність</string>
     <string name="sensor_error_message">Датчик недоступний</string>
     <string name="sensor_calibration_text">Ви можете будь-коли спробувати підвищити точність свого датчика, обертаючи пристрій у формі цифри 8.</string>
-
     <string name="location_loading">Очікування оновлення місцезнаходження</string>
     <string name="location_error_message">Місцезнаходження недоступне</string>
     <string name="location_not_present">Не вдалося визначити місцезнаходження. Повернення до магнітної півночі.</string>
@@ -56,22 +31,17 @@
     <string name="access_location_permission_rationale_title">Нам потрібен дозвіл на доступ до вашого місцезнаходження</string>
     <string name="access_location_permission_rationale_message">Щоб показати справжню північ, цій програмі потрібно визначити магнітне схилення на основі вашого поточного місцезнаходження.</string>
     <string name="access_location_permission_denied">Відсутній дозвіл на доступ до місцезнаходження. Повернення до магнітної півночі.</string>
-
     <string name="settings">Налаштування</string>
-
     <string name="true_north">Справжня північ</string>
     <string name="true_north_summary">Виправте магнітне схилення та покажіть на справжній північ. Потрібен доступ до вашого місцезнаходження.</string>
     <string name="magnetic_north">Магнітний північ</string>
-
     <string name="haptic_feedback">Тактильний відгук</string>
     <string name="haptic_feedback_summary">Компас вібрує, коли напрямок змінюється.</string>
-
     <string name="display">Дисплей</string>
     <string name="night_mode">Тема</string>
     <string name="night_mode_follow_system">Дотримуйтеся системи</string>
     <string name="night_mode_no">Світло</string>
     <string name="night_mode_yes">Темно</string>
-
     <string name="about">Про</string>
     <string name="author">Автор</string>
     <string name="license">Ліцензія</string>
@@ -79,9 +49,7 @@
     <string name="third_party_licenses_summary">Ліцензії включених бібліотек з відкритим кодом</string>
     <string name="source_code">Вихідний код</string>
     <string name="version">Версія</string>
-
     <string name="error_message">Сталася помилка.\nПовідомлення: %1$s\nКод: %2$s</string>
-
     <string name="error">Помилка</string>
     <string name="ok">ОК</string>
     <string name="no_thanks">Ні, дякую</string>

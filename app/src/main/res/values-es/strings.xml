@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ This file is part of Compass.
-  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ Compass is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
 <resources>
     <string name="compass">Brújula</string>
-
     <string name="sensor_status">Estado del sensor</string>
     <string name="lock_screen_rotation">Bloquear la rotación de la pantalla</string>
-
     <string name="compass_rose_image_description">La rosa de los vientos mirando hacia el norte</string>
     <string name="device_heading_indicator_image_description">Indica en qué dirección apunta el dispositivo.</string>
-
     <string name="cardinal_direction_north">Norte</string>
     <string name="cardinal_direction_northeast">Noreste</string>
     <string name="cardinal_direction_east">Este</string>
@@ -35,12 +13,10 @@
     <string name="cardinal_direction_southwest">Suroeste</string>
     <string name="cardinal_direction_west">Oeste</string>
     <string name="cardinal_direction_northwest">Noroeste</string>
-
     <string name="cardinal_direction_north_abbreviation">N</string>
     <string name="cardinal_direction_east_abbreviation">E</string>
     <string name="cardinal_direction_south_abbreviation">S</string>
     <string name="cardinal_direction_west_abbreviation">O</string>
-
     <string name="sensor_accuracy_no_contact">Sensor no disponible</string>
     <string name="sensor_accuracy_unreliable">Los valores del sensor no son fiables.</string>
     <string name="sensor_accuracy_low">Presición baja</string>
@@ -48,7 +24,6 @@
     <string name="sensor_accuracy_high">Presición máxima</string>
     <string name="sensor_error_message">Sensor no disponible</string>
     <string name="sensor_calibration_text">Puede intentar mejorar la precisión del sensor en cualquier momento girando el dispositivo en forma de 8.</string>
-
     <string name="location_loading">Esperando actualización de ubicación</string>
     <string name="location_error_message">Ubicación no disponible</string>
     <string name="location_not_present">No se pudo determinar la ubicación. Recurriend al norte magnético.</string>
@@ -56,22 +31,17 @@
     <string name="access_location_permission_rationale_title">Necesitamos permiso para acceder a su ubicación</string>
     <string name="access_location_permission_rationale_message">Para mostrar el norte verdadero, esta aplicación necesita determinar la declinación magnética según su ubicación actual.</string>
     <string name="access_location_permission_denied">Falta permiso para acceder a la ubicación. Recurriendo al norte magnético.</string>
-
     <string name="settings">Ajustes</string>
-
     <string name="true_north">Norte verdadero</string>
     <string name="true_north_summary">Corrijir la declinación magnética y muestrar el norte verdadero. Requiere acceso a su ubicación.</string>
     <string name="magnetic_north">Norte Magnético</string>
-
     <string name="haptic_feedback">Feedback táctil</string>
     <string name="haptic_feedback_summary">La brújula vibra cuando cambia la dirección.</string>
-
     <string name="display">Pantalla</string>
     <string name="night_mode">Tema</string>
     <string name="night_mode_follow_system">Predeterminado del sistema</string>
     <string name="night_mode_no">Claro</string>
     <string name="night_mode_yes">Oscuro</string>
-
     <string name="about">Acerca de</string>
     <string name="author">Autor</string>
     <string name="license">Licencia</string>
@@ -79,9 +49,7 @@
     <string name="third_party_licenses_summary">Licencias de bibliotecas de código abierto incluidas</string>
     <string name="source_code">Código fuente</string>
     <string name="version">Versión</string>
-
     <string name="error_message">Ocurrió un error. Mensaje: %1$s Código: %2$s</string>
-
     <string name="error">Error</string>
     <string name="ok">OK</string>
     <string name="no_thanks">No, gracias</string>

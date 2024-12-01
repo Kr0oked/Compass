@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ This file is part of Compass.
-  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ Compass is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
 <resources>
     <string name="compass">Компас</string>
-
     <string name="sensor_status">Состояние датчика</string>
     <string name="lock_screen_rotation">Заблокировать поворот экрана</string>
-
     <string name="compass_rose_image_description">Роза компаса показывает на магнитный север</string>
     <string name="device_heading_indicator_image_description">Показывает, в каком направлении указывает устройство</string>
-
     <string name="cardinal_direction_north">Север</string>
     <string name="cardinal_direction_northeast">Северо-Восток</string>
     <string name="cardinal_direction_east">Восток</string>
@@ -35,12 +13,10 @@
     <string name="cardinal_direction_southwest">Юго-Запад</string>
     <string name="cardinal_direction_west">Запад</string>
     <string name="cardinal_direction_northwest">Северо-запад</string>
-
     <string name="cardinal_direction_north_abbreviation">С</string>
     <string name="cardinal_direction_east_abbreviation">В</string>
     <string name="cardinal_direction_south_abbreviation">Ю</string>
     <string name="cardinal_direction_west_abbreviation">З</string>
-
     <string name="sensor_accuracy_no_contact">Датчик недоступен</string>
     <string name="sensor_accuracy_unreliable">Значения датчиков ненадежны</string>
     <string name="sensor_accuracy_low">Низкая точность</string>
@@ -48,40 +24,27 @@
     <string name="sensor_accuracy_high">Максимальная точность</string>
     <string name="sensor_error_message">Датчик недоступен</string>
     <string name="sensor_calibration_text">Вы можете попытаться повысить точность датчика в любое время, повернув устройство в воздухе виде восьмерки несколько раз.</string>
-
     <string name="location_loading">Ожидание обновления местоположения</string>-->
     <string name="location_error_message">Местоположение недоступно</string>-->
-    <!--TODO<string name="location_not_present">Location could not be determined. Falling back to magnetic north.</string>-->
-    <!--TODO<string name="location_reload">Reload location</string>-->
     <string name="access_location_permission_rationale_title">Нобходимо предоставить разрешение на доступ к местоположению</string>
     <string name="access_location_permission_rationale_message">Для отображения истинного севера этому приложению необходимо определить магнитное склонение на основе вашего текущего местоположения</string>
     <string name="access_location_permission_denied">Отсутствует разрешение на доступ к приблизительному местоположению. Будет по прежнему использоваться магнитный север</string>
-
     <string name="settings">Настройки</string>-->
-
     <string name="true_north">Истинный север</string>-->
     <string name="true_north_summary">Показ истинного севера на основании коррекции магнитного склонения. Для этой функции требуется доступ к местоположению (допустимо дать разрешение только на приблизительное местоположение)</string>
-    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
-
     <string name="haptic_feedback">Тактильная обратная связь</string>-->
     <string name="haptic_feedback_summary">Компас вибрирует при изменении направления</string>-->
-
     <string name="display">Дисплей</string>-->
     <string name="night_mode">Ночной режим</string>-->
     <string name="night_mode_follow_system">Как в системе</string>-->
     <string name="night_mode_no">День</string>-->
     <string name="night_mode_yes">Ночь</string>-->
-
     <string name="about">О программе</string>
     <string name="author">Автор</string>-->
     <string name="license">Лицензия</string>
-    <!--TODO<string name="third_party_licenses">Third-party licenses</string>-->
-    <!--TODO<string name="third_party_licenses_summary">Licenses of included open source libraries</string>-->
     <string name="source_code">Исходный код</string>
     <string name="version">Версия приложения</string>
-
     <string name="error_message">Произошла ошибка.\nMessage: %1$s\nCode: %2$s</string>
-
     <string name="error">Ошибка</string>
     <string name="ok">OK</string>
     <string name="no_thanks">Нет, спасибо!</string>

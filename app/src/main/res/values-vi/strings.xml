@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-  ~ This file is part of Compass.
-  ~ Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
-  ~
-  ~ This program is free software: you can redistribute it and/or modify
-  ~ it under the terms of the GNU General Public License as published by
-  ~ the Free Software Foundation, either version 3 of the License, or
-  ~ (at your option) any later version.
-  ~
-  ~ Compass is distributed in the hope that it will be useful,
-  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~ GNU General Public License for more details.
-  ~
-  ~ You should have received a copy of the GNU General Public License
-  ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
-  -->
-
 <resources>
     <string name="compass">La bàn</string>
-
     <string name="sensor_status">Trạng thái cảm biến</string>
     <string name="lock_screen_rotation">Chặn xoay màn hình</string>
-
     <string name="compass_rose_image_description">Mũi tên hồng luôn chỉ về hướng bắc</string>
     <string name="device_heading_indicator_image_description">Cho biết thiết bị chỉ về hướng nào</string>
-
     <string name="cardinal_direction_north">Bắc</string>
     <string name="cardinal_direction_northeast">Đông Bắc</string>
     <string name="cardinal_direction_east">Đông</string>
@@ -35,12 +13,10 @@
     <string name="cardinal_direction_southwest">Tây Nam</string>
     <string name="cardinal_direction_west">Tây</string>
     <string name="cardinal_direction_northwest">Tây Bắc</string>
-
     <string name="cardinal_direction_north_abbreviation">B</string>
     <string name="cardinal_direction_east_abbreviation">Đ</string>
     <string name="cardinal_direction_south_abbreviation">N</string>
     <string name="cardinal_direction_west_abbreviation">T</string>
-
     <string name="sensor_accuracy_no_contact">Cảm biến không có sẵn</string>
     <string name="sensor_accuracy_unreliable">Giá trị cảm biến không đáng tin cậy</string>
     <string name="sensor_accuracy_low">Độ chính xác thấp</string>
@@ -48,40 +24,27 @@
     <string name="sensor_accuracy_high">Độ chính xác cao</string>
     <string name="sensor_error_message">Cảm biến không có sẵn</string>
     <string name="sensor_calibration_text">Bạn có thể cải thiện độ chính xác của cảm biến bất kỳ lúc nào bằng cách xoay thiết bị theo hình 8.</string>
-
     <string name="location_loading">Đang chờ cập nhật vị trí</string>
     <string name="location_error_message">Vị trí không có sẵn</string>
-    <!--TODO<string name="location_not_present">Location could not be determined. Falling back to magnetic north.</string>-->
-    <!--TODO<string name="location_reload">Reload location</string>-->
     <string name="access_location_permission_rationale_title">Chúng tôi cần có quyền truy cập vào vị trí của bạn</string>
     <string name="access_location_permission_rationale_message">Để hiển thị về phía bắc thực, ứng dụng này cần xác định độ từ thiên từ dựa trên vị trí hiện tại của bạn.</string>
     <string name="access_location_permission_denied">Thiếu quyền truy cập vị trí thực. Quay trở lại phía bắc từ tính.</string>
-
     <string name="settings">Cài đặt</string>
-
     <string name="true_north">Bắc thực tế</string>
     <string name="true_north_summary">Hiệu chỉnh độ lệch từ trường và hiển thị hướng bắc thực tế. Yêu cầu quyền truy cập vào vị trí hiện tại của bạn.</string>
-    <!--TODO<string name="magnetic_north">Magnetic North</string>-->
-
     <string name="haptic_feedback">Tương tác</string>
     <string name="haptic_feedback_summary">La bàn sẽ rung mỗi khi hướng thay đổi.</string>
-
     <string name="display">Giao diện</string>
     <string name="night_mode">Chọn giao diện</string>
     <string name="night_mode_follow_system">Theo hệ thống</string>
     <string name="night_mode_no">Ngày</string>
     <string name="night_mode_yes">Đêm</string>
-
     <string name="about">Thông tin</string>
     <string name="author">Tác giả</string>
     <string name="license">Giấy phép</string>
-    <!--TODO<string name="third_party_licenses">Third-party licenses</string>-->
-    <!--TODO<string name="third_party_licenses_summary">Licenses of included open source libraries</string>-->
     <string name="source_code">Mã nguồn</string>
     <string name="version">Phiên bản</string>
-
     <string name="error_message">Đã xảy ra lỗi.\nTin nhắn: %1$s\nMã lệnh: %2$s</string>
-
     <string name="error">Lỗi</string>
     <string name="ok">Đồng ý</string>
     <string name="no_thanks">Không, cảm ơn</string>
