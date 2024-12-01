@@ -1,0 +1,3 @@
+- Fixed layout margin in edge-to-edge mode
+- Added Basque translation
+- Improved Dutch translation

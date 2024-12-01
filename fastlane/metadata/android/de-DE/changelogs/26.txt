@@ -1,0 +1,3 @@
+- Layout Abstände bei Randloser Anzeige wurden behoben
+- Übersetzung für Baskisch wurde hinzugefügt
+- Übersetzung für Niederländische wurde verbessert
