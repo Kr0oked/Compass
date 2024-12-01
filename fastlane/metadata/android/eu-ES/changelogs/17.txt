@@ -1,0 +1,6 @@
+- Kokapen bakarra eskatu bateria aurrezteko
+- Kokapena desgaituta dagoenean errore-kode gehigarria
+- Android 14-ra bertsio-berritu
+- Elkarrizketa-koadroak hobetu
+- Gaien izenak hobetu
+- Ortografia akatsak zuzendu

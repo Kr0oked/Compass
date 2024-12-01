@@ -1,0 +1,3 @@
+- Honi buruz orria
+- Aplikazioaren ikonoa berriz landu
+- Gaueko moduaren kudeaketa hobetu

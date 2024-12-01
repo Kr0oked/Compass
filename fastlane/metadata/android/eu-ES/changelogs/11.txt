@@ -1,0 +1,4 @@
+- Benetako iparraren funtzionalitatea
+- Aplikazioaren ezarpenak
+- Frantsesezko itzulpena
+- Aplikazioan hizkuntza aldatu ahal izatea
