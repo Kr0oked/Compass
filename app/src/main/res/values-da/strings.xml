@@ -23,7 +23,7 @@
     <string name="sensor_accuracy_medium">Middel nøjagtighed</string>
     <string name="sensor_accuracy_high">Maksimal nøjagtighed</string>
     <string name="sensor_error_message">Sensor ikke tilgængelig</string>
-    <string name="sensor_calibration_text">Du kan forsøge at forbedre din sensors nøjagtighed  ved at rotere enheden i et ottetal mønster.</string>
+    <string name="sensor_calibration_text">Du kan forsøge at forbedre din sensors nøjagtighed ved at rotere enheden i et ottetal mønster.</string>
     <string name="location_loading">Henter lokation</string>
     <string name="location_error_message">Lokation ikke tilgængelig</string>
     <string name="location_not_present">Lokation kunne ikke fastslås. Skifter tilbage til magnetisk nord.</string>
