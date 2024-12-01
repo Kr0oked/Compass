@@ -47,6 +47,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.location.LocationManagerCompat
 import androidx.core.view.MenuProvider
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -92,6 +95,7 @@ class CompassFragment : Fragment() {
         initBinding()
         initPreferenceStore()
         setupSystemServices()
+        adjustLayoutToSystemBars()
         setupMenu()
     }
 
@@ -114,6 +118,18 @@ class CompassFragment : Fragment() {
     private fun setupSystemServices() {
         sensorManager = ActivityCompat.getSystemService(requireContext(), SensorManager::class.java)
         locationManager = ActivityCompat.getSystemService(requireContext(), LocationManager::class.java)
+    }
+
+    private fun adjustLayoutToSystemBars() {
+        ViewCompat.setOnApplyWindowInsetsListener(requireBinding().root) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                leftMargin = insets.left
+                rightMargin = insets.right
+                bottomMargin = insets.bottom
+            }
+            WindowInsetsCompat.CONSUMED
+        }
     }
 
     private fun setupMenu() {
