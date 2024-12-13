@@ -1,2 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="compass">Kompass</string>
+    <string name="cardinal_direction_northwest">Loe</string>
+    <string name="cardinal_direction_north_abbreviation">N</string>
+    <string name="cardinal_direction_south_abbreviation">S</string>
+    <string name="source_code">Lähtekood</string>
+    <string name="error">Viga</string>
+    <string name="no_thanks">Tänan, ei</string>
+    <string name="cardinal_direction_northeast">Kirre</string>
+    <string name="third_party_licenses_summary">Kaasatud avatud lähtekoodiga teekide litsentsid</string>
+    <string name="cardinal_direction_east">Ida</string>
+    <string name="cardinal_direction_southeast">Kagu</string>
+    <string name="cardinal_direction_west_abbreviation">W</string>
+    <string name="version">Versioon</string>
+    <string name="error_message">Tekkis viga.\nVeateade: %1$s\nVeakood: %2$s</string>
+    <string name="ok">Sobib</string>
+    <string name="cardinal_direction_north">Põhi</string>
+    <string name="cardinal_direction_southwest">Edel</string>
+    <string name="cardinal_direction_south">Lõuna</string>
+    <string name="cardinal_direction_west">Lääs</string>
+    <string name="cardinal_direction_east_abbreviation">E</string>
+    <string name="settings">Seadistused</string>
+    <string name="third_party_licenses">Kolmandate osapoolte litsentsid</string>
+</resources>
