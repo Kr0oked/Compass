@@ -1,0 +1,5 @@
+- Traducción al checo
+- Traducción al turco
+- Traducción al griego
+- Brújula más grande en modo horizontal
+- Icono monocromámitico
