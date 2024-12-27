@@ -1,0 +1,3 @@
+- Parandasime paigutuse veeriseid äärest-ääreni vaates
+- Lisasime baski keele tõlke
+- Parandasime hollandi keele tõlget

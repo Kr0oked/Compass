@@ -1,0 +1,4 @@
+- Opción de bloquear o seguir la rotación de la pantalla
+- Mejora de la escala de la brújula
+- Traducción al neerlandés
+- Traducción al finés

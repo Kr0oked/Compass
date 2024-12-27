@@ -1,0 +1,3 @@
+- Traducción al ruso
+- Brújula más grande
+- Corregido rumbo incorrecto en orientación horizontal

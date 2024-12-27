@@ -1,0 +1,4 @@
+- Añadida traducción al español
+- Añadida traducción al danés
+- Actualizada la traducción al francés
+- Traducción al noruego actualizada

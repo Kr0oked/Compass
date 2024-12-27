@@ -1,0 +1,3 @@
+- Página acerca de
+- Icono de la aplicación rediseñado
+- Manejo mejorado del modo oscuro

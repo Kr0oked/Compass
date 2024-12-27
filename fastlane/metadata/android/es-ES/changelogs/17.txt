@@ -1,0 +1,6 @@
+- Solicita solo una única ubicación para ahorrar batería
+- Código de error adicional cuando la ubicación está deshabilitada
+- Actualizado a Android 14
+- Diálogos mejorados
+- Nombres de temas mejorados
+- Errores tipográficos corregidos

@@ -1,0 +1,3 @@
+- Se ha corregido el espaciado del diseño para pantallas sin bordes.
+- Se ha añadido traducción al euskera.
+- Se ha mejorado la traducción al holandés

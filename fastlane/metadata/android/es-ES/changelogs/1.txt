@@ -1,0 +1,5 @@
+- Rosa de los vientos giratoria
+- Texto grados
+- Texto de direcciones cardinales
+- Modo diurno y nocturno
+- Traducciones al inglés y al alemán

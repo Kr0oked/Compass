@@ -1,0 +1,6 @@
+- Material design 3
+- Traducción al bosnio
+- Traducción al croata
+- Traducción al serbio
+- Nuevos iconos para la preferencia del modo nocturno
+- Conservar la preferencia de la aplicación

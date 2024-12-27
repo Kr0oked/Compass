@@ -1,0 +1,1 @@
+- Corrección del fallo cuando el sistema no proporciona un proveedor de ubicación de red

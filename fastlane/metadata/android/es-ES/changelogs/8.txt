@@ -1,0 +1,1 @@
+- Se corrigieron los grados incorrectos cuando la pantalla giraba 180°
