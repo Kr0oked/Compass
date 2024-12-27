@@ -28,4 +28,5 @@
     <string name="license">Лиценца</string>
     <string name="version">Верзија</string>
     <string name="ok">Во ред</string>
+    <string name="location_error_message">Локацијата не е достапна</string>
 </resources>
