@@ -1,0 +1,2 @@
+- Traducción al uzbeko
+- Mejora de la compatibilidad con distintos tamaños de pantalla

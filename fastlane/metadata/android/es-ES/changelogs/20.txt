@@ -1,0 +1,5 @@
+- Añadida vista para mostrar licencias de terceros
+- Añadida traducción al tamil
+- Añadida traducción de portugués brasileño
+- Traducción al persa
+- Traducción al polaco

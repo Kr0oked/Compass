@@ -1,0 +1,1 @@
+- Se solucionó el fallo que se producía cuando el cuadro de diálogo Acerca de se abría varias veces

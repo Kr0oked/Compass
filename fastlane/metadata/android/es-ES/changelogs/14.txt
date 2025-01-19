@@ -1,0 +1,4 @@
+- Mostrar siempre 0° y nunca 360° al redondear
+- Traducción noruega
+- Traducción completa al finés
+- Traducción completa de Ruso
