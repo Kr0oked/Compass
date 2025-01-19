@@ -1,0 +1,6 @@
+- Añadida sugerencia de declinación
+- Añadida imagen explicativa de la calibración del sensor
+- Traducción al húngaro
+- Mejora de la visualización del estado del sensor
+- Eliminada la marca dedicada al norte en la rosa de los vientos
+- Aumentado minSDK a 23

@@ -1,0 +1,2 @@
+- Dirección cardinal legible
+- Diálogo de precisión del sensor

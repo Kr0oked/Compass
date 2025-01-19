@@ -1,0 +1,4 @@
+- Señalar el norte verdadero
+- Ajustes de la aplicación
+- Traducción al francés
+- Soporte de diferentes idiomas por aplicación
