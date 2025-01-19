@@ -1,0 +1,6 @@
+- Menambahkan terjemahan bahasa Arab
+- Memperbarui terjemahan bahasa Bulgaria
+- Memperbarui terjemahan bahasa Mandarin
+- Memperbarui terjemahan bahasa Ceko
+- Memperbarui terjemahan bahasa Yunani
+- Memperbarui terjemahan bahasa Tamil

@@ -1,0 +1,1 @@
+- Memperbaiki kerusakan saat dialog tentang dibuka beberapa kali

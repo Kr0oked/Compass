@@ -1,0 +1,4 @@
+- Opsi untuk mengunci atau mengikuti rotasi layar
+- Peningkatan skala kompas
+- Terjemahan bahasa Belanda
+- Terjemahan bahasa Finlandia

@@ -1,0 +1,1 @@
+- Memperbaiki kerusakan saat sistem tidak menyediakan penyedia lokasi Jaringan

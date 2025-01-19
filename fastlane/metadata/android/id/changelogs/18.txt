@@ -1,0 +1,6 @@
+- Menambahkan petunjuk deklinasi
+- Menambahkan gambar penjelasan kalibrasi sensor
+- Menambahkan terjemahan bahasa Hongaria
+- Memperbaiki tampilan status sensor
+- Menghapus penanda khusus untuk utara pada kompas
+- Menambah minSDK menjadi 23
