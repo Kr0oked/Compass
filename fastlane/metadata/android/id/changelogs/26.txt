@@ -1,0 +1,3 @@
+- Memperbaiki margin tata letak dalam mode tepi-ke-tepi
+- Menambahkan terjemahan bahasa Basque
+- Peningkatan terjemahan bahasa Belanda

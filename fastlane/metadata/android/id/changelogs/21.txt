@@ -1,0 +1,4 @@
+- Menambahkan terjemahan bahasa Spanyol
+- Menambahkan terjemahan bahasa Denmark
+- Memperbarui terjemahan bahasa Prancis
+- Memperbarui terjemahan bahasa Norwegia

@@ -1,0 +1,4 @@
+- Selalu tampilkan 0° dan tidak pernah 360° saat pembulatan ke atas
+- Terjemahan bahasa Norwegia
+- Terjemahan Selesai
+- Terjemahan bahasa Rusia

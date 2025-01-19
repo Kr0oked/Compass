@@ -1,0 +1,5 @@
+- Terjemahan bahasa Ceko
+- Terjemahan bahasa Turki
+- Terjemahan bahasaYunani
+- Kompas yang lebih besar dalam mode lanskap
+- Ikon monokrom
