@@ -1,0 +1,6 @@
+- Added Estonian translation
+- Improved Bosnian translation
+- Improved Croatian translation
+- Improved Macedonian translation
+- Improved Russian translation
+- Improved Serbian translation
