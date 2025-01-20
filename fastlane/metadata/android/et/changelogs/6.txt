@@ -1,0 +1,3 @@
+- vene keele tõlge
+- suurem kompassivaade
+- parandasime kursivea rõhtvaates

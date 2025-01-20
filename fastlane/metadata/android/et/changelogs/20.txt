@@ -1,0 +1,5 @@
+- lisandus kolmandate osapoolte litsentside loend
+- lisandus tamili keele tõlge
+- lisandus Brasiilia portugali keele tõlge
+- lisandus farsi keele tõlge
+- lisandus poola keele tõlge
