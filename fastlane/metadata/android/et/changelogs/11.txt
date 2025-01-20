@@ -1,0 +1,4 @@
+- lisandus geograafilise põhjasuuna tugi
+- rakenduse seadistused
+- lisandus prantsuse keele tõlge
+- rakendusekohaste keelte tugi

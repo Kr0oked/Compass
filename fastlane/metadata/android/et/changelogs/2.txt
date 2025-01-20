@@ -1,0 +1,2 @@
+- loetavad nimelised suunad
+- tensori täpsuse vaade

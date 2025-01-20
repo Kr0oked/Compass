@@ -1,0 +1,5 @@
+- lisandus tšehhi keele tõlge
+- lisandus türgi keele tõlge
+- lisandus kreeka keele tõlge
+- suurem kompass rõhtvaates
+- mustvalge ikoon

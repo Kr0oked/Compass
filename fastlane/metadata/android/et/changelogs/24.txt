@@ -1,0 +1,6 @@
+- lisandus araabia keele tõlge
+- täienes bulgaaria keele tõlge
+- täienes hiina keele tõlge
+- täienes tšehhi keele tõlge
+- täienes kreeka keele tõlge
+- täienes tamili keele tõlge
