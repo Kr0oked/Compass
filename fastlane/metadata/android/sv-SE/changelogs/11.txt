@@ -1,0 +1,4 @@
+- Sann norr funktionalitet
+- Applikationsinställningar
+- Fransk översättning
+- Stöd per-app språkpreferenser
