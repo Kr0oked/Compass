@@ -1,0 +1,4 @@
+- Chức năng True North
+- Cài đặt ứng dụng
+- Bản dịch tiếng Pháp
+- Hỗ trợ tùy chọn ngôn ngữ cho từng ứng dụng
