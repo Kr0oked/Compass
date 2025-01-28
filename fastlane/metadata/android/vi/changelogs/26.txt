@@ -1,0 +1,3 @@
+- Đã sửa lỗi lề bố cục ở chế độ tràn viền
+- Đã thêm bản dịch tiếng Basque
+- Đã cải thiện bản dịch tiếng Hà Lan

@@ -1,0 +1,6 @@
+- Chỉ yêu cầu một vị trí duy nhất để tiết kiệm pin
+- Mã lỗi bổ sung khi vị trí bị tắt
+- Nâng cấp lên Android 14
+- Cải thiện hộp thoại
+- Cải thiện cách đặt tên chủ đề
+- Sửa lỗi đánh máy

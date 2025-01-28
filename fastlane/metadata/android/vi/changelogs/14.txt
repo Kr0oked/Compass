@@ -1,0 +1,4 @@
+- Luôn hiển thị 0° và không bao giờ hiển thị 360° khi làm tròn lên
+- Bản dịch tiếng Na Uy
+- Bản dịch hoàn chỉnh
+- Bản dịch tiếng Nga hoàn chỉnh

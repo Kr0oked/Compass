@@ -1,0 +1,6 @@
+- Thêm gợi ý về độ nghiêng
+- Thêm hình ảnh giải thích về hiệu chuẩn cảm biến
+- Thêm bản dịch tiếng Hungary
+- Cải thiện màn hình hiển thị trạng thái cảm biến
+- Xóa dấu hiệu chuyên dụng cho hướng bắc trên la bàn
+- Tăng minSDK lên 23

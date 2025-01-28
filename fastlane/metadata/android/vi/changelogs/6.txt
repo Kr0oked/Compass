@@ -1,0 +1,3 @@
+- Bản dịch tiếng Nga
+- Chế độ xem la bàn lớn hơn
+- Đã sửa lỗi hướng không chính xác theo hướng ngang

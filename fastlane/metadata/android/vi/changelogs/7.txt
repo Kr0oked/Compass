@@ -1,0 +1,1 @@
+- Đã sửa lỗi crash khi hộp thoại được mở nhiều lần
