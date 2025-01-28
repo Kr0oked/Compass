@@ -48,4 +48,9 @@
     <string name="error">Lỗi</string>
     <string name="ok">Đồng ý</string>
     <string name="no_thanks">Không, cảm ơn</string>
+    <string name="location_reload">Tải lại vị trí</string>
+    <string name="location_not_present">Không thể xác định được vị trí. Đang quay trở lại cực bắc từ trường.</string>
+    <string name="magnetic_north">Bắc từ</string>
+    <string name="third_party_licenses">Giấy phép của bên thứ ba</string>
+    <string name="third_party_licenses_summary">Giấy phép của các thư viện nguồn mở được bao gồm</string>
 </resources>
