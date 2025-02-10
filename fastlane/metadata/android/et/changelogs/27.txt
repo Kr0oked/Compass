@@ -1,0 +1,6 @@
+- lisandus eesti keele tõlge
+- täienes bosnia keele tõlge
+- täienes horvaadi keele tõlge
+- täienes makedoonia keele tõlge
+- täienes vene keele tõlge
+- täienes serbia keele tõlge
