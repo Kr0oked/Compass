@@ -1,0 +1,14 @@
+Anda akan mendapatkan apa yang Anda harapkan.
+Kompas yang sederhana dan indah.
+
+Fitur:
+*  Dapat menunjuk ke arah utara magnetik dan juga utara yang sebenarnya
+* Menunjukkan derajat dan arah mata angin yang tepat
+* Menampilkan status sensor
+*Umpan balik haptik
+* Tema Terang dan Gelap
+* Tidak ada iklan
+*Tidak adapelacak
+* Tidak ada gangguan
+
+Selamat bersenang-senang!

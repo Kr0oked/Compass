@@ -1,0 +1,1 @@
+- Đã sửa lỗi độ không chính xác khi màn hình xoay 180°

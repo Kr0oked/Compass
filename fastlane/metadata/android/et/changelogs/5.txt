@@ -1,0 +1,4 @@
+- võimalus ekraanivaadet lukustada või lasta tal järgida seadme pööramist
+- parandatud kompassi suuruse muutumine
+- hollandi keele tõlge
+- soome keele tõlge

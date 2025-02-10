@@ -1,0 +1,6 @@
+- lisasime magnetilise deklinatsiooni vihje
+- lisasime sensori kalibreerimist selgitava joonise
+- lisasime ungari keele tõlke
+- parandasime sensori oleku kuvamist
+- eemaldasime kompassi tuulteroosist eraldi põhjasuuna märke
+- suurendasime minSDK kuni 23-ni

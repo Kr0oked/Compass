@@ -1,0 +1,4 @@
+- Đã thêm bản dịch tiếng Tây Ban Nha
+- Đã thêm bản dịch tiếng Đan Mạch
+- Đã cập nhật bản dịch tiếng Pháp
+- Đã cập nhật bản dịch tiếng Na Uy

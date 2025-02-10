@@ -1,0 +1,5 @@
+- Menambahkan tampilan untuk menampilkan lisensi pihak ketiga
+- Menambahkan terjemahan Tamil
+- Menambahkan terjemahan Portugis Brasil
+- Menambahkan terjemahan Persia
+- Menambahkan terjemahan Polandia

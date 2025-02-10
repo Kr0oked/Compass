@@ -1,0 +1,1 @@
+- Fixade inkorrekta grader vid 180° skärmrotation

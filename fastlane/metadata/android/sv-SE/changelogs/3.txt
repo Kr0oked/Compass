@@ -1,0 +1,3 @@
+- "Om" sida
+- Omarbetad appikon
+- Förbättrad nattlägehantering

@@ -1,0 +1,1 @@
+- Sửa lỗi crash khi hệ thống không cung cấp Nhà cung cấp vị trí mạng

@@ -1,0 +1,2 @@
+- Uzbekisk översättning tillagd
+- Förbättrat stöd för olika skärmstorlekar

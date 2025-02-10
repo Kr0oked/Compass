@@ -1,0 +1,6 @@
+- Hanya meminta satu lokasi untuk menghemat baterai
+- Kode kesalahan tambahan saat lokasi dinonaktifkan
+- Ditingkatkan ke Android 14
+- Dialog yang ditingkatkan
+- Penamaan tema yang ditingkatkan
+- Kesalahan ketik telah diperbaiki

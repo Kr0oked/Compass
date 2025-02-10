@@ -1,0 +1,4 @@
+- Visa alltid 0° och aldrig 360° vid upprundning
+- Norsk översättning
+- Fullständig finsk översättning
+- Fullständig rysk översättning
