@@ -51,4 +51,6 @@
     <string name="error">Virhe</string>
     <string name="ok">Valmis</string>
     <string name="no_thanks">Ei kiitos</string>
+    <string name="third_party_licenses">Kolmannen osapuolen lisenssit</string>
+    <string name="third_party_licenses_summary">Mukana olevien avoimen lähdekoodin kirjastojen lisenssit</string>
 </resources>
