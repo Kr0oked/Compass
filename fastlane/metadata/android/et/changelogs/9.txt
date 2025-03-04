@@ -1,0 +1,6 @@
+- Material 3 kujundus
+- bosnia keele tõlge
+- horvaadi keele tõlge
+- serbia keele tõlge
+- uued ikoonidöörežiimi eelistuste jaoks
+- rakenduse eelistused jäävad püsivaks

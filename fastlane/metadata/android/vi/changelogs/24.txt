@@ -1,0 +1,6 @@
+- Đã thêm bản dịch tiếng Ả Rập
+- Đã cập nhật bản dịch tiếng Bulgaria
+- Đã cập nhật bản dịch tiếng Trung
+- Đã cập nhật bản dịch tiếng Séc
+- Đã cập nhật bản dịch tiếng Hy Lạp
+- Đã cập nhật bản dịch tiếng Tamil

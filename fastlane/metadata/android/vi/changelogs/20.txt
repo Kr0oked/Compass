@@ -1,0 +1,5 @@
+- Thêm chế độ xem để hiển thị giấy phép của bên thứ ba
+- Thêm bản dịch tiếng Tamil
+- Thêm bản dịch tiếng Bồ Đào Nha Brazil
+- Thêm bản dịch tiếng Ba Tư
+- Thêm bản dịch tiếng Ba Lan

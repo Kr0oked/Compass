@@ -1,0 +1,6 @@
+- Thiết kế Material 3
+- Bản dịch tiếng Bosnia
+- Bản dịch tiếng Croatia
+- Bản dịch tiếng Serbia
+- Biểu tượng mới cho tùy chọn chế độ ban đêm
+- Tùy chọn ứng dụng vẫn tồn tại

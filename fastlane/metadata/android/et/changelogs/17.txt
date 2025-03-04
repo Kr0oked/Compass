@@ -1,0 +1,6 @@
+- aku säästmiseks küsime vaid ühte asukohta
+- täiendav veateade, kui asukohatuvastamine pole kasutusel
+- uuendus Android 14'ni
+- parandatud päringud
+- paremad kujunduste nimed
+- parandatud trükivead

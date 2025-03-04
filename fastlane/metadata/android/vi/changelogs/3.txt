@@ -1,0 +1,3 @@
+- Trang giới thiệu
+- Biểu tượng ứng dụng được thiết kế lại
+- Cải thiện chế độ xử lý ban đêm

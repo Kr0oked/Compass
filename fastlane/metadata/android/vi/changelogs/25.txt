@@ -1,0 +1,2 @@
+- Đã thêm bản dịch tiếng Uzbek
+- Cải thiện hỗ trợ cho các kích thước màn hình khác nhau

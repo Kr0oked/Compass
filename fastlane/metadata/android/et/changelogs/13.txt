@@ -1,0 +1,1 @@
+- parandasime kokkujooksmise, kui operatsioonisüsteemis puudub võrgupõhise asukoha tugi
