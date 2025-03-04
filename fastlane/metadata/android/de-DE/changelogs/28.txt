@@ -1,0 +1,4 @@
+- Hardware Voraussetzungen wurden gelockert
+- Übersetzung für Indonesisch wurde hinzugefügt
+- Übersetzung für Finnisch wurde verbessert
+- Übersetzung für Vietnamesisch wurde verbessert

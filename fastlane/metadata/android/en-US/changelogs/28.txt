@@ -1,0 +1,4 @@
+- Permissive hardware requirements
+- Added Indonesian translation
+- Improved Finnish translation
+- Improved Vietnamese translation
