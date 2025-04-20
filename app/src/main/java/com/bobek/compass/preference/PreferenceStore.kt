@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2025 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.preference.PreferenceManager
 import com.bobek.compass.model.AppNightMode
+import androidx.core.content.edit
 
 private const val TAG = "PreferenceStore"
 
@@ -138,37 +139,37 @@ class PreferenceStore(context: Context, lifecycle: Lifecycle) {
     }
 
     private fun getTrueNorthObserver(): (t: Boolean) -> Unit = {
-        val edit = sharedPreferences.edit()
-        edit.putBoolean(PreferenceConstants.TRUE_NORTH, it)
-        edit.apply()
+        sharedPreferences.edit {
+            putBoolean(PreferenceConstants.TRUE_NORTH, it)
+        }
         Log.d(TAG, "Persisted trueNorth: $it")
     }
 
     private fun getHapticFeedbackObserver(): (t: Boolean) -> Unit = {
-        val edit = sharedPreferences.edit()
-        edit.putBoolean(PreferenceConstants.HAPTIC_FEEDBACK, it)
-        edit.apply()
+        sharedPreferences.edit {
+            putBoolean(PreferenceConstants.HAPTIC_FEEDBACK, it)
+        }
         Log.d(TAG, "Persisted hapticFeedback: $it")
     }
 
     private fun getScreenOrientationLockedObserver(): (t: Boolean) -> Unit = {
-        val edit = sharedPreferences.edit()
-        edit.putBoolean(PreferenceConstants.SCREEN_ORIENTATION_LOCKED, it)
-        edit.apply()
+        sharedPreferences.edit {
+            putBoolean(PreferenceConstants.SCREEN_ORIENTATION_LOCKED, it)
+        }
         Log.d(TAG, "Persisted screenOrientationLocked: $it")
     }
 
     private fun getNightModeObserver(): (t: AppNightMode) -> Unit = {
-        val edit = sharedPreferences.edit()
-        edit.putString(PreferenceConstants.NIGHT_MODE, it.preferenceValue)
-        edit.apply()
+        sharedPreferences.edit {
+            putString(PreferenceConstants.NIGHT_MODE, it.preferenceValue)
+        }
         Log.d(TAG, "Persisted nightMode: $it")
     }
 
     private fun getAccessLocationPermissionRequestedObserver(): (t: Boolean) -> Unit = {
-        val edit = sharedPreferences.edit()
-        edit.putBoolean(PreferenceConstants.ACCESS_LOCATION_PERMISSION_REQUESTED, it)
-        edit.apply()
+        sharedPreferences.edit {
+            putBoolean(PreferenceConstants.ACCESS_LOCATION_PERMISSION_REQUESTED, it)
+        }
         Log.d(TAG, "Persisted accessLocationPermissionRequested: $it")
     }
 }
