@@ -31,12 +31,12 @@ java {
 
 android {
     namespace = "com.bobek.compass"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.bobek.compass"
         minSdk = 23
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 28
         versionName = "1.14.8"
 
