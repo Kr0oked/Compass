@@ -1,2 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="night_mode_yes">Escuro</string>
+    <string name="error">Erro</string>
+    <string name="sensor_accuracy_unreliable">Os valores do sensor non son fiables</string>
+    <string name="compass_rose_image_description">Rosa dos ventos cara ao norte</string>
+    <string name="device_heading_indicator_image_description">Indica en que dirección apunta o dispositivo</string>
+    <string name="cardinal_direction_north">Norte</string>
+    <string name="cardinal_direction_northeast">Nordeste</string>
+    <string name="cardinal_direction_east">Leste</string>
+    <string name="cardinal_direction_southwest">Suroeste</string>
+    <string name="cardinal_direction_west">Oeste</string>
+    <string name="cardinal_direction_northwest">Noroeste</string>
+    <string name="cardinal_direction_west_abbreviation">O</string>
+    <string name="sensor_accuracy_no_contact">Sensor non didpoñible</string>
+    <string name="sensor_accuracy_medium">Precisión media</string>
+    <string name="sensor_accuracy_high">Precisión máxima</string>
+    <string name="sensor_error_message">Sensor non dispoñible</string>
+    <string name="sensor_calibration_text">Pode intentar mellorar a precisión do sensor rotando o dispositivo nun patrón coa forma dun 8.</string>
+    <string name="location_loading">Esperando actualización da ubicación</string>
+    <string name="location_reload">Recargar ubicación</string>
+    <string name="access_location_permission_rationale_title">Precisamos o seu permiso para acceder á ubicación</string>
+    <string name="true_north">Norte verdadeiro</string>
+    <string name="haptic_feedback">Resposta táctil</string>
+    <string name="display">Pantalla</string>
+    <string name="night_mode">Tema</string>
+    <string name="true_north_summary">Corrixir a declinación magnética e mostrar o norte verdadeiro. Require acceso á ubicación.</string>
+    <string name="error_message">Produciuse un erro.\nMensaxe: %1$s\nCódigo: %2$s</string>
+    <string name="no_thanks">Non, grazas</string>
+    <string name="sensor_status">Estado do sensor</string>
+    <string name="sensor_accuracy_low">Precisión baixa</string>
+    <string name="compass">Compás</string>
+    <string name="lock_screen_rotation">Bloquear rotación de pantalla</string>
+    <string name="cardinal_direction_southeast">Sureste</string>
+    <string name="cardinal_direction_south">Sur</string>
+    <string name="cardinal_direction_east_abbreviation">L</string>
+    <string name="cardinal_direction_north_abbreviation">N</string>
+    <string name="cardinal_direction_south_abbreviation">S</string>
+    <string name="access_location_permission_rationale_message">Para mostrar o norte verdadeiro, esta aplicación precisa determinar a declinación magnética basada na súa ubicación.</string>
+    <string name="location_error_message">Ubicación non dispoñible</string>
+    <string name="night_mode_follow_system">Predeterminado do sistema</string>
+    <string name="location_not_present">A ubicación non puido determinarse. Retrocedendo ao norte magnético.</string>
+    <string name="magnetic_north">Norte magnético</string>
+    <string name="access_location_permission_denied">Falta do permiso para acceder á ubicación. Retrocedendo ao norte magnético.</string>
+    <string name="third_party_licenses">Licenzas de terceiros</string>
+    <string name="about">Acerca de</string>
+    <string name="settings">Configuracións</string>
+    <string name="haptic_feedback_summary">O compás vibra cando a dirección cambia.</string>
+    <string name="night_mode_no">Claro</string>
+    <string name="author">Autor</string>
+    <string name="license">Licenza</string>
+    <string name="third_party_licenses_summary">Licenzas das bibliotecas de código aberto incluídas</string>
+    <string name="source_code">Código fonte</string>
+    <string name="version">Versión</string>
+    <string name="ok">OK</string>
+</resources>
