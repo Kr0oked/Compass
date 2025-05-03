@@ -24,7 +24,7 @@
     <string name="haptic_feedback">Resposta táctil</string>
     <string name="display">Pantalla</string>
     <string name="night_mode">Tema</string>
-    <string name="true_north_summary">Corrixir a declinación magnética e mostrar o norte verdadeiro. Require acceso á ubicación.</string>
+    <string name="true_north_summary">Corrixir a declinación magnética e amosar o norte verdadeiro. Require acceso á súa localización.</string>
     <string name="error_message">Produciuse un erro.\nMensaxe: %1$s\nCódigo: %2$s</string>
     <string name="no_thanks">Non, grazas</string>
     <string name="sensor_status">Estado do sensor</string>
