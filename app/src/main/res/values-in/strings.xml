@@ -53,4 +53,21 @@
     <string name="access_location_permission_rationale_message">Untuk menunjukkan arah utara yang sebenarnya, aplikasi ini perlu menentukan deklinasi magnetik berdasarkan lokasi Anda saat ini.</string>
     <string name="cardinal_direction_northwest">Barat Laut</string>
     <string name="sensor_calibration_text">Anda dapat mencoba meningkatkan akurasi sensor kapan saja dengan memutar perangkat dalam pola angka 8.</string>
+    <string name="zero_degrees" translatable="false"></string>
+    <string name="degree_210_text" translatable="false"></string>
+    <string name="degree_240_text" translatable="false"></string>
+    <string name="degree_60_text" translatable="false"></string>
+    <string name="license_name" translatable="false"></string>
+    <string name="degree_330_text" translatable="false"></string>
+    <string name="degrees" translatable="false"></string>
+    <string name="degree_270_text" translatable="false"></string>
+    <string name="degree_30_text" translatable="false"></string>
+    <string name="degree_90_text" translatable="false"></string>
+    <string name="source_code_name" translatable="false"></string>
+    <string name="author_name" translatable="false"></string>
+    <string name="degree_0_text" translatable="false"></string>
+    <string name="degree_180_text" translatable="false"></string>
+    <string name="degree_150_text" translatable="false"></string>
+    <string name="degree_120_text" translatable="false"></string>
+    <string name="degree_300_text" translatable="false"></string>
 </resources>
