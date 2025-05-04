@@ -56,9 +56,6 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-    }
     buildFeatures {
         buildConfig = true
         dataBinding = true
