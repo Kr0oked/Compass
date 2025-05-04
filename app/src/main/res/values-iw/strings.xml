@@ -7,9 +7,9 @@
     <string name="cardinal_direction_south">דרום</string>
     <string name="cardinal_direction_southwest">דרום מערב</string>
     <string name="cardinal_direction_northwest">צפון מערב</string>
-    <string name="cardinal_direction_east_abbreviation">מ</string>
-    <string name="cardinal_direction_south_abbreviation">ד</string>
-    <string name="cardinal_direction_west_abbreviation">מ</string>
+    <string name="cardinal_direction_east_abbreviation">E</string>
+    <string name="cardinal_direction_south_abbreviation">S</string>
+    <string name="cardinal_direction_west_abbreviation">W</string>
     <string name="sensor_accuracy_no_contact">חיישן לא זמין</string>
     <string name="sensor_accuracy_unreliable">ערכי החיישן אינם אמינים</string>
     <string name="sensor_accuracy_low">דיוק נמוך</string>
@@ -26,10 +26,10 @@
     <string name="access_location_permission_denied">חסרה הרשאה לגישה למיקום. חוזר לצפון המגנטי.</string>
     <string name="settings">הגדרות</string>
     <string name="true_north">צפון אמיתי</string>
-    <string name="true_north_summary">לתיקון הנטייה המגנטית והצגת הצפון האמיתי. נדרש גישה למיקומך.</string>
+    <string name="true_north_summary">לתיקון הנטייה המגנטית והצגת הצפון האמיתי. נדרש גישה למיקום.</string>
     <string name="magnetic_north">צפון מגנטי</string>
     <string name="haptic_feedback">תגובת רטט</string>
-    <string name="haptic_feedback_summary">המצפן ירטוט כאשר הכיוון ישתנה.</string>
+    <string name="haptic_feedback_summary">המצפן ירטוט כאשר הכיוון משתנה.</string>
     <string name="display">תצוגה</string>
     <string name="night_mode">עיצוב</string>
     <string name="night_mode_follow_system">מערכת</string>
@@ -46,7 +46,7 @@
     <string name="no_thanks">לא תודה</string>
     <string name="compass">מצפן</string>
     <string name="device_heading_indicator_image_description">מציין לאיזה כיוון המכשיר מכוון</string>
-    <string name="cardinal_direction_north_abbreviation">צ</string>
+    <string name="cardinal_direction_north_abbreviation">N</string>
     <string name="cardinal_direction_southeast">דרום מזרח</string>
     <string name="version">גירסא</string>
     <string name="lock_screen_rotation">נעילת סיבוב מסך</string>
