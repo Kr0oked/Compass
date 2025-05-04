@@ -53,21 +53,4 @@
     <string name="error">Fel</string>
     <string name="ok">OK</string>
     <string name="no_thanks">Nej tack</string>
-    <string name="degree_30_text" translatable="false"></string>
-    <string name="degree_60_text" translatable="false"></string>
-    <string name="degrees" translatable="false"></string>
-    <string name="degree_0_text" translatable="false"></string>
-    <string name="degree_120_text" translatable="false"></string>
-    <string name="degree_180_text" translatable="false"></string>
-    <string name="degree_210_text" translatable="false"></string>
-    <string name="degree_240_text" translatable="false"></string>
-    <string name="zero_degrees" translatable="false"></string>
-    <string name="source_code_name" translatable="false"></string>
-    <string name="author_name" translatable="false"></string>
-    <string name="license_name" translatable="false"></string>
-    <string name="degree_270_text" translatable="false"></string>
-    <string name="degree_330_text" translatable="false"></string>
-    <string name="degree_300_text" translatable="false"></string>
-    <string name="degree_150_text" translatable="false"></string>
-    <string name="degree_90_text" translatable="false"></string>
 </resources>
