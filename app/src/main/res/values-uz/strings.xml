@@ -20,7 +20,7 @@
     <string name="sensor_accuracy_no_contact">Sensor mavjud emas</string>
     <string name="sensor_accuracy_unreliable">Sensor qiymatlari ishonchsiz</string>
     <string name="sensor_accuracy_low">Kam aniqlik</string>
-    <string name="sensor_accuracy_medium">O\‘rtacha aniqlik</string>
+    <string name="sensor_accuracy_medium">Ortacha aniqlik</string>
     <string name="sensor_accuracy_high">Maksimal aniqlik</string>
     <string name="sensor_error_message">Sensor mavjud emas</string>
     <string name="sensor_calibration_text">Qurilmani 8-rasm naqshida aylantirib, istalgan vaqtda sensorning aniqligini oshirishga harakat qilishingiz mumkin.</string>

@@ -26,7 +26,7 @@
     <string name="sensor_calibration_text">Možete pokušati poboljšati točnost senzora u bilo kojem trenutku okretanjem uređaja u obliku osmice.</string>
     <string name="location_loading">Čeka se ažuriranje lokacije</string>
     <string name="location_error_message">Lokacija nije dostupna</string>
-    <string name="location_not_present">Lokacija nije mogla biti određena.  Povratak na magnetski sjever.</string>
+    <string name="location_not_present">Lokacija nije mogla biti određena. Povratak na magnetski sjever.</string>
     <string name="location_reload">Ponovno učitaj lokaciju</string>
     <string name="access_location_permission_rationale_title">Potrebno je dopuštenje za pristup vašoj lokaciji</string>
     <string name="access_location_permission_rationale_message">Za pokazivanje pravog sjevera ova aplikacija mora odrediti magnetsku deklinaciju na temelju vaše trenutne lokacije.</string>
