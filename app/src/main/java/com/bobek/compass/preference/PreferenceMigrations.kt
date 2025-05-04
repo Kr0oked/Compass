@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2025 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 
 private const val TAG = "PreferenceMigrations"
@@ -41,17 +42,18 @@ class PreferenceMigrations(context: Context) {
         if (!migrated) {
             val nightMode = sharedPreferences.getInt("night_mode", AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
 
-            val edit = sharedPreferences.edit()
-            edit.remove("night_mode")
+            sharedPreferences.edit {
+                remove("night_mode")
 
-            when (nightMode) {
-                AppCompatDelegate.MODE_NIGHT_NO -> edit.putString("night_mode", "no")
-                AppCompatDelegate.MODE_NIGHT_YES -> edit.putString("night_mode", "yes")
-                else -> edit.putString("night_mode", "follow_system")
+                when (nightMode) {
+                    AppCompatDelegate.MODE_NIGHT_NO -> putString("night_mode", "no")
+                    AppCompatDelegate.MODE_NIGHT_YES -> putString("night_mode", "yes")
+                    else -> putString("night_mode", "follow_system")
+                }
+
+                putBoolean(MIGRATION_V11, true)
             }
 
-            edit.putBoolean(MIGRATION_V11, true)
-            edit.apply()
             Log.i(TAG, "V11 - night_mode preference migrated")
         }
     }

@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2025 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -148,7 +148,7 @@ class CompassFragment : Fragment() {
         Log.i(TAG, "Started compass")
     }
 
-    private fun isInstrumentedTest() = requireActivity().intent.extras?.getBoolean(OPTION_INSTRUMENTED_TEST) ?: false
+    private fun isInstrumentedTest() = requireActivity().intent.extras?.getBoolean(OPTION_INSTRUMENTED_TEST) == true
 
     private fun startSystemServiceFunctionalities() {
         registerSensorListener()

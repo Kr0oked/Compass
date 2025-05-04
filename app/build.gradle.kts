@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2025 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,20 +23,22 @@ plugins {
     id("kotlin-kapt")
 }
 
-kotlin {
-    jvmToolchain(17)
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 android {
     namespace = "com.bobek.compass"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.bobek.compass"
         minSdk = 23
-        targetSdk = 35
-        versionCode = 27
-        versionName = "1.14.7"
+        targetSdk = 36
+        versionCode = 28
+        versionName = "1.14.8"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -53,10 +55,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         buildConfig = true

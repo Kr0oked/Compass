@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2025 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -142,11 +142,11 @@ class MainActivity : AppCompatActivity() {
     private fun registerAccessLocationPermissionRequest() =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             when {
-                permissions[ACCESS_FINE_LOCATION] ?: false -> {
+                permissions[ACCESS_FINE_LOCATION] == true -> {
                     Log.i(TAG, "Permission ACCESS_FINE_LOCATION granted")
                 }
 
-                permissions[ACCESS_COARSE_LOCATION] ?: false -> {
+                permissions[ACCESS_COARSE_LOCATION] == true -> {
                     Log.i(TAG, "Permission ACCESS_COARSE_LOCATION granted")
                 }
 
