@@ -1,0 +1,3 @@
+- Upgrade zu Android 16
+- Übersetzung für Hebräisch wurde hinzugefügt
+- Fehler behoben wenn die Open-Source-Bibliotheken geöffnet werden sollen

@@ -1,0 +1,3 @@
+- Upgrade Android to 16
+- Added Hebrew translation
+- Fixed error when opening open source licenses
