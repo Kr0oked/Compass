@@ -33,6 +33,7 @@
     <string name="access_location_permission_denied">Missing permission to access location. Falling back to magnetic north.</string>
     <string name="settings">Settings</string>
     <string name="true_north">True North</string>
+    <string name="magnetic_field_strength">Magnetic field: %1$.1f µT</string>
     <string name="true_north_summary">Correct the magnetic declination and show to true north. Requires access to your location.</string>
     <string name="magnetic_north">Magnetic North</string>
     <string name="haptic_feedback">Haptic feedback</string>
