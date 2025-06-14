@@ -133,18 +133,40 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/declination_text"
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/declination_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTint="?android:attr/textColorHint"
-                android:text="@{model.trueNorth == true &amp;&amp; model.locationStatus == LocationStatus.PRESENT ? @string/true_north : @string/magnetic_north}"
-                android:textAppearance="@android:style/TextAppearance.Material.Small"
-                android:textColor="?android:attr/textColorHint"
-                app:drawableStartCompat="@drawable/ic_compass"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/magnetic_field_strength_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:text="@{model.magneticFieldStrength != null ? @string/magnetic_field_strength(model.magneticFieldStrength) : ``}"
+                    android:textAppearance="@android:style/TextAppearance.Material.Small"
+                    android:textColor="?android:attr/textColorHint"
+                    app:layout_constraintBottom_toTopOf="@id/declination_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/declination_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableTint="?android:attr/textColorHint"
+                    android:text="@{model.trueNorth == true &amp;&amp; model.locationStatus == LocationStatus.PRESENT ? @string/true_north : @string/magnetic_north}"
+                    android:textAppearance="@android:style/TextAppearance.Material.Small"
+                    android:textColor="?android:attr/textColorHint"
+                    app:drawableStartCompat="@drawable/ic_compass"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

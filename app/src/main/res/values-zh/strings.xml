@@ -33,6 +33,7 @@
     <string name="access_location_permission_denied">缺少访问位置信息的权限，指针将回归到默认的北方。</string>
     <string name="settings">设置</string>
     <string name="true_north">GPS定位下的北方</string>
+    <string name="magnetic_field_strength">磁场强度： %1$.1f µT</string>
     <string name="true_north_summary">需要获得访问您位置信息的权限来修正磁偏角并指向正确的北方。</string>
     <string name="magnetic_north">地磁北极</string>
     <string name="haptic_feedback">触觉反馈</string>

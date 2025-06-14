@@ -68,6 +68,7 @@ import com.bobek.compass.view.CompassViewModel
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.concurrent.Executor
+import kotlin.math.sqrt
 
 const val OPTION_INSTRUMENTED_TEST = "INSTRUMENTED_TEST"
 
@@ -443,7 +444,7 @@ class CompassFragment : Fragment() {
         override fun onSensorChanged(event: SensorEvent) {
             when (event.sensor.type) {
                 Sensor.TYPE_ROTATION_VECTOR -> updateCompass(event)
-                Sensor.TYPE_MAGNETIC_FIELD -> Log.v(TAG, "Received magnetic field sensor event ${event.values}")
+                Sensor.TYPE_MAGNETIC_FIELD -> updateMagneticFieldStrength(event)
                 else -> Log.w(TAG, "Unexpected sensor changed event of type ${event.sensor.type}")
             }
         }
@@ -484,6 +485,15 @@ class CompassFragment : Fragment() {
             return compassViewModel.location.value
                 ?.let(MathUtils::getMagneticDeclination)
                 ?: 0.0f
+        }
+
+        private fun updateMagneticFieldStrength(event: SensorEvent) {
+            val x = event.values[0]
+            val y = event.values[1]
+            val z = event.values[2]
+            val strength = sqrt(x * x + y * y + z * z)
+            Log.v(TAG, "Magnetic field strength $strength")
+            compassViewModel.magneticFieldStrength.value = strength
         }
     }
 
