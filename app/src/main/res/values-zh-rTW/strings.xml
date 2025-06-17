@@ -40,7 +40,7 @@
     <string name="third_party_licenses_summary">軟體所有開源庫的授權</string>
     <string name="source_code">原始碼</string>
     <string name="version">版本</string>
-    <string name="error_message">發生一處錯誤!↵\n\n資訊： \n%1$s↵\n\n紀錄： \n%2$s</string>
+    <string name="error_message">發生一處錯誤。\n↵\n\n資訊： \n%1$s↵\n\n紀錄： \n%2$s</string>
     <string name="error">錯誤</string>
     <string name="ok">確定</string>
     <string name="no_thanks">不用了，謝謝</string>
