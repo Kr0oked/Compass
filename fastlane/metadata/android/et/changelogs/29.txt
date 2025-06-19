@@ -1,0 +1,3 @@
+- uuendus Android 16-ni
+- lisandus heebrea keele tõlge
+- parandasime vea avatud lähtekoodiga komponentide litsentside avamisel
