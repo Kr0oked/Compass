@@ -32,5 +32,20 @@
     <string name="display">Limɔ́niseli</string>
     <string name="night_mode">Eláteli</string>
     <string name="location_reload">Kobɔngisa esíká</string>
-    <string name="access_location_permission_rationale_title">Tozalí na mposa ya ndingisa mpo na kokɔta na esíká ozalí</string>
+    <string name="access_location_permission_rationale_title">Tozalí na mpósá ya ndíngisa mpɔ na kokɔta na esíká ozalí</string>
+    <string name="lock_screen_rotation">Kofúnga lizólóngá lya emɔ́niseli</string>
+    <string name="device_heading_indicator_image_description">Ezalí kolakísá na ngámbo níni ekelisi yangó ezalí kolakisa</string>
+    <string name="sensor_accuracy_unreliable">Mitúya mya eyókeli bazalí ya kotíyela motéma tɛ̌</string>
+    <string name="location_loading">Kozela botî sika ya esíká</string>
+    <string name="location_error_message">Esíká ezalí tɛ̌</string>
+    <string name="location_not_present">Bakokákí koyéba esíká óyo ezalí. Kokwéya lisúsu na Nola magnétique.</string>
+    <string name="access_location_permission_rationale_message">Mpɔ na kolakisa na Nola ya mambí ma nsé, litámbuisi-mosálá óyo esengeli koyéba déclination magnétique mpɔ́na esíká ozalí lɛlɔ́.</string>
+    <string name="access_location_permission_denied">Ndíngisa ya liyíngeli na esíká óyo ezángí. Kokwéya lisúsu na Nola magnétique.</string>
+    <string name="true_north">Nola ya mambí ma nsé</string>
+    <string name="magnetic_north">Nola magnétique</string>
+    <string name="haptic_feedback_summary">Busɔ́lɛ eningání ntángo ngámbo na yangó ebongwanaka.</string>
+    <string name="error_message">Zíko esálémákí.\nNsango: %1$s\nKɔ́́de: %2$s</string>
+    <string name="no_thanks">Tɛ̌, matondo</string>
+    <string name="sensor_calibration_text">Okokí komeka kobongisa bosikisiki ya eyókeli na yɔ̌ na ntángo nyɔ́nsɔ na kobalola ekelisi na motíndo ya elílíngi 8.</string>
+    <string name="true_north_summary">Kosémbola déclination magnétique mpé lakísá na Nola ya mambí ma nsé. Esengaka liyíngeli na esíká ozalí.</string>
 </resources>
