@@ -1,0 +1,1 @@
+- Correction d'un plantage lorsque le système ne fournit pas de fournisseur d'emplacement réseau

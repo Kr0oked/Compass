@@ -1,0 +1,4 @@
+- Toujours afficher 0° et jamais 360° lors de l'arrondi
+- Traduction en norvégien
+- Traduction complète en finnois
+- Traduction complète en russe
