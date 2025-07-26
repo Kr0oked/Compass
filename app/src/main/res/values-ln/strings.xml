@@ -48,4 +48,5 @@
     <string name="no_thanks">Tɛ̌, matondo</string>
     <string name="sensor_calibration_text">Okokí komeka kobongisa bosikisiki ya eyókeli na yɔ̌ na ntángo nyɔ́nsɔ na kobalola ekelisi na motíndo ya elílíngi 8.</string>
     <string name="true_north_summary">Kosémbola déclination magnétique mpé lakísá na Nola ya mambí ma nsé. Esengaka liyíngeli na esíká ozalí.</string>
+    <string name="haptic_feedback">Bozóngisa na bolɛ́ngí</string>
 </resources>
