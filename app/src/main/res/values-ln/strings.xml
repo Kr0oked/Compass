@@ -49,4 +49,8 @@
     <string name="sensor_calibration_text">Okokí komeka kobongisa bosikisiki ya eyókeli na yɔ̌ na ntángo nyɔ́nsɔ na kobalola ekelisi na motíndo ya elílíngi 8.</string>
     <string name="true_north_summary">Kosémbola déclination magnétique mpé lakísá na Nola ya mambí ma nsé. Esengaka liyíngeli na esíká ozalí.</string>
     <string name="haptic_feedback">Bozóngisa na bolɛ́ngí</string>
+    <string name="night_mode_follow_system">Kolanda litámbuisi-masíni</string>
+    <string name="about">Mokeli</string>
+    <string name="third_party_licenses_summary">Masásɛ ma kɔbɛ ebandela nsɔ́mí ekɔ́tisí</string>
+    <string name="source_code">Kɔ́́de ya ebandela</string>
 </resources>
