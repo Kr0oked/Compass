@@ -51,4 +51,6 @@
     <string name="magnetic_north">Магнитный Север</string>
     <string name="third_party_licenses">Лицензии третьих лиц</string>
     <string name="third_party_licenses_summary">Лицензии включенных библиотек с открытым исходным кодом</string>
+    <string name="location_not_present">Местоположение определить не удалось. Откатываемся к магнитному северу.</string>
+    <string name="location_reload">Обновить местоположение</string>
 </resources>

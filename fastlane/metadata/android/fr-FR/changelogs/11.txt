@@ -1,0 +1,4 @@
+- Fonctionnalité pôle nord géographique
+- Paramètres de l'application
+- Traduction en français
+- Prise en charge des préférences linguistiques par application

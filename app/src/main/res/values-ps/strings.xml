@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="compass">خوډڼه</string>
+    <string name="sensor_status">د سنسور اکر</string>
+    <string name="lock_screen_rotation">د کلف پڼ څرخش</string>
+</resources>

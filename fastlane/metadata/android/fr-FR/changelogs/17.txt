@@ -1,0 +1,6 @@
+- Ne demande qu'une seule localisation pour économiser la batterie
+- Code d'erreur supplémentaire lorsque la localisation est désactivée
+- Mise à jour vers Android 14
+- Dialogues améliorés
+- Amélioration du nom du thème
+- Correction des fautes de frappe
