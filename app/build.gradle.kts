@@ -37,8 +37,8 @@ android {
         applicationId = "com.bobek.compass"
         minSdk = 23
         targetSdk = 36
-        versionCode = 29
-        versionName = "1.14.9"
+        versionCode = 30
+        versionName = "1.14.10"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

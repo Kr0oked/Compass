@@ -1,0 +1,4 @@
+- Added Chinese (Traditional Han script) translation
+- Added Lingala translation
+- Added Pashto translation
+- Improved Hebrew translation

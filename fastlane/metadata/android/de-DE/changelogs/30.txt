@@ -1,0 +1,4 @@
+- Übersetzung für Chinesisch (Traditionell) wurde hinzugefügt
+- Übersetzung für Lingala wurde hinzugefügt
+- Übersetzung für Paschtu wurde hinzugefügt
+- Übersetzung für Hebräisch wurde verbessert
