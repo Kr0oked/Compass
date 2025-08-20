@@ -1,0 +1,5 @@
+- Dönen pusula gülü
+- Derece yazısı
+- Pusula yönleri yazısı
+- Gündüz & Gece modu
+- İngilizce ve Almanca çeviriler
