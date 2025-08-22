@@ -1,0 +1,4 @@
+- Lisasime hiina keele (traditsiooniline) tõlke
+- Lisasime lingala keele tõlke
+- Lisasime puštu keele tõlke
+- Parandasime heebrea keele tõlget
