@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2025 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ enum class SensorAccuracy(
     MEDIUM(
         R.string.sensor_accuracy_medium,
         R.drawable.ic_sensor_medium,
-        androidx.appcompat.R.attr.colorControlNormal
+        androidx.appcompat.R.attr.colorError
     ),
     HIGH(
         R.string.sensor_accuracy_high,
