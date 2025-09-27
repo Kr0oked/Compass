@@ -1,0 +1,3 @@
+- Mittlere Sensorgenauigkeit wird auch mit der Fehlerfarbe hervorgehoben
+- Übersetzung für Portugiesisch wurde hinzugefügt
+- Übersetzung für Italienisch wurde verbessert

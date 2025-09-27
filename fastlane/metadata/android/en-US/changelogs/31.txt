@@ -1,0 +1,3 @@
+- Medium sensor accuracy gets also highlighted with the error color
+- Added Portuguese translation
+- Improved Italian translation
