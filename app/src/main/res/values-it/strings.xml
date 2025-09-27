@@ -48,4 +48,5 @@
     <string name="error">Errore</string>
     <string name="ok">OK</string>
     <string name="no_thanks">No, grazie</string>
+    <string name="magnetic_north">Nord Magnetico</string>
 </resources>

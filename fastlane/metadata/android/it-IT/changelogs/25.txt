@@ -1,0 +1,2 @@
+- Aggiunta traduzione in uzbeco
+- Migliorato il supporto per schermi di dimensioni diverse
