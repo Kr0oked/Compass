@@ -1,0 +1,3 @@
+- Sensori keskmine tundlikkus on nüüd esiletõstetud veavärviga
+- Lisandus portugali keele tõlge
+- Parandatud itaalia keele tõlge
