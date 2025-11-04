@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2025 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +28,10 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
+}
+
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
 dependencyResolutionManagement {
