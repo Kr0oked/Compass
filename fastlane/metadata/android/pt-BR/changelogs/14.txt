@@ -1,0 +1,4 @@
+- Sempre mostre 0° e nunca 360° ao arredondar para cima
+- Tradução para norueguês
+- Tradução completa para finlandês
+- Tradução completa para russo
