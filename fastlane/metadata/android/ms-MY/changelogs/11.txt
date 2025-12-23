@@ -1,0 +1,4 @@
+- Fungsi arah utara sebenar
+- Tetapan aplikasi
+- Terjemahan Perancis
+- Sokongan pilihan bahasa mengikut tetapan aplikasi
