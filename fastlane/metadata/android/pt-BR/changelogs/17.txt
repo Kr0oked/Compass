@@ -1,0 +1,6 @@
+- Somente solicita uma localização para economizar bateria
+- Código extra de erro quando a localização está desativa
+- Atualizado para o Android 14
+- Diálogos melhorados
+- Nomeação de tema melhorado
+- Corrigido erros de digitação
