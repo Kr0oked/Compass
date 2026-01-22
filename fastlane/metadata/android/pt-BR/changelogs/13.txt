@@ -1,0 +1,1 @@
+- Corrigido o problema que causava o fechamento inesperado do sistema quando este não fornecia um provedor de localização de rede

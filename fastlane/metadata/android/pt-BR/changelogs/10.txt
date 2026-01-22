@@ -1,0 +1,5 @@
+- Tradução para checo
+- Tradução para turco
+- Tradução para grego
+- Bússola maior no modo paisagem
+- Ícone monocromático

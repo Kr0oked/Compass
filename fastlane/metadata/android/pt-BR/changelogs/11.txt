@@ -1,0 +1,4 @@
+- Funcionalidade de norte verdadeiro
+- Configurações do aplicativo
+- Tradução para francês
+- Suporte para preferências de idioma por aplicativo

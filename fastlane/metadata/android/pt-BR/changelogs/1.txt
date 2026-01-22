@@ -1,0 +1,5 @@
+- Rosa dos ventos rotativa
+- Indicação de graus
+- Indicação dos pontos cardeais
+- Modo dia e noite
+- Traduções para inglês e alemão
