@@ -1,0 +1,3 @@
+- Android bijgewerkt naar 16
+- Hebreeuwse vertaling toegevoegd
+- Fout bij het openen van open source-licenties verholpen

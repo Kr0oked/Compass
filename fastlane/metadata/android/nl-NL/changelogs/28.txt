@@ -1,0 +1,4 @@
+- Soepele hardwarevereisten
+- Indonesische vertaling toegevoegd
+- Verbeterde Finse vertaling
+- Verbeterde Vietnamese vertaling

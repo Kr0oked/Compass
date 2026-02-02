@@ -1,0 +1,3 @@
+- Middelmatige nauwkeurigheid van de sensor wordt ook gemarkeerd met de foutkleur
+- Portugese vertaling toegevoegd
+- Verbeterde Italiaanse vertaling

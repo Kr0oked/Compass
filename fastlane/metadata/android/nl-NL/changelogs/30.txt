@@ -1,0 +1,4 @@
+- Chinese vertaling (traditioneel Han-schrift) toegevoegd
+- Lingala-vertaling toegevoegd
+- Pashto-vertaling toegevoegd
+- Hebreeuwse vertaling verbeterd
