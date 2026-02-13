@@ -1,0 +1,3 @@
+- Actualización a Android 16 
+- Añadida traducción al hebreo 
+- Error corregido al abrir las licencias de código abierto

@@ -1,0 +1,4 @@
+- Añadida traducción al chino (escritura tradicional han) 
+- Añadida traducción al lingala 
+- Añadida traducción al pastún
+- Mejorada la traducción al hebreo
