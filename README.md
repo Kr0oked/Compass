@@ -46,3 +46,6 @@ Translations can be added on [Weblate](https://hosted.weblate.org/engage/compass
 
 The project is licensed under the GNU GPL v3.
 You can find the license text in the [LICENSE](LICENSE) file.
+
+
+This project is tested with Browserstack
