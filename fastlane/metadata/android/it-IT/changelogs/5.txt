@@ -1,0 +1,4 @@
+- Opzione per bloccare o seguire la rotazione dello schermo
+- Miglioramento della scala della bussola
+- Traduzione in Olandese
+- Traduzione in Finlandese

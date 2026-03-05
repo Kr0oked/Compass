@@ -1,0 +1,5 @@
+- Aggiunta la visualizzazione delle licenze di terze parti
+- Aggiunta la traduzione in Tamil
+- Aggiunta la traduzione in Portoghese Brasiliano
+- Aggiunta la traduzione in Persiano
+- Aggiunta la traduzione in Polacco

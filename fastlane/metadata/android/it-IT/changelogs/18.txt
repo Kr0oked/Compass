@@ -1,0 +1,6 @@
+- Aggiunto suggerimento sulla declinazione
+- Aggiunta immagine esplicativa della calibrazione del sensore
+- Aggiunta traduzione in Ungherese
+- Migliorata la visualizzazione dello stato del sensore
+- Rimosso il contrassegno dedicato per il nord sulla rosa dei venti
+- Aumentato minSDK a 23

@@ -1,0 +1,3 @@
+- Aggiorna Android alla versione 16
+- Aggiunta la traduzione in Ebraico
+- Corretto errore durante l'apertura delle licenze open source

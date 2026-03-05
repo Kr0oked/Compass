@@ -1,0 +1,4 @@
+- Funzionalità True North
+- Impostazioni dell'applicazione
+- Traduzione in Francese
+- Supporto delle preferenze linguistiche per app

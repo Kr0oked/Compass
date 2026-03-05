@@ -1,0 +1,2 @@
+- La bussola non trema più
+- Aggiunto suggerimento per la calibrazione del sensore

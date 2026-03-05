@@ -1,0 +1,5 @@
+- Rosa dei venti rotante
+- Testo dei gradi
+- Testo dei punti cardinali
+- Modalità giorno e notte
+- Traduzioni in Inglese e Tedesco

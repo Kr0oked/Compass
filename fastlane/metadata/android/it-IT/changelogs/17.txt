@@ -1,0 +1,6 @@
+- Richiedi una sola posizione per risparmiare batteria
+- Codice di errore aggiuntivo quando la posizione è disabilitata
+- Aggiornato ad Android 14
+- Dialoghi migliorati
+- Denominazione dei temi migliorata
+- Correzione di errori di battitura

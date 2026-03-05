@@ -1,0 +1,3 @@
+- Anche la precisione media del sensore viene evidenziata con il colore di errore
+- Aggiunta traduzione in Portoghese
+- Migliorata traduzione in Italiano

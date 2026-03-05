@@ -1,0 +1,1 @@
+- Risolto il crash quando il sistema non fornisce un provider di posizione di rete

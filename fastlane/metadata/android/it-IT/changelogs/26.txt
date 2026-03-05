@@ -1,0 +1,3 @@
+- Corretto il margine di layout in modalità bordo a bordo
+- Aggiunta traduzione in Basco
+- Migliorata traduzione in Olandese

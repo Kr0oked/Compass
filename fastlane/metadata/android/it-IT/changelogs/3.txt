@@ -1,0 +1,3 @@
+- Pagina informazioni
+- Icona dell'app rielaborata
+- Gestione della modalità notturna migliorata
