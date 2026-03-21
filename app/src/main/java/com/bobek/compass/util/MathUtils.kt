@@ -21,13 +21,13 @@ package com.bobek.compass.util
 import android.hardware.GeomagneticField
 import android.hardware.SensorManager
 import android.location.Location
-import com.bobek.compass.model.Azimuth
-import com.bobek.compass.model.DisplayRotation
-import com.bobek.compass.model.DisplayRotation.ROTATION_0
-import com.bobek.compass.model.DisplayRotation.ROTATION_180
-import com.bobek.compass.model.DisplayRotation.ROTATION_270
-import com.bobek.compass.model.DisplayRotation.ROTATION_90
-import com.bobek.compass.model.RotationVector
+import com.bobek.compass.data.Azimuth
+import com.bobek.compass.data.DisplayRotation
+import com.bobek.compass.data.DisplayRotation.ROTATION_0
+import com.bobek.compass.data.DisplayRotation.ROTATION_180
+import com.bobek.compass.data.DisplayRotation.ROTATION_270
+import com.bobek.compass.data.DisplayRotation.ROTATION_90
+import com.bobek.compass.data.RotationVector
 import kotlin.math.roundToInt
 
 private const val AZIMUTH = 0

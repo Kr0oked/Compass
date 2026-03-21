@@ -25,7 +25,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.filters.LargeTest
-import com.bobek.compass.model.SensorAccuracy
+import com.bobek.compass.data.SensorAccuracy
 import org.hamcrest.Matchers.not
 import org.junit.Test
 

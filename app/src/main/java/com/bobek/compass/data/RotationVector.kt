@@ -16,10 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass
+package com.bobek.compass.data
 
-import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+data class RotationVector(val x: Float, val y: Float, val z: Float) {
 
-@HiltAndroidApp
-class CompassApplication : Application()
+    fun toArray(): FloatArray = floatArrayOf(x, y, z)
+}

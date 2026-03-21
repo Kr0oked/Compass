@@ -19,7 +19,7 @@
   -->
 
 <resources>
-    <dimen name="root_layout_padding">16dp</dimen>
+    <dimen name="root_layout_padding">16dp</dimen><!-- TODO -->
 
     <dimen name="cardinal_direction_text_ratio">0.20f</dimen>
     <dimen name="degree_text_ratio">0.04f</dimen>

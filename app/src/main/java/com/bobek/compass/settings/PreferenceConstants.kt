@@ -16,10 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass
+package com.bobek.compass.settings
 
-import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+object PreferenceConstants {
 
-@HiltAndroidApp
-class CompassApplication : Application()
+    const val TRUE_NORTH = "true_north"
+
+    const val HAPTIC_FEEDBACK = "haptic_feedback"
+
+    const val SCREEN_ORIENTATION_LOCKED = "screen_orientation_locked"
+
+    const val NIGHT_MODE = "night_mode"
+    const val NIGHT_MODE_VALUE_FOLLOW_SYSTEM = "follow_system"
+    const val NIGHT_MODE_VALUE_NO = "no"
+    const val NIGHT_MODE_VALUE_YES = "yes"
+
+    const val ACCESS_LOCATION_PERMISSION_REQUESTED = "access_location_permission_requested"
+}

@@ -16,10 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass
+package com.bobek.compass.data
 
-import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import androidx.annotation.StringRes
 
-@HiltAndroidApp
-class CompassApplication : Application()
+interface PreferenceChoice {
+
+    @get:StringRes
+    val labelResourceId: Int
+
+    val preferenceValue: String
+}

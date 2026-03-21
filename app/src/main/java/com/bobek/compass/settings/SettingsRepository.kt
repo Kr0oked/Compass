@@ -16,10 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass
+package com.bobek.compass.settings
 
-import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.bobek.compass.data.AppNightMode
+import kotlinx.coroutines.flow.Flow
 
-@HiltAndroidApp
-class CompassApplication : Application()
+interface SettingsRepository {
+    fun getTrueNorth(): Flow<Boolean>
+    suspend fun setTrueNorth(trueNorth: Boolean)
+    fun getHapticFeedback(): Flow<Boolean>
+    suspend fun setHapticFeedback(hapticFeedback: Boolean)
+    fun getScreenOrientationLocked(): Flow<Boolean>
+    suspend fun setScreenOrientationLocked(screenOrientationLocked: Boolean)
+    fun getNightMode(): Flow<AppNightMode>
+    suspend fun setNightMode(nightMode: AppNightMode)
+    fun getAccessLocationPermissionRequested(): Flow<Boolean>
+    suspend fun setAccessLocationPermissionRequested(accessLocationPermissionRequested: Boolean)
+}

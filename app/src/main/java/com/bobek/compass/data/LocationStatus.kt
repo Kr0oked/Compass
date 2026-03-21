@@ -16,10 +16,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass
+package com.bobek.compass.data
 
-import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
-
-@HiltAndroidApp
-class CompassApplication : Application()
+enum class LocationStatus {
+    PRESENT,
+    NOT_PRESENT,
+    LOADING,
+    PERMISSION_DENIED
+}

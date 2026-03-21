@@ -16,10 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass
+package com.bobek.compass.ui.theme
 
-import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import androidx.compose.material3.Typography
 
-@HiltAndroidApp
-class CompassApplication : Application()
+val AppTypography = Typography()

@@ -20,88 +20,64 @@ package com.bobek.compass
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager.PERMISSION_DENIED
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
+import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.bobek.compass.databinding.ActivityMainBinding
-import com.bobek.compass.model.AppNightMode
-import com.bobek.compass.preference.PreferenceStore
+import androidx.lifecycle.lifecycleScope
+import com.bobek.compass.settings.SettingsRepository
+import com.bobek.compass.ui.MainContent
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
+import jakarta.inject.Inject
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 private const val TAG = "MainActivity"
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
 
+    private val viewModel: CompassViewModel by viewModels()
     private val accessLocationPermissionRequest = registerAccessLocationPermissionRequest()
 
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var preferenceStore: PreferenceStore
+    @Inject
+    lateinit var settingsRepository: SettingsRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            MainContent(viewModel)
+        }
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        setSupportActionBar(binding.toolbar)
-
-        val navController = getNavController()
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        initPreferenceStore()
-    }
-
-    private fun initPreferenceStore() {
-        preferenceStore = PreferenceStore(this, lifecycle)
-        preferenceStore.nightMode.observe(this) { setNightMode(it) }
-        preferenceStore.screenOrientationLocked.observe(this) { setScreenRotationMode(it) }
-        preferenceStore.trueNorth.observe(this) { setupTrueNorthFunctionality(it) }
-    }
-
-    private fun setNightMode(appNightMode: AppNightMode) {
-        Log.d(TAG, "Setting night mode to $appNightMode")
-        setDefaultNightMode(appNightMode.systemValue)
-    }
-
-    private fun setScreenRotationMode(screenOrientationLocked: Boolean) {
-        if (screenOrientationLocked) {
-            setScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED)
-        } else {
-            setScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+        lifecycleScope.launch {
+            settingsRepository.getTrueNorth().collect { trueNorth ->
+                setupTrueNorthFunctionality(trueNorth)
+            }
         }
     }
 
-    private fun setScreenOrientation(screenOrientation: Int) {
-        Log.d(TAG, "Setting requested orientation to value $screenOrientation")
-        requestedOrientation = screenOrientation
-    }
-
-    private fun setupTrueNorthFunctionality(trueNorth: Boolean?) {
+    private suspend fun setupTrueNorthFunctionality(trueNorth: Boolean?) {
         if (trueNorth == true) {
             handleLocationPermission()
         }
     }
 
-    private fun handleLocationPermission() {
+    private suspend fun handleLocationPermission() {
         if (neverRequestedAccessLocationPermission() && accessLocationPermissionDenied()) {
             startAccessLocationPermissionRequestWorkflow()
         }
     }
 
-    private fun neverRequestedAccessLocationPermission() =
-        preferenceStore.accessLocationPermissionRequested.value != true
+    private suspend fun neverRequestedAccessLocationPermission(): Boolean =
+        settingsRepository.getAccessLocationPermissionRequested().first().not()
 
     private fun accessLocationPermissionDenied() =
         ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_DENIED
@@ -128,7 +104,9 @@ class MainActivity : AppCompatActivity() {
             }
             .setNegativeButton(R.string.no_thanks) { dialog, _ ->
                 Log.i(TAG, "Continuing without requesting location permission")
-                preferenceStore.accessLocationPermissionRequested.value = true
+                lifecycleScope.launch {
+                    settingsRepository.setAccessLocationPermissionRequested(true)
+                }
                 dialog.dismiss()
             }
             .show()
@@ -152,21 +130,10 @@ class MainActivity : AppCompatActivity() {
 
                 else -> {
                     Log.i(TAG, "Location permission denied")
-                    preferenceStore.accessLocationPermissionRequested.value = true
+                    lifecycleScope.launch {
+                        settingsRepository.setAccessLocationPermissionRequested(true)
+                    }
                 }
             }
         }
-
-
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = getNavController()
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
-    }
-
-    private fun getNavController(): NavController {
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
-        return navHostFragment.navController
-    }
 }

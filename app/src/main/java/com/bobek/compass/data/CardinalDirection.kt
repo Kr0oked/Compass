@@ -16,10 +16,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass
+package com.bobek.compass.data
 
-import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import androidx.annotation.StringRes
+import com.bobek.compass.R
 
-@HiltAndroidApp
-class CompassApplication : Application()
+enum class CardinalDirection(@StringRes val labelResourceId: Int) {
+    NORTH(R.string.cardinal_direction_north),
+    NORTHEAST(R.string.cardinal_direction_northeast),
+    EAST(R.string.cardinal_direction_east),
+    SOUTHEAST(R.string.cardinal_direction_southeast),
+    SOUTH(R.string.cardinal_direction_south),
+    SOUTHWEST(R.string.cardinal_direction_southwest),
+    WEST(R.string.cardinal_direction_west),
+    NORTHWEST(R.string.cardinal_direction_northwest)
+}
