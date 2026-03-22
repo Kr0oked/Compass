@@ -21,8 +21,18 @@ package com.bobek.compass
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.content.pm.PackageManager.PERMISSION_DENIED
+import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
+import android.location.Location
+import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
+import android.os.CancellationSignal
 import android.util.Log
+import android.view.Surface
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -30,9 +40,15 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.location.LocationManagerCompat
 import androidx.lifecycle.lifecycleScope
+import com.bobek.compass.data.DisplayRotation
+import com.bobek.compass.data.LocationStatus
+import com.bobek.compass.data.RotationVector
+import com.bobek.compass.data.SensorAccuracy
 import com.bobek.compass.settings.SettingsRepository
 import com.bobek.compass.ui.MainContent
+import com.bobek.compass.util.MathUtils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import jakarta.inject.Inject
@@ -50,17 +66,93 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var settingsRepository: SettingsRepository
 
+    private lateinit var sensorManager: SensorManager
+    private var locationManager: LocationManager? = null
+    private var locationRequestCancellationSignal: CancellationSignal? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MainContent(viewModel)
+            MainContent(
+                viewModel = viewModel,
+                onLocationReload = ::requestLocation
+            )
         }
+
+        sensorManager = getSystemService(SensorManager::class.java)
+        locationManager = getSystemService(LocationManager::class.java)
 
         lifecycleScope.launch {
             settingsRepository.getTrueNorth().collect { trueNorth ->
                 setupTrueNorthFunctionality(trueNorth)
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        registerSensorListener()
+        requestLocation()
+    }
+
+    private fun registerSensorListener() {
+        sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)?.let { sensor ->
+            sensorManager.registerListener(compassSensorEventListener, sensor, SensorManager.SENSOR_DELAY_FASTEST)
+        }
+        sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)?.let { sensor ->
+            sensorManager.registerListener(compassSensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        sensorManager.unregisterListener(compassSensorEventListener)
+        locationRequestCancellationSignal?.cancel()
+    }
+
+    private fun setSensorAccuracy(accuracy: Int) {
+        val sensorAccuracy = when (accuracy) {
+            SensorManager.SENSOR_STATUS_NO_CONTACT -> SensorAccuracy.NO_CONTACT
+            SensorManager.SENSOR_STATUS_UNRELIABLE -> SensorAccuracy.UNRELIABLE
+            SensorManager.SENSOR_STATUS_ACCURACY_LOW -> SensorAccuracy.LOW
+            SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM -> SensorAccuracy.MEDIUM
+            SensorManager.SENSOR_STATUS_ACCURACY_HIGH -> SensorAccuracy.HIGH
+            else -> SensorAccuracy.NO_CONTACT
+        }
+        viewModel.setSensorAccuracy(sensorAccuracy)
+    }
+
+    private fun updateCompass(event: SensorEvent) {
+        val rotationVector = RotationVector(event.values[0], event.values[1], event.values[2])
+        val displayRotation = getDisplayRotation()
+        val magneticAzimuth = MathUtils.calculateAzimuth(rotationVector, displayRotation)
+
+        if (viewModel.getTrueNorthFlow().value) {
+            val location = viewModel.getLocationFlow().value
+            if (location != null) {
+                val magneticDeclination = MathUtils.getMagneticDeclination(location)
+                viewModel.setAzimuth(magneticAzimuth + magneticDeclination)
+            } else {
+                viewModel.setAzimuth(magneticAzimuth)
+            }
+        } else {
+            viewModel.setAzimuth(magneticAzimuth)
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun getDisplayRotation(): DisplayRotation {
+        val rotation = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            display?.rotation ?: Surface.ROTATION_0
+        } else {
+            windowManager.defaultDisplay.rotation
+        }
+        return when (rotation) {
+            Surface.ROTATION_90 -> DisplayRotation.ROTATION_90
+            Surface.ROTATION_180 -> DisplayRotation.ROTATION_180
+            Surface.ROTATION_270 -> DisplayRotation.ROTATION_270
+            else -> DisplayRotation.ROTATION_0
         }
     }
 
@@ -117,23 +209,91 @@ class MainActivity : ComponentActivity() {
         accessLocationPermissionRequest.launch(arrayOf(ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION))
     }
 
+    private val compassSensorEventListener = object : SensorEventListener {
+        override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
+            if (sensor.type == Sensor.TYPE_MAGNETIC_FIELD) {
+                setSensorAccuracy(accuracy)
+            }
+        }
+
+        override fun onSensorChanged(event: SensorEvent) {
+            if (event.sensor.type == Sensor.TYPE_ROTATION_VECTOR) {
+                updateCompass(event)
+            }
+        }
+    }
+
     private fun registerAccessLocationPermissionRequest() =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             when {
                 permissions[ACCESS_FINE_LOCATION] == true -> {
                     Log.i(TAG, "Permission ACCESS_FINE_LOCATION granted")
+                    requestLocation()
                 }
 
                 permissions[ACCESS_COARSE_LOCATION] == true -> {
                     Log.i(TAG, "Permission ACCESS_COARSE_LOCATION granted")
+                    requestLocation()
                 }
 
                 else -> {
                     Log.i(TAG, "Location permission denied")
+                    viewModel.setLocationStatus(LocationStatus.PERMISSION_DENIED)
                     lifecycleScope.launch {
                         settingsRepository.setAccessLocationPermissionRequested(true)
                     }
                 }
             }
         }
+
+    fun requestLocation() {
+        val locationManager = locationManager ?: return
+        if (!viewModel.getTrueNorthFlow().value) return
+
+        if (ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED
+            && ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED
+        ) {
+            viewModel.setLocationStatus(LocationStatus.PERMISSION_DENIED)
+            return
+        }
+
+        if (!LocationManagerCompat.isLocationEnabled(locationManager)) {
+            viewModel.setLocationStatus(LocationStatus.NOT_PRESENT)
+            return
+        }
+
+        val provider = getBestLocationProvider() ?: run {
+            viewModel.setLocationStatus(LocationStatus.NOT_PRESENT)
+            return
+        }
+
+        viewModel.setLocationStatus(LocationStatus.LOADING)
+        locationRequestCancellationSignal?.cancel()
+        locationRequestCancellationSignal = CancellationSignal()
+        LocationManagerCompat.getCurrentLocation(
+            locationManager,
+            provider,
+            locationRequestCancellationSignal,
+            ContextCompat.getMainExecutor(this)
+        ) { location -> setLocation(location) }
+    }
+
+    private fun getBestLocationProvider(): String? = when {
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+                && ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED ->
+            LocationManager.FUSED_PROVIDER
+
+        ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED ->
+            LocationManager.GPS_PROVIDER
+
+        ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED ->
+            LocationManager.NETWORK_PROVIDER
+
+        else -> null
+    }
+
+    private fun setLocation(location: Location?) {
+        viewModel.setLocation(location)
+        viewModel.setLocationStatus(if (location != null) LocationStatus.PRESENT else LocationStatus.NOT_PRESENT)
+    }
 }

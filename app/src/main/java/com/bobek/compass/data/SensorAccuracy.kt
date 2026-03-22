@@ -23,8 +23,8 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.SignalCellular4Bar
+import androidx.compose.material.icons.filled.SignalCellularConnectedNoInternet0Bar
 import androidx.compose.material.icons.filled.SignalCellularNodata
-import androidx.compose.material.icons.filled.SignalCellularNull
 import androidx.compose.material.icons.filled.SignalCellularOff
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.bobek.compass.R
@@ -46,12 +46,12 @@ enum class SensorAccuracy(
     ),
     LOW(
         R.string.sensor_accuracy_low,
-        Icons.Default.SignalCellularNull,
+        Icons.Default.SignalCellularConnectedNoInternet0Bar,
         androidx.appcompat.R.attr.colorError
     ),
     MEDIUM(
         R.string.sensor_accuracy_medium,
-        Icons.Default.SignalCellularNull,
+        Icons.Default.SignalCellularConnectedNoInternet0Bar,
         androidx.appcompat.R.attr.colorError
     ),
     HIGH(

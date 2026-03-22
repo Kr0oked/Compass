@@ -18,6 +18,8 @@
 
 package com.bobek.compass.ui.compass
 
+import android.view.WindowManager
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,6 +33,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Explore
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.ScreenLockRotation
+import androidx.compose.material.icons.filled.ScreenRotation
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
@@ -43,6 +47,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -69,16 +74,41 @@ fun CompassScreen(
     val azimuth by viewModel.getAzimuthFlow().collectAsState()
     val sensorAccuracy by viewModel.getSensorAccuracyFlow().collectAsState()
     val hapticFeedback by viewModel.getHapticFeedbackFlow().collectAsState()
+    val screenOrientationLocked by viewModel.getScreenOrientationLocked().collectAsState()
     val trueNorth by viewModel.getTrueNorthFlow().collectAsState()
     val locationStatus by viewModel.getLocationStatusFlow().collectAsState()
 
     var showSensorStatusDialog by rememberSaveable { mutableStateOf(false) }
+
+    val activity = LocalActivity.current
+    DisposableEffect(Unit) {
+        val window = activity?.window
+        window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        onDispose {
+            window?.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        }
+    }
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(R.string.compass)) },
                 actions = {
+                    IconButton(
+                        onClick = {
+                            viewModel.setScreenOrientationLocked(!screenOrientationLocked)
+                        }
+                    ) {
+                        val imageVector = if (screenOrientationLocked) {
+                            Icons.Default.ScreenLockRotation
+                        } else {
+                            Icons.Default.ScreenRotation
+                        }
+                        Icon(
+                            imageVector = imageVector,
+                            contentDescription = stringResource(R.string.lock_screen_rotation)
+                        )
+                    }
                     IconButton(
                         onClick = {
                             showSensorStatusDialog = true

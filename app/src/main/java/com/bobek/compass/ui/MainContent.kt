@@ -48,7 +48,8 @@ import kotlinx.coroutines.withContext
 @Composable
 @PreviewScreenSizes
 fun MainContent(
-    viewModel: ICompassViewModel = ComposeCompassViewModel()
+    viewModel: ICompassViewModel = ComposeCompassViewModel(),
+    onLocationReload: () -> Unit = {}
 ) {
     val navController = rememberNavController()
     val screenOrientationLocked by viewModel.getScreenOrientationLocked().collectAsState()
@@ -72,9 +73,7 @@ fun MainContent(
                 CompassScreen(
                     viewModel = viewModel,
                     onSettingsClick = { navController.navigate("settings") },
-                    onLocationReload = {
-                        // TODO
-                    }
+                    onLocationReload = onLocationReload
                 )
             }
             composable("settings") {
