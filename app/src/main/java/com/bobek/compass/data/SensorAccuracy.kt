@@ -18,8 +18,6 @@
 
 package com.bobek.compass.data
 
-import androidx.annotation.AttrRes
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.SignalCellular4Bar
@@ -32,31 +30,31 @@ import com.bobek.compass.R
 enum class SensorAccuracy(
     @StringRes val labelResourceId: Int,
     val imageVector: ImageVector,
-    @AttrRes val iconTintAttributeResourceId: Int
+    val isWarning: Boolean
 ) {
     NO_CONTACT(
         R.string.sensor_accuracy_no_contact,
         Icons.Default.SignalCellularNodata,
-        androidx.appcompat.R.attr.colorError
+        isWarning = true
     ),
     UNRELIABLE(
         R.string.sensor_accuracy_unreliable,
         Icons.Default.SignalCellularOff,
-        androidx.appcompat.R.attr.colorError
+        isWarning = true
     ),
     LOW(
         R.string.sensor_accuracy_low,
         Icons.Default.SignalCellularConnectedNoInternet0Bar,
-        androidx.appcompat.R.attr.colorError
+        isWarning = true
     ),
     MEDIUM(
         R.string.sensor_accuracy_medium,
         Icons.Default.SignalCellularConnectedNoInternet0Bar,
-        androidx.appcompat.R.attr.colorError
+        isWarning = true
     ),
     HIGH(
         R.string.sensor_accuracy_high,
         Icons.Default.SignalCellular4Bar,
-        androidx.appcompat.R.attr.colorControlNormal
+        isWarning = false
     )
 }

@@ -116,7 +116,8 @@ fun CompassScreen(
                     ) {
                         Icon(
                             imageVector = sensorAccuracy.imageVector,
-                            contentDescription = stringResource(R.string.sensor_status)
+                            contentDescription = stringResource(R.string.sensor_status),
+                            tint = sensorAccuracy.tintColor
                         )
                     }
                     IconButton(onClick = onSettingsClick) {
