@@ -71,61 +71,21 @@ fun CompassScreen(
     onSettingsClick: () -> Unit = {},
     onLocationReload: () -> Unit = {}
 ) {
-    val azimuth by viewModel.getAzimuthFlow().collectAsState()
-    val sensorAccuracy by viewModel.getSensorAccuracyFlow().collectAsState()
-    val hapticFeedback by viewModel.getHapticFeedbackFlow().collectAsState()
-    val screenOrientationLocked by viewModel.getScreenOrientationLocked().collectAsState()
     val trueNorth by viewModel.getTrueNorthFlow().collectAsState()
     val locationStatus by viewModel.getLocationStatusFlow().collectAsState()
 
     var showSensorStatusDialog by rememberSaveable { mutableStateOf(false) }
 
-    val activity = LocalActivity.current
-    DisposableEffect(Unit) {
-        val window = activity?.window
-        window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        onDispose {
-            window?.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        }
-    }
+    KeepScreenOnEffect()
 
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text(stringResource(R.string.compass)) },
                 actions = {
-                    IconButton(
-                        onClick = {
-                            viewModel.setScreenOrientationLocked(!screenOrientationLocked)
-                        }
-                    ) {
-                        val imageVector = if (screenOrientationLocked) {
-                            Icons.Default.ScreenLockRotation
-                        } else {
-                            Icons.Default.ScreenRotation
-                        }
-                        Icon(
-                            imageVector = imageVector,
-                            contentDescription = stringResource(R.string.lock_screen_rotation)
-                        )
-                    }
-                    IconButton(
-                        onClick = {
-                            showSensorStatusDialog = true
-                        }
-                    ) {
-                        Icon(
-                            imageVector = sensorAccuracy.imageVector,
-                            contentDescription = stringResource(R.string.sensor_status),
-                            tint = sensorAccuracy.tintColor
-                        )
-                    }
-                    IconButton(onClick = onSettingsClick) {
-                        Icon(
-                            imageVector = Icons.Filled.Settings,
-                            contentDescription = stringResource(R.string.settings)
-                        )
-                    }
+                    ScreenOrientationLockedButton(viewModel = viewModel)
+                    SensorStatusButton(viewModel = viewModel, onClick = { showSensorStatusDialog = true })
+                    SettingsButton(onClick = onSettingsClick)
                 }
             )
         }
@@ -138,8 +98,7 @@ fun CompassScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             CompassRose(
-                azimuth = azimuth,
-                hapticFeedbackEnabled = hapticFeedback,
+                viewModel = viewModel,
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth()
@@ -170,6 +129,66 @@ fun CompassScreen(
                 @Suppress("AssignedValueIsNeverRead")
                 showSensorStatusDialog = false
             }
+        )
+    }
+}
+
+@Composable
+private fun KeepScreenOnEffect() {
+    val activity = LocalActivity.current
+    DisposableEffect(Unit) {
+        val window = activity?.window
+        window?.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        onDispose {
+            window?.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        }
+    }
+}
+
+@Composable
+private fun ScreenOrientationLockedButton(viewModel: ICompassViewModel) {
+    val screenOrientationLocked by viewModel.getScreenOrientationLocked().collectAsState()
+
+    val imageVector = if (screenOrientationLocked) {
+        Icons.Default.ScreenLockRotation
+    } else {
+        Icons.Default.ScreenRotation
+    }
+
+    IconButton(
+        onClick = {
+            viewModel.setScreenOrientationLocked(!screenOrientationLocked)
+        }
+    ) {
+        Icon(
+            imageVector = imageVector,
+            contentDescription = stringResource(R.string.lock_screen_rotation)
+        )
+    }
+}
+
+@Composable
+private fun SensorStatusButton(
+    viewModel: ICompassViewModel,
+    onClick: () -> Unit
+) {
+    val sensorAccuracy by viewModel.getSensorAccuracyFlow().collectAsState()
+
+    IconButton(onClick = onClick) {
+        Icon(
+            imageVector = sensorAccuracy.imageVector,
+            contentDescription = stringResource(R.string.sensor_status),
+            tint = sensorAccuracy.tintColor
+        )
+    }
+}
+
+@Composable
+private fun SettingsButton(onClick: () -> Unit) {
+    IconButton(onClick = onClick) {
+        Icon(
+            imageVector = Icons.Filled.Settings,
+            contentDescription = stringResource(R.string.settings)
         )
     }
 }

@@ -19,7 +19,7 @@
 package com.bobek.compass.ui.compass
 
 import android.view.HapticFeedbackConstants
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,22 +27,30 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.layout.Layout
-import androidx.compose.ui.layout.ParentDataModifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.withTransform
 import androidx.compose.ui.platform.LocalView
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.Constraints
-import androidx.compose.ui.unit.Density
+import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.bobek.compass.ComposeCompassViewModel
+import com.bobek.compass.ICompassViewModel
 import com.bobek.compass.R
 import com.bobek.compass.data.Azimuth
 import com.bobek.compass.util.MathUtils
@@ -53,16 +61,19 @@ import kotlin.math.sin
 private const val HAPTIC_FEEDBACK_INTERVAL = 2.0f
 
 @Composable
+@Preview(widthDp = 512)
 fun CompassRose(
-    azimuth: Azimuth,
-    hapticFeedbackEnabled: Boolean,
+    @PreviewParameter(CompassRoseViewModelProvider::class) viewModel: ICompassViewModel,
     modifier: Modifier = Modifier
 ) {
+    val azimuth by viewModel.getAzimuthFlow().collectAsState()
+    val hapticFeedback by viewModel.getHapticFeedbackFlow().collectAsState()
+
     val view = LocalView.current
     var lastHapticFeedbackPoint by remember { mutableStateOf<Azimuth?>(null) }
 
     LaunchedEffect(azimuth) {
-        if (hapticFeedbackEnabled) {
+        if (hapticFeedback) {
             val lastPoint = lastHapticFeedbackPoint
             if (lastPoint == null) {
                 val closestIntervalPoint = MathUtils.getClosestNumberFromInterval(azimuth.degrees, HAPTIC_FEEDBACK_INTERVAL)
@@ -80,22 +91,115 @@ fun CompassRose(
         }
     }
 
+    val textMeasurer = rememberTextMeasurer()
+    val onSurfaceColor = MaterialTheme.colorScheme.onSurface
+    val errorColor = MaterialTheme.colorScheme.error
+
+    val northAbbr = stringResource(R.string.cardinal_direction_north_abbreviation)
+    val eastAbbr = stringResource(R.string.cardinal_direction_east_abbreviation)
+    val southAbbr = stringResource(R.string.cardinal_direction_south_abbreviation)
+    val westAbbr = stringResource(R.string.cardinal_direction_west_abbreviation)
+
+    val cardinalStyle = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.Bold)
+    val degreeStyle = TextStyle(fontSize = 11.sp)
+
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
-        Image(
-            painter = painterResource(id = R.drawable.img_device_heading_indicator),
-            contentDescription = stringResource(id = R.string.device_heading_indicator_image_description),
-            modifier = Modifier.fillMaxSize()
-        )
+        Canvas(modifier = Modifier.fillMaxSize()) {
+            val canvasSize = minOf(size.width, size.height)
+            val center = Offset(size.width / 2f, size.height / 2f)
+            val outerRadius = canvasSize / 2f * 0.92f
+            val labelRadius = outerRadius * 0.76f
 
-        val rotation = -azimuth.degrees
-        Box(modifier = Modifier.fillMaxSize().rotate(rotation)) {
-            Image(
-                painter = painterResource(id = R.drawable.img_compass_rose),
-                contentDescription = stringResource(id = R.string.compass_rose_image_description),
-                modifier = Modifier.fillMaxSize()
-            )
+            // Rotating compass rose
+            withTransform({ rotate(-azimuth.degrees, pivot = center) }) {
 
-            CompassTexts(rotation = 0f) // Texts rotate with the parent Box
+                // Tick marks
+                for (degree in 0 until 360) {
+                    val angleRad = degree * PI.toFloat() / 180f
+                    val sinA = sin(angleRad)
+                    val cosA = cos(angleRad)
+
+                    val tickLength: Float
+                    val strokeWidth: Float
+                    when {
+                        degree % 90 == 0 -> {
+                            tickLength = outerRadius * 0.18f
+                            strokeWidth = 3.dp.toPx()
+                        }
+                        degree % 45 == 0 -> {
+                            tickLength = outerRadius * 0.13f
+                            strokeWidth = 2.dp.toPx()
+                        }
+                        degree % 10 == 0 -> {
+                            tickLength = outerRadius * 0.10f
+                            strokeWidth = 1.5.dp.toPx()
+                        }
+                        degree % 5 == 0 -> {
+                            tickLength = outerRadius * 0.07f
+                            strokeWidth = 1.dp.toPx()
+                        }
+                        else -> {
+                            tickLength = outerRadius * 0.04f
+                            strokeWidth = 0.8.dp.toPx()
+                        }
+                    }
+
+                    val tickColor = if (degree == 0) errorColor else onSurfaceColor
+                    val outerX = center.x + outerRadius * sinA
+                    val outerY = center.y - outerRadius * cosA
+                    val innerX = center.x + (outerRadius - tickLength) * sinA
+                    val innerY = center.y - (outerRadius - tickLength) * cosA
+
+                    drawLine(
+                        color = tickColor,
+                        start = Offset(innerX, innerY),
+                        end = Offset(outerX, outerY),
+                        strokeWidth = strokeWidth,
+                        cap = StrokeCap.Round
+                    )
+                }
+
+                // Labels every 30°: cardinal abbreviations for 0/90/180/270, degree numbers for the rest
+                for (degree in 0 until 360 step 30) {
+                    val label = when (degree) {
+                        0 -> northAbbr
+                        90 -> eastAbbr
+                        180 -> southAbbr
+                        270 -> westAbbr
+                        else -> degree.toString()
+                    }
+                    val isCardinal = degree % 90 == 0
+                    val labelColor = if (degree == 0) errorColor else onSurfaceColor
+                    val style = (if (isCardinal) cardinalStyle else degreeStyle).copy(color = labelColor)
+                    val measured = textMeasurer.measure(label, style = style)
+
+                    val angleRad = degree * PI.toFloat() / 180f
+                    val tx = center.x + labelRadius * sin(angleRad)
+                    val ty = center.y - labelRadius * cos(angleRad)
+
+                    // Translate to the label position, then rotate so the text faces outward
+                    withTransform({
+                        translate(tx, ty)
+                        rotate(degree.toFloat(), pivot = Offset.Zero)
+                    }) {
+                        drawText(
+                            measured,
+                            topLeft = Offset(-measured.size.width / 2f, -measured.size.height / 2f)
+                        )
+                    }
+                }
+            }
+
+            // Fixed heading indicator: downward-pointing triangle at the top of the circle
+            val indicatorHeight = outerRadius * 0.10f
+            val indicatorHalfWidth = outerRadius * 0.055f
+            val indicatorPath = Path().apply {
+                moveTo(center.x, center.y - outerRadius + indicatorHeight)
+                lineTo(center.x - indicatorHalfWidth, center.y - outerRadius - indicatorHeight * 0.3f)
+                lineTo(center.x + indicatorHalfWidth, center.y - outerRadius - indicatorHeight * 0.3f)
+                close()
+            }
+            drawPath(indicatorPath, color = errorColor)
         }
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -113,82 +217,20 @@ fun CompassRose(
     }
 }
 
-@Composable
-private fun CompassTexts(rotation: Float) {
-    // We need to position cardinal directions and degrees in a circle.
-    // The parent Box is already rotated, so we just need to position them at fixed angles.
-
-    CircularLayout(radiusRatio = 0.8f) {
-        // Cardinal directions
-        CardinalDirectionText(stringResource(R.string.cardinal_direction_north_abbreviation), 0f)
-        CardinalDirectionText(stringResource(R.string.cardinal_direction_east_abbreviation), 90f)
-        CardinalDirectionText(stringResource(R.string.cardinal_direction_south_abbreviation), 180f)
-        CardinalDirectionText(stringResource(R.string.cardinal_direction_west_abbreviation), 270f)
-
-        // Degree texts
-        DegreeText("0", 0f)
-        DegreeText("30", 30f)
-        DegreeText("60", 60f)
-        DegreeText("90", 90f)
-        DegreeText("120", 120f)
-        DegreeText("150", 150f)
-        DegreeText("180", 180f)
-        DegreeText("210", 210f)
-        DegreeText("240", 240f)
-        DegreeText("270", 270f)
-        DegreeText("300", 300f)
-        DegreeText("330", 330f)
-    }
-}
-
-@Composable
-private fun CardinalDirectionText(text: String, angle: Float) {
-    Text(
-        text = text,
-        color = MaterialTheme.colorScheme.onSurface,
-        fontWeight = FontWeight.Bold,
-        modifier = Modifier.angle(angle)
+private class CompassRoseViewModelProvider : PreviewParameterProvider<ICompassViewModel> {
+    override val values: Sequence<ICompassViewModel> = sequenceOf(
+        ComposeCompassViewModel(azimuth = Azimuth(0.0f)),
+        ComposeCompassViewModel(azimuth = Azimuth(95.0f)),
+        ComposeCompassViewModel(azimuth = Azimuth(185.5f)),
+        ComposeCompassViewModel(azimuth = Azimuth(268.1f)),
     )
-}
 
-@Composable
-private fun DegreeText(text: String, angle: Float) {
-    Text(
-        text = text,
-        color = MaterialTheme.colorScheme.onSurface,
-        fontSize = 12.sp,
-        modifier = Modifier.angle(angle)
-    )
-}
-
-@Composable
-private fun CircularLayout(
-    radiusRatio: Float,
-    modifier: Modifier = Modifier,
-    content: @Composable () -> Unit
-) {
-    Layout(content = content, modifier = modifier) { measurables, constraints ->
-        val size = minOf(constraints.maxWidth, constraints.maxHeight)
-        val radius = size / 2f * radiusRatio
-
-        val placeables = measurables.map { it.measure(Constraints()) }
-
-        layout(size, size) {
-            placeables.forEachIndexed { index, placeable ->
-                val angle = (measurables[index].parentData as? Float) ?: 0f
-                val angleRad = (angle - 90f) * PI.toFloat() / 180f
-
-                val x = size / 2f + radius * cos(angleRad) - placeable.width / 2f
-                val y = size / 2f + radius * sin(angleRad) - placeable.height / 2f
-
-                placeable.placeRelative(x.toInt(), y.toInt())
-            }
+    override fun getDisplayName(index: Int): String? =
+        when (index) {
+            0 -> "0.0f"
+            1 -> "95.0f"
+            2 -> "185.5f"
+            3 -> "268.1f"
+            else -> null
         }
-    }
-}
-
-private fun Modifier.angle(angle: Float): Modifier = this.then(AngleModifier(angle))
-
-private class AngleModifier(val angle: Float) : ParentDataModifier {
-    override fun Density.modifyParentData(parentData: Any?): Any? = angle
 }
