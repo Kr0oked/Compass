@@ -124,9 +124,9 @@ fun CompassRose(
                     val strokeWidth: Float
                     if (degree % 30 == 0) {
                         tickLength = outerRadius * 0.14f
-                        strokeWidth = 2.dp.toPx()
+                        strokeWidth = 3.dp.toPx()
                     } else {
-                        tickLength = outerRadius * 0.05f
+                        tickLength = outerRadius * 0.08f
                         strokeWidth = 1.dp.toPx()
                     }
 
