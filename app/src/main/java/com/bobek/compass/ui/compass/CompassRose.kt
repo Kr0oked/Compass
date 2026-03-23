@@ -114,7 +114,7 @@ fun CompassRose(
             withTransform({ rotate(-azimuth.degrees, pivot = center) }) {
 
                 // Tick marks
-                for (degree in 0 until 360) {
+                for (degree in 0 until 360 step 2) {
                     val angleRad = degree * PI.toFloat() / 180f
                     val sinA = sin(angleRad)
                     val cosA = cos(angleRad)
