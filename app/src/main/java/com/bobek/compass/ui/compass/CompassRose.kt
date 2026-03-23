@@ -121,27 +121,12 @@ fun CompassRose(
 
                     val tickLength: Float
                     val strokeWidth: Float
-                    when {
-                        degree % 90 == 0 -> {
-                            tickLength = outerRadius * 0.18f
-                            strokeWidth = 3.dp.toPx()
-                        }
-                        degree % 45 == 0 -> {
-                            tickLength = outerRadius * 0.13f
-                            strokeWidth = 2.dp.toPx()
-                        }
-                        degree % 10 == 0 -> {
-                            tickLength = outerRadius * 0.10f
-                            strokeWidth = 1.5.dp.toPx()
-                        }
-                        degree % 5 == 0 -> {
-                            tickLength = outerRadius * 0.07f
-                            strokeWidth = 1.dp.toPx()
-                        }
-                        else -> {
-                            tickLength = outerRadius * 0.04f
-                            strokeWidth = 0.8.dp.toPx()
-                        }
+                    if (degree % 30 == 0) {
+                        tickLength = outerRadius * 0.14f
+                        strokeWidth = 2.dp.toPx()
+                    } else {
+                        tickLength = outerRadius * 0.05f
+                        strokeWidth = 1.dp.toPx()
                     }
 
                     val tickColor = if (degree == 0) errorColor else onSurfaceColor
