@@ -162,10 +162,10 @@ fun CompassRose(
                     val tx = center.x + labelRadius * sin(angleRad)
                     val ty = center.y - labelRadius * cos(angleRad)
 
-                    // Translate to the label position, then rotate so the text faces outward
+                    // Translate to the label position, counter-rotate to keep text upright on screen
                     withTransform({
                         translate(tx, ty)
-                        rotate(degree.toFloat(), pivot = Offset.Zero)
+                        rotate(azimuth.degrees, pivot = Offset.Zero)
                     }) {
                         drawText(
                             measured,
