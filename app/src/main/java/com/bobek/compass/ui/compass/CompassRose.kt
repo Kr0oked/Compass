@@ -109,6 +109,7 @@ fun CompassRose(
             val center = Offset(size.width / 2f, size.height / 2f)
             val outerRadius = canvasSize / 2f * 0.68f
             val labelRadius = canvasSize / 2f * 0.88f
+            val cardinalRadius = outerRadius * 0.82f
 
             // Rotating compass rose
             withTransform({ rotate(-azimuth.degrees, pivot = center) }) {
@@ -144,33 +145,38 @@ fun CompassRose(
                     )
                 }
 
-                // Labels every 30°: cardinal abbreviations for 0/90/180/270, degree numbers for the rest
+                // Degree numbers outside at every 30°
                 for (degree in 0 until 360 step 30) {
-                    val label = when (degree) {
-                        0 -> northAbbr
-                        90 -> eastAbbr
-                        180 -> southAbbr
-                        270 -> westAbbr
-                        else -> degree.toString()
-                    }
-                    val isCardinal = degree % 90 == 0
                     val labelColor = if (degree == 0) errorColor else onSurfaceColor
-                    val style = (if (isCardinal) cardinalStyle else degreeStyle).copy(color = labelColor)
-                    val measured = textMeasurer.measure(label, style = style)
+                    val measured = textMeasurer.measure(degree.toString(), style = degreeStyle.copy(color = labelColor))
 
                     val angleRad = degree * PI.toFloat() / 180f
                     val tx = center.x + labelRadius * sin(angleRad)
                     val ty = center.y - labelRadius * cos(angleRad)
 
-                    // Translate to the label position, counter-rotate to keep text upright on screen
                     withTransform({
                         translate(tx, ty)
                         rotate(azimuth.degrees, pivot = Offset.Zero)
                     }) {
-                        drawText(
-                            measured,
-                            topLeft = Offset(-measured.size.width / 2f, -measured.size.height / 2f)
-                        )
+                        drawText(measured, topLeft = Offset(-measured.size.width / 2f, -measured.size.height / 2f))
+                    }
+                }
+
+                // Cardinal abbreviations inside at 0/90/180/270
+                val cardinals = listOf(0 to northAbbr, 90 to eastAbbr, 180 to southAbbr, 270 to westAbbr)
+                for ((degree, abbr) in cardinals) {
+                    val labelColor = if (degree == 0) errorColor else onSurfaceColor
+                    val measured = textMeasurer.measure(abbr, style = cardinalStyle.copy(color = labelColor))
+
+                    val angleRad = degree * PI.toFloat() / 180f
+                    val tx = center.x + cardinalRadius * sin(angleRad)
+                    val ty = center.y - cardinalRadius * cos(angleRad)
+
+                    withTransform({
+                        translate(tx, ty)
+                        rotate(azimuth.degrees, pivot = Offset.Zero)
+                    }) {
+                        drawText(measured, topLeft = Offset(-measured.size.width / 2f, -measured.size.height / 2f))
                     }
                 }
             }
