@@ -107,8 +107,8 @@ fun CompassRose(
         Canvas(modifier = Modifier.fillMaxSize()) {
             val canvasSize = minOf(size.width, size.height)
             val center = Offset(size.width / 2f, size.height / 2f)
-            val outerRadius = canvasSize / 2f * 0.76f
-            val labelRadius = canvasSize / 2f * 0.90f
+            val outerRadius = canvasSize / 2f * 0.68f
+            val labelRadius = canvasSize / 2f * 0.88f
 
             // Rotating compass rose
             withTransform({ rotate(-azimuth.degrees, pivot = center) }) {
