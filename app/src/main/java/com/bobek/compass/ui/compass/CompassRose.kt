@@ -130,10 +130,10 @@ fun CompassRose(
                     }
 
                     val tickColor = if (degree == 0) errorColor else onSurfaceColor
-                    val outerX = center.x + outerRadius * sinA
-                    val outerY = center.y - outerRadius * cosA
-                    val innerX = center.x + (outerRadius - tickLength) * sinA
-                    val innerY = center.y - (outerRadius - tickLength) * cosA
+                    val innerX = center.x + outerRadius * sinA
+                    val innerY = center.y - outerRadius * cosA
+                    val outerX = center.x + (outerRadius + tickLength) * sinA
+                    val outerY = center.y - (outerRadius + tickLength) * cosA
 
                     drawLine(
                         color = tickColor,
