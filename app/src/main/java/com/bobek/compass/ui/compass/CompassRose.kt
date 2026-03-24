@@ -99,7 +99,7 @@ fun CompassRose(
     val southAbbr = stringResource(R.string.cardinal_direction_south_abbreviation)
     val westAbbr = stringResource(R.string.cardinal_direction_west_abbreviation)
 
-    val cardinalStyle = TextStyle(fontSize = 18.sp, fontWeight = FontWeight.Bold)
+    val cardinalStyle = TextStyle(fontSize = 22.sp, fontWeight = FontWeight.Bold)
     val degreeStyle = TextStyle(fontSize = 11.sp)
 
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
