@@ -149,7 +149,7 @@ fun CompassRose(
                         start = Offset(innerX, innerY),
                         end = Offset(outerX, outerY),
                         strokeWidth = strokeWidth,
-                        cap = StrokeCap.Round
+                        cap = StrokeCap.Square
                     )
                 }
 
