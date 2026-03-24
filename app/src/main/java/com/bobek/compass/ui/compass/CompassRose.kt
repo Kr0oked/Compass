@@ -196,12 +196,12 @@ fun CompassRose(
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
                 text = stringResource(id = R.string.degrees, azimuth.roundedDegrees),
-                style = MaterialTheme.typography.headlineLarge,
+                style = MaterialTheme.typography.displaySmall,
                 color = MaterialTheme.colorScheme.onSurface
             )
             Text(
                 text = stringResource(id = azimuth.cardinalDirection.labelResourceId),
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface
             )
         }
