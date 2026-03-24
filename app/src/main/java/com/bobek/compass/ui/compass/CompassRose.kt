@@ -35,7 +35,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.withTransform
 import androidx.compose.ui.platform.LocalView
@@ -111,6 +110,15 @@ fun CompassRose(
             val labelRadius = canvasSize / 2f * 0.88f
             val cardinalRadius = outerRadius * 0.82f
 
+            // Fixed heading indicator: vertical bar from the top of the canvas down to the tick ring
+            drawLine(
+                color = errorColor,
+                start = Offset(center.x, center.y - canvasSize / 2f * 0.92f),
+                end = Offset(center.x, center.y - outerRadius),
+                strokeWidth = 8.dp.toPx(),
+                cap = StrokeCap.Square
+            )
+
             // Rotating compass rose
             withTransform({ rotate(-azimuth.degrees, pivot = center) }) {
 
@@ -181,16 +189,6 @@ fun CompassRose(
                 }
             }
 
-            // Fixed heading indicator: downward-pointing triangle at the top of the circle
-            val indicatorHeight = outerRadius * 0.10f
-            val indicatorHalfWidth = outerRadius * 0.055f
-            val indicatorPath = Path().apply {
-                moveTo(center.x, center.y - outerRadius + indicatorHeight)
-                lineTo(center.x - indicatorHalfWidth, center.y - outerRadius - indicatorHeight * 0.3f)
-                lineTo(center.x + indicatorHalfWidth, center.y - outerRadius - indicatorHeight * 0.3f)
-                close()
-            }
-            drawPath(indicatorPath, color = errorColor)
         }
 
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
