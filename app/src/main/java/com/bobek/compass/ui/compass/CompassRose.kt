@@ -21,10 +21,8 @@ package com.bobek.compass.ui.compass
 import android.view.HapticFeedbackConstants
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -32,7 +30,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.StrokeCap
@@ -102,7 +99,12 @@ fun CompassRose(
     val cardinalStyle = TextStyle(fontSize = 22.sp, fontWeight = FontWeight.Bold)
     val degreeStyle = TextStyle(fontSize = 11.sp)
 
-    Box(modifier = modifier, contentAlignment = Alignment.Center) {
+    val azimuthText = stringResource(id = R.string.degrees, azimuth.roundedDegrees)
+    val cardinalDirectionText = stringResource(id = azimuth.cardinalDirection.labelResourceId)
+    val azimuthStyle = MaterialTheme.typography.displaySmall.copy(color = onSurfaceColor)
+    val cardinalDirectionStyle = MaterialTheme.typography.titleLarge.copy(color = onSurfaceColor)
+
+    Box(modifier = modifier) {
         Canvas(modifier = Modifier.fillMaxSize()) {
             val canvasSize = minOf(size.width, size.height)
             val center = Offset(size.width / 2f, size.height / 2f)
@@ -189,19 +191,15 @@ fun CompassRose(
                 }
             }
 
-        }
+            // Azimuth and cardinal direction texts centered on the canvas
+            val measuredAzimuth = textMeasurer.measure(azimuthText, style = azimuthStyle)
+            val measuredCardinal = textMeasurer.measure(cardinalDirectionText, style = cardinalDirectionStyle)
+            val gap = 4.dp.toPx()
+            val totalHeight = measuredAzimuth.size.height + gap + measuredCardinal.size.height
+            val topY = center.y - totalHeight / 2f
 
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(
-                text = stringResource(id = R.string.degrees, azimuth.roundedDegrees),
-                style = MaterialTheme.typography.displaySmall,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-            Text(
-                text = stringResource(id = azimuth.cardinalDirection.labelResourceId),
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onSurface
-            )
+            drawText(measuredAzimuth, topLeft = Offset(center.x - measuredAzimuth.size.width / 2f, topY))
+            drawText(measuredCardinal, topLeft = Offset(center.x - measuredCardinal.size.width / 2f, topY + measuredAzimuth.size.height + gap))
         }
     }
 }
