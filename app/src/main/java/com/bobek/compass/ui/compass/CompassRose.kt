@@ -43,8 +43,6 @@ import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.bobek.compass.ComposeCompassViewModel
 import com.bobek.compass.ICompassViewModel
 import com.bobek.compass.R
@@ -91,33 +89,44 @@ fun CompassRose(
     val onSurfaceColor = MaterialTheme.colorScheme.onSurface
     val errorColor = MaterialTheme.colorScheme.error
 
+    // Strings must be collected in composable context
     val northAbbr = stringResource(R.string.cardinal_direction_north_abbreviation)
     val eastAbbr = stringResource(R.string.cardinal_direction_east_abbreviation)
     val southAbbr = stringResource(R.string.cardinal_direction_south_abbreviation)
     val westAbbr = stringResource(R.string.cardinal_direction_west_abbreviation)
-
-    val cardinalStyle = TextStyle(fontSize = 22.sp, fontWeight = FontWeight.Bold)
-    val degreeStyle = TextStyle(fontSize = 11.sp)
-
     val azimuthText = stringResource(id = R.string.degrees, azimuth.roundedDegrees)
     val cardinalDirectionText = stringResource(id = azimuth.cardinalDirection.labelResourceId)
-    val azimuthStyle = MaterialTheme.typography.displaySmall.copy(color = onSurfaceColor)
-    val cardinalDirectionStyle = MaterialTheme.typography.titleLarge.copy(color = onSurfaceColor)
+
+    // Capture typeface/weight from MaterialTheme; fontSize is overridden inside Canvas
+    val azimuthTypography = MaterialTheme.typography.displaySmall
+    val cardinalDirectionTypography = MaterialTheme.typography.titleLarge
 
     Box(modifier = modifier) {
         Canvas(modifier = Modifier.fillMaxSize()) {
             val canvasSize = minOf(size.width, size.height)
             val center = Offset(size.width / 2f, size.height / 2f)
-            val outerRadius = canvasSize / 2f * 0.68f
-            val labelRadius = canvasSize / 2f * 0.88f
+
+            // All sizes proportional to canvasSize
+            val outerRadius = canvasSize * 0.34f
+            val labelRadius = canvasSize * 0.44f
             val cardinalRadius = outerRadius * 0.82f
 
-            // Fixed heading indicator: vertical bar from the top of the canvas down to the tick ring
+            val highlightedTickStroke = canvasSize * 0.010f
+            val smallTickStroke = canvasSize * 0.003f
+            val indicatorStroke = canvasSize * 0.022f
+            val textGap = canvasSize * 0.012f
+
+            val cardinalStyle = TextStyle(fontSize = (canvasSize * 0.055f).toSp(), fontWeight = FontWeight.Bold)
+            val degreeStyle = TextStyle(fontSize = (canvasSize * 0.028f).toSp())
+            val azimuthStyle = azimuthTypography.copy(fontSize = (canvasSize * 0.100f).toSp(), color = onSurfaceColor)
+            val cardinalDirectionStyle = cardinalDirectionTypography.copy(fontSize = (canvasSize * 0.062f).toSp(), color = onSurfaceColor)
+
+            // Fixed heading indicator bar
             drawLine(
                 color = errorColor,
-                start = Offset(center.x, center.y - canvasSize / 2f * 0.92f),
+                start = Offset(center.x, center.y - canvasSize * 0.46f),
                 end = Offset(center.x, center.y - outerRadius),
-                strokeWidth = 8.dp.toPx(),
+                strokeWidth = indicatorStroke,
                 cap = StrokeCap.Square
             )
 
@@ -134,10 +143,10 @@ fun CompassRose(
                     val strokeWidth: Float
                     if (degree % 30 == 0) {
                         tickLength = outerRadius * 0.14f
-                        strokeWidth = 3.dp.toPx()
+                        strokeWidth = highlightedTickStroke
                     } else {
                         tickLength = outerRadius * 0.08f
-                        strokeWidth = 1.dp.toPx()
+                        strokeWidth = smallTickStroke
                     }
 
                     val tickColor = if (degree == 0) errorColor else onSurfaceColor
@@ -193,13 +202,12 @@ fun CompassRose(
 
             // Azimuth and cardinal direction texts centered on the canvas
             val measuredAzimuth = textMeasurer.measure(azimuthText, style = azimuthStyle)
-            val measuredCardinal = textMeasurer.measure(cardinalDirectionText, style = cardinalDirectionStyle)
-            val gap = 4.dp.toPx()
-            val totalHeight = measuredAzimuth.size.height + gap + measuredCardinal.size.height
+            val measuredCardinalDirection = textMeasurer.measure(cardinalDirectionText, style = cardinalDirectionStyle)
+            val totalHeight = measuredAzimuth.size.height + textGap + measuredCardinalDirection.size.height
             val topY = center.y - totalHeight / 2f
 
             drawText(measuredAzimuth, topLeft = Offset(center.x - measuredAzimuth.size.width / 2f, topY))
-            drawText(measuredCardinal, topLeft = Offset(center.x - measuredCardinal.size.width / 2f, topY + measuredAzimuth.size.height + gap))
+            drawText(measuredCardinalDirection, topLeft = Offset(center.x - measuredCardinalDirection.size.width / 2f, topY + measuredAzimuth.size.height + textGap))
         }
     }
 }
