@@ -162,7 +162,11 @@ fun CompassRose(
                         strokeWidth = smallTickStroke
                     }
 
-                    val tickColor = if (degree == 0) errorColor else onSurfaceColor
+                    val tickColor = when {
+                        degree == 0 -> errorColor
+                        degree % 30 == 0 -> onSurfaceColor
+                        else -> onSurfaceColor.copy(alpha = 0.9f)
+                    }
                     val innerX = center.x + outerRadius * sinA
                     val innerY = center.y - outerRadius * cosA
                     val outerX = center.x + (outerRadius + tickLength) * sinA
