@@ -89,6 +89,7 @@ fun CompassRose(
     val textMeasurer = rememberTextMeasurer()
     val onSurfaceColor = MaterialTheme.colorScheme.onSurface
     val errorColor = MaterialTheme.colorScheme.error
+    val primaryColor = MaterialTheme.colorScheme.primary
 
     // Strings must be collected in composable context
     val northAbbr = stringResource(R.string.cardinal_direction_north_abbreviation)
@@ -133,9 +134,9 @@ fun CompassRose(
                 lineTo(center.x + triangleHalfWidth, triangleBaseY)
                 close()
             }
-            drawPath(indicatorPath, color = errorColor)
+            drawPath(indicatorPath, color = primaryColor)
             drawLine(
-                color = errorColor,
+                color = primaryColor,
                 start = Offset(center.x, triangleBaseY),
                 end = Offset(center.x, center.y - outerRadius),
                 strokeWidth = canvasSize * 0.017f,
