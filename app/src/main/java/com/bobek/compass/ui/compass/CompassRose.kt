@@ -120,7 +120,7 @@ fun CompassRose(
 
             val cardinalStyle = TextStyle(fontSize = (canvasSize * 0.055f).toSp(), fontWeight = FontWeight.Bold)
             val degreeStyle = TextStyle(fontSize = (canvasSize * 0.028f).toSp())
-            val azimuthStyle = azimuthTypography.copy(fontSize = (canvasSize * 0.100f).toSp(), color = onSurfaceColor)
+            val azimuthStyle = azimuthTypography.copy(fontSize = (canvasSize * 0.115f).toSp(), color = onSurfaceColor)
             val cardinalDirectionStyle = cardinalDirectionTypography.copy(fontSize = (canvasSize * 0.062f).toSp(), color = onSurfaceColor)
 
             // Fixed heading indicator: upward-pointing triangle above the strong ticks
