@@ -32,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.withTransform
 import androidx.compose.ui.platform.LocalView
@@ -113,7 +114,7 @@ fun CompassRose(
 
             val highlightedTickStroke = canvasSize * 0.010f
             val smallTickStroke = canvasSize * 0.003f
-            val indicatorStroke = canvasSize * 0.022f
+
             val textGap = canvasSize * 0.012f
 
             val cardinalStyle = TextStyle(fontSize = (canvasSize * 0.055f).toSp(), fontWeight = FontWeight.Bold)
@@ -121,12 +122,23 @@ fun CompassRose(
             val azimuthStyle = azimuthTypography.copy(fontSize = (canvasSize * 0.100f).toSp(), color = onSurfaceColor)
             val cardinalDirectionStyle = cardinalDirectionTypography.copy(fontSize = (canvasSize * 0.062f).toSp(), color = onSurfaceColor)
 
-            // Fixed heading indicator bar
+            // Fixed heading indicator: upward-pointing triangle above the strong ticks
+            val triangleTipY = center.y - canvasSize * 0.48f
+            val triangleBaseY = center.y - outerRadius * 1.14f - canvasSize * 0.02f
+            val triangleHalfWidth = canvasSize * 0.03f
+
+            val indicatorPath = Path().apply {
+                moveTo(center.x, triangleTipY)
+                lineTo(center.x - triangleHalfWidth, triangleBaseY)
+                lineTo(center.x + triangleHalfWidth, triangleBaseY)
+                close()
+            }
+            drawPath(indicatorPath, color = errorColor)
             drawLine(
                 color = errorColor,
-                start = Offset(center.x, center.y - canvasSize * 0.46f),
+                start = Offset(center.x, triangleBaseY),
                 end = Offset(center.x, center.y - outerRadius),
-                strokeWidth = indicatorStroke,
+                strokeWidth = canvasSize * 0.017f,
                 cap = StrokeCap.Square
             )
 
