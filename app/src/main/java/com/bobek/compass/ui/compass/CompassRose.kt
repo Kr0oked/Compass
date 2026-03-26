@@ -62,29 +62,8 @@ fun CompassRose(
     modifier: Modifier = Modifier
 ) {
     val azimuth by viewModel.getAzimuthFlow().collectAsState()
-    val hapticFeedback by viewModel.getHapticFeedbackFlow().collectAsState()
 
-    val view = LocalView.current
-    var lastHapticFeedbackPoint by remember { mutableStateOf<Azimuth?>(null) }
-
-    LaunchedEffect(azimuth) {
-        if (hapticFeedback) {
-            val lastPoint = lastHapticFeedbackPoint
-            if (lastPoint == null) {
-                val closestIntervalPoint = MathUtils.getClosestNumberFromInterval(azimuth.degrees, HAPTIC_FEEDBACK_INTERVAL)
-                lastHapticFeedbackPoint = Azimuth(closestIntervalPoint)
-            } else {
-                val boundaryStart = lastPoint - HAPTIC_FEEDBACK_INTERVAL
-                val boundaryEnd = lastPoint + HAPTIC_FEEDBACK_INTERVAL
-
-                if (!MathUtils.isAzimuthBetweenTwoPoints(azimuth, boundaryStart, boundaryEnd)) {
-                    val closestIntervalPoint = MathUtils.getClosestNumberFromInterval(azimuth.degrees, HAPTIC_FEEDBACK_INTERVAL)
-                    lastHapticFeedbackPoint = Azimuth(closestIntervalPoint)
-                    view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
-            }
-        }
-    }
+    HapticFeedbackEffect(viewModel)
 
     val textMeasurer = rememberTextMeasurer()
     val onSurfaceColor = MaterialTheme.colorScheme.onSurface
@@ -225,6 +204,36 @@ fun CompassRose(
 
             drawText(measuredAzimuth, topLeft = Offset(center.x - measuredAzimuth.size.width / 2f, topY))
             drawText(measuredCardinalDirection, topLeft = Offset(center.x - measuredCardinalDirection.size.width / 2f, topY + measuredAzimuth.size.height + textGap))
+        }
+    }
+}
+
+@Composable
+private fun HapticFeedbackEffect(viewModel: ICompassViewModel) {
+    val azimuth by viewModel.getAzimuthFlow().collectAsState()
+    val hapticFeedback by viewModel.getHapticFeedbackFlow().collectAsState()
+
+    val view = LocalView.current
+    var lastHapticFeedbackPoint by remember { mutableStateOf<Azimuth?>(null) }
+
+    LaunchedEffect(azimuth) {
+        if (hapticFeedback) {
+            val lastPoint = lastHapticFeedbackPoint
+            if (lastPoint == null) {
+                val closestIntervalPoint =
+                    MathUtils.getClosestNumberFromInterval(azimuth.degrees, HAPTIC_FEEDBACK_INTERVAL)
+                lastHapticFeedbackPoint = Azimuth(closestIntervalPoint)
+            } else {
+                val boundaryStart = lastPoint - HAPTIC_FEEDBACK_INTERVAL
+                val boundaryEnd = lastPoint + HAPTIC_FEEDBACK_INTERVAL
+
+                if (!MathUtils.isAzimuthBetweenTwoPoints(azimuth, boundaryStart, boundaryEnd)) {
+                    val closestIntervalPoint =
+                        MathUtils.getClosestNumberFromInterval(azimuth.degrees, HAPTIC_FEEDBACK_INTERVAL)
+                    lastHapticFeedbackPoint = Azimuth(closestIntervalPoint)
+                    view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                }
+            }
         }
     }
 }
