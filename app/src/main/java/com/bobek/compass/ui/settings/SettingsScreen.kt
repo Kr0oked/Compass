@@ -180,17 +180,8 @@ fun SettingsScreen(
     }
 
     if (showNightModeDialog) {
-        SingleChoiceDialog(
-            SingleChoiceDialogState(
-                title = stringResource(R.string.night_mode),
-                entries = AppNightMode.entries,
-                currentValue = nightMode.preferenceValue
-            ),
-            onValueSelected = { newValue ->
-                viewModel.setNightMode(newValue)
-                @Suppress("AssignedValueIsNeverRead")
-                showNightModeDialog = false
-            },
+        NightModeDialog(
+            viewModel = viewModel,
             onDismiss = {
                 @Suppress("AssignedValueIsNeverRead")
                 showNightModeDialog = false
@@ -223,4 +214,28 @@ private fun SettingsSection(
     Column(modifier = Modifier.padding(start = 40.dp)) {
         content()
     }
+}
+
+@Composable
+@Preview
+private fun NightModeDialog(
+    viewModel: ICompassViewModel = ComposeCompassViewModel(),
+    onDismiss: () -> Unit = {},
+) {
+    val nightMode by viewModel.getNightModeFlow().collectAsState()
+
+    SingleChoiceDialog(
+        SingleChoiceDialogState(
+            title = stringResource(R.string.night_mode),
+            entries = AppNightMode.entries,
+            currentValue = nightMode.preferenceValue
+        ),
+        onValueSelected = { newValue ->
+            viewModel.setNightMode(newValue)
+            onDismiss()
+        },
+        onDismiss = {
+            onDismiss()
+        }
+    )
 }

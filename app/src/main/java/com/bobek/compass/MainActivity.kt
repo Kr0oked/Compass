@@ -42,6 +42,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.location.LocationManagerCompat
 import androidx.lifecycle.lifecycleScope
+import com.bobek.compass.data.AppError
 import com.bobek.compass.data.DisplayRotation
 import com.bobek.compass.data.LocationStatus
 import com.bobek.compass.data.RotationVector
@@ -66,7 +67,7 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var settingsRepository: SettingsRepository
 
-    private lateinit var sensorManager: SensorManager
+    private var sensorManager: SensorManager? = null
     private var locationManager: LocationManager? = null
     private var locationRequestCancellationSignal: CancellationSignal? = null
 
@@ -97,17 +98,48 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun registerSensorListener() {
-        sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)?.let { sensor ->
-            sensorManager.registerListener(compassSensorEventListener, sensor, SensorManager.SENSOR_DELAY_FASTEST)
+        val sensorManager = sensorManager ?: run {
+            Log.w(TAG, "SensorManager not present")
+            showErrorDialog(AppError.SENSOR_MANAGER_NOT_PRESENT)
+            return
         }
-        sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)?.let { sensor ->
-            sensorManager.registerListener(compassSensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL)
+
+        val rotationVectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
+        if (rotationVectorSensor != null) {
+            val success = sensorManager.registerListener(
+                compassSensorEventListener,
+                rotationVectorSensor,
+                SensorManager.SENSOR_DELAY_FASTEST
+            )
+            if (!success) {
+                Log.w(TAG, "Could not enable rotation vector sensor")
+                showErrorDialog(AppError.ROTATION_VECTOR_SENSOR_FAILED)
+            }
+        } else {
+            Log.w(TAG, "Rotation vector sensor not available")
+            showErrorDialog(AppError.ROTATION_VECTOR_SENSOR_NOT_AVAILABLE)
+        }
+
+        val magneticFieldSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
+        if (magneticFieldSensor != null) {
+            val success = sensorManager.registerListener(
+                compassSensorEventListener,
+                magneticFieldSensor,
+                SensorManager.SENSOR_DELAY_NORMAL
+            )
+            if (!success) {
+                Log.w(TAG, "Could not enable magnetic field sensor")
+                showErrorDialog(AppError.MAGNETIC_FIELD_SENSOR_FAILED)
+            }
+        } else {
+            Log.w(TAG, "Magnetic field sensor not available")
+            showErrorDialog(AppError.MAGNETIC_FIELD_SENSOR_NOT_AVAILABLE)
         }
     }
 
     override fun onPause() {
         super.onPause()
-        sensorManager.unregisterListener(compassSensorEventListener)
+        sensorManager?.unregisterListener(compassSensorEventListener)
         locationRequestCancellationSignal?.cancel()
     }
 
@@ -247,7 +279,11 @@ class MainActivity : ComponentActivity() {
         }
 
     fun requestLocation() {
-        val locationManager = locationManager ?: return
+        val locationManager = locationManager ?: run {
+            Log.w(TAG, "LocationManager not present")
+            showErrorDialog(AppError.LOCATION_MANAGER_NOT_PRESENT)
+            return
+        }
         if (!viewModel.getTrueNorthFlow().value) return
 
         if (ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED
@@ -258,12 +294,16 @@ class MainActivity : ComponentActivity() {
         }
 
         if (!LocationManagerCompat.isLocationEnabled(locationManager)) {
+            Log.w(TAG, "Location is disabled")
             viewModel.setLocationStatus(LocationStatus.NOT_PRESENT)
+            showErrorDialog(AppError.LOCATION_DISABLED)
             return
         }
 
         val provider = getBestLocationProvider() ?: run {
+            Log.w(TAG, "No LocationProvider available")
             viewModel.setLocationStatus(LocationStatus.NOT_PRESENT)
+            showErrorDialog(AppError.NO_LOCATION_PROVIDER_AVAILABLE)
             return
         }
 
@@ -276,6 +316,15 @@ class MainActivity : ComponentActivity() {
             locationRequestCancellationSignal,
             ContextCompat.getMainExecutor(this)
         ) { location -> setLocation(location) }
+    }
+
+    private fun showErrorDialog(appError: AppError) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.error)
+            .setIcon(R.drawable.ic_error)
+            .setMessage(getString(R.string.error_message, getString(appError.messageId), appError.name))
+            .setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
+            .show()
     }
 
     private fun getBestLocationProvider(): String? = when {

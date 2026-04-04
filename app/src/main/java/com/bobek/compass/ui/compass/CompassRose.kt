@@ -37,6 +37,8 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.withTransform
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.font.FontWeight
@@ -83,7 +85,16 @@ fun CompassRose(
     val cardinalDirectionTypography = MaterialTheme.typography.titleLarge
 
     Box(modifier = modifier) {
-        Canvas(modifier = Modifier.fillMaxSize()) {
+        val description = stringResource(R.string.compass_rose_image_description)
+
+        // todo: refactor
+        Canvas(
+            modifier = Modifier
+                .fillMaxSize()
+                .semantics {
+                    contentDescription = description
+                }
+        ) {
             val canvasSize = minOf(size.width, size.height)
             val center = Offset(size.width / 2f, size.height / 2f)
 
@@ -100,7 +111,8 @@ fun CompassRose(
             val cardinalStyle = TextStyle(fontSize = (canvasSize * 0.055f).toSp(), fontWeight = FontWeight.Bold)
             val degreeStyle = TextStyle(fontSize = (canvasSize * 0.028f).toSp())
             val azimuthStyle = azimuthTypography.copy(fontSize = (canvasSize * 0.115f).toSp(), color = onSurfaceColor)
-            val cardinalDirectionStyle = cardinalDirectionTypography.copy(fontSize = (canvasSize * 0.062f).toSp(), color = onSurfaceColor)
+            val cardinalDirectionStyle =
+                cardinalDirectionTypography.copy(fontSize = (canvasSize * 0.062f).toSp(), color = onSurfaceColor)
 
             // Fixed heading indicator: upward-pointing triangle above the strong ticks
             val triangleTipY = center.y - canvasSize * 0.48f
@@ -202,8 +214,17 @@ fun CompassRose(
             val totalHeight = measuredAzimuth.size.height + textGap + measuredCardinalDirection.size.height
             val topY = center.y - totalHeight / 2f
 
-            drawText(measuredAzimuth, topLeft = Offset(center.x - measuredAzimuth.size.width / 2f, topY))
-            drawText(measuredCardinalDirection, topLeft = Offset(center.x - measuredCardinalDirection.size.width / 2f, topY + measuredAzimuth.size.height + textGap))
+            drawText(
+                measuredAzimuth,
+                topLeft = Offset(center.x - measuredAzimuth.size.width / 2f, topY)
+            )
+            drawText(
+                measuredCardinalDirection,
+                topLeft = Offset(
+                    center.x - measuredCardinalDirection.size.width / 2f,
+                    topY + measuredAzimuth.size.height + textGap
+                )
+            )
         }
     }
 }
