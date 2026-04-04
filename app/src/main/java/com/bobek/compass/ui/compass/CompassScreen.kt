@@ -30,13 +30,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Explore
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.ScreenLockRotation
-import androidx.compose.material.icons.filled.ScreenRotation
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -55,6 +48,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
@@ -149,10 +143,10 @@ private fun KeepScreenOnEffect() {
 private fun ScreenOrientationLockedButton(viewModel: ICompassViewModel) {
     val screenOrientationLocked by viewModel.getScreenOrientationLocked().collectAsState()
 
-    val imageVector = if (screenOrientationLocked) {
-        Icons.Default.ScreenLockRotation
+    val painter = if (screenOrientationLocked) {
+        painterResource(R.drawable.ic_mobile_rotate_lock)
     } else {
-        Icons.Default.ScreenRotation
+        painterResource(R.drawable.ic_mobile_rotate)
     }
 
     IconButton(
@@ -161,7 +155,7 @@ private fun ScreenOrientationLockedButton(viewModel: ICompassViewModel) {
         }
     ) {
         Icon(
-            imageVector = imageVector,
+            painter = painter,
             contentDescription = stringResource(R.string.lock_screen_rotation)
         )
     }
@@ -176,7 +170,7 @@ private fun SensorStatusButton(
 
     IconButton(onClick = onClick) {
         Icon(
-            imageVector = sensorAccuracy.imageVector,
+            painter = painterResource(sensorAccuracy.iconResourceId),
             contentDescription = stringResource(R.string.sensor_status),
             tint = sensorAccuracy.tintColor
         )
@@ -187,7 +181,7 @@ private fun SensorStatusButton(
 private fun SettingsButton(onClick: () -> Unit) {
     IconButton(onClick = onClick) {
         Icon(
-            imageVector = Icons.Filled.Settings,
+            painter = painterResource(R.drawable.ic_settings),
             contentDescription = stringResource(R.string.settings)
         )
     }
@@ -208,7 +202,7 @@ private fun LocationSection(
             LocationStatus.NOT_PRESENT -> {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(
-                        imageVector = Icons.Default.Warning,
+                        painter = painterResource(R.drawable.ic_warning),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.error
                     )
@@ -217,7 +211,7 @@ private fun LocationSection(
                         color = MaterialTheme.colorScheme.error
                     )
                     Button(onClick = onLocationReload) {
-                        Icon(imageVector = Icons.Default.Refresh, contentDescription = null)
+                        Icon(painter = painterResource(R.drawable.ic_refresh), contentDescription = null)
                         Text(text = stringResource(R.string.location_reload))
                     }
                 }
@@ -233,7 +227,7 @@ private fun LocationSection(
             LocationStatus.PERMISSION_DENIED -> {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Icon(
-                        imageVector = Icons.Default.Warning,
+                        painter = painterResource(R.drawable.ic_warning),
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.error
                     )
@@ -264,7 +258,7 @@ private fun DeclinationText(
 
     Row(verticalAlignment = Alignment.CenterVertically) {
         Icon(
-            imageVector = Icons.Default.Explore,
+            painter = painterResource(R.drawable.ic_explore),
             contentDescription = null,
             modifier = Modifier.size(16.dp),
             tint = MaterialTheme.colorScheme.outline

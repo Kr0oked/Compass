@@ -23,8 +23,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -34,20 +32,20 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import com.bobek.compass.R
-import de.philipp_bobek.oss_licenses_parser.ThirdPartyLicenseMetadata
 
 @Composable
 @PreviewScreenSizes
 @OptIn(ExperimentalMaterial3Api::class)
 fun ThirdPartyLicensesScreen(
-    @PreviewParameter(ThirdPartyLicensesScreenStateProvider::class) licenses: List<ThirdPartyLicenseMetadata>,
+    @PreviewParameter(ThirdPartyLicensesScreenStateProvider::class) libraryNames: List<String>,
     onBackClick: () -> Unit = {},
-    onLicenseClick: (ThirdPartyLicenseMetadata) -> Unit = {}
+    onLibraryClick: (String) -> Unit = {}
 ) {
     Scaffold(
         topBar = {
@@ -55,7 +53,7 @@ fun ThirdPartyLicensesScreen(
                 title = { Text(stringResource(R.string.third_party_licenses)) },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
-                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
+                        Icon(painter = painterResource(R.drawable.ic_arrow_back), contentDescription = null)
                     }
                 }
             )
@@ -66,22 +64,18 @@ fun ThirdPartyLicensesScreen(
                 .fillMaxSize()
                 .padding(padding)
         ) {
-            items(licenses) { license ->
+            items(libraryNames) { libraryName ->
                 ListItem(
-                    headlineContent = { Text(license.libraryName) },
-                    modifier = Modifier.clickable { onLicenseClick(license) }
+                    headlineContent = { Text(libraryName) },
+                    modifier = Modifier.clickable { onLibraryClick(libraryName) }
                 )
             }
         }
     }
 }
 
-private class ThirdPartyLicensesScreenStateProvider : PreviewParameterProvider<List<ThirdPartyLicenseMetadata>> {
-    override val values: Sequence<List<ThirdPartyLicenseMetadata>> = sequenceOf(
-        listOf(
-            ThirdPartyLicenseMetadata("Library A", 0, 0),
-            ThirdPartyLicenseMetadata("Library B", 0, 0),
-            ThirdPartyLicenseMetadata("Library C", 0, 0)
-        )
+private class ThirdPartyLicensesScreenStateProvider : PreviewParameterProvider<List<String>> {
+    override val values: Sequence<List<String>> = sequenceOf(
+        listOf("Library A", "Library B", "Library C")
     )
 }

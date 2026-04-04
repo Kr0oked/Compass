@@ -61,7 +61,7 @@ fun SensorStatusDialog(
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
-                        imageVector = sensorAccuracy.imageVector,
+                        painter = painterResource(sensorAccuracy.iconResourceId),
                         contentDescription = null,
                         modifier = Modifier.size(24.dp),
                         tint = sensorAccuracy.tintColor

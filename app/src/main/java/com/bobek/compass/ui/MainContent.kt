@@ -19,6 +19,7 @@
 package com.bobek.compass.ui
 
 import android.content.pm.ActivityInfo
+import android.content.res.Resources
 import android.net.Uri
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -42,8 +43,13 @@ import com.bobek.compass.ui.licenses.ThirdPartyLicensesScreen
 import com.bobek.compass.ui.settings.SettingsScreen
 import com.bobek.compass.ui.theme.AppTheme
 import de.philipp_bobek.oss_licenses_parser.OssLicensesParser
+import de.philipp_bobek.oss_licenses_parser.ThirdPartyLicenseMetadata
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+
+private val MANUAL_LICENSE_RESOURCES = mapOf(
+    "Material Symbols" to R.raw.license_apache_2_0
+)
 
 @Composable
 @PreviewScreenSizes
@@ -85,20 +91,17 @@ fun MainContent(
             }
             composable("licenses") {
                 val resources = LocalResources.current
-                val licenses by produceState(initialValue = emptyList()) {
+                val libraryNames by produceState(initialValue = emptyList()) {
                     value = withContext(Dispatchers.IO) {
-                        resources
-                            .openRawResource(R.raw.third_party_license_metadata)
-                            .use(OssLicensesParser::parseMetadata)
-                            .sortedBy { it.libraryName }
+                        getLibraryNames(resources)
                     }
                 }
 
                 ThirdPartyLicensesScreen(
-                    licenses = licenses,
+                    libraryNames = libraryNames,
                     onBackClick = { navController.popBackStack() },
-                    onLicenseClick = { metadata ->
-                        navController.navigate("license/${Uri.encode(metadata.libraryName)}")
+                    onLibraryClick = { libraryName ->
+                        navController.navigate("license/${Uri.encode(libraryName)}")
                     }
                 )
             }
@@ -107,15 +110,7 @@ fun MainContent(
                 val resources = LocalResources.current
                 val licenseContent by produceState(initialValue = "", key1 = libraryName) {
                     value = withContext(Dispatchers.IO) {
-                        val metadata = resources
-                            .openRawResource(R.raw.third_party_license_metadata)
-                            .use(OssLicensesParser::parseMetadata)
-                            .find { it.libraryName == libraryName }
-                        metadata?.let {
-                            resources
-                                .openRawResource(R.raw.third_party_licenses)
-                                .use { stream -> OssLicensesParser.parseLicense(it, stream).licenseContent }
-                        } ?: ""
+                        getLicenseContent(resources, libraryName)
                     }
                 }
 
@@ -130,3 +125,33 @@ fun MainContent(
         }
     }
 }
+
+private fun getLibraryNames(resources: Resources): List<String> {
+    val ossLicenseNames = resources
+        .openRawResource(R.raw.third_party_license_metadata)
+        .use(OssLicensesParser::parseMetadata)
+        .map { it.libraryName }
+
+    return (ossLicenseNames + MANUAL_LICENSE_RESOURCES.keys).sorted()
+}
+
+private fun getLicenseContent(resources: Resources, libraryName: String): String {
+    val manualResourceId = MANUAL_LICENSE_RESOURCES[libraryName]
+
+    return if (manualResourceId != null) {
+        resources.openRawResource(manualResourceId).bufferedReader().readText()
+    } else {
+        resources
+            .openRawResource(R.raw.third_party_license_metadata)
+            .use(OssLicensesParser::parseMetadata)
+            .find { it.libraryName == libraryName }
+            ?.let { getLicenseContent(resources, it) }
+            ?: ""
+    }
+}
+
+private fun getLicenseContent(resources: Resources, metadata: ThirdPartyLicenseMetadata): String =
+    resources
+        .openRawResource(R.raw.third_party_licenses)
+        .use { OssLicensesParser.parseLicense(metadata, it) }
+        .licenseContent
