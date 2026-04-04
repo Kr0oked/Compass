@@ -99,8 +99,8 @@ fun CompassRose(
             val center = Offset(size.width / 2f, size.height / 2f)
 
             // All sizes proportional to canvasSize
-            val outerRadius = canvasSize * 0.34f
-            val labelRadius = canvasSize * 0.44f
+            val outerRadius = canvasSize * 0.36f
+            val labelRadius = canvasSize * 0.46f
             val cardinalRadius = outerRadius * 0.82f
 
             val highlightedTickStroke = canvasSize * 0.010f
@@ -115,7 +115,7 @@ fun CompassRose(
                 cardinalDirectionTypography.copy(fontSize = (canvasSize * 0.062f).toSp(), color = onSurfaceColor)
 
             // Fixed heading indicator: upward-pointing triangle above the strong ticks
-            val triangleTipY = center.y - canvasSize * 0.48f
+            val triangleTipY = center.y - canvasSize * 0.49f
             val triangleBaseY = center.y - outerRadius * 1.14f - canvasSize * 0.02f
             val triangleHalfWidth = canvasSize * 0.03f
 
