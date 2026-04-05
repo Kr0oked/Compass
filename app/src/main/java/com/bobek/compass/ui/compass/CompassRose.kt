@@ -32,13 +32,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.withTransform
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.TextMeasurer
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.font.FontWeight
@@ -73,10 +76,10 @@ fun CompassRose(
     val primaryColor = MaterialTheme.colorScheme.primary
 
     // Strings must be collected in composable context
-    val northAbbr = stringResource(R.string.cardinal_direction_north_abbreviation)
-    val eastAbbr = stringResource(R.string.cardinal_direction_east_abbreviation)
-    val southAbbr = stringResource(R.string.cardinal_direction_south_abbreviation)
-    val westAbbr = stringResource(R.string.cardinal_direction_west_abbreviation)
+    val northAbbreviation = stringResource(R.string.cardinal_direction_north_abbreviation)
+    val eastAbbreviation = stringResource(R.string.cardinal_direction_east_abbreviation)
+    val southAbbreviation = stringResource(R.string.cardinal_direction_south_abbreviation)
+    val westAbbreviation = stringResource(R.string.cardinal_direction_west_abbreviation)
     val azimuthText = stringResource(id = R.string.degrees, azimuth.roundedDegrees)
     val cardinalDirectionText = stringResource(id = azimuth.cardinalDirection.labelResourceId)
 
@@ -87,7 +90,6 @@ fun CompassRose(
     Box(modifier = modifier) {
         val description = stringResource(R.string.compass_rose_image_description)
 
-        // todo: refactor
         Canvas(
             modifier = Modifier
                 .fillMaxSize()
@@ -98,14 +100,12 @@ fun CompassRose(
             val canvasSize = minOf(size.width, size.height)
             val center = Offset(size.width / 2f, size.height / 2f)
 
-            // All sizes proportional to canvasSize
             val outerRadius = canvasSize * 0.36f
             val labelRadius = canvasSize * 0.46f
             val cardinalRadius = outerRadius * 0.82f
 
             val highlightedTickStroke = canvasSize * 0.010f
             val smallTickStroke = canvasSize * 0.003f
-
             val textGap = canvasSize * 0.012f
 
             val cardinalStyle = TextStyle(fontSize = (canvasSize * 0.055f).toSp(), fontWeight = FontWeight.Bold)
@@ -114,119 +114,193 @@ fun CompassRose(
             val cardinalDirectionStyle =
                 cardinalDirectionTypography.copy(fontSize = (canvasSize * 0.062f).toSp(), color = onSurfaceColor)
 
-            // Fixed heading indicator: upward-pointing triangle above the strong ticks
-            val triangleTipY = center.y - canvasSize * 0.49f
-            val triangleBaseY = center.y - outerRadius * 1.14f - canvasSize * 0.02f
-            val triangleHalfWidth = canvasSize * 0.03f
+            drawHeadingIndicator(center, canvasSize, outerRadius, primaryColor)
 
-            val indicatorPath = Path().apply {
-                moveTo(center.x, triangleTipY)
-                lineTo(center.x - triangleHalfWidth, triangleBaseY)
-                lineTo(center.x + triangleHalfWidth, triangleBaseY)
-                close()
-            }
-            drawPath(indicatorPath, color = primaryColor)
-            drawLine(
-                color = primaryColor,
-                start = Offset(center.x, triangleBaseY),
-                end = Offset(center.x, center.y - outerRadius),
-                strokeWidth = canvasSize * 0.017f,
-                cap = StrokeCap.Square
-            )
-
-            // Rotating compass rose
             withTransform({ rotate(-azimuth.degrees, pivot = center) }) {
-
-                // Tick marks
-                for (degree in 0 until 360 step 2) {
-                    val angleRad = degree * PI.toFloat() / 180f
-                    val sinA = sin(angleRad)
-                    val cosA = cos(angleRad)
-
-                    val tickLength: Float
-                    val strokeWidth: Float
-                    if (degree % 30 == 0) {
-                        tickLength = outerRadius * 0.14f
-                        strokeWidth = highlightedTickStroke
-                    } else {
-                        tickLength = outerRadius * 0.08f
-                        strokeWidth = smallTickStroke
-                    }
-
-                    val tickColor = when {
-                        degree == 0 -> errorColor
-                        degree % 30 == 0 -> onSurfaceColor
-                        else -> onSurfaceColor.copy(alpha = 0.9f)
-                    }
-                    val innerX = center.x + outerRadius * sinA
-                    val innerY = center.y - outerRadius * cosA
-                    val outerX = center.x + (outerRadius + tickLength) * sinA
-                    val outerY = center.y - (outerRadius + tickLength) * cosA
-
-                    drawLine(
-                        color = tickColor,
-                        start = Offset(innerX, innerY),
-                        end = Offset(outerX, outerY),
-                        strokeWidth = strokeWidth,
-                        cap = StrokeCap.Square
-                    )
-                }
-
-                // Degree numbers outside at every 30°
-                for (degree in 0 until 360 step 30) {
-                    val labelColor = if (degree == 0) errorColor else onSurfaceColor
-                    val measured = textMeasurer.measure(degree.toString(), style = degreeStyle.copy(color = labelColor))
-
-                    val angleRad = degree * PI.toFloat() / 180f
-                    val tx = center.x + labelRadius * sin(angleRad)
-                    val ty = center.y - labelRadius * cos(angleRad)
-
-                    withTransform({
-                        translate(tx, ty)
-                        rotate(azimuth.degrees, pivot = Offset.Zero)
-                    }) {
-                        drawText(measured, topLeft = Offset(-measured.size.width / 2f, -measured.size.height / 2f))
-                    }
-                }
-
-                // Cardinal abbreviations inside at 0/90/180/270
-                val cardinals = listOf(0 to northAbbr, 90 to eastAbbr, 180 to southAbbr, 270 to westAbbr)
-                for ((degree, abbr) in cardinals) {
-                    val labelColor = if (degree == 0) errorColor else onSurfaceColor
-                    val measured = textMeasurer.measure(abbr, style = cardinalStyle.copy(color = labelColor))
-
-                    val angleRad = degree * PI.toFloat() / 180f
-                    val tx = center.x + cardinalRadius * sin(angleRad)
-                    val ty = center.y - cardinalRadius * cos(angleRad)
-
-                    withTransform({
-                        translate(tx, ty)
-                        rotate(azimuth.degrees, pivot = Offset.Zero)
-                    }) {
-                        drawText(measured, topLeft = Offset(-measured.size.width / 2f, -measured.size.height / 2f))
-                    }
-                }
+                drawTickMarks(center, outerRadius, highlightedTickStroke, smallTickStroke, errorColor, onSurfaceColor)
+                drawDegreeLabels(
+                    center,
+                    labelRadius,
+                    azimuth.degrees,
+                    textMeasurer,
+                    degreeStyle,
+                    errorColor,
+                    onSurfaceColor
+                )
+                drawCardinalAbbreviations(
+                    center, cardinalRadius, azimuth.degrees, textMeasurer, cardinalStyle,
+                    errorColor, onSurfaceColor, northAbbreviation, eastAbbreviation, southAbbreviation, westAbbreviation
+                )
             }
 
-            // Azimuth and cardinal direction texts centered on the canvas
-            val measuredAzimuth = textMeasurer.measure(azimuthText, style = azimuthStyle)
-            val measuredCardinalDirection = textMeasurer.measure(cardinalDirectionText, style = cardinalDirectionStyle)
-            val totalHeight = measuredAzimuth.size.height + textGap + measuredCardinalDirection.size.height
-            val topY = center.y - totalHeight / 2f
-
-            drawText(
-                measuredAzimuth,
-                topLeft = Offset(center.x - measuredAzimuth.size.width / 2f, topY)
-            )
-            drawText(
-                measuredCardinalDirection,
-                topLeft = Offset(
-                    center.x - measuredCardinalDirection.size.width / 2f,
-                    topY + measuredAzimuth.size.height + textGap
-                )
+            drawCenterText(
+                center, textGap, textMeasurer,
+                azimuthText, azimuthStyle, cardinalDirectionText, cardinalDirectionStyle
             )
         }
     }
+}
+
+private fun DrawScope.drawHeadingIndicator(
+    center: Offset,
+    canvasSize: Float,
+    outerRadius: Float,
+    primaryColor: Color
+) {
+    val triangleTipY = center.y - canvasSize * 0.49f
+    val triangleBaseY = center.y - outerRadius * 1.14f - canvasSize * 0.02f
+    val triangleHalfWidth = canvasSize * 0.03f
+
+    val indicatorPath = Path().apply {
+        moveTo(center.x, triangleTipY)
+        lineTo(center.x - triangleHalfWidth, triangleBaseY)
+        lineTo(center.x + triangleHalfWidth, triangleBaseY)
+        close()
+    }
+    drawPath(path = indicatorPath, color = primaryColor)
+    drawLine(
+        color = primaryColor,
+        start = Offset(center.x, triangleBaseY),
+        end = Offset(center.x, center.y - outerRadius),
+        strokeWidth = canvasSize * 0.017f,
+        cap = StrokeCap.Square
+    )
+}
+
+private fun DrawScope.drawTickMarks(
+    center: Offset,
+    outerRadius: Float,
+    highlightedTickStroke: Float,
+    smallTickStroke: Float,
+    errorColor: Color,
+    onSurfaceColor: Color
+) {
+    for (degree in 0 until 360 step 2) {
+        val angleRadians = degree * PI.toFloat() / 180f
+        val sinA = sin(angleRadians)
+        val cosA = cos(angleRadians)
+
+        val tickLength: Float
+        val strokeWidth: Float
+        if (degree % 30 == 0) {
+            tickLength = outerRadius * 0.14f
+            strokeWidth = highlightedTickStroke
+        } else {
+            tickLength = outerRadius * 0.08f
+            strokeWidth = smallTickStroke
+        }
+
+        val tickColor = when {
+            degree == 0 -> errorColor
+            degree % 30 == 0 -> onSurfaceColor
+            else -> onSurfaceColor.copy(alpha = 0.9f)
+        }
+        val innerX = center.x + outerRadius * sinA
+        val innerY = center.y - outerRadius * cosA
+        val outerX = center.x + (outerRadius + tickLength) * sinA
+        val outerY = center.y - (outerRadius + tickLength) * cosA
+
+        drawLine(
+            color = tickColor,
+            start = Offset(innerX, innerY),
+            end = Offset(outerX, outerY),
+            strokeWidth = strokeWidth,
+            cap = StrokeCap.Square
+        )
+    }
+}
+
+private fun DrawScope.drawDegreeLabels(
+    center: Offset,
+    labelRadius: Float,
+    azimuthDegrees: Float,
+    textMeasurer: TextMeasurer,
+    degreeStyle: TextStyle,
+    errorColor: Color,
+    onSurfaceColor: Color
+) {
+    for (degree in 0 until 360 step 30) {
+        val labelColor = if (degree == 0) errorColor else onSurfaceColor
+        val measured = textMeasurer.measure(degree.toString(), style = degreeStyle.copy(color = labelColor))
+
+        val angleRadians = degree * PI.toFloat() / 180f
+        val tx = center.x + labelRadius * sin(angleRadians)
+        val ty = center.y - labelRadius * cos(angleRadians)
+
+        withTransform({
+            translate(tx, ty)
+            rotate(azimuthDegrees, pivot = Offset.Zero)
+        }) {
+            drawText(measured, topLeft = Offset(-measured.size.width / 2f, -measured.size.height / 2f))
+        }
+    }
+}
+
+private fun DrawScope.drawCardinalAbbreviations(
+    center: Offset,
+    cardinalRadius: Float,
+    azimuthDegrees: Float,
+    textMeasurer: TextMeasurer,
+    cardinalStyle: TextStyle,
+    errorColor: Color,
+    onSurfaceColor: Color,
+    northAbbreviation: String,
+    eastAbbreviation: String,
+    southAbbreviation: String,
+    westAbbreviation: String
+) {
+    val cardinals = listOf(
+        0 to northAbbreviation,
+        90 to eastAbbreviation,
+        180 to southAbbreviation,
+        270 to westAbbreviation
+    )
+
+    for ((degree, abbreviation) in cardinals) {
+        val labelColor = if (degree == 0) errorColor else onSurfaceColor
+        val measured = textMeasurer.measure(text = abbreviation, style = cardinalStyle.copy(color = labelColor))
+
+        val angleRadians = degree * PI.toFloat() / 180f
+        val tx = center.x + cardinalRadius * sin(angleRadians)
+        val ty = center.y - cardinalRadius * cos(angleRadians)
+
+        withTransform({
+            translate(tx, ty)
+            rotate(azimuthDegrees, pivot = Offset.Zero)
+        }) {
+            drawText(measured, topLeft = Offset(-measured.size.width / 2f, -measured.size.height / 2f))
+        }
+    }
+}
+
+private fun DrawScope.drawCenterText(
+    center: Offset,
+    textGap: Float,
+    textMeasurer: TextMeasurer,
+    azimuthText: String,
+    azimuthStyle: TextStyle,
+    cardinalDirectionText: String,
+    cardinalDirectionStyle: TextStyle
+) {
+    val measuredAzimuth = textMeasurer.measure(text = azimuthText, style = azimuthStyle)
+    val measuredCardinalDirection = textMeasurer.measure(text = cardinalDirectionText, style = cardinalDirectionStyle)
+    val totalHeight = measuredAzimuth.size.height + textGap + measuredCardinalDirection.size.height
+    val topY = center.y - totalHeight / 2f
+
+    drawText(
+        measuredAzimuth,
+        topLeft = Offset(
+            center.x - measuredAzimuth.size.width / 2f,
+            topY
+        )
+    )
+    drawText(
+        measuredCardinalDirection,
+        topLeft = Offset(
+            center.x - measuredCardinalDirection.size.width / 2f,
+            topY + measuredAzimuth.size.height + textGap
+        )
+    )
 }
 
 @Composable
