@@ -70,31 +70,14 @@ fun CompassRose(
 
     HapticFeedbackEffect(viewModel)
 
-    val textMeasurer = rememberTextMeasurer()
-    val onSurfaceColor = MaterialTheme.colorScheme.onSurface
-    val errorColor = MaterialTheme.colorScheme.error
-    val primaryColor = MaterialTheme.colorScheme.primary
-
-    // Strings must be collected in composable context
-    val northAbbreviation = stringResource(R.string.cardinal_direction_north_abbreviation)
-    val eastAbbreviation = stringResource(R.string.cardinal_direction_east_abbreviation)
-    val southAbbreviation = stringResource(R.string.cardinal_direction_south_abbreviation)
-    val westAbbreviation = stringResource(R.string.cardinal_direction_west_abbreviation)
-    val azimuthText = stringResource(id = R.string.degrees, azimuth.roundedDegrees)
-    val cardinalDirectionText = stringResource(id = azimuth.cardinalDirection.labelResourceId)
-
-    // Capture typeface/weight from MaterialTheme; fontSize is overridden inside Canvas
-    val azimuthTypography = MaterialTheme.typography.displaySmall
-    val cardinalDirectionTypography = MaterialTheme.typography.titleLarge
+    val drawData = rememberCompassDrawData(azimuth)
 
     Box(modifier = modifier) {
-        val description = stringResource(R.string.compass_rose_image_description)
-
         Canvas(
             modifier = Modifier
                 .fillMaxSize()
                 .semantics {
-                    contentDescription = description
+                    contentDescription = drawData.description
                 }
         ) {
             val metrics = CompassMetrics(
@@ -107,41 +90,63 @@ fun CompassRose(
                     fontWeight = FontWeight.Bold
                 ),
                 degreeStyle = TextStyle(fontSize = (metrics.canvasSize * 0.028f).toSp()),
-                azimuthStyle = azimuthTypography.copy(
+                azimuthStyle = drawData.azimuthTypography.copy(
                     fontSize = (metrics.canvasSize * 0.115f).toSp(),
-                    color = onSurfaceColor
+                    color = drawData.onSurfaceColor
                 ),
-                cardinalDirectionStyle = cardinalDirectionTypography.copy(
+                cardinalDirectionStyle = drawData.cardinalDirectionTypography.copy(
                     fontSize = (metrics.canvasSize * 0.062f).toSp(),
-                    color = onSurfaceColor
+                    color = drawData.onSurfaceColor
                 )
             )
 
-            drawHeadingIndicator(metrics, primaryColor)
+            drawHeadingIndicator(metrics, drawData)
 
             withTransform({ rotate(-azimuth.degrees, pivot = metrics.center) }) {
-                drawTickMarks(metrics, errorColor, onSurfaceColor)
-                drawDegreeLabels(metrics, styles, azimuth.degrees, textMeasurer, errorColor, onSurfaceColor)
-                drawCardinalAbbreviations(
-                    metrics,
-                    styles,
-                    azimuth.degrees,
-                    textMeasurer,
-                    errorColor,
-                    onSurfaceColor,
-                    northAbbreviation,
-                    eastAbbreviation,
-                    southAbbreviation,
-                    westAbbreviation
-                )
+                drawTickMarks(metrics, drawData)
+                drawDegreeLabels(metrics, styles, azimuth.degrees, drawData)
+                drawCardinalAbbreviations(metrics, styles, azimuth.degrees, drawData)
             }
 
-            drawCenterText(metrics, styles, textMeasurer, azimuthText, cardinalDirectionText)
+            drawCenterText(metrics, styles, drawData)
         }
     }
 }
 
-private fun DrawScope.drawHeadingIndicator(metrics: CompassMetrics, primaryColor: Color) {
+@Composable
+private fun rememberCompassDrawData(azimuth: Azimuth): CompassDrawData {
+    val textMeasurer = rememberTextMeasurer()
+    val primaryColor = MaterialTheme.colorScheme.primary
+    val errorColor = MaterialTheme.colorScheme.error
+    val onSurfaceColor = MaterialTheme.colorScheme.onSurface
+    val azimuthTypography = MaterialTheme.typography.displaySmall
+    val cardinalDirectionTypography = MaterialTheme.typography.titleLarge
+    val northAbbreviation = stringResource(R.string.cardinal_direction_north_abbreviation)
+    val eastAbbreviation = stringResource(R.string.cardinal_direction_east_abbreviation)
+    val southAbbreviation = stringResource(R.string.cardinal_direction_south_abbreviation)
+    val westAbbreviation = stringResource(R.string.cardinal_direction_west_abbreviation)
+    val azimuthText = stringResource(R.string.degrees, azimuth.roundedDegrees)
+    val cardinalDirectionText = stringResource(azimuth.cardinalDirection.labelResourceId)
+    val description = stringResource(R.string.compass_rose_image_description)
+
+    return CompassDrawData(
+        textMeasurer = textMeasurer,
+        primaryColor = primaryColor,
+        errorColor = errorColor,
+        onSurfaceColor = onSurfaceColor,
+        azimuthTypography = azimuthTypography,
+        cardinalDirectionTypography = cardinalDirectionTypography,
+        northAbbreviation = northAbbreviation,
+        eastAbbreviation = eastAbbreviation,
+        southAbbreviation = southAbbreviation,
+        westAbbreviation = westAbbreviation,
+        azimuthText = azimuthText,
+        cardinalDirectionText = cardinalDirectionText,
+        description = description
+    )
+}
+
+private fun DrawScope.drawHeadingIndicator(metrics: CompassMetrics, drawData: CompassDrawData) {
     val triangleTipY = metrics.center.y - metrics.canvasSize * 0.49f
     val triangleBaseY = metrics.center.y - metrics.outerRadius * 1.14f - metrics.canvasSize * 0.02f
     val triangleHalfWidth = metrics.canvasSize * 0.03f
@@ -152,9 +157,9 @@ private fun DrawScope.drawHeadingIndicator(metrics: CompassMetrics, primaryColor
         lineTo(metrics.center.x + triangleHalfWidth, triangleBaseY)
         close()
     }
-    drawPath(path = indicatorPath, color = primaryColor)
+    drawPath(path = indicatorPath, color = drawData.primaryColor)
     drawLine(
-        color = primaryColor,
+        color = drawData.primaryColor,
         start = Offset(metrics.center.x, triangleBaseY),
         end = Offset(metrics.center.x, metrics.center.y - metrics.outerRadius),
         strokeWidth = metrics.canvasSize * 0.017f,
@@ -162,7 +167,7 @@ private fun DrawScope.drawHeadingIndicator(metrics: CompassMetrics, primaryColor
     )
 }
 
-private fun DrawScope.drawTickMarks(metrics: CompassMetrics, errorColor: Color, onSurfaceColor: Color) {
+private fun DrawScope.drawTickMarks(metrics: CompassMetrics, drawData: CompassDrawData) {
     for (degree in 0 until 360 step 2) {
         val angleRadians = degree * PI.toFloat() / 180f
         val sinA = sin(angleRadians)
@@ -179,9 +184,9 @@ private fun DrawScope.drawTickMarks(metrics: CompassMetrics, errorColor: Color, 
         }
 
         val tickColor = when {
-            degree == 0 -> errorColor
-            degree % 30 == 0 -> onSurfaceColor
-            else -> onSurfaceColor.copy(alpha = 0.9f)
+            degree == 0 -> drawData.errorColor
+            degree % 30 == 0 -> drawData.onSurfaceColor
+            else -> drawData.onSurfaceColor.copy(alpha = 0.9f)
         }
         val innerX = metrics.center.x + metrics.outerRadius * sinA
         val innerY = metrics.center.y - metrics.outerRadius * cosA
@@ -202,13 +207,14 @@ private fun DrawScope.drawDegreeLabels(
     metrics: CompassMetrics,
     styles: CompassStyles,
     azimuthDegrees: Float,
-    textMeasurer: TextMeasurer,
-    errorColor: Color,
-    onSurfaceColor: Color
+    drawData: CompassDrawData
 ) {
     for (degree in 0 until 360 step 30) {
-        val labelColor = if (degree == 0) errorColor else onSurfaceColor
-        val measured = textMeasurer.measure(degree.toString(), style = styles.degreeStyle.copy(color = labelColor))
+        val labelColor = if (degree == 0) drawData.errorColor else drawData.onSurfaceColor
+        val measured = drawData.textMeasurer.measure(
+            text = degree.toString(),
+            style = styles.degreeStyle.copy(color = labelColor)
+        )
 
         val angleRadians = degree * PI.toFloat() / 180f
         val tx = metrics.center.x + metrics.labelRadius * sin(angleRadians)
@@ -216,9 +222,12 @@ private fun DrawScope.drawDegreeLabels(
 
         withTransform({
             translate(tx, ty)
-            rotate(azimuthDegrees, pivot = Offset.Zero)
+            rotate(degrees = azimuthDegrees, pivot = Offset.Zero)
         }) {
-            drawText(measured, topLeft = Offset(-measured.size.width / 2f, -measured.size.height / 2f))
+            drawText(
+                textLayoutResult = measured,
+                topLeft = Offset(-measured.size.width / 2f, -measured.size.height / 2f)
+            )
         }
     }
 }
@@ -227,24 +236,21 @@ private fun DrawScope.drawCardinalAbbreviations(
     metrics: CompassMetrics,
     styles: CompassStyles,
     azimuthDegrees: Float,
-    textMeasurer: TextMeasurer,
-    errorColor: Color,
-    onSurfaceColor: Color,
-    northAbbreviation: String,
-    eastAbbreviation: String,
-    southAbbreviation: String,
-    westAbbreviation: String
+    drawData: CompassDrawData
 ) {
     val cardinals = listOf(
-        0 to northAbbreviation,
-        90 to eastAbbreviation,
-        180 to southAbbreviation,
-        270 to westAbbreviation
+        0 to drawData.northAbbreviation,
+        90 to drawData.eastAbbreviation,
+        180 to drawData.southAbbreviation,
+        270 to drawData.westAbbreviation
     )
 
     for ((degree, abbreviation) in cardinals) {
-        val labelColor = if (degree == 0) errorColor else onSurfaceColor
-        val measured = textMeasurer.measure(text = abbreviation, style = styles.cardinalStyle.copy(color = labelColor))
+        val labelColor = if (degree == 0) drawData.errorColor else drawData.onSurfaceColor
+        val measured = drawData.textMeasurer.measure(
+            text = abbreviation,
+            style = styles.cardinalStyle.copy(color = labelColor)
+        )
 
         val angleRadians = degree * PI.toFloat() / 180f
         val tx = metrics.center.x + metrics.cardinalRadius * sin(angleRadians)
@@ -262,13 +268,11 @@ private fun DrawScope.drawCardinalAbbreviations(
 private fun DrawScope.drawCenterText(
     metrics: CompassMetrics,
     styles: CompassStyles,
-    textMeasurer: TextMeasurer,
-    azimuthText: String,
-    cardinalDirectionText: String
+    drawData: CompassDrawData
 ) {
-    val measuredAzimuth = textMeasurer.measure(text = azimuthText, style = styles.azimuthStyle)
+    val measuredAzimuth = drawData.textMeasurer.measure(text = drawData.azimuthText, style = styles.azimuthStyle)
     val measuredCardinalDirection =
-        textMeasurer.measure(text = cardinalDirectionText, style = styles.cardinalDirectionStyle)
+        drawData.textMeasurer.measure(text = drawData.cardinalDirectionText, style = styles.cardinalDirectionStyle)
     val totalHeight = measuredAzimuth.size.height + metrics.textGap + measuredCardinalDirection.size.height
     val topY = metrics.center.y - totalHeight / 2f
 
@@ -287,6 +291,22 @@ private fun DrawScope.drawCenterText(
         )
     )
 }
+
+private data class CompassDrawData(
+    val textMeasurer: TextMeasurer,
+    val primaryColor: Color,
+    val errorColor: Color,
+    val onSurfaceColor: Color,
+    val azimuthTypography: TextStyle,
+    val cardinalDirectionTypography: TextStyle,
+    val northAbbreviation: String,
+    val eastAbbreviation: String,
+    val southAbbreviation: String,
+    val westAbbreviation: String,
+    val azimuthText: String,
+    val cardinalDirectionText: String,
+    val description: String
+)
 
 private data class CompassMetrics(val canvasSize: Float, val center: Offset) {
     val outerRadius = canvasSize * 0.36f
