@@ -97,84 +97,72 @@ fun CompassRose(
                     contentDescription = description
                 }
         ) {
-            val canvasSize = minOf(size.width, size.height)
-            val center = Offset(size.width / 2f, size.height / 2f)
+            val metrics = CompassMetrics(
+                canvasSize = minOf(size.width, size.height),
+                center = Offset(size.width / 2f, size.height / 2f)
+            )
+            val styles = CompassStyles(
+                cardinalStyle = TextStyle(
+                    fontSize = (metrics.canvasSize * 0.055f).toSp(),
+                    fontWeight = FontWeight.Bold
+                ),
+                degreeStyle = TextStyle(fontSize = (metrics.canvasSize * 0.028f).toSp()),
+                azimuthStyle = azimuthTypography.copy(
+                    fontSize = (metrics.canvasSize * 0.115f).toSp(),
+                    color = onSurfaceColor
+                ),
+                cardinalDirectionStyle = cardinalDirectionTypography.copy(
+                    fontSize = (metrics.canvasSize * 0.062f).toSp(),
+                    color = onSurfaceColor
+                )
+            )
 
-            val outerRadius = canvasSize * 0.36f
-            val labelRadius = canvasSize * 0.46f
-            val cardinalRadius = outerRadius * 0.82f
+            drawHeadingIndicator(metrics, primaryColor)
 
-            val highlightedTickStroke = canvasSize * 0.010f
-            val smallTickStroke = canvasSize * 0.003f
-            val textGap = canvasSize * 0.012f
-
-            val cardinalStyle = TextStyle(fontSize = (canvasSize * 0.055f).toSp(), fontWeight = FontWeight.Bold)
-            val degreeStyle = TextStyle(fontSize = (canvasSize * 0.028f).toSp())
-            val azimuthStyle = azimuthTypography.copy(fontSize = (canvasSize * 0.115f).toSp(), color = onSurfaceColor)
-            val cardinalDirectionStyle =
-                cardinalDirectionTypography.copy(fontSize = (canvasSize * 0.062f).toSp(), color = onSurfaceColor)
-
-            drawHeadingIndicator(center, canvasSize, outerRadius, primaryColor)
-
-            withTransform({ rotate(-azimuth.degrees, pivot = center) }) {
-                drawTickMarks(center, outerRadius, highlightedTickStroke, smallTickStroke, errorColor, onSurfaceColor)
-                drawDegreeLabels(
-                    center,
-                    labelRadius,
+            withTransform({ rotate(-azimuth.degrees, pivot = metrics.center) }) {
+                drawTickMarks(metrics, errorColor, onSurfaceColor)
+                drawDegreeLabels(metrics, styles, azimuth.degrees, textMeasurer, errorColor, onSurfaceColor)
+                drawCardinalAbbreviations(
+                    metrics,
+                    styles,
                     azimuth.degrees,
                     textMeasurer,
-                    degreeStyle,
                     errorColor,
-                    onSurfaceColor
-                )
-                drawCardinalAbbreviations(
-                    center, cardinalRadius, azimuth.degrees, textMeasurer, cardinalStyle,
-                    errorColor, onSurfaceColor, northAbbreviation, eastAbbreviation, southAbbreviation, westAbbreviation
+                    onSurfaceColor,
+                    northAbbreviation,
+                    eastAbbreviation,
+                    southAbbreviation,
+                    westAbbreviation
                 )
             }
 
-            drawCenterText(
-                center, textGap, textMeasurer,
-                azimuthText, azimuthStyle, cardinalDirectionText, cardinalDirectionStyle
-            )
+            drawCenterText(metrics, styles, textMeasurer, azimuthText, cardinalDirectionText)
         }
     }
 }
 
-private fun DrawScope.drawHeadingIndicator(
-    center: Offset,
-    canvasSize: Float,
-    outerRadius: Float,
-    primaryColor: Color
-) {
-    val triangleTipY = center.y - canvasSize * 0.49f
-    val triangleBaseY = center.y - outerRadius * 1.14f - canvasSize * 0.02f
-    val triangleHalfWidth = canvasSize * 0.03f
+private fun DrawScope.drawHeadingIndicator(metrics: CompassMetrics, primaryColor: Color) {
+    val triangleTipY = metrics.center.y - metrics.canvasSize * 0.49f
+    val triangleBaseY = metrics.center.y - metrics.outerRadius * 1.14f - metrics.canvasSize * 0.02f
+    val triangleHalfWidth = metrics.canvasSize * 0.03f
 
     val indicatorPath = Path().apply {
-        moveTo(center.x, triangleTipY)
-        lineTo(center.x - triangleHalfWidth, triangleBaseY)
-        lineTo(center.x + triangleHalfWidth, triangleBaseY)
+        moveTo(metrics.center.x, triangleTipY)
+        lineTo(metrics.center.x - triangleHalfWidth, triangleBaseY)
+        lineTo(metrics.center.x + triangleHalfWidth, triangleBaseY)
         close()
     }
     drawPath(path = indicatorPath, color = primaryColor)
     drawLine(
         color = primaryColor,
-        start = Offset(center.x, triangleBaseY),
-        end = Offset(center.x, center.y - outerRadius),
-        strokeWidth = canvasSize * 0.017f,
+        start = Offset(metrics.center.x, triangleBaseY),
+        end = Offset(metrics.center.x, metrics.center.y - metrics.outerRadius),
+        strokeWidth = metrics.canvasSize * 0.017f,
         cap = StrokeCap.Square
     )
 }
 
-private fun DrawScope.drawTickMarks(
-    center: Offset,
-    outerRadius: Float,
-    highlightedTickStroke: Float,
-    smallTickStroke: Float,
-    errorColor: Color,
-    onSurfaceColor: Color
-) {
+private fun DrawScope.drawTickMarks(metrics: CompassMetrics, errorColor: Color, onSurfaceColor: Color) {
     for (degree in 0 until 360 step 2) {
         val angleRadians = degree * PI.toFloat() / 180f
         val sinA = sin(angleRadians)
@@ -183,11 +171,11 @@ private fun DrawScope.drawTickMarks(
         val tickLength: Float
         val strokeWidth: Float
         if (degree % 30 == 0) {
-            tickLength = outerRadius * 0.14f
-            strokeWidth = highlightedTickStroke
+            tickLength = metrics.outerRadius * 0.14f
+            strokeWidth = metrics.highlightedTickStroke
         } else {
-            tickLength = outerRadius * 0.08f
-            strokeWidth = smallTickStroke
+            tickLength = metrics.outerRadius * 0.08f
+            strokeWidth = metrics.smallTickStroke
         }
 
         val tickColor = when {
@@ -195,10 +183,10 @@ private fun DrawScope.drawTickMarks(
             degree % 30 == 0 -> onSurfaceColor
             else -> onSurfaceColor.copy(alpha = 0.9f)
         }
-        val innerX = center.x + outerRadius * sinA
-        val innerY = center.y - outerRadius * cosA
-        val outerX = center.x + (outerRadius + tickLength) * sinA
-        val outerY = center.y - (outerRadius + tickLength) * cosA
+        val innerX = metrics.center.x + metrics.outerRadius * sinA
+        val innerY = metrics.center.y - metrics.outerRadius * cosA
+        val outerX = metrics.center.x + (metrics.outerRadius + tickLength) * sinA
+        val outerY = metrics.center.y - (metrics.outerRadius + tickLength) * cosA
 
         drawLine(
             color = tickColor,
@@ -211,21 +199,20 @@ private fun DrawScope.drawTickMarks(
 }
 
 private fun DrawScope.drawDegreeLabels(
-    center: Offset,
-    labelRadius: Float,
+    metrics: CompassMetrics,
+    styles: CompassStyles,
     azimuthDegrees: Float,
     textMeasurer: TextMeasurer,
-    degreeStyle: TextStyle,
     errorColor: Color,
     onSurfaceColor: Color
 ) {
     for (degree in 0 until 360 step 30) {
         val labelColor = if (degree == 0) errorColor else onSurfaceColor
-        val measured = textMeasurer.measure(degree.toString(), style = degreeStyle.copy(color = labelColor))
+        val measured = textMeasurer.measure(degree.toString(), style = styles.degreeStyle.copy(color = labelColor))
 
         val angleRadians = degree * PI.toFloat() / 180f
-        val tx = center.x + labelRadius * sin(angleRadians)
-        val ty = center.y - labelRadius * cos(angleRadians)
+        val tx = metrics.center.x + metrics.labelRadius * sin(angleRadians)
+        val ty = metrics.center.y - metrics.labelRadius * cos(angleRadians)
 
         withTransform({
             translate(tx, ty)
@@ -237,11 +224,10 @@ private fun DrawScope.drawDegreeLabels(
 }
 
 private fun DrawScope.drawCardinalAbbreviations(
-    center: Offset,
-    cardinalRadius: Float,
+    metrics: CompassMetrics,
+    styles: CompassStyles,
     azimuthDegrees: Float,
     textMeasurer: TextMeasurer,
-    cardinalStyle: TextStyle,
     errorColor: Color,
     onSurfaceColor: Color,
     northAbbreviation: String,
@@ -258,11 +244,11 @@ private fun DrawScope.drawCardinalAbbreviations(
 
     for ((degree, abbreviation) in cardinals) {
         val labelColor = if (degree == 0) errorColor else onSurfaceColor
-        val measured = textMeasurer.measure(text = abbreviation, style = cardinalStyle.copy(color = labelColor))
+        val measured = textMeasurer.measure(text = abbreviation, style = styles.cardinalStyle.copy(color = labelColor))
 
         val angleRadians = degree * PI.toFloat() / 180f
-        val tx = center.x + cardinalRadius * sin(angleRadians)
-        val ty = center.y - cardinalRadius * cos(angleRadians)
+        val tx = metrics.center.x + metrics.cardinalRadius * sin(angleRadians)
+        val ty = metrics.center.y - metrics.cardinalRadius * cos(angleRadians)
 
         withTransform({
             translate(tx, ty)
@@ -274,34 +260,49 @@ private fun DrawScope.drawCardinalAbbreviations(
 }
 
 private fun DrawScope.drawCenterText(
-    center: Offset,
-    textGap: Float,
+    metrics: CompassMetrics,
+    styles: CompassStyles,
     textMeasurer: TextMeasurer,
     azimuthText: String,
-    azimuthStyle: TextStyle,
-    cardinalDirectionText: String,
-    cardinalDirectionStyle: TextStyle
+    cardinalDirectionText: String
 ) {
-    val measuredAzimuth = textMeasurer.measure(text = azimuthText, style = azimuthStyle)
-    val measuredCardinalDirection = textMeasurer.measure(text = cardinalDirectionText, style = cardinalDirectionStyle)
-    val totalHeight = measuredAzimuth.size.height + textGap + measuredCardinalDirection.size.height
-    val topY = center.y - totalHeight / 2f
+    val measuredAzimuth = textMeasurer.measure(text = azimuthText, style = styles.azimuthStyle)
+    val measuredCardinalDirection =
+        textMeasurer.measure(text = cardinalDirectionText, style = styles.cardinalDirectionStyle)
+    val totalHeight = measuredAzimuth.size.height + metrics.textGap + measuredCardinalDirection.size.height
+    val topY = metrics.center.y - totalHeight / 2f
 
     drawText(
         measuredAzimuth,
         topLeft = Offset(
-            center.x - measuredAzimuth.size.width / 2f,
+            metrics.center.x - measuredAzimuth.size.width / 2f,
             topY
         )
     )
     drawText(
         measuredCardinalDirection,
         topLeft = Offset(
-            center.x - measuredCardinalDirection.size.width / 2f,
-            topY + measuredAzimuth.size.height + textGap
+            metrics.center.x - measuredCardinalDirection.size.width / 2f,
+            topY + measuredAzimuth.size.height + metrics.textGap
         )
     )
 }
+
+private data class CompassMetrics(val canvasSize: Float, val center: Offset) {
+    val outerRadius = canvasSize * 0.36f
+    val labelRadius = canvasSize * 0.46f
+    val cardinalRadius = outerRadius * 0.82f
+    val highlightedTickStroke = canvasSize * 0.010f
+    val smallTickStroke = canvasSize * 0.003f
+    val textGap = canvasSize * 0.012f
+}
+
+private data class CompassStyles(
+    val cardinalStyle: TextStyle,
+    val degreeStyle: TextStyle,
+    val azimuthStyle: TextStyle,
+    val cardinalDirectionStyle: TextStyle
+)
 
 @Composable
 private fun HapticFeedbackEffect(viewModel: ICompassViewModel) {
