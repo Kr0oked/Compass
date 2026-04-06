@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2026 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,6 +43,10 @@ class ScreengrabTest : AbstractAndroidTest() {
             .getString("screenshotName", "default")
 
         Screengrab.setDefaultScreenshotStrategy(UiAutomatorScreenshotStrategy())
+
+        waitUntilCompassIsDisplayed()
+        composeTestRule.waitForIdle()
+
         Screengrab.screenshot(screenshotName)
     }
 

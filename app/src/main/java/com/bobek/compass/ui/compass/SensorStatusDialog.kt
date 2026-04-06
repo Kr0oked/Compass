@@ -37,11 +37,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.bobek.compass.ICompassViewModel
 import com.bobek.compass.R
+import com.bobek.compass.ui.TestConstants
 
 @Composable
 fun SensorStatusDialog(
@@ -67,7 +69,10 @@ fun SensorStatusDialog(
                         tint = sensorAccuracy.tintColor
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(text = stringResource(id = sensorAccuracy.labelResourceId))
+                    Text(
+                        text = stringResource(id = sensorAccuracy.labelResourceId),
+                        modifier = Modifier.testTag(TestConstants.SENSOR_ACCURACY_TEXT)
+                    )
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))

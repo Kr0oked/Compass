@@ -38,9 +38,11 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.withTransform
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextMeasurer
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
@@ -53,6 +55,7 @@ import com.bobek.compass.ComposeCompassViewModel
 import com.bobek.compass.ICompassViewModel
 import com.bobek.compass.R
 import com.bobek.compass.data.Azimuth
+import com.bobek.compass.ui.TestConstants
 import com.bobek.compass.util.MathUtils
 import kotlin.math.PI
 import kotlin.math.cos
@@ -74,8 +77,10 @@ fun CompassRose(
         Canvas(
             modifier = Modifier
                 .fillMaxSize()
+                .testTag(TestConstants.COMPASS_ROSE)
                 .semantics {
                     contentDescription = drawData.description
+                    stateDescription = drawData.azimuthText
                 }
         ) {
             val metrics = CompassMetrics(

@@ -57,11 +57,12 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 private const val TAG = "MainActivity"
+const val OPTION_INSTRUMENTED_TEST = "OPTION_INSTRUMENTED_TEST"
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val viewModel: CompassViewModel by viewModels()
+    internal val viewModel: CompassViewModel by viewModels()
     private val accessLocationPermissionRequest = registerAccessLocationPermissionRequest()
 
     @Inject
@@ -93,8 +94,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
-        registerSensorListener()
-        requestLocation()
+        if (!intent.getBooleanExtra(OPTION_INSTRUMENTED_TEST, false)) {
+            registerSensorListener()
+            requestLocation()
+        }
     }
 
     private fun registerSensorListener() {

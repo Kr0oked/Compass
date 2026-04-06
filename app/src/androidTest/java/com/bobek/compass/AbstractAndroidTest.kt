@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2026 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,44 +18,76 @@
 
 package com.bobek.compass
 
+import android.Manifest
 import android.content.Intent
-import androidx.navigation.fragment.NavHostFragment
+import androidx.compose.ui.test.SemanticsNodeInteraction
+import androidx.compose.ui.test.assert
+import androidx.compose.ui.test.hasStateDescription
+import androidx.compose.ui.test.isDisplayed
+import androidx.compose.ui.test.junit4.AndroidComposeTestRule
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.rule.GrantPermissionRule
 import com.bobek.compass.data.Azimuth
 import com.bobek.compass.data.SensorAccuracy
+import com.bobek.compass.ui.TestConstants
 import org.junit.Rule
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 abstract class AbstractAndroidTest {
 
-    protected val intent: Intent = Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
+    @get:Rule
+    val composeTestRule: AndroidComposeTestRule<ActivityScenarioRule<MainActivity>, MainActivity> =
+        AndroidComposeTestRule(
+            activityRule = ActivityScenarioRule<MainActivity>(
+                Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
+                    .putExtra(OPTION_INSTRUMENTED_TEST, true)
+            ),
+            activityProvider = { rule: ActivityScenarioRule<MainActivity> ->
+                var activity: MainActivity? = null
+                rule.scenario.onActivity { activity = it }
+                activity ?: throw IllegalStateException("Activity not found")
+            }
+        )
 
     @get:Rule
-    var activityRule = ActivityScenarioRule<MainActivity>(intent)
+    var permissionRule: GrantPermissionRule = GrantPermissionRule.grant(
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION
+    )
+
+    protected fun waitUntilCompassIsDisplayed() {
+        composeTestRule.waitUntil(timeoutMillis = 15_000L) { onCompassRose().isDisplayed() }
+        composeTestRule.waitForIdle()
+    }
 
     protected fun setAzimuth(degrees: Float) {
-        activityRule.scenario.onActivity { mainActivity ->
-            findCompassFragment(mainActivity)!!.setAzimuth(Azimuth(degrees))
+        composeTestRule.runOnUiThread {
+            composeTestRule.activity.viewModel.setAzimuth(Azimuth(degrees))
         }
+        composeTestRule.waitForIdle()
     }
 
     protected fun setAccuracy(accuracy: SensorAccuracy) {
-        activityRule.scenario.onActivity { mainActivity ->
-            findCompassFragment(mainActivity)!!.setSensorAccuracy(accuracy)
+        composeTestRule.runOnUiThread {
+            composeTestRule.activity.viewModel.setSensorAccuracy(accuracy)
         }
+        composeTestRule.waitForIdle()
     }
 
-    private fun findCompassFragment(mainActivity: MainActivity): CompassFragment? {
-        return findNavHostFragment(mainActivity)
-            ?.childFragmentManager
-            ?.primaryNavigationFragment as CompassFragment?
+    protected fun SemanticsNodeInteraction.assertStateDescription(value: String) {
+        assert(hasStateDescription(value))
     }
 
-    private fun findNavHostFragment(mainActivity: MainActivity) =
-        mainActivity
-            .supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment?
+    protected fun onCompassRose(): SemanticsNodeInteraction =
+        composeTestRule.onNodeWithTag(TestConstants.COMPASS_ROSE)
+
+    protected fun onSensorStatusButton(): SemanticsNodeInteraction =
+        composeTestRule.onNodeWithTag(TestConstants.SENSOR_STATUS_BUTTON)
+
+    protected fun onSensorAccuracyText(): SemanticsNodeInteraction =
+        composeTestRule.onNodeWithTag(TestConstants.SENSOR_ACCURACY_TEXT)
 }

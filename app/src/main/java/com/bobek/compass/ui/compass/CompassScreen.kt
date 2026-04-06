@@ -53,6 +53,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -64,6 +65,7 @@ import androidx.compose.ui.unit.dp
 import com.bobek.compass.ComposeCompassViewModel
 import com.bobek.compass.ICompassViewModel
 import com.bobek.compass.R
+import com.bobek.compass.ui.TestConstants
 import com.bobek.compass.data.LocationStatus
 
 @Composable
@@ -245,7 +247,10 @@ private fun SensorStatusButton(
 ) {
     val sensorAccuracy by viewModel.getSensorAccuracyFlow().collectAsState()
 
-    IconButton(onClick = onClick) {
+    IconButton(
+        onClick = onClick,
+        modifier = Modifier.testTag(TestConstants.SENSOR_STATUS_BUTTON)
+    ) {
         Icon(
             painter = painterResource(sensorAccuracy.iconResourceId),
             contentDescription = stringResource(R.string.sensor_status),
