@@ -58,8 +58,6 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
-private const val HAPTIC_FEEDBACK_INTERVAL = 2.0f
-
 @Composable
 @Preview(widthDp = 512)
 fun CompassRose(
@@ -106,6 +104,38 @@ fun CompassRose(
     }
 }
 
+private const val HAPTIC_FEEDBACK_INTERVAL = 2.0f
+
+@Composable
+private fun HapticFeedbackEffect(viewModel: ICompassViewModel) {
+    val azimuth by viewModel.getAzimuthFlow().collectAsState()
+    val hapticFeedback by viewModel.getHapticFeedbackFlow().collectAsState()
+
+    val view = LocalView.current
+    var lastHapticFeedbackPoint by remember { mutableStateOf<Azimuth?>(null) }
+
+    LaunchedEffect(azimuth) {
+        if (hapticFeedback) {
+            val lastPoint = lastHapticFeedbackPoint
+            if (lastPoint == null) {
+                val closestIntervalPoint =
+                    MathUtils.getClosestNumberFromInterval(azimuth.degrees, HAPTIC_FEEDBACK_INTERVAL)
+                lastHapticFeedbackPoint = Azimuth(closestIntervalPoint)
+            } else {
+                val boundaryStart = lastPoint - HAPTIC_FEEDBACK_INTERVAL
+                val boundaryEnd = lastPoint + HAPTIC_FEEDBACK_INTERVAL
+
+                if (!MathUtils.isAzimuthBetweenTwoPoints(azimuth, boundaryStart, boundaryEnd)) {
+                    val closestIntervalPoint =
+                        MathUtils.getClosestNumberFromInterval(azimuth.degrees, HAPTIC_FEEDBACK_INTERVAL)
+                    lastHapticFeedbackPoint = Azimuth(closestIntervalPoint)
+                    view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
+                }
+            }
+        }
+    }
+}
+
 @Composable
 private fun rememberCompassDrawData(azimuth: Azimuth): CompassDrawData {
     val textMeasurer = rememberTextMeasurer()
@@ -140,18 +170,6 @@ private fun rememberCompassDrawData(azimuth: Azimuth): CompassDrawData {
     )
 }
 
-private fun DrawScope.drawRotatingRose(
-    metrics: CompassMetrics,
-    styles: CompassStyles,
-    drawData: CompassDrawData
-) {
-    withTransform({ rotate(-drawData.azimuthDegrees, pivot = metrics.center) }) {
-        drawTickMarks(metrics, drawData)
-        drawDegreeLabels(metrics, styles, drawData)
-        drawCardinalAbbreviations(metrics, styles, drawData)
-    }
-}
-
 private fun DrawScope.drawFixedOverlay(
     metrics: CompassMetrics,
     styles: CompassStyles,
@@ -180,6 +198,45 @@ private fun DrawScope.drawHeadingIndicator(metrics: CompassMetrics, drawData: Co
         strokeWidth = metrics.canvasSize * 0.017f,
         cap = StrokeCap.Square
     )
+}
+
+private fun DrawScope.drawCenterText(
+    metrics: CompassMetrics,
+    styles: CompassStyles,
+    drawData: CompassDrawData
+) {
+    val measuredAzimuth = drawData.textMeasurer.measure(text = drawData.azimuthText, style = styles.azimuthStyle)
+    val measuredCardinalDirection =
+        drawData.textMeasurer.measure(text = drawData.cardinalDirectionText, style = styles.cardinalDirectionStyle)
+    val totalHeight = measuredAzimuth.size.height + metrics.textGap + measuredCardinalDirection.size.height
+    val topY = metrics.center.y - totalHeight / 2f
+
+    drawText(
+        measuredAzimuth,
+        topLeft = Offset(
+            metrics.center.x - measuredAzimuth.size.width / 2f,
+            topY
+        )
+    )
+    drawText(
+        measuredCardinalDirection,
+        topLeft = Offset(
+            metrics.center.x - measuredCardinalDirection.size.width / 2f,
+            topY + measuredAzimuth.size.height + metrics.textGap
+        )
+    )
+}
+
+private fun DrawScope.drawRotatingRose(
+    metrics: CompassMetrics,
+    styles: CompassStyles,
+    drawData: CompassDrawData
+) {
+    withTransform({ rotate(-drawData.azimuthDegrees, pivot = metrics.center) }) {
+        drawTickMarks(metrics, drawData)
+        drawDegreeLabels(metrics, styles, drawData)
+        drawCardinalAbbreviations(metrics, styles, drawData)
+    }
 }
 
 private fun DrawScope.drawTickMarks(metrics: CompassMetrics, drawData: CompassDrawData) {
@@ -278,33 +335,6 @@ private fun DrawScope.drawCardinalAbbreviations(
     }
 }
 
-private fun DrawScope.drawCenterText(
-    metrics: CompassMetrics,
-    styles: CompassStyles,
-    drawData: CompassDrawData
-) {
-    val measuredAzimuth = drawData.textMeasurer.measure(text = drawData.azimuthText, style = styles.azimuthStyle)
-    val measuredCardinalDirection =
-        drawData.textMeasurer.measure(text = drawData.cardinalDirectionText, style = styles.cardinalDirectionStyle)
-    val totalHeight = measuredAzimuth.size.height + metrics.textGap + measuredCardinalDirection.size.height
-    val topY = metrics.center.y - totalHeight / 2f
-
-    drawText(
-        measuredAzimuth,
-        topLeft = Offset(
-            metrics.center.x - measuredAzimuth.size.width / 2f,
-            topY
-        )
-    )
-    drawText(
-        measuredCardinalDirection,
-        topLeft = Offset(
-            metrics.center.x - measuredCardinalDirection.size.width / 2f,
-            topY + measuredAzimuth.size.height + metrics.textGap
-        )
-    )
-}
-
 private class CompassDrawData(
     val textMeasurer: TextMeasurer,
     val primaryColor: Color,
@@ -337,36 +367,6 @@ private data class CompassStyles(
     val azimuthStyle: TextStyle,
     val cardinalDirectionStyle: TextStyle
 )
-
-@Composable
-private fun HapticFeedbackEffect(viewModel: ICompassViewModel) {
-    val azimuth by viewModel.getAzimuthFlow().collectAsState()
-    val hapticFeedback by viewModel.getHapticFeedbackFlow().collectAsState()
-
-    val view = LocalView.current
-    var lastHapticFeedbackPoint by remember { mutableStateOf<Azimuth?>(null) }
-
-    LaunchedEffect(azimuth) {
-        if (hapticFeedback) {
-            val lastPoint = lastHapticFeedbackPoint
-            if (lastPoint == null) {
-                val closestIntervalPoint =
-                    MathUtils.getClosestNumberFromInterval(azimuth.degrees, HAPTIC_FEEDBACK_INTERVAL)
-                lastHapticFeedbackPoint = Azimuth(closestIntervalPoint)
-            } else {
-                val boundaryStart = lastPoint - HAPTIC_FEEDBACK_INTERVAL
-                val boundaryEnd = lastPoint + HAPTIC_FEEDBACK_INTERVAL
-
-                if (!MathUtils.isAzimuthBetweenTwoPoints(azimuth, boundaryStart, boundaryEnd)) {
-                    val closestIntervalPoint =
-                        MathUtils.getClosestNumberFromInterval(azimuth.degrees, HAPTIC_FEEDBACK_INTERVAL)
-                    lastHapticFeedbackPoint = Azimuth(closestIntervalPoint)
-                    view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
-            }
-        }
-    }
-}
 
 private class CompassRoseViewModelProvider : PreviewParameterProvider<ICompassViewModel> {
     override val values: Sequence<ICompassViewModel> = sequenceOf(
