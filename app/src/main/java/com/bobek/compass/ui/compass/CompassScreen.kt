@@ -18,13 +18,17 @@
 
 package com.bobek.compass.ui.compass
 
+import android.content.res.Configuration
 import android.view.WindowManager
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.consumeWindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -48,9 +52,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import com.bobek.compass.ComposeCompassViewModel
@@ -62,7 +70,7 @@ import com.bobek.compass.data.LocationStatus
 @PreviewScreenSizes
 @OptIn(ExperimentalMaterial3Api::class)
 fun CompassScreen(
-    viewModel: ICompassViewModel = ComposeCompassViewModel(),
+    @PreviewParameter(CompassScreenViewModelProvider::class) viewModel: ICompassViewModel,
     onSettingsClick: () -> Unit = {},
     onLocationReload: () -> Unit = {}
 ) {
@@ -85,35 +93,23 @@ fun CompassScreen(
             )
         }
     ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .consumeWindowInsets(padding)
-                .padding(dimensionResource(R.dimen.root_layout_padding)),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            CompassRose(
+        val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
+
+        if (isLandscape) {
+            CompassContentLandscape(
                 viewModel = viewModel,
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth()
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            if (trueNorth) {
-                LocationSection(
-                    locationStatus = locationStatus,
-                    onLocationReload = onLocationReload
-                )
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            DeclinationText(
                 trueNorth = trueNorth,
-                locationStatus = locationStatus
+                locationStatus = locationStatus,
+                padding = padding,
+                onLocationReload = onLocationReload
+            )
+        } else {
+            CompassContentPortrait(
+                viewModel = viewModel,
+                trueNorth = trueNorth,
+                locationStatus = locationStatus,
+                padding = padding,
+                onLocationReload = onLocationReload
             )
         }
     }
@@ -126,6 +122,93 @@ fun CompassScreen(
                 showSensorStatusDialog = false
             }
         )
+    }
+}
+
+@Composable
+private fun CompassContentLandscape(
+    viewModel: ICompassViewModel,
+    trueNorth: Boolean,
+    locationStatus: LocationStatus,
+    padding: PaddingValues,
+    onLocationReload: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(padding)
+            .consumeWindowInsets(padding)
+            .padding(dimensionResource(R.dimen.root_layout_padding)),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight(),
+            contentAlignment = Alignment.BottomStart
+        ) {
+            DeclinationText(trueNorth = trueNorth, locationStatus = locationStatus)
+        }
+
+        CompassRose(
+            viewModel = viewModel,
+            modifier = Modifier
+                .fillMaxHeight()
+                .aspectRatio(1f)
+        )
+
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight(),
+            contentAlignment = Alignment.BottomCenter
+        ) {
+            if (trueNorth) {
+                LocationSection(locationStatus = locationStatus, onLocationReload = onLocationReload)
+            }
+        }
+    }
+}
+
+@Composable
+private fun CompassContentPortrait(
+    viewModel: ICompassViewModel,
+    trueNorth: Boolean,
+    locationStatus: LocationStatus,
+    padding: PaddingValues,
+    onLocationReload: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(padding)
+            .consumeWindowInsets(padding)
+            .padding(dimensionResource(R.dimen.root_layout_padding)),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        CompassRose(
+            viewModel = viewModel,
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(100.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            if (trueNorth) {
+                LocationSection(locationStatus = locationStatus, onLocationReload = onLocationReload)
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        DeclinationText(trueNorth = trueNorth, locationStatus = locationStatus)
     }
 }
 
@@ -145,19 +228,11 @@ private fun KeepScreenOnEffect() {
 private fun ScreenOrientationLockedButton(viewModel: ICompassViewModel) {
     val screenOrientationLocked by viewModel.getScreenOrientationLocked().collectAsState()
 
-    val painter = if (screenOrientationLocked) {
-        painterResource(R.drawable.ic_mobile_rotate_lock)
-    } else {
-        painterResource(R.drawable.ic_mobile_rotate)
-    }
+    val iconResourceId = if (screenOrientationLocked) R.drawable.ic_mobile_rotate_lock else R.drawable.ic_mobile_rotate
 
-    IconButton(
-        onClick = {
-            viewModel.setScreenOrientationLocked(!screenOrientationLocked)
-        }
-    ) {
+    IconButton(onClick = { viewModel.setScreenOrientationLocked(!screenOrientationLocked) }) {
         Icon(
-            painter = painter,
+            painter = painterResource(iconResourceId),
             contentDescription = stringResource(R.string.lock_screen_rotation)
         )
     }
@@ -194,56 +269,45 @@ private fun LocationSection(
     locationStatus: LocationStatus,
     onLocationReload: () -> Unit
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(100.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        when (locationStatus) {
-            LocationStatus.NOT_PRESENT -> {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_warning),
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.error
-                    )
-                    Text(
-                        text = stringResource(R.string.location_not_present),
-                        color = MaterialTheme.colorScheme.error
-                    )
-                    Button(onClick = onLocationReload) {
-                        Icon(painter = painterResource(R.drawable.ic_refresh), contentDescription = null)
-                        Text(text = stringResource(R.string.location_reload))
-                    }
+    when (locationStatus) {
+        LocationStatus.NOT_PRESENT -> {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                LocationError(stringResource(R.string.location_not_present))
+                Button(onClick = onLocationReload) {
+                    Icon(painter = painterResource(R.drawable.ic_refresh), contentDescription = null)
+                    Text(text = stringResource(R.string.location_reload))
                 }
-            }
-
-            LocationStatus.LOADING -> {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    CircularProgressIndicator()
-                    Text(text = stringResource(R.string.location_loading))
-                }
-            }
-
-            LocationStatus.PERMISSION_DENIED -> {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_warning),
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.error
-                    )
-                    Text(
-                        text = stringResource(R.string.access_location_permission_denied),
-                        color = MaterialTheme.colorScheme.error
-                    )
-                }
-            }
-
-            LocationStatus.PRESENT -> {
-                // Location is present, nothing specific to show here according to XML
             }
         }
+
+        LocationStatus.LOADING -> {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                CircularProgressIndicator()
+                Text(text = stringResource(R.string.location_loading), textAlign = TextAlign.Center)
+            }
+        }
+
+        LocationStatus.PERMISSION_DENIED -> {
+            LocationError(stringResource(R.string.access_location_permission_denied))
+        }
+
+        LocationStatus.PRESENT -> {}
+    }
+}
+
+@Composable
+private fun LocationError(message: String) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Icon(
+            painter = painterResource(R.drawable.ic_warning),
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.error
+        )
+        Text(
+            text = message,
+            color = MaterialTheme.colorScheme.error,
+            textAlign = TextAlign.Center
+        )
     }
 }
 
@@ -271,4 +335,18 @@ private fun DeclinationText(
             color = MaterialTheme.colorScheme.outline
         )
     }
+}
+
+private class CompassScreenViewModelProvider : PreviewParameterProvider<ICompassViewModel> {
+    override val values: Sequence<ICompassViewModel> = sequenceOf(
+        ComposeCompassViewModel(trueNorth = false),
+        ComposeCompassViewModel(trueNorth = true)
+    )
+
+    override fun getDisplayName(index: Int): String? =
+        when (index) {
+            0 -> "Magnetic North"
+            1 -> "True North"
+            else -> null
+        }
 }
