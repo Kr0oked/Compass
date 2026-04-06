@@ -90,7 +90,7 @@ class CompassViewModel @Inject constructor(
     private suspend fun initFromSettings() {
         settingsRepository.getTrueNorth().firstOrNull()?.let { trueNorthFlow.value = it }
         settingsRepository.getHapticFeedback().firstOrNull()?.let { hapticFeedbackFlow.value = it }
-        settingsRepository.getScreenOrientationLocked().firstOrNull()?.let { hapticFeedbackFlow.value = it }
+        settingsRepository.getScreenOrientationLocked().firstOrNull()?.let { screenOrientationLockedFlow.value = it }
         settingsRepository.getNightMode().firstOrNull()?.let { nightModeFlow.value = it }
     }
 
