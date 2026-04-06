@@ -100,15 +100,8 @@ fun CompassRose(
                 )
             )
 
-            drawHeadingIndicator(metrics, drawData)
-
-            withTransform({ rotate(-azimuth.degrees, pivot = metrics.center) }) {
-                drawTickMarks(metrics, drawData)
-                drawDegreeLabels(metrics, styles, azimuth.degrees, drawData)
-                drawCardinalAbbreviations(metrics, styles, azimuth.degrees, drawData)
-            }
-
-            drawCenterText(metrics, styles, drawData)
+            drawFixedOverlay(metrics, styles, drawData)
+            drawRotatingRose(metrics, styles, drawData)
         }
     }
 }
@@ -134,6 +127,7 @@ private fun rememberCompassDrawData(azimuth: Azimuth): CompassDrawData {
         primaryColor = primaryColor,
         errorColor = errorColor,
         onSurfaceColor = onSurfaceColor,
+        azimuthDegrees = azimuth.degrees,
         azimuthTypography = azimuthTypography,
         cardinalDirectionTypography = cardinalDirectionTypography,
         northAbbreviation = northAbbreviation,
@@ -144,6 +138,27 @@ private fun rememberCompassDrawData(azimuth: Azimuth): CompassDrawData {
         cardinalDirectionText = cardinalDirectionText,
         description = description
     )
+}
+
+private fun DrawScope.drawRotatingRose(
+    metrics: CompassMetrics,
+    styles: CompassStyles,
+    drawData: CompassDrawData
+) {
+    withTransform({ rotate(-drawData.azimuthDegrees, pivot = metrics.center) }) {
+        drawTickMarks(metrics, drawData)
+        drawDegreeLabels(metrics, styles, drawData)
+        drawCardinalAbbreviations(metrics, styles, drawData)
+    }
+}
+
+private fun DrawScope.drawFixedOverlay(
+    metrics: CompassMetrics,
+    styles: CompassStyles,
+    drawData: CompassDrawData
+) {
+    drawHeadingIndicator(metrics, drawData)
+    drawCenterText(metrics, styles, drawData)
 }
 
 private fun DrawScope.drawHeadingIndicator(metrics: CompassMetrics, drawData: CompassDrawData) {
@@ -170,8 +185,8 @@ private fun DrawScope.drawHeadingIndicator(metrics: CompassMetrics, drawData: Co
 private fun DrawScope.drawTickMarks(metrics: CompassMetrics, drawData: CompassDrawData) {
     for (degree in 0 until 360 step 2) {
         val angleRadians = degree * PI.toFloat() / 180f
-        val sinA = sin(angleRadians)
-        val cosA = cos(angleRadians)
+        val sinAngle = sin(angleRadians)
+        val cosAngle = cos(angleRadians)
 
         val tickLength: Float
         val strokeWidth: Float
@@ -188,10 +203,10 @@ private fun DrawScope.drawTickMarks(metrics: CompassMetrics, drawData: CompassDr
             degree % 30 == 0 -> drawData.onSurfaceColor
             else -> drawData.onSurfaceColor.copy(alpha = 0.9f)
         }
-        val innerX = metrics.center.x + metrics.outerRadius * sinA
-        val innerY = metrics.center.y - metrics.outerRadius * cosA
-        val outerX = metrics.center.x + (metrics.outerRadius + tickLength) * sinA
-        val outerY = metrics.center.y - (metrics.outerRadius + tickLength) * cosA
+        val innerX = metrics.center.x + metrics.outerRadius * sinAngle
+        val innerY = metrics.center.y - metrics.outerRadius * cosAngle
+        val outerX = metrics.center.x + (metrics.outerRadius + tickLength) * sinAngle
+        val outerY = metrics.center.y - (metrics.outerRadius + tickLength) * cosAngle
 
         drawLine(
             color = tickColor,
@@ -206,7 +221,6 @@ private fun DrawScope.drawTickMarks(metrics: CompassMetrics, drawData: CompassDr
 private fun DrawScope.drawDegreeLabels(
     metrics: CompassMetrics,
     styles: CompassStyles,
-    azimuthDegrees: Float,
     drawData: CompassDrawData
 ) {
     for (degree in 0 until 360 step 30) {
@@ -222,7 +236,7 @@ private fun DrawScope.drawDegreeLabels(
 
         withTransform({
             translate(tx, ty)
-            rotate(degrees = azimuthDegrees, pivot = Offset.Zero)
+            rotate(degrees = drawData.azimuthDegrees, pivot = Offset.Zero)
         }) {
             drawText(
                 textLayoutResult = measured,
@@ -235,7 +249,6 @@ private fun DrawScope.drawDegreeLabels(
 private fun DrawScope.drawCardinalAbbreviations(
     metrics: CompassMetrics,
     styles: CompassStyles,
-    azimuthDegrees: Float,
     drawData: CompassDrawData
 ) {
     val cardinals = listOf(
@@ -258,7 +271,7 @@ private fun DrawScope.drawCardinalAbbreviations(
 
         withTransform({
             translate(tx, ty)
-            rotate(azimuthDegrees, pivot = Offset.Zero)
+            rotate(drawData.azimuthDegrees, pivot = Offset.Zero)
         }) {
             drawText(measured, topLeft = Offset(-measured.size.width / 2f, -measured.size.height / 2f))
         }
@@ -292,11 +305,12 @@ private fun DrawScope.drawCenterText(
     )
 }
 
-private data class CompassDrawData(
+private class CompassDrawData(
     val textMeasurer: TextMeasurer,
     val primaryColor: Color,
     val errorColor: Color,
     val onSurfaceColor: Color,
+    val azimuthDegrees: Float,
     val azimuthTypography: TextStyle,
     val cardinalDirectionTypography: TextStyle,
     val northAbbreviation: String,
