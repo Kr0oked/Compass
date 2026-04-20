@@ -1,0 +1,4 @@
+- Gerçek kuzey işlevi
+- Uygulama ayarları
+- Fransızca çeviri
+- Uygulama başına dil tercihi desteği

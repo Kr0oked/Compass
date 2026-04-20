@@ -1,0 +1,1 @@
+- Sistem ağ konum sağlayıcısı belirtmediğinde meydana gelen çökme sorunu düzeltildi
