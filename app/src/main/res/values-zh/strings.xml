@@ -4,7 +4,6 @@
     <string name="sensor_status">传感器状态</string>
     <string name="lock_screen_rotation">锁定屏幕旋转</string>
     <string name="compass_rose_image_description">将指南针指向北方</string>
-    <string name="device_heading_indicator_image_description">设备指向哪个方向</string>
     <string name="cardinal_direction_north">北</string>
     <string name="cardinal_direction_northeast">东北</string>
     <string name="cardinal_direction_east">东</string>

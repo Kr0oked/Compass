@@ -4,7 +4,6 @@
     <string name="sensor_status">Състояние на сензора</string>
     <string name="lock_screen_rotation">Заключване завъртането на екрана</string>
     <string name="compass_rose_image_description">Компасът е насочен на север</string>
-    <string name="device_heading_indicator_image_description">Показва в коя посока е насочено устройството</string>
     <string name="cardinal_direction_north">Север</string>
     <string name="cardinal_direction_northeast">Североизток</string>
     <string name="cardinal_direction_east">Изток</string>

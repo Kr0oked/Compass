@@ -34,7 +34,6 @@
     <string name="location_error_message">Asukoht pole teada</string>
     <string name="sensor_accuracy_medium">Keskmine täpsus</string>
     <string name="night_mode_no">Hele kujundus</string>
-    <string name="device_heading_indicator_image_description">Näitab suunda, kuhu seade osutab</string>
     <string name="sensor_error_message">Andur puudub või pole saadaval</string>
     <string name="sensor_accuracy_high">Parim võimalik täpsus</string>
     <string name="sensor_status">Anduri olek</string>

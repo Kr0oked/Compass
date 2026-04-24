@@ -4,7 +4,6 @@
     <string name="sensor_status">Sensor holati</string>
     <string name="lock_screen_rotation">Ekranni aylantirish</string>
     <string name="compass_rose_image_description">Shimolga qarab ko‘tarilgan kompas</string>
-    <string name="device_heading_indicator_image_description">Qurilma qaysi tomonga ishora qilayotganini ko‘rsatadi</string>
     <string name="cardinal_direction_north">Shimol</string>
     <string name="cardinal_direction_northeast">Shimoli-sharqiy</string>
     <string name="cardinal_direction_east">Sharq</string>

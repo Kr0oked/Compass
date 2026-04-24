@@ -4,7 +4,6 @@
     <string name="sensor_status">Sensorstatus</string>
     <string name="lock_screen_rotation">Vergrendel schermrotatie</string>
     <string name="compass_rose_image_description">Kompasroos toont naar het magnetische noorde</string>
-    <string name="device_heading_indicator_image_description">Geeft aan in welke richting het apparaat wijst</string>
     <string name="cardinal_direction_north">noorden</string>
     <string name="cardinal_direction_northeast">Noordoosten</string>
     <string name="cardinal_direction_east">Oosten</string>

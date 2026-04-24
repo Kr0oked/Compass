@@ -4,7 +4,6 @@
     <string name="sensor_status">Anturin tila</string>
     <string name="lock_screen_rotation">Lukitse näytön kierto</string>
     <string name="compass_rose_image_description">Kompassiruusu näyttää magneettisen pohjoisen</string>
-    <string name="device_heading_indicator_image_description">Ilmaisee, mihin suuntaan laite osoittaa</string>
     <string name="cardinal_direction_north">Pohjoinen</string>
     <string name="cardinal_direction_northeast">Koillinen</string>
     <string name="cardinal_direction_east">Itä</string>

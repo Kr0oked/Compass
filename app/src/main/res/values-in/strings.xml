@@ -5,7 +5,6 @@
     <string name="cardinal_direction_north_abbreviation">n</string>
     <string name="lock_screen_rotation">Rotasi layar kunci</string>
     <string name="compass_rose_image_description">Kompas naik menunjukkan ke arah utara</string>
-    <string name="device_heading_indicator_image_description">Menunjukkan ke arah mana perangkat mengarah</string>
     <string name="cardinal_direction_north">Utara</string>
     <string name="cardinal_direction_northeast">Timur laut</string>
     <string name="cardinal_direction_east">Timur</string>

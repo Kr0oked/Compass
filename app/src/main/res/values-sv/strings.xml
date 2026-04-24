@@ -4,7 +4,6 @@
     <string name="sensor_status">Sensorstatus</string>
     <string name="lock_screen_rotation">Låsskärmsorientering</string>
     <string name="compass_rose_image_description">Kompassros pekar mot norr</string>
-    <string name="device_heading_indicator_image_description">Indikerar i vilken riktning som enheten pekar mot</string>
     <string name="cardinal_direction_north">Norr</string>
     <string name="cardinal_direction_northeast">Nordost</string>
     <string name="cardinal_direction_east">Ost</string>

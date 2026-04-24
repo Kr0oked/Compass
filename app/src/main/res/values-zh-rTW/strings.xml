@@ -3,7 +3,6 @@
     <string name="compass">指南針</string>
     <string name="lock_screen_rotation">鎖定螢幕旋轉</string>
     <string name="compass_rose_image_description">將指南針指向北方</string>
-    <string name="device_heading_indicator_image_description">裝置指向哪個方向</string>
     <string name="cardinal_direction_north">北</string>
     <string name="cardinal_direction_northeast">東北</string>
     <string name="cardinal_direction_east">東</string>

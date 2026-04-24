@@ -4,7 +4,6 @@
     <string name="sensor_status">センサーの状態</string>
     <string name="lock_screen_rotation">画面の自動回転をロック</string>
     <string name="compass_rose_image_description">コンパスは北を示しています</string>
-    <string name="device_heading_indicator_image_description">デバイスがどの方角を向いているかを示します</string>
     <string name="cardinal_direction_north">北</string>
     <string name="cardinal_direction_northeast">北東</string>
     <string name="cardinal_direction_east">東</string>

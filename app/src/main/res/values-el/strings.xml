@@ -4,7 +4,6 @@
     <string name="sensor_status">Κατάσταση αισθητήρα</string>
     <string name="lock_screen_rotation">Κλείδωμα αυτόματης περιστροφής</string>
     <string name="compass_rose_image_description">Πυξίδα που δείχνει το μαγνητικό βορρά</string>
-    <string name="device_heading_indicator_image_description">Υποδεικνύει σε πια κατεύθυνση δείχνει η συσκευή</string>
     <string name="cardinal_direction_north">Βοράς</string>
     <string name="cardinal_direction_northeast">Βορειοανατολικά</string>
     <string name="cardinal_direction_east">Ανατολή</string>

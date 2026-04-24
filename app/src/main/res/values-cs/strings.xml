@@ -4,7 +4,6 @@
     <string name="sensor_status">Stav senzoru</string>
     <string name="lock_screen_rotation">Uzamknout otáčení obrazovky</string>
     <string name="compass_rose_image_description">Směrová růžice ukazuje na magnetický sever</string>
-    <string name="device_heading_indicator_image_description">Ukazuje, kterým směrem zařízení míří</string>
     <string name="cardinal_direction_north">Sever</string>
     <string name="cardinal_direction_northeast">Severovýchod</string>
     <string name="cardinal_direction_east">Východ</string>

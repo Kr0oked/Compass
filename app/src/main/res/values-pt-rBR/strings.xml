@@ -4,7 +4,6 @@
     <string name="sensor_status">Estado do sensor</string>
     <string name="lock_screen_rotation">Rotação da tela de bloqueio</string>
     <string name="compass_rose_image_description">Bússola apontando para o norte</string>
-    <string name="device_heading_indicator_image_description">Indica em qual direção o dispositivo está apontando</string>
     <string name="cardinal_direction_north">Norte</string>
     <string name="cardinal_direction_northeast">Nordeste</string>
     <string name="cardinal_direction_east">Leste</string>

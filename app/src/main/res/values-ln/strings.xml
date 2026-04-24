@@ -34,7 +34,6 @@
     <string name="location_reload">Kobɔngisa esíká</string>
     <string name="access_location_permission_rationale_title">Tozalí na mpósá ya ndíngisa mpɔ na kokɔta na esíká ozalí</string>
     <string name="lock_screen_rotation">Kofúnga lizólóngá lya emɔ́niseli</string>
-    <string name="device_heading_indicator_image_description">Ezalí kolakísá na ngámbo níni ekelisi yangó ezalí kolakisa</string>
     <string name="sensor_accuracy_unreliable">Mitúya mya eyókeli bazalí ya kotíyela motéma tɛ̌</string>
     <string name="location_loading">Kozela botî sika ya esíká</string>
     <string name="location_error_message">Esíká ezalí tɛ̌</string>
