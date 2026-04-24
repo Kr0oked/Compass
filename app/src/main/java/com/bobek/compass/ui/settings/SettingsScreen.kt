@@ -98,6 +98,7 @@ fun SettingsScreen(
             ) {
                 ListItem(
                     headlineContent = { Text(stringResource(R.string.true_north)) },
+                    supportingContent = { Text(stringResource(R.string.true_north_summary)) },
                     trailingContent = {
                         Switch(
                             checked = trueNorth,
@@ -108,6 +109,7 @@ fun SettingsScreen(
 
                 ListItem(
                     headlineContent = { Text(stringResource(R.string.haptic_feedback)) },
+                    supportingContent = { Text(stringResource(R.string.haptic_feedback_summary)) },
                     trailingContent = {
                         Switch(
                             checked = hapticFeedback,
