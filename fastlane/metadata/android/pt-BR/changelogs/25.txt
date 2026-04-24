@@ -1,0 +1,2 @@
+- Adicionada a trrdução para o Uzbeque
+- Suporte aprimorado para diferentes tamanhos de tela

@@ -1,0 +1,3 @@
+- Vaste lay-outmarge in rand-tot-rand mode
+- Baskische vertaling toegevoegd
+- Nederlandse vertaling verbeterd

@@ -1,0 +1,5 @@
+- Adicionado a exibição de licenças de terceiros
+- Adicionado a tradução para o Tâmil
+- Adicionado a tradução para o Português
+- Adicionado a tradução para o Persa
+- Adicionado a tradução para o Polonês

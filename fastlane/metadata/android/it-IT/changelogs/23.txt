@@ -1,0 +1,3 @@
+- Aggiunta traduzione in Svedese
+- Aggiunta traduzione in Ucraino
+- Aggiunta traduzione in Cinese

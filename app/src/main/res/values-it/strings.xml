@@ -49,4 +49,8 @@
     <string name="ok">OK</string>
     <string name="no_thanks">No, grazie</string>
     <string name="magnetic_north">Nord Magnetico</string>
+    <string name="location_not_present">Impossibile determinare la posizione. Ritorna verso il nord magnetico.</string>
+    <string name="location_reload">Ricarica posizione</string>
+    <string name="third_party_licenses">Licenze di terze parti</string>
+    <string name="third_party_licenses_summary">Licenze delle librerie open source incluse</string>
 </resources>

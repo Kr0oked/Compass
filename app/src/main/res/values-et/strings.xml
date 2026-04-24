@@ -26,7 +26,7 @@
     <string name="access_location_permission_rationale_title">Sinu asukoha tuvastamiseks me vajame õigusi</string>
     <string name="about">Rakenduse teave</string>
     <string name="night_mode_follow_system">Järgi süsteemi kujundust</string>
-    <string name="compass_rose_image_description">Kompassiroos osutab põhja</string>
+    <string name="compass_rose_image_description">Tuulteroos osutab põhja</string>
     <string name="night_mode_yes">Tume kujundus</string>
     <string name="night_mode">Kujundus</string>
     <string name="access_location_permission_denied">Asukoha tuvastamiseks puuduvad õigused. Jätkame suuna näitamist magnetilise põhjasuuna alusel.</string>

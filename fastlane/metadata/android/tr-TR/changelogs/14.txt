@@ -1,0 +1,4 @@
+- Yukarı yuvarlama yaparken her zaman 0° gösterin, asla 360° göstermeyin
+- Norveççe çeviri
+- Tam Fince çeviri
+- Tam Rusça çeviri

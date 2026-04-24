@@ -1,0 +1,3 @@
+- Android 16-ra bertsio-berritu
+- Hebreerazko itzulpena gehitu
+- Kode irekiko lizentziak irekitzean ematen zen errorea zuzendu

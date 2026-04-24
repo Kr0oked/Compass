@@ -1,0 +1,5 @@
+- Pusingan arah kompas
+- Tulisan darjah
+- Tulisan titik arah
+- Mod Siang & Malam
+- Terjemahan Inggeris dan Jerman

@@ -1,0 +1,6 @@
+- Design Material 3
+- Traduzione in Bosniaco
+- Traduzione in Croato
+- Traduzione in Serbo
+- Nuove icone per la modalità notturna
+- Preferenze app persistenti

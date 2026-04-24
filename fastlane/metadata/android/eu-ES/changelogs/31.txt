@@ -1,0 +1,3 @@
+- Sentsorearen zehaztasun ertaina ere errore-kolorearekin nabarmentzen da
+- Portugesezko itzulpena gehitu
+- Italierazko itzulpena hobetu

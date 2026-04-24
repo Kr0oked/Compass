@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="compass">कम्पास</string>
+    <string name="sensor_status">सेन्सर अवस्था</string>
+    <string name="lock_screen_rotation">स्क्रिन रोटेसन लक</string>
+    <string name="compass_rose_image_description">उत्तर दिशा देखाउँदै गरेको कम्पास रोज</string>
+    <string name="device_heading_indicator_image_description">यन्त्र कुन दिशामा फर्किएको छ भन्ने कुरा संकेत गर्दछ</string>
+    <string name="cardinal_direction_north">उत्तर</string>
+    <string name="cardinal_direction_northeast">उत्तर-पूर्वी</string>
+    <string name="cardinal_direction_east">पूर्व</string>
+    <string name="cardinal_direction_southeast">दक्षिण-पूर्वी</string>
+    <string name="cardinal_direction_south">दक्षिण</string>
+    <string name="cardinal_direction_southwest">दक्षिण-पश्चिमी</string>
+    <string name="cardinal_direction_west">पश्चिम</string>
+    <string name="cardinal_direction_northwest">उत्तर-पश्चिमी</string>
+    <string name="cardinal_direction_north_abbreviation">उ</string>
+    <string name="cardinal_direction_east_abbreviation">पू</string>
+    <string name="cardinal_direction_south_abbreviation">द</string>
+</resources>

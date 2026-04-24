@@ -1,0 +1,1 @@
+- Corretti i gradi errati quando lo schermo veniva ruotato di 180°

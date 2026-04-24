@@ -1,0 +1,6 @@
+- Adicionado recusa de dicas
+- Adição da imagem explicativa da calibração do sensor
+- Adicionado a tradução para Húngaro
+- Melhorado a exibição do status do sensor
+- Removido a marcação dedicada ao norte na rosa dos ventos
+- MinSDK incrementado para o 23

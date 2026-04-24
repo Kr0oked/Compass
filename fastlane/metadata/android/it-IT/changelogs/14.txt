@@ -1,0 +1,4 @@
+- Mostra sempre 0° e mai 360° quando arrotonda per eccesso
+- Traduzione Norvegese
+- Traduzione Finlandese completa
+- Traduzione Russa completa

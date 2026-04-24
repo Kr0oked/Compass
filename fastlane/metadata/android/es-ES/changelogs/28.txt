@@ -1,0 +1,4 @@
+- Requisitos permisivos de hardware
+- Añadida la traducción al indonesio
+- Mejorada la traducción al finés
+- Mejorada la traducción al vietnamita

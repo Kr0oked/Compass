@@ -1,0 +1,5 @@
+- Çekçe çeviri
+- Türkçe çeviri
+- Yunanca çeviri
+- Yatay modda daha büyük pusula
+- Tek renkli simge

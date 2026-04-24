@@ -1,0 +1,3 @@
+- Adicionada tradução para o Japonês
+- Adicionada tradução para o Hindu
+- Atualizada a tradução para o Turco

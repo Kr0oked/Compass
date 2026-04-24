@@ -1,0 +1,1 @@
+- Risolto il crash quando la finestra di dialogo informazioni veniva aperta più volte

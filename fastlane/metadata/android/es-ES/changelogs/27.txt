@@ -1,0 +1,6 @@
+- Añadida la traducción al estonio
+- Mejorada la traducción al bosnio
+- Mejorada la traducción al croata
+- Mejorada la traducción al macedonio
+- Mejorada la traducción al ruso
+- Mejorada la traducción al servio

@@ -1,0 +1,2 @@
+- Disponivel a leitura da direção cardinal 
+- Ajustado a acurácia de diálogo

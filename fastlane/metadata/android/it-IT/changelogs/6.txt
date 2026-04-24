@@ -1,0 +1,3 @@
+- Traduzione in Russo
+- Visualizzazione della bussola più ampia
+- Corretta la direzione errata nell'orientamento orizzontale

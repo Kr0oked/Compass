@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="compass">Kompas</string>
+    <string name="sensor_status">Keadaan Pengesan</string>
+    <string name="lock_screen_rotation">Kunci Pusingan Paparan</string>
+    <string name="compass_rose_image_description">Penunjuk kompas sedang menuju ke utara</string>
+    <string name="device_heading_indicator_image_description">Memaparkan pusingan dimana arah kedudukan peranti</string>
+    <string name="cardinal_direction_north">Utara</string>
+</resources>

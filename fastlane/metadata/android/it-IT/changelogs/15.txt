@@ -1,2 +1,2 @@
-- Traduzione in bulgaro
-- Correzione della lingua norvegese
+- Traduzione in Bulgaro
+- Correzione della lingua Norvegese

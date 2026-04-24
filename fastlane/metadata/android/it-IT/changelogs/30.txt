@@ -1,0 +1,4 @@
+- Aggiunta traduzione in Cinese (alfabeto tradizionale Han)
+- Aggiunta traduzione in Lingala
+- Aggiunta traduzione in Pashtu
+- Migliorata traduzione in Ebraico
