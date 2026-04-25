@@ -194,8 +194,11 @@ class MainActivity : ComponentActivity() {
     }
 
     private suspend fun handleLocationPermission() {
-        if (neverRequestedAccessLocationPermission() && accessLocationPermissionDenied()) {
+        if (accessLocationPermissionDenied()) {
+            viewModel.setLocationStatus(LocationStatus.LOADING)
             startAccessLocationPermissionRequestWorkflow()
+        } else {
+            requestLocation()
         }
     }
 
@@ -206,9 +209,10 @@ class MainActivity : ComponentActivity() {
         ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_DENIED
                 && ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_DENIED
 
-    private fun startAccessLocationPermissionRequestWorkflow() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_COARSE_LOCATION)
-            || ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_FINE_LOCATION)
+    private suspend fun startAccessLocationPermissionRequestWorkflow() {
+        if (neverRequestedAccessLocationPermission()
+            && (ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_COARSE_LOCATION)
+                    || ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_FINE_LOCATION))
         ) {
             showRequestNotificationsPermissionRationale()
         } else {
