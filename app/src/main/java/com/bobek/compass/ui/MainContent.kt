@@ -24,6 +24,7 @@ import android.net.Uri
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
@@ -67,10 +68,13 @@ fun MainContent(
         AppNightMode.FOLLOW_SYSTEM -> isSystemInDarkTheme()
     }
 
-    LocalActivity.current?.requestedOrientation = if (screenOrientationLocked) {
-        ActivityInfo.SCREEN_ORIENTATION_LOCKED
-    } else {
-        ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+    val activity = LocalActivity.current
+    SideEffect {
+        activity?.requestedOrientation = if (screenOrientationLocked) {
+            ActivityInfo.SCREEN_ORIENTATION_LOCKED
+        } else {
+            ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        }
     }
 
     AppTheme(darkTheme = isDarkTheme) {

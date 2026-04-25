@@ -102,9 +102,10 @@ fun SettingsScreen(
                     trailingContent = {
                         Switch(
                             checked = trueNorth,
-                            onCheckedChange = { viewModel.setTrueNorth(it) }
+                            onCheckedChange = null
                         )
-                    }
+                    },
+                    modifier = Modifier.clickable { viewModel.setTrueNorth(!trueNorth) }
                 )
 
                 ListItem(
@@ -113,9 +114,10 @@ fun SettingsScreen(
                     trailingContent = {
                         Switch(
                             checked = hapticFeedback,
-                            onCheckedChange = { viewModel.setHapticFeedback(it) }
+                            onCheckedChange = null
                         )
-                    }
+                    },
+                    modifier = Modifier.clickable { viewModel.setHapticFeedback(!hapticFeedback) }
                 )
             }
 
