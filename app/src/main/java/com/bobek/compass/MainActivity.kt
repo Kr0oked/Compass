@@ -42,7 +42,9 @@ import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.location.LocationManagerCompat
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.bobek.compass.data.AppError
 import com.bobek.compass.data.DisplayRotation
 import com.bobek.compass.data.LocationStatus
@@ -87,8 +89,10 @@ class MainActivity : ComponentActivity() {
         locationManager = getSystemService(LocationManager::class.java)
 
         lifecycleScope.launch {
-            settingsRepository.getTrueNorth().collect { trueNorth ->
-                if (trueNorth) handleLocationPermission()
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.getTrueNorthFlow().collect { trueNorth ->
+                    if (trueNorth) handleLocationPermission()
+                }
             }
         }
     }
@@ -97,7 +101,6 @@ class MainActivity : ComponentActivity() {
         super.onResume()
         if (!intent.getBooleanExtra(OPTION_INSTRUMENTED_TEST, false)) {
             registerSensorListener()
-            requestLocation()
         }
     }
 
@@ -273,12 +276,13 @@ class MainActivity : ComponentActivity() {
         }
 
     fun requestLocation() {
+        if (!viewModel.getTrueNorthFlow().value) return
+
         val locationManager = locationManager ?: run {
             Log.w(TAG, "LocationManager not present")
             showErrorDialog(AppError.LOCATION_MANAGER_NOT_PRESENT)
             return
         }
-        if (!viewModel.getTrueNorthFlow().value) return
 
         locationListener?.let { locationManager.removeUpdates(it) }
         locationListener = null
