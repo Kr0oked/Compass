@@ -27,10 +27,11 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.location.Location
+import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
-import android.os.CancellationSignal
+import android.os.Looper
 import android.util.Log
 import android.view.Surface
 import androidx.activity.ComponentActivity
@@ -70,7 +71,7 @@ class MainActivity : ComponentActivity() {
 
     private var sensorManager: SensorManager? = null
     private var locationManager: LocationManager? = null
-    private var locationRequestCancellationSignal: CancellationSignal? = null
+    private var locationListener: LocationListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -143,7 +144,8 @@ class MainActivity : ComponentActivity() {
     override fun onPause() {
         super.onPause()
         sensorManager?.unregisterListener(compassSensorEventListener)
-        locationRequestCancellationSignal?.cancel()
+        locationListener?.let { locationManager?.removeUpdates(it) }
+        locationListener = null
     }
 
     private fun setSensorAccuracy(accuracy: Int) {
@@ -311,14 +313,22 @@ class MainActivity : ComponentActivity() {
         }
 
         viewModel.setLocationStatus(LocationStatus.LOADING)
-        locationRequestCancellationSignal?.cancel()
-        locationRequestCancellationSignal = CancellationSignal()
-        LocationManagerCompat.getCurrentLocation(
-            locationManager,
-            provider,
-            locationRequestCancellationSignal,
-            ContextCompat.getMainExecutor(this)
-        ) { location -> setLocation(location) }
+        locationListener?.let { locationManager.removeUpdates(it) }
+        val listener = object : LocationListener {
+            override fun onLocationChanged(location: Location) {
+                locationManager.removeUpdates(this)
+                locationListener = null
+                setLocation(location)
+            }
+
+            override fun onProviderDisabled(provider: String) {
+                locationManager.removeUpdates(this)
+                locationListener = null
+                viewModel.setLocationStatus(LocationStatus.NOT_PRESENT)
+            }
+        }
+        locationListener = listener
+        locationManager.requestLocationUpdates(provider, 0L, 0f, listener, Looper.getMainLooper())
     }
 
     private fun showErrorDialog(appError: AppError) {
@@ -344,8 +354,8 @@ class MainActivity : ComponentActivity() {
         else -> null
     }
 
-    private fun setLocation(location: Location?) {
+    private fun setLocation(location: Location) {
         viewModel.setLocation(location)
-        viewModel.setLocationStatus(if (location != null) LocationStatus.PRESENT else LocationStatus.NOT_PRESENT)
+        viewModel.setLocationStatus(LocationStatus.PRESENT)
     }
 }
