@@ -65,8 +65,8 @@ import androidx.compose.ui.unit.dp
 import com.bobek.compass.ComposeCompassViewModel
 import com.bobek.compass.ICompassViewModel
 import com.bobek.compass.R
-import com.bobek.compass.ui.TestConstants
 import com.bobek.compass.data.LocationStatus
+import com.bobek.compass.ui.TestConstants
 
 @Composable
 @PreviewScreenSizes
@@ -198,9 +198,7 @@ private fun CompassContentPortrait(
         Spacer(modifier = Modifier.height(16.dp))
 
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(100.dp),
+            modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.Center
         ) {
             if (trueNorth) {
