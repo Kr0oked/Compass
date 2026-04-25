@@ -88,7 +88,7 @@ class MainActivity : ComponentActivity() {
 
         lifecycleScope.launch {
             settingsRepository.getTrueNorth().collect { trueNorth ->
-                setupTrueNorthFunctionality(trueNorth)
+                if (trueNorth) handleLocationPermission()
             }
         }
     }
@@ -193,12 +193,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private suspend fun setupTrueNorthFunctionality(trueNorth: Boolean?) {
-        if (trueNorth == true) {
-            handleLocationPermission()
-        }
-    }
-
     private suspend fun handleLocationPermission() {
         if (neverRequestedAccessLocationPermission() && accessLocationPermissionDenied()) {
             startAccessLocationPermissionRequestWorkflow()
@@ -262,23 +256,14 @@ class MainActivity : ComponentActivity() {
 
     private fun registerAccessLocationPermissionRequest() =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            when {
-                permissions[ACCESS_FINE_LOCATION] == true -> {
-                    Log.i(TAG, "Permission ACCESS_FINE_LOCATION granted")
-                    requestLocation()
-                }
-
-                permissions[ACCESS_COARSE_LOCATION] == true -> {
-                    Log.i(TAG, "Permission ACCESS_COARSE_LOCATION granted")
-                    requestLocation()
-                }
-
-                else -> {
-                    Log.i(TAG, "Location permission denied")
-                    viewModel.setLocationStatus(LocationStatus.PERMISSION_DENIED)
-                    lifecycleScope.launch {
-                        settingsRepository.setAccessLocationPermissionRequested(true)
-                    }
+            if (permissions.values.any { it }) {
+                Log.i(TAG, "Location permission granted")
+                requestLocation()
+            } else {
+                Log.i(TAG, "Location permission denied")
+                viewModel.setLocationStatus(LocationStatus.PERMISSION_DENIED)
+                lifecycleScope.launch {
+                    settingsRepository.setAccessLocationPermissionRequested(true)
                 }
             }
         }
@@ -290,6 +275,9 @@ class MainActivity : ComponentActivity() {
             return
         }
         if (!viewModel.getTrueNorthFlow().value) return
+
+        locationListener?.let { locationManager.removeUpdates(it) }
+        locationListener = null
 
         if (ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED
             && ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED
@@ -313,22 +301,23 @@ class MainActivity : ComponentActivity() {
         }
 
         viewModel.setLocationStatus(LocationStatus.LOADING)
-        locationListener?.let { locationManager.removeUpdates(it) }
-        val listener = object : LocationListener {
-            override fun onLocationChanged(location: Location) {
-                locationManager.removeUpdates(this)
-                locationListener = null
-                setLocation(location)
-            }
-
-            override fun onProviderDisabled(provider: String) {
-                locationManager.removeUpdates(this)
-                locationListener = null
-                viewModel.setLocationStatus(LocationStatus.NOT_PRESENT)
-            }
-        }
+        val listener = createLocationListener(locationManager)
         locationListener = listener
         locationManager.requestLocationUpdates(provider, 0L, 0f, listener, Looper.getMainLooper())
+    }
+
+    private fun createLocationListener(locationManager: LocationManager) = object : LocationListener {
+        override fun onLocationChanged(location: Location) {
+            locationManager.removeUpdates(this)
+            locationListener = null
+            setLocation(location)
+        }
+
+        override fun onProviderDisabled(provider: String) {
+            locationManager.removeUpdates(this)
+            locationListener = null
+            viewModel.setLocationStatus(LocationStatus.NOT_PRESENT)
+        }
     }
 
     private fun showErrorDialog(appError: AppError) {
