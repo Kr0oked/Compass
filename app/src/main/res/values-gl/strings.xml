@@ -4,7 +4,6 @@
     <string name="error">Erro</string>
     <string name="sensor_accuracy_unreliable">Os valores do sensor non son fiables</string>
     <string name="compass_rose_image_description">Rosa dos ventos cara ao norte</string>
-    <string name="device_heading_indicator_image_description">Indica en que dirección apunta o dispositivo</string>
     <string name="cardinal_direction_north">Norte</string>
     <string name="cardinal_direction_northeast">Nordeste</string>
     <string name="cardinal_direction_east">Leste</string>

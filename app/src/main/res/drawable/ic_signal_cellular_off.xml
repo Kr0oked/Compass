@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Material Symbols
+  ~ Copyright 2024 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="24dp"
+        android:height="24dp"
+        android:tint="?attr/colorControlNormal"
+        android:viewportWidth="960"
+        android:viewportHeight="960">
+    <path
+            android:fillColor="@android:color/white"
+            android:pathData="M273,800L687,800L480,593L273,800ZM831,944L767,880L80,880L424,536L96,209L152,152L888,888L831,944ZM880,767L800,687L800,273L593,480L536,424L880,80L880,767ZM697,583L697,583L697,583ZM584,696L584,696L584,696Z" />
+</vector>

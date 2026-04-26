@@ -4,7 +4,6 @@
     <string name="sensor_status">உணரி நிலை</string>
     <string name="lock_screen_rotation">பூட்டுத் திரைச் சுழற்சி</string>
     <string name="compass_rose_image_description">திசைகாட்டி வடக்கு நோக்கிக் காட்டுகிறது</string>
-    <string name="device_heading_indicator_image_description">கருவி எந்த திசையில் சுட்டிக்காட்டுகிறது என்பதை குறிக்கிறது</string>
     <string name="cardinal_direction_north">வடக்கு</string>
     <string name="cardinal_direction_northeast">வடகிழக்கு</string>
     <string name="cardinal_direction_east">கிழக்கு</string>

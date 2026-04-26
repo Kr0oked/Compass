@@ -4,7 +4,6 @@
     <string name="sensor_status">Sensör durumu</string>
     <string name="lock_screen_rotation">Kilit ekranı döndürmesi</string>
     <string name="compass_rose_image_description">Manyetik kuzeyi gösteren pusula gülü</string>
-    <string name="device_heading_indicator_image_description">Cihazın baktığı yönü gösterir</string>
     <string name="cardinal_direction_north">Kuzey</string>
     <string name="cardinal_direction_northeast">Kuzeydoğu</string>
     <string name="cardinal_direction_east">Doğu</string>

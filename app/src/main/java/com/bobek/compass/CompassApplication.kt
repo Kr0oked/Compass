@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2023 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2026 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,16 +19,7 @@
 package com.bobek.compass
 
 import android.app.Application
-import com.bobek.compass.preference.PreferenceMigrations
-import com.google.android.material.color.DynamicColors
+import dagger.hilt.android.HiltAndroidApp
 
-class CompassApplication : Application() {
-
-    override fun onCreate() {
-        super.onCreate()
-        DynamicColors.applyToActivitiesIfAvailable(this)
-
-        val preferenceMigrations = PreferenceMigrations(applicationContext)
-        preferenceMigrations.migrateV5()
-    }
-}
+@HiltAndroidApp
+class CompassApplication : Application()

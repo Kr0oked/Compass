@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2025 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2026 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,24 +18,27 @@
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
     id("com.google.android.gms.oss-licenses-plugin")
-    id("kotlin-kapt")
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(11)
     }
 }
 
 android {
     namespace = "com.bobek.compass"
-    compileSdk = 36
+    compileSdk {
+        version = release(36)
+    }
 
     defaultConfig {
         applicationId = "com.bobek.compass"
-        minSdk = 23
+        minSdk = 24
         targetSdk = 36
         versionCode = 31
         versionName = "1.14.11"
@@ -58,21 +61,10 @@ android {
     }
     buildFeatures {
         buildConfig = true
-        dataBinding = true
+        compose = true
     }
     androidResources {
         generateLocaleConfig = true
-    }
-    testOptions {
-        managedDevices {
-            devices {
-                maybeCreate<com.android.build.api.dsl.ManagedVirtualDevice>("pixel9api34").apply {
-                    device = "Pixel 9"
-                    apiLevel = 34
-                    systemImageSource = "aosp"
-                }
-            }
-        }
     }
     packaging {
         resources {
@@ -82,19 +74,44 @@ android {
     lint {
         warning += "MissingTranslation"
     }
+    testOptions {
+        unitTests {
+            isReturnDefaultValues = true
+        }
+    }
 }
 
 dependencies {
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.androidx.preference.ktx)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material3.adaptive.navigation.suite)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.graphics)
+    implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.service)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.hilt.android)
+    implementation(libs.guava)
     implementation(libs.material)
     implementation(libs.oss.licenses.parser)
 
-    testImplementation(libs.junit)
+    ksp(libs.hilt.compiler)
 
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
+
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.rules)
     androidTestImplementation(libs.screengrab)
+
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }

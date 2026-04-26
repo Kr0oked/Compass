@@ -4,7 +4,6 @@
     <string name="sensor_status">حالة المستشعر</string>
     <string name="lock_screen_rotation">قفل دوران الشاشة</string>
     <string name="compass_rose_image_description">وردة البوصلة تشير إلى الشمال</string>
-    <string name="device_heading_indicator_image_description">تدل على الإتجاه الذي يشير إليه الجهاز</string>
     <string name="cardinal_direction_north">شمال</string>
     <string name="cardinal_direction_northeast">شمال شرق</string>
     <string name="cardinal_direction_east">شرق</string>

@@ -4,7 +4,6 @@
     <string name="sensor_status">État du capteur</string>
     <string name="lock_screen_rotation">Bloquer la rotation de l\'écran</string>
     <string name="compass_rose_image_description">Rose des vents indiquant le nord</string>
-    <string name="device_heading_indicator_image_description">Indique dans quelle direction l\'appareil est orienté</string>
     <string name="cardinal_direction_north">Nord</string>
     <string name="cardinal_direction_northeast">Nord-Est</string>
     <string name="cardinal_direction_east">Est</string>

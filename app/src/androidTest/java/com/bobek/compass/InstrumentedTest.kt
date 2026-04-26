@@ -1,6 +1,6 @@
 /*
  * This file is part of Compass.
- * Copyright (C) 2024 Philipp Bobek <philipp.bobek@mailbox.org>
+ * Copyright (C) 2026 Philipp Bobek <philipp.bobek@mailbox.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,72 +18,53 @@
 
 package com.bobek.compass
 
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
+import androidx.annotation.StringRes
+import androidx.compose.ui.test.assertTextEquals
+import androidx.compose.ui.test.performClick
 import androidx.test.filters.LargeTest
-import com.bobek.compass.model.SensorAccuracy
-import org.hamcrest.Matchers.not
+import com.bobek.compass.data.SensorAccuracy
+import org.junit.Before
 import org.junit.Test
 
 @LargeTest
 class InstrumentedTest : AbstractAndroidTest() {
 
-    init {
-        intent.putExtra(OPTION_INSTRUMENTED_TEST, true)
+    @Before
+    fun setup() {
+        waitUntilCompassIsDisplayed()
     }
 
     @Test
     fun compass() {
-        onView(withId(R.id.status_degrees_text)).check(matches(not(isDisplayed())))
-
         setAzimuth(0f)
-        Thread.sleep(100)
-        onView(withId(R.id.status_degrees_text))
-            .check(matches(isDisplayed()))
-            .check(matches(withText("0°")))
+        onCompassRose().assertStateDescription("0°")
 
         setAzimuth(180f)
-        Thread.sleep(100)
-        onView(withId(R.id.status_degrees_text))
-            .check(matches(isDisplayed()))
-            .check(matches(withText("180°")))
+        onCompassRose().assertStateDescription("180°")
     }
 
     @Test
     fun sensorStatusDialog() {
-        onView(withId(R.id.action_sensor_status))
-            .check(matches(isDisplayed()))
-            .perform(click())
+        onSensorStatusButton().performClick()
 
         setAccuracy(SensorAccuracy.NO_CONTACT)
-        onView(withId(R.id.sensor_accuracy_text))
-            .check(matches(isDisplayed()))
-            .check(matches(withText(R.string.sensor_accuracy_no_contact)))
+        assertSensorAccuracyText(R.string.sensor_accuracy_no_contact)
 
         setAccuracy(SensorAccuracy.UNRELIABLE)
-        onView(withId(R.id.sensor_accuracy_text))
-            .check(matches(isDisplayed()))
-            .check(matches(withText(R.string.sensor_accuracy_unreliable)))
+        assertSensorAccuracyText(R.string.sensor_accuracy_unreliable)
 
         setAccuracy(SensorAccuracy.LOW)
-        onView(withId(R.id.sensor_accuracy_text))
-            .check(matches(isDisplayed()))
-            .check(matches(withText(R.string.sensor_accuracy_low)))
+        assertSensorAccuracyText(R.string.sensor_accuracy_low)
 
         setAccuracy(SensorAccuracy.MEDIUM)
-        onView(withId(R.id.sensor_accuracy_text))
-            .check(matches(isDisplayed()))
-            .check(matches(withText(R.string.sensor_accuracy_medium)))
+        assertSensorAccuracyText(R.string.sensor_accuracy_medium)
 
         setAccuracy(SensorAccuracy.HIGH)
-        onView(withId(R.id.sensor_accuracy_text))
-            .check(matches(isDisplayed()))
-            .check(matches(withText(R.string.sensor_accuracy_high)))
+        assertSensorAccuracyText(R.string.sensor_accuracy_high)
+    }
 
-        onView(withText(R.string.ok)).perform(click())
+    private fun assertSensorAccuracyText(@StringRes resourceId: Int) {
+        val expectedText = composeTestRule.activity.getString(resourceId)
+        onSensorAccuracyText().assertTextEquals(expectedText)
     }
 }

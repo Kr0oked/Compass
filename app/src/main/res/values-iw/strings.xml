@@ -45,7 +45,6 @@
     <string name="ok">בסדר</string>
     <string name="no_thanks">לא תודה</string>
     <string name="compass">מצפן</string>
-    <string name="device_heading_indicator_image_description">מציין לאיזה כיוון המכשיר מכוון</string>
     <string name="cardinal_direction_north_abbreviation">N</string>
     <string name="cardinal_direction_southeast">דרום מזרח</string>
     <string name="version">גירסא</string>

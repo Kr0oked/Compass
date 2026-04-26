@@ -4,7 +4,6 @@
     <string name="sensor_status">وضعیت سنسور</string>
     <string name="lock_screen_rotation">قفل کردن چرخش صفحه</string>
     <string name="compass_rose_image_description">جهت قطب‌نما به سمت شمال</string>
-    <string name="device_heading_indicator_image_description">نشان می‌دهد که دستگاه به کدام جهت اشاره دارد</string>
     <string name="cardinal_direction_north">شمال</string>
     <string name="cardinal_direction_northeast">شمال شرقی</string>
     <string name="cardinal_direction_east">شرق</string>

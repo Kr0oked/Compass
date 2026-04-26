@@ -2,7 +2,6 @@
 <resources>
     <string name="sensor_status">Sentsorearen egoera</string>
     <string name="compass_rose_image_description">Iparrorratzaren arrosa iparra erakusten</string>
-    <string name="device_heading_indicator_image_description">Gailua zein noranzkotara begira dagoen adierazten du</string>
     <string name="cardinal_direction_north">Iparra</string>
     <string name="cardinal_direction_west">Mendebaldea</string>
     <string name="cardinal_direction_northwest">Ipar-mendebaldea</string>

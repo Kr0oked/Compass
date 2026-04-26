@@ -20,96 +20,202 @@ package com.bobek.compass
 
 import android.Manifest.permission.ACCESS_COARSE_LOCATION
 import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager.PERMISSION_DENIED
+import android.content.pm.PackageManager.PERMISSION_GRANTED
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
+import android.os.Build
 import android.os.Bundle
+import android.os.Looper
 import android.util.Log
+import android.view.Surface
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate.setDefaultNightMode
+import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import com.bobek.compass.databinding.ActivityMainBinding
-import com.bobek.compass.model.AppNightMode
-import com.bobek.compass.preference.PreferenceStore
+import androidx.core.location.LocationManagerCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.bobek.compass.data.AppError
+import com.bobek.compass.data.DisplayRotation
+import com.bobek.compass.data.LocationStatus
+import com.bobek.compass.data.RotationVector
+import com.bobek.compass.data.SensorAccuracy
+import com.bobek.compass.settings.SettingsRepository
+import com.bobek.compass.ui.MainContent
+import com.bobek.compass.util.MathUtils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
+import jakarta.inject.Inject
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 private const val TAG = "MainActivity"
+const val OPTION_INSTRUMENTED_TEST = "OPTION_INSTRUMENTED_TEST"
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity : ComponentActivity() {
 
+    internal val viewModel: CompassViewModel by viewModels()
     private val accessLocationPermissionRequest = registerAccessLocationPermissionRequest()
 
-    private lateinit var binding: ActivityMainBinding
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var preferenceStore: PreferenceStore
+    @Inject
+    lateinit var settingsRepository: SettingsRepository
+
+    private var sensorManager: SensorManager? = null
+    private var locationManager: LocationManager? = null
+    private var locationListener: LocationListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            MainContent(
+                viewModel = viewModel,
+                onLocationReload = ::requestLocation
+            )
+        }
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        setSupportActionBar(binding.toolbar)
+        sensorManager = getSystemService(SensorManager::class.java)
+        locationManager = getSystemService(LocationManager::class.java)
 
-        val navController = getNavController()
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        initPreferenceStore()
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.getTrueNorthFlow().collect { trueNorth ->
+                    if (trueNorth) handleLocationPermission()
+                }
+            }
+        }
     }
 
-    private fun initPreferenceStore() {
-        preferenceStore = PreferenceStore(this, lifecycle)
-        preferenceStore.nightMode.observe(this) { setNightMode(it) }
-        preferenceStore.screenOrientationLocked.observe(this) { setScreenRotationMode(it) }
-        preferenceStore.trueNorth.observe(this) { setupTrueNorthFunctionality(it) }
+    override fun onResume() {
+        super.onResume()
+        if (!intent.getBooleanExtra(OPTION_INSTRUMENTED_TEST, false)) {
+            registerSensorListener()
+        }
     }
 
-    private fun setNightMode(appNightMode: AppNightMode) {
-        Log.d(TAG, "Setting night mode to $appNightMode")
-        setDefaultNightMode(appNightMode.systemValue)
-    }
+    private fun registerSensorListener() {
+        val sensorManager = sensorManager ?: run {
+            Log.w(TAG, "SensorManager not present")
+            showErrorDialog(AppError.SENSOR_MANAGER_NOT_PRESENT)
+            return
+        }
 
-    private fun setScreenRotationMode(screenOrientationLocked: Boolean) {
-        if (screenOrientationLocked) {
-            setScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED)
+        val rotationVectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
+        if (rotationVectorSensor != null) {
+            val success = sensorManager.registerListener(
+                compassSensorEventListener,
+                rotationVectorSensor,
+                SensorManager.SENSOR_DELAY_FASTEST
+            )
+            if (!success) {
+                Log.w(TAG, "Could not enable rotation vector sensor")
+                showErrorDialog(AppError.ROTATION_VECTOR_SENSOR_FAILED)
+            }
         } else {
-            setScreenOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
+            Log.w(TAG, "Rotation vector sensor not available")
+            showErrorDialog(AppError.ROTATION_VECTOR_SENSOR_NOT_AVAILABLE)
+        }
+
+        val magneticFieldSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
+        if (magneticFieldSensor != null) {
+            val success = sensorManager.registerListener(
+                compassSensorEventListener,
+                magneticFieldSensor,
+                SensorManager.SENSOR_DELAY_NORMAL
+            )
+            if (!success) {
+                Log.w(TAG, "Could not enable magnetic field sensor")
+                showErrorDialog(AppError.MAGNETIC_FIELD_SENSOR_FAILED)
+            }
+        } else {
+            Log.w(TAG, "Magnetic field sensor not available")
+            showErrorDialog(AppError.MAGNETIC_FIELD_SENSOR_NOT_AVAILABLE)
         }
     }
 
-    private fun setScreenOrientation(screenOrientation: Int) {
-        Log.d(TAG, "Setting requested orientation to value $screenOrientation")
-        requestedOrientation = screenOrientation
+    override fun onPause() {
+        super.onPause()
+        sensorManager?.unregisterListener(compassSensorEventListener)
+        locationListener?.let { locationManager?.removeUpdates(it) }
+        locationListener = null
     }
 
-    private fun setupTrueNorthFunctionality(trueNorth: Boolean?) {
-        if (trueNorth == true) {
-            handleLocationPermission()
+    private fun setSensorAccuracy(accuracy: Int) {
+        val sensorAccuracy = when (accuracy) {
+            SensorManager.SENSOR_STATUS_NO_CONTACT -> SensorAccuracy.NO_CONTACT
+            SensorManager.SENSOR_STATUS_UNRELIABLE -> SensorAccuracy.UNRELIABLE
+            SensorManager.SENSOR_STATUS_ACCURACY_LOW -> SensorAccuracy.LOW
+            SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM -> SensorAccuracy.MEDIUM
+            SensorManager.SENSOR_STATUS_ACCURACY_HIGH -> SensorAccuracy.HIGH
+            else -> SensorAccuracy.NO_CONTACT
+        }
+        viewModel.setSensorAccuracy(sensorAccuracy)
+    }
+
+    private fun updateCompass(event: SensorEvent) {
+        val rotationVector = RotationVector(event.values[0], event.values[1], event.values[2])
+        val displayRotation = getDisplayRotation()
+        val magneticAzimuth = MathUtils.calculateAzimuth(rotationVector, displayRotation)
+
+        if (viewModel.getTrueNorthFlow().value) {
+            val location = viewModel.getLocationFlow().value
+            if (location != null) {
+                val magneticDeclination = MathUtils.getMagneticDeclination(location)
+                viewModel.setAzimuth(magneticAzimuth + magneticDeclination)
+            } else {
+                viewModel.setAzimuth(magneticAzimuth)
+            }
+        } else {
+            viewModel.setAzimuth(magneticAzimuth)
         }
     }
 
-    private fun handleLocationPermission() {
-        if (neverRequestedAccessLocationPermission() && accessLocationPermissionDenied()) {
+    @Suppress("DEPRECATION")
+    private fun getDisplayRotation(): DisplayRotation {
+        val rotation = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            display?.rotation ?: Surface.ROTATION_0
+        } else {
+            windowManager.defaultDisplay.rotation
+        }
+        return when (rotation) {
+            Surface.ROTATION_90 -> DisplayRotation.ROTATION_90
+            Surface.ROTATION_180 -> DisplayRotation.ROTATION_180
+            Surface.ROTATION_270 -> DisplayRotation.ROTATION_270
+            else -> DisplayRotation.ROTATION_0
+        }
+    }
+
+    private suspend fun handleLocationPermission() {
+        if (accessLocationPermissionDenied()) {
+            viewModel.setLocationStatus(LocationStatus.LOADING)
             startAccessLocationPermissionRequestWorkflow()
+        } else {
+            requestLocation()
         }
     }
 
-    private fun neverRequestedAccessLocationPermission() =
-        preferenceStore.accessLocationPermissionRequested.value != true
+    private suspend fun neverRequestedAccessLocationPermission(): Boolean =
+        settingsRepository.getAccessLocationPermissionRequested().first().not()
 
     private fun accessLocationPermissionDenied() =
         ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_DENIED
                 && ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_DENIED
 
-    private fun startAccessLocationPermissionRequestWorkflow() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_COARSE_LOCATION)
-            || ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_FINE_LOCATION)
+    private suspend fun startAccessLocationPermissionRequestWorkflow() {
+        if (neverRequestedAccessLocationPermission()
+            && (ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_COARSE_LOCATION)
+                    || ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_FINE_LOCATION))
         ) {
             showRequestNotificationsPermissionRationale()
         } else {
@@ -128,7 +234,9 @@ class MainActivity : AppCompatActivity() {
             }
             .setNegativeButton(R.string.no_thanks) { dialog, _ ->
                 Log.i(TAG, "Continuing without requesting location permission")
-                preferenceStore.accessLocationPermissionRequested.value = true
+                lifecycleScope.launch {
+                    settingsRepository.setAccessLocationPermissionRequested(true)
+                }
                 dialog.dismiss()
             }
             .show()
@@ -139,34 +247,112 @@ class MainActivity : AppCompatActivity() {
         accessLocationPermissionRequest.launch(arrayOf(ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION))
     }
 
+    private val compassSensorEventListener = object : SensorEventListener {
+        override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
+            if (sensor.type == Sensor.TYPE_MAGNETIC_FIELD) {
+                setSensorAccuracy(accuracy)
+            }
+        }
+
+        override fun onSensorChanged(event: SensorEvent) {
+            if (event.sensor.type == Sensor.TYPE_ROTATION_VECTOR) {
+                updateCompass(event)
+            }
+        }
+    }
+
     private fun registerAccessLocationPermissionRequest() =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            when {
-                permissions[ACCESS_FINE_LOCATION] == true -> {
-                    Log.i(TAG, "Permission ACCESS_FINE_LOCATION granted")
-                }
-
-                permissions[ACCESS_COARSE_LOCATION] == true -> {
-                    Log.i(TAG, "Permission ACCESS_COARSE_LOCATION granted")
-                }
-
-                else -> {
-                    Log.i(TAG, "Location permission denied")
-                    preferenceStore.accessLocationPermissionRequested.value = true
+            if (permissions.values.any { it }) {
+                Log.i(TAG, "Location permission granted")
+                requestLocation()
+            } else {
+                Log.i(TAG, "Location permission denied")
+                viewModel.setLocationStatus(LocationStatus.PERMISSION_DENIED)
+                lifecycleScope.launch {
+                    settingsRepository.setAccessLocationPermissionRequested(true)
                 }
             }
         }
 
+    fun requestLocation() {
+        if (!viewModel.getTrueNorthFlow().value) return
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = getNavController()
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+        val locationManager = locationManager ?: run {
+            Log.w(TAG, "LocationManager not present")
+            showErrorDialog(AppError.LOCATION_MANAGER_NOT_PRESENT)
+            return
+        }
+
+        locationListener?.let { locationManager.removeUpdates(it) }
+        locationListener = null
+
+        if (ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED
+            && ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED
+        ) {
+            viewModel.setLocationStatus(LocationStatus.PERMISSION_DENIED)
+            return
+        }
+
+        if (!LocationManagerCompat.isLocationEnabled(locationManager)) {
+            Log.w(TAG, "Location is disabled")
+            viewModel.setLocationStatus(LocationStatus.NOT_PRESENT)
+            showErrorDialog(AppError.LOCATION_DISABLED)
+            return
+        }
+
+        val provider = getBestLocationProvider() ?: run {
+            Log.w(TAG, "No LocationProvider available")
+            viewModel.setLocationStatus(LocationStatus.NOT_PRESENT)
+            showErrorDialog(AppError.NO_LOCATION_PROVIDER_AVAILABLE)
+            return
+        }
+
+        viewModel.setLocationStatus(LocationStatus.LOADING)
+        val listener = createLocationListener(locationManager)
+        locationListener = listener
+        locationManager.requestLocationUpdates(provider, 0L, 0f, listener, Looper.getMainLooper())
     }
 
-    private fun getNavController(): NavController {
-        val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
-        return navHostFragment.navController
+    private fun createLocationListener(locationManager: LocationManager) = object : LocationListener {
+        override fun onLocationChanged(location: Location) {
+            locationManager.removeUpdates(this)
+            locationListener = null
+            setLocation(location)
+        }
+
+        override fun onProviderDisabled(provider: String) {
+            locationManager.removeUpdates(this)
+            locationListener = null
+            viewModel.setLocationStatus(LocationStatus.NOT_PRESENT)
+        }
+    }
+
+    private fun showErrorDialog(appError: AppError) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.error)
+            .setIcon(R.drawable.ic_error)
+            .setMessage(getString(R.string.error_message, getString(appError.messageId), appError.name))
+            .setPositiveButton(R.string.ok) { dialog, _ -> dialog.dismiss() }
+            .show()
+    }
+
+    private fun getBestLocationProvider(): String? = when {
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+                && ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED ->
+            LocationManager.FUSED_PROVIDER
+
+        ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED ->
+            LocationManager.GPS_PROVIDER
+
+        ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED ->
+            LocationManager.NETWORK_PROVIDER
+
+        else -> null
+    }
+
+    private fun setLocation(location: Location) {
+        viewModel.setLocation(location)
+        viewModel.setLocationStatus(LocationStatus.PRESENT)
     }
 }

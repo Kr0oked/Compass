@@ -4,13 +4,14 @@ platform :android do
   desc "Runs all the tests"
   lane :test do
     gradle(task: "test")
-    gradle(task: "pixel9api34Check")
+    gradle(task: "connectedAndroidTest")
   end
 
   desc "Build a new APK"
   lane :apk do
+    gradle(task: "clean")
     gradle(
-      task: "clean assembleRelease",
+      task: "assembleRelease",
       print_command: false,
       properties: {
         "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],
@@ -23,8 +24,9 @@ platform :android do
 
   desc "Deploy a new version to the Google Play"
   lane :deploy do
+    gradle(task: "clean")
     gradle(
-      task: "clean bundleRelease",
+      task: "bundleRelease",
       print_command: false,
       properties: {
         "android.injected.signing.store.file" => ENV["KEYSTORE_FILE"],

@@ -4,7 +4,6 @@
     <string name="sensor_status">Status senzora</string>
     <string name="lock_screen_rotation">Zaključaj rotaciju ekrana</string>
     <string name="compass_rose_image_description">Ruža kompasa pokazuje prema magnetnom sjeveru</string>
-    <string name="device_heading_indicator_image_description">Označava u kom smjeru uređaj pokazuje</string>
     <string name="cardinal_direction_north">Sjever</string>
     <string name="cardinal_direction_northeast">Sjeveroistok</string>
     <string name="cardinal_direction_east">Istok</string>
