@@ -1,6 +1,6 @@
 [versions]
 activityCompose = "1.13.0"
-agp = "9.1.0"
+agp = "9.2.0"
 composeBom = "2026.03.00"
 coreKtx = "1.18.0"
 datastore = "1.2.1"
