@@ -45,7 +45,7 @@ class DataStoreSettingsRepository @Inject constructor(
     }
 
     override fun getTrueNorth(): Flow<Boolean> = preferencesDataStore.data
-        .map { it[TRUE_NORTH_KEY] ?: true }
+        .map { it[TRUE_NORTH_KEY] ?: false }
 
     override suspend fun setTrueNorth(trueNorth: Boolean) {
         preferencesDataStore.edit { it[TRUE_NORTH_KEY] = trueNorth }
@@ -61,7 +61,7 @@ class DataStoreSettingsRepository @Inject constructor(
     }
 
     override fun getScreenOrientationLocked(): Flow<Boolean> = preferencesDataStore.data
-        .map { it[SCREEN_ORIENTATION_LOCKED_KEY] ?: true }
+        .map { it[SCREEN_ORIENTATION_LOCKED_KEY] ?: false }
 
     override suspend fun setScreenOrientationLocked(screenOrientationLocked: Boolean) {
         preferencesDataStore.edit { it[SCREEN_ORIENTATION_LOCKED_KEY] = screenOrientationLocked }
