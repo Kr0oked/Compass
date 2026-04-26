@@ -35,18 +35,19 @@ import com.bobek.compass.data.SensorAccuracy
 import com.bobek.compass.ui.TestConstants
 import org.junit.Rule
 import org.junit.runner.RunWith
+import androidx.compose.ui.test.junit4.v2.AndroidComposeTestRule as createAndroidComposeTestRule
 
 @RunWith(AndroidJUnit4::class)
 abstract class AbstractAndroidTest {
 
     @get:Rule
     val composeTestRule: AndroidComposeTestRule<ActivityScenarioRule<MainActivity>, MainActivity> =
-        AndroidComposeTestRule(
+        createAndroidComposeTestRule(
             activityRule = ActivityScenarioRule<MainActivity>(
                 Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
                     .putExtra(OPTION_INSTRUMENTED_TEST, true)
             ),
-            activityProvider = { rule: ActivityScenarioRule<MainActivity> ->
+            activityProvider = { rule ->
                 var activity: MainActivity? = null
                 rule.scenario.onActivity { activity = it }
                 activity ?: throw IllegalStateException("Activity not found")
