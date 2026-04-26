@@ -33,13 +33,13 @@ java {
 android {
     namespace = "com.bobek.compass"
     compileSdk {
-        version = release(36)
+        version = release(37)
     }
 
     defaultConfig {
         applicationId = "com.bobek.compass"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 31
         versionName = "1.14.11"
 
