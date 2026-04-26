@@ -21,6 +21,7 @@ package com.bobek.compass.screengrab
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.bobek.compass.AbstractAndroidTest
+import com.bobek.compass.data.SensorAccuracy
 import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Rule
@@ -43,6 +44,11 @@ class ScreengrabTest : AbstractAndroidTest() {
             .getString("screenshotName", "default")
 
         Screengrab.setDefaultScreenshotStrategy(UiAutomatorScreenshotStrategy())
+
+        setAzimuth(320.0f)
+        setAccuracy(SensorAccuracy.HIGH)
+        setTrueNorth(false)
+        setScreenOrientationLocked(false)
 
         waitUntilCompassIsDisplayed()
         composeTestRule.waitForIdle()

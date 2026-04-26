@@ -79,6 +79,20 @@ abstract class AbstractAndroidTest {
         composeTestRule.waitForIdle()
     }
 
+    protected fun setTrueNorth(trueNorth: Boolean) {
+        composeTestRule.runOnUiThread {
+            composeTestRule.activity.viewModel.setTrueNorth(trueNorth)
+        }
+        composeTestRule.waitForIdle()
+    }
+
+    protected fun setScreenOrientationLocked(screenOrientationLocked: Boolean) {
+        composeTestRule.runOnUiThread {
+            composeTestRule.activity.viewModel.setScreenOrientationLocked(screenOrientationLocked)
+        }
+        composeTestRule.waitForIdle()
+    }
+
     protected fun SemanticsNodeInteraction.assertStateDescription(value: String) {
         assert(hasStateDescription(value))
     }
