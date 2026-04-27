@@ -56,17 +56,17 @@ class DataStoreSettingsRepositoryTest {
     // trueNorth
 
     @Test
-    fun trueNorthDefaultIsTrue() = testScope.runTest {
-        assertTrue(repository.getTrueNorth().first())
+    fun trueNorthDefaultIsFalse() = testScope.runTest {
+        assertFalse(repository.getTrueNorth().first())
     }
 
     @Test
     fun trueNorthRoundTrip() = testScope.runTest {
-        repository.setTrueNorth(false)
-        assertFalse(repository.getTrueNorth().first())
-
         repository.setTrueNorth(true)
         assertTrue(repository.getTrueNorth().first())
+
+        repository.setTrueNorth(false)
+        assertFalse(repository.getTrueNorth().first())
     }
 
     // hapticFeedback
@@ -88,17 +88,17 @@ class DataStoreSettingsRepositoryTest {
     // screenOrientationLocked
 
     @Test
-    fun screenOrientationLockedDefaultIsTrue() = testScope.runTest {
-        assertTrue(repository.getScreenOrientationLocked().first())
+    fun screenOrientationLockedDefaultIsFalse() = testScope.runTest {
+        assertFalse(repository.getScreenOrientationLocked().first())
     }
 
     @Test
     fun screenOrientationLockedRoundTrip() = testScope.runTest {
-        repository.setScreenOrientationLocked(false)
-        assertFalse(repository.getScreenOrientationLocked().first())
-
         repository.setScreenOrientationLocked(true)
         assertTrue(repository.getScreenOrientationLocked().first())
+
+        repository.setScreenOrientationLocked(false)
+        assertFalse(repository.getScreenOrientationLocked().first())
     }
 
     // nightMode
