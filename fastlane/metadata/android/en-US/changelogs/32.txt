@@ -1,0 +1,2 @@
+- Complete UI redesign using Jetpack Compose
+- Added Malay and Nepali translations

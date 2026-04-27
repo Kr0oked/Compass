@@ -1,0 +1,2 @@
+- Vollständige Neugestaltung der Benutzeroberfläche mit Jetpack Compose
+- Übersetzungen für Malaiisch und Nepalesisch hinzugefügt
