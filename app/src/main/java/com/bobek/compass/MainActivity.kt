@@ -41,6 +41,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.location.LocationListenerCompat
 import androidx.core.location.LocationManagerCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -314,7 +315,7 @@ class MainActivity : ComponentActivity() {
         locationManager.requestLocationUpdates(provider, 0L, 0f, listener, Looper.getMainLooper())
     }
 
-    private fun createLocationListener(locationManager: LocationManager) = object : LocationListener {
+    private fun createLocationListener(locationManager: LocationManager) = object : LocationListenerCompat {
         override fun onLocationChanged(location: Location) {
             locationManager.removeUpdates(this)
             locationListener = null
