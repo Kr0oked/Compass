@@ -1,0 +1,3 @@
+- Absturz beim Öffnen von Links auf Geräten ohne Browser oder E-Mail-App behoben
+- Bildschirmausrichtungssperre korrigiert
+- Absturz auf Android 7.0 bis 9.0 Geräten behoben
