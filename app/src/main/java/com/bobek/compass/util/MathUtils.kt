@@ -30,26 +30,20 @@ import com.bobek.compass.data.DisplayRotation.ROTATION_90
 import com.bobek.compass.data.RotationVector
 import kotlin.math.roundToInt
 
-private const val AZIMUTH = 0
-private const val AXIS_SIZE = 3
 private const val ROTATION_MATRIX_SIZE = 9
 
 object MathUtils {
 
+    /**
+     * Device-to-world rotation matrix for the rotation vector, remapped so that its axes follow the
+     * current display rotation. The result feeds
+     * [com.bobek.compass.util.CompassReadingCalculator].
+     */
     @JvmStatic
-    fun calculateAzimuth(rotationVector: RotationVector, displayRotation: DisplayRotation): Azimuth {
-        val rotationMatrix = getRotationMatrix(rotationVector)
-        val remappedRotationMatrix = remapRotationMatrix(rotationMatrix, displayRotation)
-        val orientationInRadians = SensorManager.getOrientation(remappedRotationMatrix, FloatArray(AXIS_SIZE))
-        val azimuthInRadians = orientationInRadians[AZIMUTH]
-        val azimuthInDegrees = Math.toDegrees(azimuthInRadians.toDouble()).toFloat()
-        return Azimuth(azimuthInDegrees)
-    }
-
-    private fun getRotationMatrix(rotationVector: RotationVector): FloatArray {
+    fun remappedRotationMatrix(rotationVector: RotationVector, displayRotation: DisplayRotation): FloatArray {
         val rotationMatrix = FloatArray(ROTATION_MATRIX_SIZE)
         SensorManager.getRotationMatrixFromVector(rotationMatrix, rotationVector.toArray())
-        return rotationMatrix
+        return remapRotationMatrix(rotationMatrix, displayRotation)
     }
 
     private fun remapRotationMatrix(rotationMatrix: FloatArray, displayRotation: DisplayRotation): FloatArray {

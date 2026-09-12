@@ -3,6 +3,7 @@ Uma bússola simples e clara.
 
 Características:
 * Pode apontar para o norte magnético e também para o norte verdadeiro
+* Muda para uma bússola de visada quando o aparelho é segurado na vertical, para mirar em pontos de referência distantes
 * Mostra graus exatos e direção cardeal
 * Exibe o status do sensor
 * Feedback tátil

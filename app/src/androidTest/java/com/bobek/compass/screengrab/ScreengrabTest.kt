@@ -23,6 +23,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.bobek.compass.data.AppNightMode
 import com.bobek.compass.data.Azimuth
+import com.bobek.compass.data.CompassReading
 import com.bobek.compass.data.SensorAccuracy
 import com.bobek.compass.ui.ComposeAppViewModel
 import com.bobek.compass.ui.MainContent
@@ -59,7 +60,7 @@ class ScreengrabTest {
             MainContent(
                 appViewModel = appViewModel,
                 compassViewModel = ComposeCompassViewModel(
-                    azimuth = Azimuth(320.0f),
+                    compassReading = CompassReading.INITIAL.copy(azimuth = Azimuth(320.0f), reliable = true),
                     sensorAccuracy = SensorAccuracy.HIGH,
                     screenOrientationLocked = false
                 )

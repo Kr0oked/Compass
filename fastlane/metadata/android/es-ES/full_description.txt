@@ -3,6 +3,7 @@ Una brújula simple y clara.
 
 Características:
 * Puede apuntar tanto al norte magnético como al norte verdadero
+* Cambia a una brújula de mira cuando sostienes el teléfono en posición vertical, para apuntar a puntos de referencia lejanos
 * Muestra los grados exactos y la dirección cardinal
 * Muestra el estado del sensor
 * Vibración háptica

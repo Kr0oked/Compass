@@ -24,6 +24,9 @@
     <string name="lock_screen_rotation">Zaključaj rotaciju zaslona</string>
     <string name="compass_rose_image_description">Ruža kompasa</string>
     <string name="compass_rose_state_description">%1$s, %2$s</string>
+    <string name="compass_strip_image_description">Nišanski kompas</string>
+    <string name="compass_strip_state_description">%1$s, %2$s</string>
+    <string name="compass_hold_level">Držite telefon vodoravno</string>
     <string name="cardinal_direction_north">Sjever</string>
     <string name="cardinal_direction_northeast">Sjeveroistok</string>
     <string name="cardinal_direction_east">Istok</string>

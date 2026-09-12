@@ -24,6 +24,9 @@
     <string name="lock_screen_rotation">Bloquear la rotación de la pantalla</string>
     <string name="compass_rose_image_description">Rosa de los vientos</string>
     <string name="compass_rose_state_description">%1$s, %2$s</string>
+    <string name="compass_strip_image_description">Brújula de mira</string>
+    <string name="compass_strip_state_description">%1$s, %2$s</string>
+    <string name="compass_hold_level">Mantén el teléfono nivelado</string>
     <string name="cardinal_direction_north">Norte</string>
     <string name="cardinal_direction_northeast">Noreste</string>
     <string name="cardinal_direction_east">Este</string>

@@ -3,6 +3,7 @@ Jednoduchý a přehledný kompas.
 
 Funkce:
 * Umí ukazovat na magnetický i skutečný sever
+* Při vzpřímeném držení telefonu přepne na zaměřovací kompas pro zaměřování vzdálených objektů
 * Zobrazuje přesné stupně a světovou stranu
 * Zobrazuje stav senzoru
 * Haptická odezva

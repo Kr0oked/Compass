@@ -3,6 +3,7 @@ Yksinkertainen ja selkeä kompassi.
 
 Ominaisuudet:
 * Osoittaa sekä magneettiseen että maantieteelliseen pohjoiseen
+* Vaihtuu tähtäyskompassiksi, kun puhelinta pidetään pystyasennossa, kaukaisten maamerkkien tähtäämiseen
 * Näyttää tarkat asteet ja pääilmansuunnan
 * Näyttää anturin tilan
 * Haptinen palaute

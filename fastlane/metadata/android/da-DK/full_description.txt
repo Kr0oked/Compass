@@ -3,6 +3,7 @@ Et enkelt og overskueligt kompas.
 
 Funktioner:
 * Kan pege mod magnetisk nord såvel som sand nord
+* Skifter til et sigtekompas, når telefonen holdes lodret, til at sigte efter fjerne landemærker
 * Viser præcise grader og verdenshjørne
 * Viser sensorstatus
 * Haptisk feedback

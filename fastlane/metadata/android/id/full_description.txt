@@ -3,6 +3,7 @@ Kompas yang sederhana dan bersih.
 
 Fitur:
 * Dapat menunjuk ke utara magnetik maupun utara sejati
+* Beralih ke kompas bidik saat ponsel dipegang tegak, untuk membidik mercu tanda yang jauh
 * Menampilkan derajat yang tepat dan arah mata angin
 * Menampilkan status sensor
 * Umpan balik haptik

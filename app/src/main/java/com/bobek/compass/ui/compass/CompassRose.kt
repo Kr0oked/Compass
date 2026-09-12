@@ -18,18 +18,11 @@
 
 package com.bobek.compass.ui.compass
 
-import android.view.HapticFeedbackConstants
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -37,7 +30,6 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.withTransform
-import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
@@ -54,7 +46,6 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.bobek.compass.R
 import com.bobek.compass.data.Azimuth
 import com.bobek.compass.ui.TestConstants
-import com.bobek.compass.util.MathUtils
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
@@ -62,13 +53,9 @@ import kotlin.math.sin
 @Composable
 @Preview(widthDp = 512)
 fun CompassRose(
-    @PreviewParameter(CompassRoseViewModelProvider::class) viewModel: ICompassViewModel,
+    @PreviewParameter(CompassRoseAzimuthProvider::class) azimuth: Azimuth,
     modifier: Modifier = Modifier
 ) {
-    val azimuth by viewModel.getAzimuthFlow().collectAsState()
-
-    HapticFeedbackEffect(viewModel)
-
     val drawData = rememberCompassDrawData(azimuth)
 
     Box(modifier = modifier) {
@@ -103,38 +90,6 @@ fun CompassRose(
 
             drawFixedOverlay(metrics, styles, drawData)
             drawRotatingRose(metrics, styles, drawData)
-        }
-    }
-}
-
-private const val HAPTIC_FEEDBACK_INTERVAL = 2.0f
-
-@Composable
-private fun HapticFeedbackEffect(viewModel: ICompassViewModel) {
-    val azimuth by viewModel.getAzimuthFlow().collectAsState()
-    val hapticFeedback by viewModel.getHapticFeedbackFlow().collectAsState()
-
-    val view = LocalView.current
-    var lastHapticFeedbackPoint by remember { mutableStateOf<Azimuth?>(null) }
-
-    LaunchedEffect(azimuth) {
-        if (hapticFeedback) {
-            val lastPoint = lastHapticFeedbackPoint
-            if (lastPoint == null) {
-                val closestIntervalPoint =
-                    MathUtils.getClosestNumberFromInterval(azimuth.degrees, HAPTIC_FEEDBACK_INTERVAL)
-                lastHapticFeedbackPoint = Azimuth(closestIntervalPoint)
-            } else {
-                val boundaryStart = lastPoint - HAPTIC_FEEDBACK_INTERVAL
-                val boundaryEnd = lastPoint + HAPTIC_FEEDBACK_INTERVAL
-
-                if (!MathUtils.isAzimuthBetweenTwoPoints(azimuth, boundaryStart, boundaryEnd)) {
-                    val closestIntervalPoint =
-                        MathUtils.getClosestNumberFromInterval(azimuth.degrees, HAPTIC_FEEDBACK_INTERVAL)
-                    lastHapticFeedbackPoint = Azimuth(closestIntervalPoint)
-                    view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-                }
-            }
         }
     }
 }
@@ -374,12 +329,12 @@ private data class CompassStyles(
     val cardinalDirectionStyle: TextStyle
 )
 
-private class CompassRoseViewModelProvider : PreviewParameterProvider<ICompassViewModel> {
-    override val values: Sequence<ICompassViewModel> = sequenceOf(
-        ComposeCompassViewModel(azimuth = Azimuth(0.0f)),
-        ComposeCompassViewModel(azimuth = Azimuth(95.0f)),
-        ComposeCompassViewModel(azimuth = Azimuth(185.5f)),
-        ComposeCompassViewModel(azimuth = Azimuth(268.1f)),
+private class CompassRoseAzimuthProvider : PreviewParameterProvider<Azimuth> {
+    override val values: Sequence<Azimuth> = sequenceOf(
+        Azimuth(0.0f),
+        Azimuth(95.0f),
+        Azimuth(185.5f),
+        Azimuth(268.1f)
     )
 
     override fun getDisplayName(index: Int): String? =

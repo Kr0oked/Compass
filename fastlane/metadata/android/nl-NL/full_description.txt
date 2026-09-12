@@ -3,6 +3,7 @@ Een eenvoudig en overzichtelijk kompas.
 
 Functies:
 * Kan zowel het magnetisch noorden als het ware noorden aanwijzen
+* Schakelt over naar een peilkompas wanneer je de telefoon rechtop houdt, om op verre oriëntatiepunten te richten
 * Toont exacte graden en windrichting
 * Toont de sensorstatus
 * Haptische feedback

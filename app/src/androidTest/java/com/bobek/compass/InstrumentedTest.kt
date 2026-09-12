@@ -43,7 +43,6 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.rule.GrantPermissionRule
-import com.bobek.compass.data.Azimuth
 import com.bobek.compass.data.SensorAccuracy
 import com.bobek.compass.ui.TestConstants
 import org.junit.Before
@@ -51,6 +50,12 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import androidx.compose.ui.test.junit4.v2.AndroidComposeTestRule as createAndroidComposeTestRule
+
+// Remapped device-to-world rotation matrices (row-major, world = East-North-Up).
+private val FLAT_FACING_NORTH = floatArrayOf(1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f)
+private val FLAT_FACING_SOUTH = floatArrayOf(-1f, 0f, 0f, 0f, -1f, 0f, 0f, 0f, 1f)
+private val UPRIGHT_SCREEN_FACING_NORTH = floatArrayOf(1f, 0f, 0f, 0f, 0f, 1f, 0f, -1f, 0f)
+private val FACE_DOWN = floatArrayOf(1f, 0f, 0f, 0f, -1f, 0f, 0f, 0f, -1f)
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
@@ -90,11 +95,24 @@ class InstrumentedTest {
 
     @Test
     fun compass() {
-        setAzimuth(0f)
+        // Phone flat, screen up: identity matrix faces north, 180 about the vertical axis faces south.
+        setDeviceRotation(FLAT_FACING_NORTH)
         onCompassRose().assertStateDescription("North, 0°")
 
-        setAzimuth(180f)
+        setDeviceRotation(FLAT_FACING_SOUTH)
         onCompassRose().assertStateDescription("South, 180°")
+    }
+
+    @Test
+    fun sightingStripShownWhenUpright() {
+        setDeviceRotation(UPRIGHT_SCREEN_FACING_NORTH)
+        composeTestRule.onNodeWithTag(TestConstants.COMPASS_STRIP).assertIsDisplayed()
+    }
+
+    @Test
+    fun holdLevelHintShownWhenFaceDown() {
+        setDeviceRotation(FACE_DOWN)
+        composeTestRule.onNodeWithText(getString(R.string.compass_hold_level)).assertIsDisplayed()
     }
 
     @Test
@@ -203,9 +221,9 @@ class InstrumentedTest {
         composeTestRule.waitForIdle()
     }
 
-    private fun setAzimuth(degrees: Float) {
+    private fun setDeviceRotation(rotationMatrix: FloatArray) {
         composeTestRule.runOnUiThread {
-            composeTestRule.activity.compassViewModel.setAzimuth(Azimuth(degrees))
+            composeTestRule.activity.compassViewModel.setDeviceRotation(rotationMatrix)
         }
         composeTestRule.waitForIdle()
     }

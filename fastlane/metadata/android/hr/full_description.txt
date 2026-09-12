@@ -3,6 +3,7 @@ Jednostavan i uredan kompas.
 
 Značajke:
 * Pokazuje magnetski sjever kao i pravi sjever
+* Prebacuje se na nišanski kompas kada telefon držite uspravno, za ciljanje udaljenih orijentira
 * Prikazuje točne stupnjeve i glavni smjer
 * Prikazuje status senzora
 * Vibracije

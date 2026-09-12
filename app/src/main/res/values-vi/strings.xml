@@ -24,6 +24,9 @@
     <string name="lock_screen_rotation">Khóa xoay màn hình</string>
     <string name="compass_rose_image_description">Hoa la bàn</string>
     <string name="compass_rose_state_description">%1$s, %2$s</string>
+    <string name="compass_strip_image_description">La bàn ngắm</string>
+    <string name="compass_strip_state_description">%1$s, %2$s</string>
+    <string name="compass_hold_level">Giữ điện thoại nằm ngang</string>
     <string name="cardinal_direction_north">Bắc</string>
     <string name="cardinal_direction_northeast">Đông Bắc</string>
     <string name="cardinal_direction_east">Đông</string>

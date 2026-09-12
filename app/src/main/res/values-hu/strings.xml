@@ -24,6 +24,9 @@
     <string name="lock_screen_rotation">Automatikus elforgatás zárolása</string>
     <string name="compass_rose_image_description">Iránytű rózsa</string>
     <string name="compass_rose_state_description">%1$s, %2$s</string>
+    <string name="compass_strip_image_description">Irányzó iránytű</string>
+    <string name="compass_strip_state_description">%1$s, %2$s</string>
+    <string name="compass_hold_level">Tartsa a telefont vízszintesen</string>
     <string name="cardinal_direction_north">Észak</string>
     <string name="cardinal_direction_northeast">Északkelet</string>
     <string name="cardinal_direction_east">Kelet</string>

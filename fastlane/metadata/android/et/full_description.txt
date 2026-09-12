@@ -3,6 +3,7 @@ Lihtne ja selge kompass.
 
 Omadused:
 * Võib osutada nii magnetilisele põhjale kui ka pärispõhjale
+* Lülitub sihtimiskompassiks, kui hoiad telefoni püstiasendis, et sihtida kaugeid maamärke
 * Näitab täpseid kraade ja kardinaalset suunda
 * Kuvab anduri olekut
 * Haptiline tagasiside

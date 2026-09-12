@@ -3,6 +3,7 @@ Egy egyszerű és letisztult iránytű.
 
 Funkciók:
 * Mutathat mágneses észak és valódi észak felé is
+* Álló helyzetben tartva irányzó iránytűre vált, hogy távoli tereptárgyakra célozhasson
 * Megjeleníti a pontos fokokat és az égtájat
 * Megjeleníti az érzékelő állapotát
 * Haptikus visszajelzés

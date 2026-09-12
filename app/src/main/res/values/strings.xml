@@ -24,6 +24,9 @@
     <string name="lock_screen_rotation">Lock screen rotation</string>
     <string name="compass_rose_image_description">Compass rose</string>
     <string name="compass_rose_state_description">%1$s, %2$s</string>
+    <string name="compass_strip_image_description">Sighting compass</string>
+    <string name="compass_strip_state_description">%1$s, %2$s</string>
+    <string name="compass_hold_level">Hold your phone level</string>
     <string name="cardinal_direction_north">North</string>
     <string name="cardinal_direction_northeast">Northeast</string>
     <string name="cardinal_direction_east">East</string>

@@ -24,6 +24,9 @@
     <string name="lock_screen_rotation">Zablokuj obrót ekranu</string>
     <string name="compass_rose_image_description">Róża wiatrów</string>
     <string name="compass_rose_state_description">%1$s, %2$s</string>
+    <string name="compass_strip_image_description">Kompas celowniczy</string>
+    <string name="compass_strip_state_description">%1$s, %2$s</string>
+    <string name="compass_hold_level">Trzymaj telefon poziomo</string>
     <string name="cardinal_direction_north">Północ</string>
     <string name="cardinal_direction_northeast">Północny wschód</string>
     <string name="cardinal_direction_east">Wschód</string>

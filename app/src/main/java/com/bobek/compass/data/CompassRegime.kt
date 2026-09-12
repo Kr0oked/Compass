@@ -16,11 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.bobek.compass.ui
+package com.bobek.compass.data
 
-object TestConstants {
-    const val COMPASS_ROSE = "compass_rose"
-    const val COMPASS_STRIP = "compass_strip"
-    const val SENSOR_STATUS_BUTTON = "sensor_status_button"
-    const val SENSOR_ACCURACY_TEXT = "sensor_accuracy_text"
+/**
+ * Which compass visualization is appropriate for the current device orientation.
+ *
+ * Selected from the screen-normal tilt with hysteresis, see
+ * `com.bobek.compass.util.CompassReadingCalculator`.
+ */
+enum class CompassRegime {
+
+    /** Screen roughly horizontal: the rotating compass rose. */
+    ROSE,
+
+    /** Screen roughly vertical: the sighting strip showing where the phone's back points. */
+    SIGHTING,
+
+    /** Screen roughly face-down: a "hold level" hint, the rose is not meaningful here. */
+    HINT
 }

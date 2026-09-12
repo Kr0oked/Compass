@@ -3,6 +3,7 @@ Kompas yang ringkas dan kemas.
 
 Ciri-ciri:
 * Boleh menunjuk ke utara magnet serta utara sebenar
+* Bertukar kepada kompas bidik apabila telefon dipegang tegak, untuk membidik mercu tanda yang jauh
 * Menunjukkan darjah yang tepat dan arah mata angin
 * Memaparkan status penderia
 * Maklum balas haptik

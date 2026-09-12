@@ -24,6 +24,9 @@
     <string name="lock_screen_rotation">Заблокувати поворот екрана</string>
     <string name="compass_rose_image_description">Роза компаса</string>
     <string name="compass_rose_state_description">%1$s, %2$s</string>
+    <string name="compass_strip_image_description">Візирний компас</string>
+    <string name="compass_strip_state_description">%1$s, %2$s</string>
+    <string name="compass_hold_level">Тримайте телефон горизонтально</string>
     <string name="cardinal_direction_north">Північ</string>
     <string name="cardinal_direction_northeast">Північний схід</string>
     <string name="cardinal_direction_east">Схід</string>

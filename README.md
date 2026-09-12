@@ -23,6 +23,7 @@ height="80">](https://github.com/Kr0oked/Compass/releases/latest)
 ## Features
 
 * Can point to magnetic north as well as true north
+* Switches to a sighting compass when held upright, for aiming at distant landmarks
 * Shows exact degrees and cardinal direction
 * Displays sensor status
 * Haptic feedback

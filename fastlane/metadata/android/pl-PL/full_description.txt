@@ -3,6 +3,7 @@ Prosty i przejrzysty kompas.
 
 Funkcje:
 * Może wskazywać zarówno północ magnetyczną, jak i prawdziwą północ
+* Przełącza się na kompas celowniczy, gdy telefon jest trzymany pionowo, do celowania w odległe punkty orientacyjne
 * Pokazuje dokładne stopnie i kierunek świata
 * Wyświetla status czujnika
 * Wibracje zwrotne

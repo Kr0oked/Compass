@@ -3,6 +3,7 @@ Einen einfachen und übersichtlichen Kompass.
 
 Funktionen:
 * Kann sowohl zum magnetischen als auch zum geografischen Norden zeigen
+* Wechselt zu einem Peilkompass, wenn du das Telefon hochkant hältst, um entfernte Landmarken anzupeilen
 * Zeigt die exakte Gradzahl und Himmelsrichtung an
 * Zeigt den Sensorstatus an
 * Haptisches Feedback

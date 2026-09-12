@@ -24,6 +24,9 @@
     <string name="lock_screen_rotation">قفل دوران الشاشة</string>
     <string name="compass_rose_image_description">وردة البوصلة</string>
     <string name="compass_rose_state_description">%1$s، %2$s</string>
+    <string name="compass_strip_image_description">بوصلة التصويب</string>
+    <string name="compass_strip_state_description">%1$s، %2$s</string>
+    <string name="compass_hold_level">أمسك هاتفك بشكل مستوٍ</string>
     <string name="cardinal_direction_north">شمال</string>
     <string name="cardinal_direction_northeast">شمال شرق</string>
     <string name="cardinal_direction_east">شرق</string>

@@ -24,6 +24,9 @@
     <string name="lock_screen_rotation">Vergrendel schermrotatie</string>
     <string name="compass_rose_image_description">Kompasroos</string>
     <string name="compass_rose_state_description">%1$s, %2$s</string>
+    <string name="compass_strip_image_description">Peilkompas</string>
+    <string name="compass_strip_state_description">%1$s, %2$s</string>
+    <string name="compass_hold_level">Houd uw telefoon horizontaal</string>
     <string name="cardinal_direction_north">Noorden</string>
     <string name="cardinal_direction_northeast">Noordoosten</string>
     <string name="cardinal_direction_east">Oosten</string>

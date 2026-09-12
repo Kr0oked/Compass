@@ -3,6 +3,7 @@ Iparrorratz sinple eta garbia.
 
 Ezaugarriak:
 * Ipar magnetikoa eta benetakoa erakusten ditu
+* Apuntatzeko iparrorratz bihurtzen da telefonoa zutik daukazunean, urruneko erreferentzia-puntuei apuntatzeko
 * Gradu zehatzak eta norabide kardinala erakusten ditu
 * Sentsorearen egoera bistaratzen du
 * Abisu haptikoak

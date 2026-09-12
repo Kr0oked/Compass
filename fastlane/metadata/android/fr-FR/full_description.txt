@@ -3,6 +3,7 @@ Une boussole simple et épurée.
 
 Fonctionnalités :
 * Peut indiquer le nord magnétique ainsi que le nord géographique
+* Passe en boussole de visée lorsque vous tenez le téléphone à la verticale, pour viser des repères lointains
 * Affiche les degrés exacts et la direction cardinale
 * Affiche l'état du capteur
 * Retour haptique

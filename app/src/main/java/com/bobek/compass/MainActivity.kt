@@ -170,20 +170,8 @@ class MainActivity : ComponentActivity() {
 
     private fun updateCompass(event: SensorEvent) {
         val rotationVector = RotationVector(event.values[0], event.values[1], event.values[2])
-        val displayRotation = getDisplayRotation()
-        val magneticAzimuth = MathUtils.calculateAzimuth(rotationVector, displayRotation)
-
-        if (compassViewModel.getTrueNorthFlow().value) {
-            val location = compassViewModel.getLocationFlow().value
-            if (location != null) {
-                val magneticDeclination = MathUtils.getMagneticDeclination(location)
-                compassViewModel.setAzimuth(magneticAzimuth + magneticDeclination)
-            } else {
-                compassViewModel.setAzimuth(magneticAzimuth)
-            }
-        } else {
-            compassViewModel.setAzimuth(magneticAzimuth)
-        }
+        val rotationMatrix = MathUtils.remappedRotationMatrix(rotationVector, getDisplayRotation())
+        compassViewModel.setDeviceRotation(rotationMatrix)
     }
 
     @Suppress("DEPRECATION")

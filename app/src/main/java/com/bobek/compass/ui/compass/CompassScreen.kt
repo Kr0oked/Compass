@@ -18,22 +18,21 @@
 
 package com.bobek.compass.ui.compass
 
-import android.content.res.Configuration
 import android.view.WindowManager
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -52,7 +51,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -63,6 +61,9 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import com.bobek.compass.R
+import com.bobek.compass.data.Azimuth
+import com.bobek.compass.data.CompassReading
+import com.bobek.compass.data.CompassRegime
 import com.bobek.compass.data.LocationStatus
 import com.bobek.compass.ui.TestConstants
 
@@ -93,25 +94,13 @@ fun CompassScreen(
             )
         }
     ) { padding ->
-        val isLandscape = LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE
-
-        if (isLandscape) {
-            CompassContentLandscape(
-                viewModel = viewModel,
-                trueNorth = trueNorth,
-                locationStatus = locationStatus,
-                padding = padding,
-                onLocationReload = onLocationReload
-            )
-        } else {
-            CompassContentPortrait(
-                viewModel = viewModel,
-                trueNorth = trueNorth,
-                locationStatus = locationStatus,
-                padding = padding,
-                onLocationReload = onLocationReload
-            )
-        }
+        CompassContent(
+            viewModel = viewModel,
+            trueNorth = trueNorth,
+            locationStatus = locationStatus,
+            padding = padding,
+            onLocationReload = onLocationReload
+        )
     }
 
     if (showSensorStatusDialog) {
@@ -124,89 +113,63 @@ fun CompassScreen(
     }
 }
 
+/**
+ * One layout for every orientation and regime: [CompassDisplay] fills the area and stays centered,
+ * so it never resizes or shifts as the phone tilts, while the info texts float over its lower
+ * corners where the round rose and the short strip leave space. Nothing branches on the regime, so
+ * the texts stay put while the display crossfades.
+ */
 @Composable
-private fun CompassContentLandscape(
+private fun CompassContent(
     viewModel: ICompassViewModel,
     trueNorth: Boolean,
     locationStatus: LocationStatus,
     padding: PaddingValues,
     onLocationReload: () -> Unit
 ) {
-    Row(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .padding(padding)
             .consumeWindowInsets(padding)
-            .padding(dimensionResource(R.dimen.root_layout_padding)),
-        verticalAlignment = Alignment.CenterVertically
+            .padding(dimensionResource(R.dimen.root_layout_padding))
     ) {
-        Box(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxHeight(),
-            contentAlignment = Alignment.BottomStart
-        ) {
+        CompassDisplay(
+            viewModel = viewModel,
+            modifier = Modifier.fillMaxSize()
+        )
+
+        CornerInfo(corner = Alignment.BottomStart, horizontalAlignment = Alignment.Start) {
             DeclinationText(trueNorth = trueNorth, locationStatus = locationStatus)
         }
 
-        CompassRose(
-            viewModel = viewModel,
-            modifier = Modifier
-                .fillMaxHeight()
-                .aspectRatio(1f)
-        )
-
-        Box(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxHeight(),
-            contentAlignment = Alignment.BottomCenter
-        ) {
-            if (trueNorth) {
+        if (trueNorth) {
+            CornerInfo(corner = Alignment.BottomEnd, horizontalAlignment = Alignment.End) {
                 LocationSection(locationStatus = locationStatus, onLocationReload = onLocationReload)
             }
         }
     }
 }
 
+/**
+ * A half-width info column pinned to one [corner] of the compass. Scrolls internally instead of
+ * clipping when its content is too tall, for example a location error with its reload button on a
+ * short screen, or large accessibility font scaling.
+ */
 @Composable
-private fun CompassContentPortrait(
-    viewModel: ICompassViewModel,
-    trueNorth: Boolean,
-    locationStatus: LocationStatus,
-    padding: PaddingValues,
-    onLocationReload: () -> Unit
+private fun BoxScope.CornerInfo(
+    corner: Alignment,
+    horizontalAlignment: Alignment.Horizontal,
+    content: @Composable ColumnScope.() -> Unit
 ) {
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(padding)
-            .consumeWindowInsets(padding)
-            .padding(dimensionResource(R.dimen.root_layout_padding)),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        CompassRose(
-            viewModel = viewModel,
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Box(
-            modifier = Modifier.fillMaxWidth(),
-            contentAlignment = Alignment.Center
-        ) {
-            if (trueNorth) {
-                LocationSection(locationStatus = locationStatus, onLocationReload = onLocationReload)
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        DeclinationText(trueNorth = trueNorth, locationStatus = locationStatus)
-    }
+            .align(corner)
+            .fillMaxWidth(0.5f)
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = horizontalAlignment,
+        content = content
+    )
 }
 
 @Composable
@@ -281,8 +244,8 @@ private fun LocationSection(
         }
 
         LocationStatus.LOADING -> {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                CircularProgressIndicator()
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                CircularProgressIndicator(modifier = Modifier.size(20.dp))
                 Text(text = stringResource(R.string.location_loading), textAlign = TextAlign.Center)
             }
         }
@@ -297,7 +260,7 @@ private fun LocationSection(
 
 @Composable
 private fun LocationError(message: String) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
         Icon(
             painter = painterResource(R.drawable.ic_warning),
             contentDescription = null,
@@ -340,13 +303,24 @@ private fun DeclinationText(
 private class CompassScreenViewModelProvider : PreviewParameterProvider<ICompassViewModel> {
     override val values: Sequence<ICompassViewModel> = sequenceOf(
         ComposeCompassViewModel(trueNorth = false),
-        ComposeCompassViewModel(trueNorth = true)
+        ComposeCompassViewModel(trueNorth = true),
+        ComposeCompassViewModel(
+            compassReading = CompassReading.INITIAL.copy(
+                sightingBearing = Azimuth(123.0f),
+                tilt = 90f,
+                regime = CompassRegime.SIGHTING,
+                reliable = true
+            ),
+            trueNorth = true,
+            locationStatus = LocationStatus.PRESENT
+        )
     )
 
     override fun getDisplayName(index: Int): String? =
         when (index) {
             0 -> "Magnetic North"
             1 -> "True North"
+            2 -> "Sighting"
             else -> null
         }
 }

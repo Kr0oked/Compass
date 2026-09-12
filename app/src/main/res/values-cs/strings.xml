@@ -24,6 +24,9 @@
     <string name="lock_screen_rotation">Uzamknout otáčení obrazovky</string>
     <string name="compass_rose_image_description">Směrová růžice</string>
     <string name="compass_rose_state_description">%1$s, %2$s</string>
+    <string name="compass_strip_image_description">Zaměřovací kompas</string>
+    <string name="compass_strip_state_description">%1$s, %2$s</string>
+    <string name="compass_hold_level">Držte telefon ve vodorovné poloze</string>
     <string name="cardinal_direction_north">Sever</string>
     <string name="cardinal_direction_northeast">Severovýchod</string>
     <string name="cardinal_direction_east">Východ</string>

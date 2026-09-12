@@ -3,6 +3,7 @@ Một la bàn đơn giản và gọn gàng.
 
 Tính năng:
 * Có thể chỉ hướng bắc từ và hướng bắc thực
+* Chuyển sang la bàn ngắm khi cầm điện thoại thẳng đứng, để ngắm các mốc ở xa
 * Hiển thị chính xác số độ và hướng la bàn
 * Hiển thị trạng thái cảm biến
 * Phản hồi rung

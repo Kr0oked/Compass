@@ -3,6 +3,7 @@ Una bussola semplice e pulita.
 
 Funzionalità:
 * Può puntare sia al nord magnetico che al nord geografico
+* Passa a una bussola di rilevamento quando tieni il telefono in verticale, per puntare a punti di riferimento lontani
 * Mostra i gradi esatti e la direzione cardinale
 * Mostra lo stato del sensore
 * Risposta tattile

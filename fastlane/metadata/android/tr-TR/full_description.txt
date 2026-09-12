@@ -3,6 +3,7 @@ Basit ve sade bir pusula.
 
 Özellikler:
 * Hem manyetik kuzeyi hem de gerçek kuzeyi gösterebilir
+* Telefon dik tutulduğunda, uzaktaki noktaları nişanlamak için nişan pusulasına geçer
 * Tam dereceyi ve yönü gösterir
 * Sensör durumunu gösterir
 * Dokunsal geribildirim

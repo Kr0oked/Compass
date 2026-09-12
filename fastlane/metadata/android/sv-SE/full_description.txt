@@ -3,6 +3,7 @@ En enkel och ren kompass.
 
 Funktioner:
 * Kan peka mot både magnetisk norr och sann nord
+* Växlar till en siktkompass när telefonen hålls upprätt, för att sikta mot avlägsna landmärken
 * Visar exakta grader och kardinalriktning
 * Visar sensorstatus
 * Haptisk återkoppling

@@ -24,6 +24,9 @@
     <string name="lock_screen_rotation">स्क्रिन रोटेसन लक गर्नुहोस्</string>
     <string name="compass_rose_image_description">कम्पास रोज</string>
     <string name="compass_rose_state_description">%1$s, %2$s</string>
+    <string name="compass_strip_image_description">निसाना लगाउने कम्पास</string>
+    <string name="compass_strip_state_description">%1$s, %2$s</string>
+    <string name="compass_hold_level">फोनलाई समथर राख्नुहोस्</string>
     <string name="cardinal_direction_north">उत्तर</string>
     <string name="cardinal_direction_northeast">उत्तरपूर्व</string>
     <string name="cardinal_direction_east">पूर्व</string>

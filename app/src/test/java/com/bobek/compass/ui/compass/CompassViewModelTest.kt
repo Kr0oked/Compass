@@ -20,10 +20,12 @@ package com.bobek.compass.ui.compass
 
 import android.location.Location
 import com.bobek.compass.data.AppNightMode
-import com.bobek.compass.data.Azimuth
+import com.bobek.compass.data.CompassReading
+import com.bobek.compass.data.CompassRegime
 import com.bobek.compass.data.LocationStatus
 import com.bobek.compass.data.SensorAccuracy
 import com.bobek.compass.settings.SettingsRepository
+import com.bobek.compass.util.rotationMatrix
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -31,6 +33,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.TestCoroutineScheduler
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.advanceTimeBy
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
@@ -70,8 +73,8 @@ class CompassViewModelTest {
     // Initial state
 
     @Test
-    fun initialAzimuth() {
-        assertEquals(Azimuth(0.0f), viewModel.getAzimuthFlow().value)
+    fun initialCompassReading() {
+        assertEquals(CompassReading.INITIAL, viewModel.getCompassReadingFlow().value)
     }
 
     @Test
@@ -109,9 +112,21 @@ class CompassViewModelTest {
     // Setters update flows immediately
 
     @Test
-    fun setAzimuthUpdatesFlow() {
-        viewModel.setAzimuth(Azimuth(90.0f))
-        assertEquals(Azimuth(90.0f), viewModel.getAzimuthFlow().value)
+    fun setDeviceRotationUpdatesCompassReading() = runTest(testDispatcher) {
+        viewModel.setDeviceRotation(rotationMatrix(yawDegrees = 90.0f))
+        advanceUntilIdle()
+
+        val reading = viewModel.getCompassReadingFlow().value
+        assertEquals(CompassRegime.ROSE, reading.regime)
+        assertEquals(90.0f, reading.azimuth.degrees, 0.5f)
+    }
+
+    @Test
+    fun setDeviceRotationFaceDownSelectsHintRegime() = runTest(testDispatcher) {
+        viewModel.setDeviceRotation(rotationMatrix(pitchDegrees = 180.0f))
+        advanceUntilIdle()
+
+        assertEquals(CompassRegime.HINT, viewModel.getCompassReadingFlow().value.regime)
     }
 
     @Test
@@ -178,7 +193,7 @@ class CompassViewModelTest {
     fun rapidChangesOnlyPersistLastValueAfterDebounce() = runTest(testDispatcher) {
         viewModel.setTrueNorth(false)
         advanceTimeBy(DEBOUNCE - 1.milliseconds)
-        // Debounce not expired yet — repository not yet updated
+        // Debounce not expired yet, repository not yet updated
         assertTrue(fakeSettingsRepository.trueNorthValue)
 
         viewModel.setTrueNorth(true)

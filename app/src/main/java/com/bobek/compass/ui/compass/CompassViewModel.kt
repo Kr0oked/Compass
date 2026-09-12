@@ -21,26 +21,32 @@ package com.bobek.compass.ui.compass
 import android.location.Location
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bobek.compass.data.Azimuth
+import com.bobek.compass.data.CompassReading
 import com.bobek.compass.data.LocationStatus
 import com.bobek.compass.data.SensorAccuracy
 import com.bobek.compass.settings.SettingsRepository
+import com.bobek.compass.util.CompassReadingCalculator
+import com.bobek.compass.util.MathUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.scan
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
 
 private val SETTINGS_DEBOUNCE = 1.seconds
 
 interface ICompassViewModel {
-    fun getAzimuthFlow(): StateFlow<Azimuth>
-    fun setAzimuth(azimuth: Azimuth)
+    fun getCompassReadingFlow(): StateFlow<CompassReading>
+    fun setDeviceRotation(rotationMatrix: FloatArray)
     fun getSensorAccuracyFlow(): StateFlow<SensorAccuracy>
     fun setSensorAccuracy(sensorAccuracy: SensorAccuracy)
     fun getTrueNorthFlow(): StateFlow<Boolean>
@@ -61,7 +67,7 @@ class CompassViewModel @Inject constructor(
     private val settingsRepository: SettingsRepository
 ) : ViewModel(), ICompassViewModel {
 
-    private val azimuthFlow = MutableStateFlow(Azimuth(0.0f))
+    private val deviceRotationFlow = MutableStateFlow<FloatArray?>(null)
 
     private val sensorAccuracyFlow = MutableStateFlow(SensorAccuracy.NO_CONTACT)
 
@@ -74,6 +80,19 @@ class CompassViewModel @Inject constructor(
     private val locationFlow = MutableStateFlow<Location?>(null)
 
     private val locationStatusFlow = MutableStateFlow(LocationStatus.NOT_PRESENT)
+
+    private val compassReadingFlow: StateFlow<CompassReading> =
+        combine(deviceRotationFlow, trueNorthFlow, locationFlow, ::RotationInput)
+            .scan(CompassReading.INITIAL) { previous, input ->
+                val rotationMatrix = input.rotationMatrix ?: return@scan previous
+                val declination = if (input.trueNorth && input.location != null) {
+                    MathUtils.getMagneticDeclination(input.location)
+                } else {
+                    0f
+                }
+                CompassReadingCalculator.next(previous, rotationMatrix, declination)
+            }
+            .stateIn(viewModelScope, SharingStarted.Eagerly, CompassReading.INITIAL)
 
     init {
         viewModelScope.launch {
@@ -104,10 +123,10 @@ class CompassViewModel @Inject constructor(
         }
     }
 
-    override fun getAzimuthFlow() = azimuthFlow
+    override fun getCompassReadingFlow() = compassReadingFlow
 
-    override fun setAzimuth(azimuth: Azimuth) {
-        azimuthFlow.value = azimuth
+    override fun setDeviceRotation(rotationMatrix: FloatArray) {
+        deviceRotationFlow.value = rotationMatrix
     }
 
     override fun getSensorAccuracyFlow() = sensorAccuracyFlow
@@ -148,8 +167,14 @@ class CompassViewModel @Inject constructor(
     }
 }
 
+private class RotationInput(
+    val rotationMatrix: FloatArray?,
+    val trueNorth: Boolean,
+    val location: Location?
+)
+
 class ComposeCompassViewModel(
-    val azimuth: Azimuth = Azimuth(0.0f),
+    val compassReading: CompassReading = CompassReading.INITIAL,
     val sensorAccuracy: SensorAccuracy = SensorAccuracy.NO_CONTACT,
     val trueNorth: Boolean = false,
     val hapticFeedback: Boolean = true,
@@ -157,8 +182,8 @@ class ComposeCompassViewModel(
     val location: Location? = Location(""),
     val locationStatus: LocationStatus = LocationStatus.NOT_PRESENT
 ) : ICompassViewModel {
-    override fun getAzimuthFlow() = MutableStateFlow(azimuth)
-    override fun setAzimuth(azimuth: Azimuth) = Unit
+    override fun getCompassReadingFlow() = MutableStateFlow(compassReading)
+    override fun setDeviceRotation(rotationMatrix: FloatArray) = Unit
     override fun getSensorAccuracyFlow() = MutableStateFlow(sensorAccuracy)
     override fun setSensorAccuracy(sensorAccuracy: SensorAccuracy) = Unit
     override fun getTrueNorthFlow() = MutableStateFlow(trueNorth)

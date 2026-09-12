@@ -24,6 +24,9 @@
     <string name="lock_screen_rotation">锁定屏幕旋转</string>
     <string name="compass_rose_image_description">罗盘玫瑰</string>
     <string name="compass_rose_state_description">%1$s，%2$s</string>
+    <string name="compass_strip_image_description">瞄准罗盘</string>
+    <string name="compass_strip_state_description">%1$s，%2$s</string>
+    <string name="compass_hold_level">请将手机保持水平</string>
     <string name="cardinal_direction_north">北</string>
     <string name="cardinal_direction_northeast">东北</string>
     <string name="cardinal_direction_east">东</string>

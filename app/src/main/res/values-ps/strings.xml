@@ -24,6 +24,9 @@
     <string name="lock_screen_rotation">د پردې څرخښت بندول</string>
     <string name="compass_rose_image_description">د قطب نما ګل</string>
     <string name="compass_rose_state_description">%1$s، %2$s</string>
+    <string name="compass_strip_image_description">د نښه کولو قطب نما</string>
+    <string name="compass_strip_state_description">%1$s، %2$s</string>
+    <string name="compass_hold_level">خپل تلیفون افقي ونیسئ</string>
     <string name="cardinal_direction_north">شمال</string>
     <string name="cardinal_direction_northeast">شمال ختیځ</string>
     <string name="cardinal_direction_east">ختیځ</string>
