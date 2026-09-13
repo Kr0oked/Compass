@@ -97,10 +97,10 @@ class InstrumentedTest {
     fun compass() {
         // Phone flat, screen up: identity matrix faces north, 180 about the vertical axis faces south.
         setDeviceRotation(FLAT_FACING_NORTH)
-        onCompassRose().assertStateDescription("North, 0°")
+        onCompassRose().assertStateDescription(expectedStateDescription(R.string.cardinal_direction_north, 0))
 
         setDeviceRotation(FLAT_FACING_SOUTH)
-        onCompassRose().assertStateDescription("South, 180°")
+        onCompassRose().assertStateDescription(expectedStateDescription(R.string.cardinal_direction_south, 180))
     }
 
     @Test
@@ -195,6 +195,16 @@ class InstrumentedTest {
         pressBack()
         composeTestRule.waitForIdle()
         onTopBarTitle(R.string.third_party_licenses).assertIsDisplayed()
+    }
+
+    private fun expectedStateDescription(@StringRes cardinalDirectionResId: Int, degrees: Int): String {
+        val cardinalDirectionText = getString(cardinalDirectionResId)
+        val degreesText = composeTestRule.activity.getString(R.string.degrees, degrees)
+        return composeTestRule.activity.getString(
+            R.string.compass_rose_state_description,
+            cardinalDirectionText,
+            degreesText
+        )
     }
 
     private fun assertSensorAccuracyText(@StringRes resourceId: Int) {
