@@ -49,6 +49,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import kotlin.math.cos
+import kotlin.math.roundToInt
+import kotlin.math.sin
 import androidx.compose.ui.test.junit4.v2.AndroidComposeTestRule as createAndroidComposeTestRule
 
 // Remapped device-to-world rotation matrices (row-major, world = East-North-Up).
@@ -101,6 +104,25 @@ class InstrumentedTest {
 
         setDeviceRotation(FLAT_FACING_SOUTH)
         onCompassRose().assertStateDescription(expectedStateDescription(R.string.cardinal_direction_south, 180))
+    }
+
+    @Test
+    fun compassIntercardinalDirections() {
+        val sectorCenters = listOf(
+            22.5f to R.string.cardinal_direction_north_northeast,
+            67.5f to R.string.cardinal_direction_east_northeast,
+            112.5f to R.string.cardinal_direction_east_southeast,
+            157.5f to R.string.cardinal_direction_south_southeast,
+            202.5f to R.string.cardinal_direction_south_southwest,
+            247.5f to R.string.cardinal_direction_west_southwest,
+            292.5f to R.string.cardinal_direction_west_northwest,
+            337.5f to R.string.cardinal_direction_north_northwest
+        )
+
+        for ((azimuthDegrees, expectedStringRes) in sectorCenters) {
+            setDeviceRotation(flatRotationAt(azimuthDegrees))
+            onCompassRose().assertStateDescription(expectedStateDescription(expectedStringRes, azimuthDegrees.roundToInt()))
+        }
     }
 
     @Test
@@ -236,6 +258,15 @@ class InstrumentedTest {
             composeTestRule.activity.compassViewModel.setDeviceRotation(rotationMatrix)
         }
         composeTestRule.waitForIdle()
+    }
+
+    // Phone flat, screen up, top edge pointing at the given compass bearing (0° = north, clockwise).
+    // Generalizes FLAT_FACING_NORTH (0°) and FLAT_FACING_SOUTH (180°) to arbitrary azimuths.
+    private fun flatRotationAt(azimuthDegrees: Float): FloatArray {
+        val radians = Math.toRadians(azimuthDegrees.toDouble())
+        val sin = sin(radians).toFloat()
+        val cos = cos(radians).toFloat()
+        return floatArrayOf(cos, sin, 0f, -sin, cos, 0f, 0f, 0f, 1f)
     }
 
     private fun setAccuracy(accuracy: SensorAccuracy) {

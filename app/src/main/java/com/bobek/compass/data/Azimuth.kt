@@ -33,13 +33,21 @@ class Azimuth(rawDegrees: Float) {
     val roundedDegrees = normalizeAngle(rawDegrees.roundToInt().toFloat()).toInt()
 
     val cardinalDirection: CardinalDirection = when (degrees) {
-        in 22.5f until 67.5f -> CardinalDirection.NORTHEAST
-        in 67.5f until 112.5f -> CardinalDirection.EAST
-        in 112.5f until 157.5f -> CardinalDirection.SOUTHEAST
-        in 157.5f until 202.5f -> CardinalDirection.SOUTH
-        in 202.5f until 247.5f -> CardinalDirection.SOUTHWEST
-        in 247.5f until 292.5f -> CardinalDirection.WEST
-        in 292.5f until 337.5f -> CardinalDirection.NORTHWEST
+        in 11.25f until 33.75f -> CardinalDirection.NORTH_NORTHEAST
+        in 33.75f until 56.25f -> CardinalDirection.NORTHEAST
+        in 56.25f until 78.75f -> CardinalDirection.EAST_NORTHEAST
+        in 78.75f until 101.25f -> CardinalDirection.EAST
+        in 101.25f until 123.75f -> CardinalDirection.EAST_SOUTHEAST
+        in 123.75f until 146.25f -> CardinalDirection.SOUTHEAST
+        in 146.25f until 168.75f -> CardinalDirection.SOUTH_SOUTHEAST
+        in 168.75f until 191.25f -> CardinalDirection.SOUTH
+        in 191.25f until 213.75f -> CardinalDirection.SOUTH_SOUTHWEST
+        in 213.75f until 236.25f -> CardinalDirection.SOUTHWEST
+        in 236.25f until 258.75f -> CardinalDirection.WEST_SOUTHWEST
+        in 258.75f until 281.25f -> CardinalDirection.WEST
+        in 281.25f until 303.75f -> CardinalDirection.WEST_NORTHWEST
+        in 303.75f until 326.25f -> CardinalDirection.NORTHWEST
+        in 326.25f until 348.75f -> CardinalDirection.NORTH_NORTHWEST
         else -> CardinalDirection.NORTH
     }
 
