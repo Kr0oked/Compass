@@ -164,14 +164,9 @@ private fun CompassDisplayPreview(
 
 private class CompassDisplayReadingProvider : PreviewParameterProvider<CompassReading> {
     override val values: Sequence<CompassReading> = sequenceOf(
-        CompassReading.INITIAL.copy(azimuth = Azimuth(42.0f), regime = CompassRegime.ROSE, reliable = true),
-        CompassReading.INITIAL.copy(
-            sightingBearing = Azimuth(147.0f),
-            tilt = 90f,
-            regime = CompassRegime.SIGHTING,
-            reliable = true
-        ),
-        CompassReading.INITIAL.copy(azimuth = Azimuth(42.0f), tilt = 175f, regime = CompassRegime.HINT)
+        CompassReadingShowcase.ROSE,
+        CompassReadingShowcase.SIGHTING,
+        CompassReadingShowcase.HINT
     )
 
     override fun getDisplayName(index: Int): String? =

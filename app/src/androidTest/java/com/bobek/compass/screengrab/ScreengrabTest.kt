@@ -18,16 +18,20 @@
 
 package com.bobek.compass.screengrab
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.test.junit4.v2.createComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import com.bobek.compass.data.AppNightMode
-import com.bobek.compass.data.Azimuth
 import com.bobek.compass.data.CompassReading
 import com.bobek.compass.data.SensorAccuracy
 import com.bobek.compass.ui.ComposeAppViewModel
 import com.bobek.compass.ui.MainContent
 import com.bobek.compass.ui.compass.ComposeCompassViewModel
+import com.bobek.compass.ui.compass.CompassReadingShowcase
+import com.bobek.compass.ui.compass.ICompassViewModel
 import org.junit.AfterClass
 import org.junit.BeforeClass
 import org.junit.Rule
@@ -50,30 +54,44 @@ class ScreengrabTest {
     @JvmField
     val localeTestRule = LocaleTestRule()
 
+    /**
+     * Produces, in order: "1" rose/light, "2" rose/dark, "3" sighting/light. New regimes or
+     * features are showcased in light mode only; dark mode is already established by "2".
+     */
     @Test
     fun grabScreenshot() {
         Screengrab.setDefaultScreenshotStrategy(UiAutomatorScreenshotStrategy())
 
         val appViewModel = ComposeAppViewModel(AppNightMode.NO)
+        var compassViewModel by mutableStateOf<ICompassViewModel>(showcaseViewModel(CompassReadingShowcase.ROSE))
 
         composeTestRule.setContent {
+            // compassViewModel is read here, so reassigning it below recomposes without a second setContent.
             MainContent(
                 appViewModel = appViewModel,
-                compassViewModel = ComposeCompassViewModel(
-                    compassReading = CompassReading.INITIAL.copy(azimuth = Azimuth(320.0f), reliable = true),
-                    sensorAccuracy = SensorAccuracy.HIGH,
-                    screenOrientationLocked = false
-                )
+                compassViewModel = compassViewModel
             )
         }
-        composeTestRule.waitForIdle()
-        enableCleanStatusBar()
-        Screengrab.screenshot("1")
+        capture("1")
 
         appViewModel.setNightMode(AppNightMode.YES)
+        capture("2")
+
+        appViewModel.setNightMode(AppNightMode.NO)
+        compassViewModel = showcaseViewModel(CompassReadingShowcase.SIGHTING)
+        capture("3")
+    }
+
+    private fun showcaseViewModel(reading: CompassReading) = ComposeCompassViewModel(
+        compassReading = reading,
+        sensorAccuracy = SensorAccuracy.HIGH,
+        screenOrientationLocked = false
+    )
+
+    private fun capture(name: String) {
         composeTestRule.waitForIdle()
         enableCleanStatusBar()
-        Screengrab.screenshot("2")
+        Screengrab.screenshot(name)
     }
 
     companion object {
