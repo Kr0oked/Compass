@@ -39,9 +39,14 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TooltipAnchorPosition
+import androidx.compose.material3.TooltipBox
+import androidx.compose.material3.TooltipDefaults
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
@@ -185,45 +190,64 @@ private fun KeepScreenOnEffect() {
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 private fun ScreenOrientationLockedButton(viewModel: ICompassViewModel) {
     val screenOrientationLocked by viewModel.getScreenOrientationLocked().collectAsState()
 
     val iconResourceId = if (screenOrientationLocked) R.drawable.ic_mobile_rotate_lock else R.drawable.ic_mobile_rotate
+    val label = stringResource(R.string.lock_screen_rotation)
 
-    IconButton(onClick = { viewModel.setScreenOrientationLocked(!screenOrientationLocked) }) {
-        Icon(
-            painter = painterResource(iconResourceId),
-            contentDescription = stringResource(R.string.lock_screen_rotation)
-        )
+    TooltipBox(
+        positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Below),
+        tooltip = { PlainTooltip { Text(label) } },
+        state = rememberTooltipState()
+    ) {
+        IconButton(onClick = { viewModel.setScreenOrientationLocked(!screenOrientationLocked) }) {
+            Icon(painter = painterResource(iconResourceId), contentDescription = label)
+        }
     }
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 private fun SensorStatusButton(
     viewModel: ICompassViewModel,
     onClick: () -> Unit
 ) {
     val sensorAccuracy by viewModel.getSensorAccuracyFlow().collectAsState()
+    val label = stringResource(R.string.sensor_status)
 
-    IconButton(
-        onClick = onClick,
-        modifier = Modifier.testTag(TestConstants.SENSOR_STATUS_BUTTON)
+    TooltipBox(
+        positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Below),
+        tooltip = { PlainTooltip { Text(label) } },
+        state = rememberTooltipState()
     ) {
-        Icon(
-            painter = painterResource(sensorAccuracy.iconResourceId),
-            contentDescription = stringResource(R.string.sensor_status),
-            tint = sensorAccuracy.tintColor
-        )
+        IconButton(
+            onClick = onClick,
+            modifier = Modifier.testTag(TestConstants.SENSOR_STATUS_BUTTON)
+        ) {
+            Icon(
+                painter = painterResource(sensorAccuracy.iconResourceId),
+                contentDescription = label,
+                tint = sensorAccuracy.tintColor
+            )
+        }
     }
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 private fun SettingsButton(onClick: () -> Unit) {
-    IconButton(onClick = onClick) {
-        Icon(
-            painter = painterResource(R.drawable.ic_settings),
-            contentDescription = stringResource(R.string.settings)
-        )
+    val label = stringResource(R.string.settings)
+
+    TooltipBox(
+        positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Below),
+        tooltip = { PlainTooltip { Text(label) } },
+        state = rememberTooltipState()
+    ) {
+        IconButton(onClick = onClick) {
+            Icon(painter = painterResource(R.drawable.ic_settings), contentDescription = label)
+        }
     }
 }
 
