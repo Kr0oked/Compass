@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">Kompas</string>
+    <string name="navigate_back">Tilbage</string>
     <string name="sensor_status">Sensorstatus</string>
     <string name="lock_screen_rotation">Lås skærmrotation</string>
     <string name="compass_rose_image_description">Kompasrose</string>

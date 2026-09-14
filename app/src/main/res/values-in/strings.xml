@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">Kompas</string>
+    <string name="navigate_back">Kembali</string>
     <string name="sensor_status">Status sensor</string>
     <string name="lock_screen_rotation">Kunci rotasi layar</string>
     <string name="compass_rose_image_description">Mawar kompas</string>

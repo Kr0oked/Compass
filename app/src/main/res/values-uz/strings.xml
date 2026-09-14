@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">Kompas</string>
+    <string name="navigate_back">Orqaga</string>
     <string name="sensor_status">Sensor holati</string>
     <string name="lock_screen_rotation">Ekran aylanishini qulflash</string>
     <string name="compass_rose_image_description">Kompas guli</string>

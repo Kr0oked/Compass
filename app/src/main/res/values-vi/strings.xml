@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">La bàn</string>
+    <string name="navigate_back">Quay lại</string>
     <string name="sensor_status">Trạng thái cảm biến</string>
     <string name="lock_screen_rotation">Khóa xoay màn hình</string>
     <string name="compass_rose_image_description">Hoa la bàn</string>

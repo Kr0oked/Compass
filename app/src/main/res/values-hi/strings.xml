@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">कंपास</string>
+    <string name="navigate_back">वापस जाएं</string>
     <string name="sensor_status">सेंसर की स्थिति</string>
     <string name="lock_screen_rotation">स्क्रीन घुमाव लॉक करें</string>
     <string name="compass_rose_image_description">कम्पास रोज़</string>

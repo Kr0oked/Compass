@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">Bussola</string>
+    <string name="navigate_back">Indietro</string>
     <string name="sensor_status">Stato del sensore</string>
     <string name="lock_screen_rotation">Blocca la rotazione dello schermo</string>
     <string name="compass_rose_image_description">Rosa dei venti</string>

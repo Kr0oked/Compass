@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">Pusula</string>
+    <string name="navigate_back">Geri</string>
     <string name="sensor_status">Sensör durumu</string>
     <string name="lock_screen_rotation">Ekran döndürmeyi kilitle</string>
     <string name="compass_rose_image_description">Pusula gülü</string>

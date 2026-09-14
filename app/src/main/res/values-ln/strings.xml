@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">Busɔ́lɛ</string>
+    <string name="navigate_back">Kozonga nsima</string>
     <string name="sensor_status">Bomɔ́nisi bwa eyókeli</string>
     <string name="lock_screen_rotation">Kofúnga lizólóngá lya emɔ́niseli</string>
     <string name="compass_rose_image_description">Kadilá ya busɔ́lɛ</string>

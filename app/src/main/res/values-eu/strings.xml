@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">Iparrorratza</string>
+    <string name="navigate_back">Atzera</string>
     <string name="sensor_status">Sentsorearen egoera</string>
     <string name="lock_screen_rotation">Blokeatu pantaila-biraketa</string>
     <string name="compass_rose_image_description">Iparrorratzaren arrosa</string>

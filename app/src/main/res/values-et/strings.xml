@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">Kompass</string>
+    <string name="navigate_back">Tagasi</string>
     <string name="sensor_status">Anduri olek</string>
     <string name="lock_screen_rotation">Lukusta ekraani pööramine</string>
     <string name="compass_rose_image_description">Tuulteroos</string>

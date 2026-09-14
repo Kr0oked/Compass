@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">Kompas</string>
+    <string name="navigate_back">Terug</string>
     <string name="sensor_status">Sensorstatus</string>
     <string name="lock_screen_rotation">Vergrendel schermrotatie</string>
     <string name="compass_rose_image_description">Kompasroos</string>

@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">Kompas</string>
+    <string name="navigate_back">Wstecz</string>
     <string name="sensor_status">Status sensora</string>
     <string name="lock_screen_rotation">Zablokuj obrót ekranu</string>
     <string name="compass_rose_image_description">Róża wiatrów</string>

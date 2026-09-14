@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">திசைகாட்டி</string>
+    <string name="navigate_back">பின் செல்</string>
     <string name="sensor_status">உணரி நிலை</string>
     <string name="lock_screen_rotation">திரைச் சுழற்சியைப் பூட்டு</string>
     <string name="compass_rose_image_description">திசைகாட்டி வட்டம்</string>

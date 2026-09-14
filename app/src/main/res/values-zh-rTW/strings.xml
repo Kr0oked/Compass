@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">指南針</string>
+    <string name="navigate_back">返回</string>
     <string name="sensor_status">感測器狀態</string>
     <string name="lock_screen_rotation">鎖定螢幕旋轉</string>
     <string name="compass_rose_image_description">羅盤玫瑰</string>

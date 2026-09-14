@@ -20,6 +20,7 @@
 
 <resources>
     <string name="compass">Компас</string>
+    <string name="navigate_back">Придвижване назад</string>
     <string name="sensor_status">Състояние на сензора</string>
     <string name="lock_screen_rotation">Заключване на завъртането на екрана</string>
     <string name="compass_rose_image_description">Роза на компаса</string>
