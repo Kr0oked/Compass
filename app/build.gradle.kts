@@ -78,9 +78,6 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-    lint {
-        warning += "MissingTranslation"
-    }
     testOptions {
         unitTests {
             isReturnDefaultValues = true
