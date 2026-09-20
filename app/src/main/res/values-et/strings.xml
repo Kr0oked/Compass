@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">E</string>
     <string name="cardinal_direction_south_abbreviation">S</string>
     <string name="cardinal_direction_west_abbreviation">W</string>
+    <string name="sensor_accuracy_unknown">Teadmata</string>
     <string name="sensor_accuracy_no_contact">Kontakt puudub</string>
     <string name="sensor_accuracy_unreliable">Ebausaldusväärne</string>
     <string name="sensor_accuracy_low">Madal täpsus</string>

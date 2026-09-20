@@ -159,6 +159,30 @@ class InstrumentedTest {
         onOkButton().performClick()
     }
 
+    @Test
+    fun sensorAccuracyDropAutoShowsSensorStatusDialog() {
+        // Establishes a known baseline regardless of whatever the real sensor reported earlier
+        setAccuracy(SensorAccuracy.HIGH)
+
+        setAccuracy(SensorAccuracy.LOW)
+        assertSensorAccuracyText(R.string.sensor_accuracy_low)
+
+        onOkButton().performClick()
+        onSensorAccuracyText().assertDoesNotExist()
+
+        // Oscillating between warning levels without recovering to HIGH does not reopen the dialog
+        setAccuracy(SensorAccuracy.MEDIUM)
+        setAccuracy(SensorAccuracy.UNRELIABLE)
+        onSensorAccuracyText().assertDoesNotExist()
+
+        // Recovering to HIGH re-arms the warning for the next drop
+        setAccuracy(SensorAccuracy.HIGH)
+        setAccuracy(SensorAccuracy.MEDIUM)
+        assertSensorAccuracyText(R.string.sensor_accuracy_medium)
+
+        onOkButton().performClick()
+    }
+
 
     @Test
     fun navigatingToSettingsAndBackShowsCompassScreenAgain() {
@@ -269,9 +293,13 @@ class InstrumentedTest {
         return floatArrayOf(cos, sin, 0f, -sin, cos, 0f, 0f, 0f, 1f)
     }
 
+    // Sensor accuracy is debounced, so this waits out the real delay rather than just idling Compose.
     private fun setAccuracy(accuracy: SensorAccuracy) {
         composeTestRule.runOnUiThread {
             composeTestRule.activity.compassViewModel.setSensorAccuracy(accuracy)
+        }
+        composeTestRule.waitUntil(timeoutMillis = 3_000) {
+            composeTestRule.activity.compassViewModel.getSensorAccuracyFlow().value == accuracy
         }
         composeTestRule.waitForIdle()
     }

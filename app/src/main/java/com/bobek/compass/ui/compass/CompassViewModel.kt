@@ -43,12 +43,15 @@ import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
 
 private val SETTINGS_DEBOUNCE = 1.seconds
+private val SENSOR_ACCURACY_DEBOUNCE = 1.seconds
 
 interface ICompassViewModel {
     fun getCompassReadingFlow(): StateFlow<CompassReading>
     fun setDeviceRotation(rotationMatrix: FloatArray)
     fun getSensorAccuracyFlow(): StateFlow<SensorAccuracy>
     fun setSensorAccuracy(sensorAccuracy: SensorAccuracy)
+    fun getShouldAutoShowSensorStatusDialogFlow(): StateFlow<Boolean>
+    fun onSensorStatusDialogAutoShown()
     fun getTrueNorthFlow(): StateFlow<Boolean>
     fun setTrueNorth(trueNorth: Boolean)
     fun getHapticFeedbackFlow(): StateFlow<Boolean>
@@ -69,7 +72,18 @@ class CompassViewModel @Inject constructor(
 
     private val deviceRotationFlow = MutableStateFlow<FloatArray?>(null)
 
-    private val sensorAccuracyFlow = MutableStateFlow(SensorAccuracy.NO_CONTACT)
+    private val rawSensorAccuracyFlow = MutableStateFlow(SensorAccuracy.UNKNOWN)
+
+    // Debounced so a brief accuracy blip (e.g. the sensor briefly re-settling during a screen
+    // rotation) never reaches the icon, the dialog, or the auto-show logic below.
+    private val sensorAccuracyFlow: StateFlow<SensorAccuracy> =
+        rawSensorAccuracyFlow
+            .debounce(SENSOR_ACCURACY_DEBOUNCE)
+            .stateIn(viewModelScope, SharingStarted.Eagerly, SensorAccuracy.UNKNOWN)
+
+    private val shouldAutoShowSensorStatusDialogFlow = MutableStateFlow(false)
+
+    private var sensorStatusDialogShownForCurrentAccuracyDrop = false
 
     private val trueNorthFlow = MutableStateFlow(false)
 
@@ -100,6 +114,20 @@ class CompassViewModel @Inject constructor(
         }
 
         setupFlowsToSettings()
+        observeSensorAccuracyForAutoShowDialog()
+    }
+
+    private fun observeSensorAccuracyForAutoShowDialog() {
+        viewModelScope.launch {
+            sensorAccuracyFlow.collect { accuracy ->
+                if (accuracy == SensorAccuracy.HIGH) {
+                    sensorStatusDialogShownForCurrentAccuracyDrop = false
+                } else if (accuracy.isWarning && !sensorStatusDialogShownForCurrentAccuracyDrop) {
+                    sensorStatusDialogShownForCurrentAccuracyDrop = true
+                    shouldAutoShowSensorStatusDialogFlow.value = true
+                }
+            }
+        }
     }
 
     private suspend fun initFromSettings() {
@@ -132,7 +160,13 @@ class CompassViewModel @Inject constructor(
     override fun getSensorAccuracyFlow() = sensorAccuracyFlow
 
     override fun setSensorAccuracy(sensorAccuracy: SensorAccuracy) {
-        sensorAccuracyFlow.value = sensorAccuracy
+        rawSensorAccuracyFlow.value = sensorAccuracy
+    }
+
+    override fun getShouldAutoShowSensorStatusDialogFlow() = shouldAutoShowSensorStatusDialogFlow
+
+    override fun onSensorStatusDialogAutoShown() {
+        shouldAutoShowSensorStatusDialogFlow.value = false
     }
 
     override fun getTrueNorthFlow() = trueNorthFlow
@@ -175,7 +209,7 @@ private class RotationInput(
 
 class ComposeCompassViewModel(
     val compassReading: CompassReading = CompassReading.INITIAL,
-    val sensorAccuracy: SensorAccuracy = SensorAccuracy.NO_CONTACT,
+    val sensorAccuracy: SensorAccuracy = SensorAccuracy.UNKNOWN,
     val trueNorth: Boolean = false,
     val hapticFeedback: Boolean = true,
     val screenOrientationLocked: Boolean = true,
@@ -186,6 +220,8 @@ class ComposeCompassViewModel(
     override fun setDeviceRotation(rotationMatrix: FloatArray) = Unit
     override fun getSensorAccuracyFlow() = MutableStateFlow(sensorAccuracy)
     override fun setSensorAccuracy(sensorAccuracy: SensorAccuracy) = Unit
+    override fun getShouldAutoShowSensorStatusDialogFlow() = MutableStateFlow(false)
+    override fun onSensorStatusDialogAutoShown() = Unit
     override fun getTrueNorthFlow() = MutableStateFlow(trueNorth)
     override fun setTrueNorth(trueNorth: Boolean) = Unit
     override fun getHapticFeedbackFlow() = MutableStateFlow(hapticFeedback)

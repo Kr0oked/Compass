@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">पू</string>
     <string name="cardinal_direction_south_abbreviation">द</string>
     <string name="cardinal_direction_west_abbreviation">प</string>
+    <string name="sensor_accuracy_unknown">अज्ञात</string>
     <string name="sensor_accuracy_no_contact">कोई संपर्क नहीं</string>
     <string name="sensor_accuracy_unreliable">अविश्वसनीय</string>
     <string name="sensor_accuracy_low">कम सटीकता</string>

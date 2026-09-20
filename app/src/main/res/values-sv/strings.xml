@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">O</string>
     <string name="cardinal_direction_south_abbreviation">S</string>
     <string name="cardinal_direction_west_abbreviation">V</string>
+    <string name="sensor_accuracy_unknown">Okänd</string>
     <string name="sensor_accuracy_no_contact">Ingen kontakt</string>
     <string name="sensor_accuracy_unreliable">Opålitlig</string>
     <string name="sensor_accuracy_low">Låg precision</string>

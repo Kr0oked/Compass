@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">خ</string>
     <string name="cardinal_direction_south_abbreviation">ج</string>
     <string name="cardinal_direction_west_abbreviation">ل</string>
+    <string name="sensor_accuracy_unknown">نامعلوم</string>
     <string name="sensor_accuracy_no_contact">اړیکه نشته</string>
     <string name="sensor_accuracy_unreliable">غیر باوري</string>
     <string name="sensor_accuracy_low">ټیټ دقت</string>

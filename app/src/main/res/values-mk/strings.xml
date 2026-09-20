@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">И</string>
     <string name="cardinal_direction_south_abbreviation">Ј</string>
     <string name="cardinal_direction_west_abbreviation">З</string>
+    <string name="sensor_accuracy_unknown">Непознато</string>
     <string name="sensor_accuracy_no_contact">Нема контакт</string>
     <string name="sensor_accuracy_unreliable">Несигурно</string>
     <string name="sensor_accuracy_low">Слаба точност</string>

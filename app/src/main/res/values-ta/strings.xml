@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">கி</string>
     <string name="cardinal_direction_south_abbreviation">தெ</string>
     <string name="cardinal_direction_west_abbreviation">மே</string>
+    <string name="sensor_accuracy_unknown">தெரியவில்லை</string>
     <string name="sensor_accuracy_no_contact">தொடர்பு இல்லை</string>
     <string name="sensor_accuracy_unreliable">நம்பகத்தன்மையற்றது</string>
     <string name="sensor_accuracy_low">குறைந்த துல்லியம்</string>

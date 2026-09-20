@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">東</string>
     <string name="cardinal_direction_south_abbreviation">南</string>
     <string name="cardinal_direction_west_abbreviation">西</string>
+    <string name="sensor_accuracy_unknown">不明</string>
     <string name="sensor_accuracy_no_contact">未接触</string>
     <string name="sensor_accuracy_unreliable">不安定</string>
     <string name="sensor_accuracy_low">低精度</string>

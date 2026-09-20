@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">E</string>
     <string name="cardinal_direction_south_abbreviation">H</string>
     <string name="cardinal_direction_west_abbreviation">M</string>
+    <string name="sensor_accuracy_unknown">Ezezaguna</string>
     <string name="sensor_accuracy_no_contact">Kontakturik ez</string>
     <string name="sensor_accuracy_unreliable">Ez-fidagarria</string>
     <string name="sensor_accuracy_low">Zehaztasun txikia</string>

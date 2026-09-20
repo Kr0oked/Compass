@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">D</string>
     <string name="cardinal_direction_south_abbreviation">G</string>
     <string name="cardinal_direction_west_abbreviation">B</string>
+    <string name="sensor_accuracy_unknown">Bilinmiyor</string>
     <string name="sensor_accuracy_no_contact">Temas yok</string>
     <string name="sensor_accuracy_unreliable">Güvenilir değil</string>
     <string name="sensor_accuracy_low">Düşük doğruluk</string>

@@ -49,6 +49,7 @@ import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 private val DEBOUNCE = 1.seconds
+private val SENSOR_ACCURACY_DEBOUNCE = 1.seconds
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class CompassViewModelTest {
@@ -79,7 +80,12 @@ class CompassViewModelTest {
 
     @Test
     fun initialSensorAccuracy() {
-        assertEquals(SensorAccuracy.NO_CONTACT, viewModel.getSensorAccuracyFlow().value)
+        assertEquals(SensorAccuracy.UNKNOWN, viewModel.getSensorAccuracyFlow().value)
+    }
+
+    @Test
+    fun initialShouldAutoShowSensorStatusDialog() {
+        assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
     }
 
     @Test
@@ -130,9 +136,92 @@ class CompassViewModelTest {
     }
 
     @Test
-    fun setSensorAccuracyUpdatesFlow() {
+    fun setSensorAccuracyUpdatesFlow() = runTest(testDispatcher) {
         viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
         assertEquals(SensorAccuracy.HIGH, viewModel.getSensorAccuracyFlow().value)
+    }
+
+    // Sensor accuracy is debounced
+
+    @Test
+    fun transientAccuracyBlipNeverReachesSensorAccuracyFlow() = runTest(testDispatcher) {
+        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE - 1.milliseconds)
+        viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+
+        assertEquals(SensorAccuracy.HIGH, viewModel.getSensorAccuracyFlow().value)
+    }
+
+    // Auto-show sensor status dialog
+
+    @Test
+    fun droppingBelowHighAutoShowsSensorStatusDialog() = runTest(testDispatcher) {
+        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+        assertTrue(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+    }
+
+    @Test
+    fun mediumAccuracyAlsoAutoShowsSensorStatusDialog() = runTest(testDispatcher) {
+        viewModel.setSensorAccuracy(SensorAccuracy.MEDIUM)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+        assertTrue(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+    }
+
+    @Test
+    fun onSensorStatusDialogAutoShownResetsFlow() = runTest(testDispatcher) {
+        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+        viewModel.onSensorStatusDialogAutoShown()
+        assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+    }
+
+    @Test
+    fun transientAccuracyBlipDoesNotAutoShowSensorStatusDialog() = runTest(testDispatcher) {
+        // Mirrors a screen rotation: accuracy dips and recovers before the debounce settles
+        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE - 1.milliseconds)
+        viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+
+        assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+    }
+
+    @Test
+    fun oscillatingBetweenWarningLevelsOnlyAutoShowsOnce() = runTest(testDispatcher) {
+        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+        viewModel.onSensorStatusDialogAutoShown()
+
+        viewModel.setSensorAccuracy(SensorAccuracy.MEDIUM)
+        viewModel.setSensorAccuracy(SensorAccuracy.UNRELIABLE)
+        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+
+        assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+    }
+
+    @Test
+    fun recoveringToHighRearmsAutoShowForNextDrop() = runTest(testDispatcher) {
+        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+        viewModel.onSensorStatusDialogAutoShown()
+
+        viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+        viewModel.setSensorAccuracy(SensorAccuracy.MEDIUM)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+
+        assertTrue(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+    }
+
+    @Test
+    fun highAccuracyNeverAutoShowsSensorStatusDialog() = runTest(testDispatcher) {
+        viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+        assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
     }
 
     @Test

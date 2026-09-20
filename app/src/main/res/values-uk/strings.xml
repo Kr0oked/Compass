@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">Сх</string>
     <string name="cardinal_direction_south_abbreviation">Пд</string>
     <string name="cardinal_direction_west_abbreviation">Зх</string>
+    <string name="sensor_accuracy_unknown">Невідомо</string>
     <string name="sensor_accuracy_no_contact">Немає контакту</string>
     <string name="sensor_accuracy_unreliable">Ненадійно</string>
     <string name="sensor_accuracy_low">Низька точність</string>

@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">I</string>
     <string name="cardinal_direction_south_abbreviation">E</string>
     <string name="cardinal_direction_west_abbreviation">L</string>
+    <string name="sensor_accuracy_unknown">Tuntematon</string>
     <string name="sensor_accuracy_no_contact">Ei kontaktia</string>
     <string name="sensor_accuracy_unreliable">Epäluotettava</string>
     <string name="sensor_accuracy_low">Matala tarkkuus</string>

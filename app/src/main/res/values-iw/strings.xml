@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">מז</string>
     <string name="cardinal_direction_south_abbreviation">ד</string>
     <string name="cardinal_direction_west_abbreviation">מע</string>
+    <string name="sensor_accuracy_unknown">לא ידוע</string>
     <string name="sensor_accuracy_no_contact">אין קשר</string>
     <string name="sensor_accuracy_unreliable">לא אמין</string>
     <string name="sensor_accuracy_low">דיוק נמוך</string>

@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">Sha</string>
     <string name="cardinal_direction_south_abbreviation">J</string>
     <string name="cardinal_direction_west_abbreviation">G‘</string>
+    <string name="sensor_accuracy_unknown">Noma‘lum</string>
     <string name="sensor_accuracy_no_contact">Aloqa yo‘q</string>
     <string name="sensor_accuracy_unreliable">Ishonchsiz</string>
     <string name="sensor_accuracy_low">Past aniqlik</string>

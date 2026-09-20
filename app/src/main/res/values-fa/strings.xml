@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">شرق</string>
     <string name="cardinal_direction_south_abbreviation">جنوب</string>
     <string name="cardinal_direction_west_abbreviation">غرب</string>
+    <string name="sensor_accuracy_unknown">نامشخص</string>
     <string name="sensor_accuracy_no_contact">بدون تماس</string>
     <string name="sensor_accuracy_unreliable">غیرقابل اعتماد</string>
     <string name="sensor_accuracy_low">دقت پایین</string>

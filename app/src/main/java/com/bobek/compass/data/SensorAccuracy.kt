@@ -27,19 +27,24 @@ enum class SensorAccuracy(
     @DrawableRes val iconResourceId: Int,
     val isWarning: Boolean
 ) {
+    UNKNOWN(
+        R.string.sensor_accuracy_unknown,
+        R.drawable.ic_signal_cellular_nodata,
+        isWarning = false
+    ),
     NO_CONTACT(
         R.string.sensor_accuracy_no_contact,
-        R.drawable.ic_signal_cellular_nodata,
+        R.drawable.ic_signal_cellular_off,
         isWarning = true
     ),
     UNRELIABLE(
         R.string.sensor_accuracy_unreliable,
-        R.drawable.ic_signal_cellular_off,
+        R.drawable.ic_signal_cellular_0_bar,
         isWarning = true
     ),
     LOW(
         R.string.sensor_accuracy_low,
-        R.drawable.ic_signal_cellular_0_bar,
+        R.drawable.ic_signal_cellular_1_bar,
         isWarning = true
     ),
     MEDIUM(

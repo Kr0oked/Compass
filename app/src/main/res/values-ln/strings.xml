@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">M</string>
     <string name="cardinal_direction_south_abbreviation">S</string>
     <string name="cardinal_direction_west_abbreviation">L</string>
+    <string name="sensor_accuracy_unknown">Eyebani tɛ</string>
     <string name="sensor_accuracy_no_contact">Kokutana ezalí tɛ</string>
     <string name="sensor_accuracy_unreliable">Mitúya mya eyókeli bazalí ya kotíyela motéma tɛ̌</string>
     <string name="sensor_accuracy_low">Bɔ́zɔ epusá mokɛ́</string>

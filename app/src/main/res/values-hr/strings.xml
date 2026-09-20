@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">I</string>
     <string name="cardinal_direction_south_abbreviation">J</string>
     <string name="cardinal_direction_west_abbreviation">Z</string>
+    <string name="sensor_accuracy_unknown">Nepoznato</string>
     <string name="sensor_accuracy_no_contact">Senzor nije dostupan</string>
     <string name="sensor_accuracy_unreliable">Nepouzdano</string>
     <string name="sensor_accuracy_low">Niska točnost</string>

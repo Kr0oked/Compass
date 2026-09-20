@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">Α</string>
     <string name="cardinal_direction_south_abbreviation">Ν</string>
     <string name="cardinal_direction_west_abbreviation">Δ</string>
+    <string name="sensor_accuracy_unknown">Άγνωστη</string>
     <string name="sensor_accuracy_no_contact">Χωρίς επαφή</string>
     <string name="sensor_accuracy_unreliable">Αναξιόπιστη</string>
     <string name="sensor_accuracy_low">Χαμηλή ακρίβεια</string>

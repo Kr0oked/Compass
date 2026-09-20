@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">ق</string>
     <string name="cardinal_direction_south_abbreviation">ج</string>
     <string name="cardinal_direction_west_abbreviation">غ</string>
+    <string name="sensor_accuracy_unknown">غير معروف</string>
     <string name="sensor_accuracy_no_contact">لا يوجد اتصال</string>
     <string name="sensor_accuracy_unreliable">غير موثوق</string>
     <string name="sensor_accuracy_low">دقة متدنية</string>

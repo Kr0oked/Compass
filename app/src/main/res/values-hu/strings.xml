@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">K</string>
     <string name="cardinal_direction_south_abbreviation">D</string>
     <string name="cardinal_direction_west_abbreviation">Ny</string>
+    <string name="sensor_accuracy_unknown">Ismeretlen</string>
     <string name="sensor_accuracy_no_contact">Az érzékelő nem elérhető</string>
     <string name="sensor_accuracy_unreliable">Az érzékelő értékei megbízhatatlanok</string>
     <string name="sensor_accuracy_low">Alacsony pontosság</string>

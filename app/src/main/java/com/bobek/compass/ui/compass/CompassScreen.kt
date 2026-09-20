@@ -49,6 +49,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberTooltipState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -82,8 +83,16 @@ fun CompassScreen(
 ) {
     val trueNorth by viewModel.getTrueNorthFlow().collectAsState()
     val locationStatus by viewModel.getLocationStatusFlow().collectAsState()
+    val shouldAutoShowSensorStatusDialog by viewModel.getShouldAutoShowSensorStatusDialogFlow().collectAsState()
 
     var showSensorStatusDialog by rememberSaveable { mutableStateOf(false) }
+
+    LaunchedEffect(shouldAutoShowSensorStatusDialog) {
+        if (shouldAutoShowSensorStatusDialog) {
+            showSensorStatusDialog = true
+            viewModel.onSensorStatusDialogAutoShown()
+        }
+    }
 
     KeepScreenOnEffect()
 

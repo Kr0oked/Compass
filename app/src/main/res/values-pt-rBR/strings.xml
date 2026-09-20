@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">L</string>
     <string name="cardinal_direction_south_abbreviation">S</string>
     <string name="cardinal_direction_west_abbreviation">O</string>
+    <string name="sensor_accuracy_unknown">Desconhecida</string>
     <string name="sensor_accuracy_no_contact">Sem contato</string>
     <string name="sensor_accuracy_unreliable">Não confiável</string>
     <string name="sensor_accuracy_low">Baixa precisão</string>

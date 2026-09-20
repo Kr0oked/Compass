@@ -48,6 +48,7 @@
     <string name="cardinal_direction_east_abbreviation">Đ</string>
     <string name="cardinal_direction_south_abbreviation">N</string>
     <string name="cardinal_direction_west_abbreviation">T</string>
+    <string name="sensor_accuracy_unknown">Không xác định</string>
     <string name="sensor_accuracy_no_contact">Không có tín hiệu</string>
     <string name="sensor_accuracy_unreliable">Không đáng tin cậy</string>
     <string name="sensor_accuracy_low">Độ chính xác thấp</string>
