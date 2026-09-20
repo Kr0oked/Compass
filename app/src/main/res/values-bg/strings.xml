@@ -69,6 +69,10 @@
     <string name="magnetic_north">Магнитен север</string>
     <string name="haptic_feedback">Тактилна обратна връзка</string>
     <string name="haptic_feedback_summary">Компасът вибрира, когато посоката се промени.</string>
+    <string name="sighting_mode">Режим за прицелване</string>
+    <string name="sighting_mode_summary">Превключва към лента за прицелване, когато телефонът се държи изправен.</string>
+    <string name="sensor_status_warnings">Предупреждения за точността на сензора</string>
+    <string name="sensor_status_warnings_summary">Автоматично показва предупреждение, когато точността на сензора се понижи.</string>
     <string name="display">Дисплей</string>
     <string name="night_mode">Тема</string>
     <string name="night_mode_follow_system">Както в системата</string>

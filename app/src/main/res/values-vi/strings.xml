@@ -69,6 +69,10 @@
     <string name="magnetic_north">Bắc từ</string>
     <string name="haptic_feedback">Phản hồi rung</string>
     <string name="haptic_feedback_summary">Rung khi hướng thay đổi.</string>
+    <string name="sighting_mode">Chế độ ngắm</string>
+    <string name="sighting_mode_summary">Chuyển sang thanh ngắm khi điện thoại được cầm thẳng đứng.</string>
+    <string name="sensor_status_warnings">Cảnh báo độ chính xác cảm biến</string>
+    <string name="sensor_status_warnings_summary">Tự động hiển thị cảnh báo khi độ chính xác cảm biến giảm.</string>
     <string name="display">Hiển thị</string>
     <string name="night_mode">Chủ đề</string>
     <string name="night_mode_follow_system">Theo hệ thống</string>

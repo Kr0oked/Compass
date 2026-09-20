@@ -69,6 +69,10 @@
     <string name="magnetic_north">Nord magnétique</string>
     <string name="haptic_feedback">Retour haptique</string>
     <string name="haptic_feedback_summary">La boussole vibre lorsque la direction change.</string>
+    <string name="sighting_mode">Mode visée</string>
+    <string name="sighting_mode_summary">Passe à une bande de visée lorsque le téléphone est tenu à la verticale.</string>
+    <string name="sensor_status_warnings">Avertissements de précision du capteur</string>
+    <string name="sensor_status_warnings_summary">Affiche automatiquement un avertissement lorsque la précision du capteur diminue.</string>
     <string name="display">Affichage</string>
     <string name="night_mode">Thème</string>
     <string name="night_mode_follow_system">Suivre le système</string>

@@ -115,6 +115,20 @@ class CompassViewModelTest {
         assertTrue(viewModel.getScreenOrientationLocked().value)
     }
 
+    @Test
+    fun sightingModeLoadedFromSettings() = runTest(testDispatcher) {
+        val settings = FakeSettingsRepository(sightingMode = false)
+        val customViewModel = CompassViewModel(settings)
+        assertFalse(customViewModel.getSightingModeFlow().value)
+    }
+
+    @Test
+    fun autoShowSensorStatusDialogEnabledLoadedFromSettings() = runTest(testDispatcher) {
+        val settings = FakeSettingsRepository(autoShowSensorStatusDialogEnabled = false)
+        val customViewModel = CompassViewModel(settings)
+        assertFalse(customViewModel.getAutoShowSensorStatusDialogEnabledFlow().value)
+    }
+
     // Setters update flows immediately
 
     @Test
@@ -243,6 +257,48 @@ class CompassViewModelTest {
     }
 
     @Test
+    fun setSightingModeUpdatesFlow() {
+        viewModel.setSightingMode(false)
+        assertFalse(viewModel.getSightingModeFlow().value)
+    }
+
+    @Test
+    fun setAutoShowSensorStatusDialogEnabledUpdatesFlow() {
+        viewModel.setAutoShowSensorStatusDialogEnabled(false)
+        assertFalse(viewModel.getAutoShowSensorStatusDialogEnabledFlow().value)
+    }
+
+    // Sighting mode setting affects regime selection
+
+    @Test
+    fun sightingModeDisabledKeepsRoseWhenUpright() = runTest(testDispatcher) {
+        viewModel.setSightingMode(false)
+        viewModel.setDeviceRotation(rotationMatrix(pitchDegrees = 90.0f))
+        advanceUntilIdle()
+
+        assertEquals(CompassRegime.ROSE, viewModel.getCompassReadingFlow().value.regime)
+    }
+
+    @Test
+    fun sightingModeEnabledEntersSightingWhenUpright() = runTest(testDispatcher) {
+        viewModel.setDeviceRotation(rotationMatrix(pitchDegrees = 90.0f))
+        advanceUntilIdle()
+
+        assertEquals(CompassRegime.SIGHTING, viewModel.getCompassReadingFlow().value.regime)
+    }
+
+    // Auto-show sensor status dialog setting gates the popup
+
+    @Test
+    fun autoShowSensorStatusDialogDisabledSuppressesPopup() = runTest(testDispatcher) {
+        viewModel.setAutoShowSensorStatusDialogEnabled(false)
+        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+
+        assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+    }
+
+    @Test
     fun setLocationUpdatesFlow() {
         val location = Location("test")
         viewModel.setLocation(location)
@@ -279,6 +335,20 @@ class CompassViewModelTest {
     }
 
     @Test
+    fun sightingModeIsPersistedToSettingsAfterDebounce() = runTest(testDispatcher) {
+        viewModel.setSightingMode(false)
+        advanceTimeBy(DEBOUNCE + 1.milliseconds)
+        assertFalse(fakeSettingsRepository.sightingModeValue)
+    }
+
+    @Test
+    fun autoShowSensorStatusDialogEnabledIsPersistedToSettingsAfterDebounce() = runTest(testDispatcher) {
+        viewModel.setAutoShowSensorStatusDialogEnabled(false)
+        advanceTimeBy(DEBOUNCE + 1.milliseconds)
+        assertFalse(fakeSettingsRepository.autoShowSensorStatusDialogEnabledValue)
+    }
+
+    @Test
     fun rapidChangesOnlyPersistLastValueAfterDebounce() = runTest(testDispatcher) {
         viewModel.setTrueNorth(false)
         advanceTimeBy(DEBOUNCE - 1.milliseconds)
@@ -292,16 +362,23 @@ class CompassViewModelTest {
     }
 }
 
-private class FakeSettingsRepository : SettingsRepository {
+private class FakeSettingsRepository(
+    sightingMode: Boolean = true,
+    autoShowSensorStatusDialogEnabled: Boolean = true
+) : SettingsRepository {
 
     private val trueNorthFlow = MutableStateFlow(true)
     private val hapticFeedbackFlow = MutableStateFlow(true)
     private val screenOrientationLockedFlow = MutableStateFlow(true)
+    private val sightingModeFlow = MutableStateFlow(sightingMode)
+    private val autoShowSensorStatusDialogEnabledFlow = MutableStateFlow(autoShowSensorStatusDialogEnabled)
     private val accessLocationPermissionRequestedFlow = MutableStateFlow(false)
 
     val trueNorthValue get() = trueNorthFlow.value
     val hapticFeedbackValue get() = hapticFeedbackFlow.value
     val screenOrientationLockedValue get() = screenOrientationLockedFlow.value
+    val sightingModeValue get() = sightingModeFlow.value
+    val autoShowSensorStatusDialogEnabledValue get() = autoShowSensorStatusDialogEnabledFlow.value
 
     override fun getTrueNorth(): Flow<Boolean> = trueNorthFlow
     override suspend fun setTrueNorth(trueNorth: Boolean) {
@@ -316,6 +393,16 @@ private class FakeSettingsRepository : SettingsRepository {
     override fun getScreenOrientationLocked(): Flow<Boolean> = screenOrientationLockedFlow
     override suspend fun setScreenOrientationLocked(screenOrientationLocked: Boolean) {
         screenOrientationLockedFlow.value = screenOrientationLocked
+    }
+
+    override fun getSightingMode(): Flow<Boolean> = sightingModeFlow
+    override suspend fun setSightingMode(sightingMode: Boolean) {
+        sightingModeFlow.value = sightingMode
+    }
+
+    override fun getAutoShowSensorStatusDialogEnabled(): Flow<Boolean> = autoShowSensorStatusDialogEnabledFlow
+    override suspend fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean) {
+        autoShowSensorStatusDialogEnabledFlow.value = autoShowSensorStatusDialogEnabled
     }
 
     override fun getNightMode(): Flow<AppNightMode> = MutableStateFlow(AppNightMode.FOLLOW_SYSTEM)

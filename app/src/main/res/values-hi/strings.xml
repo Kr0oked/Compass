@@ -69,6 +69,10 @@
     <string name="magnetic_north">चुंबकीय उत्तर</string>
     <string name="haptic_feedback">स्पर्श प्रतिक्रिया</string>
     <string name="haptic_feedback_summary">दिशा बदलने पर कंपन होता है।</string>
+    <string name="sighting_mode">साइटिंग मोड</string>
+    <string name="sighting_mode_summary">फ़ोन को सीधा पकड़ने पर साइटिंग स्ट्रिप में बदल जाता है।</string>
+    <string name="sensor_status_warnings">सेंसर सटीकता चेतावनियाँ</string>
+    <string name="sensor_status_warnings_summary">सेंसर सटीकता कम होने पर स्वचालित रूप से चेतावनी दिखाता है।</string>
     <string name="display">डिस्प्ले</string>
     <string name="night_mode">थीम</string>
     <string name="night_mode_follow_system">सिस्टम के अनुसार</string>

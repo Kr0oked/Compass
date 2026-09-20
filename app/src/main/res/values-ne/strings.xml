@@ -69,6 +69,10 @@
     <string name="magnetic_north">चुम्बकीय उत्तर</string>
     <string name="haptic_feedback">ह्याप्टिक प्रतिक्रिया</string>
     <string name="haptic_feedback_summary">दिशा परिवर्तन हुँदा कम्पन हुन्छ।</string>
+    <string name="sighting_mode">साइटिंग मोड</string>
+    <string name="sighting_mode_summary">फोनलाई सीधा समाउँदा साइटिंग स्ट्रिपमा परिवर्तन हुन्छ।</string>
+    <string name="sensor_status_warnings">सेन्सर शुद्धता चेतावनीहरू</string>
+    <string name="sensor_status_warnings_summary">सेन्सरको शुद्धता घट्दा स्वतः चेतावनी देखाउँछ।</string>
     <string name="display">प्रदर्शन</string>
     <string name="night_mode">थिम</string>
     <string name="night_mode_follow_system">प्रणाली अनुसरण गर्नुहोस्</string>

@@ -69,6 +69,10 @@
     <string name="magnetic_north">Norte magnético</string>
     <string name="haptic_feedback">Resposta táctil</string>
     <string name="haptic_feedback_summary">O compás vibra cando a dirección cambia.</string>
+    <string name="sighting_mode">Modo de puntaría</string>
+    <string name="sighting_mode_summary">Cambia a unha franxa de puntaría cando o teléfono se sostén en vertical.</string>
+    <string name="sensor_status_warnings">Avisos de precisión do sensor</string>
+    <string name="sensor_status_warnings_summary">Mostra automaticamente un aviso cando a precisión do sensor diminúe.</string>
     <string name="display">Pantalla</string>
     <string name="night_mode">Tema</string>
     <string name="night_mode_follow_system">Seguir o sistema</string>

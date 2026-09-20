@@ -62,8 +62,16 @@ object CompassReadingCalculator {
      * @param previous the reading from the last sensor event, for regime hysteresis
      * @param r remapped 9-element device-to-world (East-North-Up) rotation matrix
      * @param declinationDegrees magnetic declination to add to both bearings, or 0 for magnetic north
+     * @param sightingModeEnabled whether tilting upright may enter [CompassRegime.SIGHTING] at all;
+     * when false, [CompassRegime.ROSE] extends through that tilt range and [CompassRegime.HINT]'s
+     * own trigger (a correctness fix, not a sighting-mode concern) is unaffected
      */
-    fun next(previous: CompassReading, r: FloatArray, declinationDegrees: Float): CompassReading {
+    fun next(
+        previous: CompassReading,
+        r: FloatArray,
+        declinationDegrees: Float,
+        sightingModeEnabled: Boolean = true
+    ): CompassReading {
         require(r.size == 9) {
             "rotation matrix must have 9 elements but had ${r.size}"
         }
@@ -73,7 +81,7 @@ object CompassReadingCalculator {
         val rollDegrees = toDegrees(atan2(-r[6], r[8]))
         val tiltDegrees = toDegrees(acos(r[8].coerceIn(-1f, 1f)))
 
-        val regime = nextRegime(previous.regime, tiltDegrees)
+        val regime = nextRegime(previous.regime, tiltDegrees, sightingModeEnabled)
 
         val horizontalComponent = when (regime) {
             CompassRegime.ROSE -> hypot(r[1], r[4])
@@ -97,25 +105,45 @@ object CompassReadingCalculator {
      * Regime is chosen from the current tilt only, with per-boundary hysteresis. Non-adjacent
      * jumps (ROSE to HINT and back) are allowed so a hard, fast flip is not stuck in SIGHTING.
      */
-    private fun nextRegime(previous: CompassRegime, tilt: Float): CompassRegime = when (previous) {
-        CompassRegime.ROSE -> when {
-            tilt > SIGHTING_TO_HINT_ENTER_DEGREES -> CompassRegime.HINT
-            tilt > ROSE_TO_SIGHTING_ENTER_DEGREES -> CompassRegime.SIGHTING
-            else -> CompassRegime.ROSE
+    private fun nextRegime(previous: CompassRegime, tilt: Float, sightingModeEnabled: Boolean): CompassRegime {
+        if (!sightingModeEnabled) {
+            return nextRegimeWithoutSighting(previous, tilt)
         }
 
-        CompassRegime.SIGHTING -> when {
-            tilt > SIGHTING_TO_HINT_ENTER_DEGREES -> CompassRegime.HINT
-            tilt < SIGHTING_TO_ROSE_EXIT_DEGREES -> CompassRegime.ROSE
-            else -> CompassRegime.SIGHTING
-        }
+        return when (previous) {
+            CompassRegime.ROSE -> when {
+                tilt > SIGHTING_TO_HINT_ENTER_DEGREES -> CompassRegime.HINT
+                tilt > ROSE_TO_SIGHTING_ENTER_DEGREES -> CompassRegime.SIGHTING
+                else -> CompassRegime.ROSE
+            }
 
-        CompassRegime.HINT -> when {
-            tilt < SIGHTING_TO_ROSE_EXIT_DEGREES -> CompassRegime.ROSE
-            tilt < HINT_TO_SIGHTING_EXIT_DEGREES -> CompassRegime.SIGHTING
-            else -> CompassRegime.HINT
+            CompassRegime.SIGHTING -> when {
+                tilt > SIGHTING_TO_HINT_ENTER_DEGREES -> CompassRegime.HINT
+                tilt < SIGHTING_TO_ROSE_EXIT_DEGREES -> CompassRegime.ROSE
+                else -> CompassRegime.SIGHTING
+            }
+
+            CompassRegime.HINT -> when {
+                tilt < SIGHTING_TO_ROSE_EXIT_DEGREES -> CompassRegime.ROSE
+                tilt < HINT_TO_SIGHTING_EXIT_DEGREES -> CompassRegime.SIGHTING
+                else -> CompassRegime.HINT
+            }
         }
     }
+
+    /**
+     * With sighting mode disabled, SIGHTING is unreachable: ROSE covers every tilt up to
+     * [SIGHTING_TO_HINT_ENTER_DEGREES], where HINT takes over. HINT's own enter/exit thresholds
+     * are unaffected, since it fixes a rendering bug rather than expressing a sighting-mode
+     * preference. A [previous] of SIGHTING (e.g. the setting was just turned off) is treated the
+     * same as ROSE.
+     */
+    private fun nextRegimeWithoutSighting(previous: CompassRegime, tilt: Float): CompassRegime =
+        when (previous) {
+            CompassRegime.HINT -> if (tilt < SIGHTING_TO_ROSE_EXIT_DEGREES) CompassRegime.ROSE else CompassRegime.HINT
+            CompassRegime.ROSE, CompassRegime.SIGHTING ->
+                if (tilt > SIGHTING_TO_HINT_ENTER_DEGREES) CompassRegime.HINT else CompassRegime.ROSE
+        }
 
     private fun toDegrees(radians: Float): Float = Math.toDegrees(radians.toDouble()).toFloat()
 }

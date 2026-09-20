@@ -69,6 +69,10 @@
     <string name="magnetic_north">Magnetiline põhjasuund</string>
     <string name="haptic_feedback">Haptiline tagasiside</string>
     <string name="haptic_feedback_summary">Suuna muutumisel kompass vibreerib.</string>
+    <string name="sighting_mode">Sihtimisrežiim</string>
+    <string name="sighting_mode_summary">Lülitub sihtimisribale, kui telefoni hoitakse püstiselt.</string>
+    <string name="sensor_status_warnings">Sensori täpsuse hoiatused</string>
+    <string name="sensor_status_warnings_summary">Kuvab automaatselt hoiatuse, kui sensori täpsus langeb.</string>
     <string name="display">Ekraan</string>
     <string name="night_mode">Kujundus</string>
     <string name="night_mode_follow_system">Järgi süsteemi kujundust</string>

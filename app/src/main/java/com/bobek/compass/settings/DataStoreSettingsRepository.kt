@@ -39,6 +39,9 @@ class DataStoreSettingsRepository @Inject constructor(
         val TRUE_NORTH_KEY = booleanPreferencesKey(PreferenceConstants.TRUE_NORTH)
         val HAPTIC_FEEDBACK_KEY = booleanPreferencesKey(PreferenceConstants.HAPTIC_FEEDBACK)
         val SCREEN_ORIENTATION_LOCKED_KEY = booleanPreferencesKey(PreferenceConstants.SCREEN_ORIENTATION_LOCKED)
+        val SIGHTING_MODE_KEY = booleanPreferencesKey(PreferenceConstants.SIGHTING_MODE)
+        val AUTO_SHOW_SENSOR_STATUS_DIALOG_KEY =
+            booleanPreferencesKey(PreferenceConstants.AUTO_SHOW_SENSOR_STATUS_DIALOG)
         val NIGHT_MODE_KEY = stringPreferencesKey(PreferenceConstants.NIGHT_MODE)
         val ACCESS_LOCATION_PERMISSION_REQUESTED_KEY =
             booleanPreferencesKey(PreferenceConstants.ACCESS_LOCATION_PERMISSION_REQUESTED)
@@ -66,6 +69,22 @@ class DataStoreSettingsRepository @Inject constructor(
     override suspend fun setScreenOrientationLocked(screenOrientationLocked: Boolean) {
         preferencesDataStore.edit { it[SCREEN_ORIENTATION_LOCKED_KEY] = screenOrientationLocked }
         Log.d(TAG, "Persisted screenOrientationLocked: $screenOrientationLocked")
+    }
+
+    override fun getSightingMode(): Flow<Boolean> = preferencesDataStore.data
+        .map { it[SIGHTING_MODE_KEY] ?: true }
+
+    override suspend fun setSightingMode(sightingMode: Boolean) {
+        preferencesDataStore.edit { it[SIGHTING_MODE_KEY] = sightingMode }
+        Log.d(TAG, "Persisted sightingMode: $sightingMode")
+    }
+
+    override fun getAutoShowSensorStatusDialogEnabled(): Flow<Boolean> = preferencesDataStore.data
+        .map { it[AUTO_SHOW_SENSOR_STATUS_DIALOG_KEY] ?: true }
+
+    override suspend fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean) {
+        preferencesDataStore.edit { it[AUTO_SHOW_SENSOR_STATUS_DIALOG_KEY] = autoShowSensorStatusDialogEnabled }
+        Log.d(TAG, "Persisted autoShowSensorStatusDialogEnabled: $autoShowSensorStatusDialogEnabled")
     }
 
     override fun getNightMode(): Flow<AppNightMode> = preferencesDataStore.data

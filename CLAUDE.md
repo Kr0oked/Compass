@@ -131,8 +131,10 @@ Other current design decisions:
   `regimeSettling`) right after any regime change, since the active bearing basis jumps (top edge vs. back of phone).
 - **`CompassDisplay` crossfades the three widgets** (250 ms `Crossfade`) and freezes the rose's last azimuth
   (`frozenRoseAzimuth`) for the `HINT` visual so it doesn't visibly keep spinning while hidden.
-- **No settings toggle.** Sighting mode always replaces the rose when the phone is held upright; nothing was added
-  to the Settings screen.
+- **Sighting mode can be turned off in Settings** (`sighting_mode`, enabled by default). When off,
+  `CompassReadingCalculator.nextRegime` makes `SIGHTING` unreachable: `ROSE` extends up to the 130° `HINT`
+  threshold, and `HINT` exits straight back to `ROSE` below 52°. `HINT` itself is unaffected, since it fixes the
+  face-down rendering problem rather than expressing a sighting preference.
 - **`CompassScreen` uses one layout for every orientation and regime.** The compass display fills the whole content
   area and stays centered; `DeclinationText` and `LocationSection` float over its bottom-start/bottom-end corners
   (`CornerInfo`). Neither the display's size nor the two texts' positions change across regimes or on rotation;

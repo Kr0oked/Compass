@@ -69,6 +69,10 @@
     <string name="magnetic_north">الشمال المغناطيسي</string>
     <string name="haptic_feedback">ردود الفعل الملموسة</string>
     <string name="haptic_feedback_summary">يهتز عند تغير الاتجاه.</string>
+    <string name="sighting_mode">وضع التصويب</string>
+    <string name="sighting_mode_summary">يتحول إلى شريط تصويب عند حمل الهاتف بشكل رأسي.</string>
+    <string name="sensor_status_warnings">تحذيرات دقة المستشعر</string>
+    <string name="sensor_status_warnings_summary">يعرض تحذيرًا تلقائيًا عند انخفاض دقة المستشعر.</string>
     <string name="display">العرض</string>
     <string name="night_mode">السمة</string>
     <string name="night_mode_follow_system">اتبع النظام</string>

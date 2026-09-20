@@ -69,6 +69,10 @@
     <string name="magnetic_north">Północ magnetyczna</string>
     <string name="haptic_feedback">Wibracje</string>
     <string name="haptic_feedback_summary">Wibruje, gdy zmienia się kierunek.</string>
+    <string name="sighting_mode">Tryb celowania</string>
+    <string name="sighting_mode_summary">Przełącza się na pasek celowania, gdy telefon jest trzymany w pionie.</string>
+    <string name="sensor_status_warnings">Ostrzeżenia o dokładności czujnika</string>
+    <string name="sensor_status_warnings_summary">Automatycznie wyświetla ostrzeżenie, gdy dokładność czujnika spada.</string>
     <string name="display">Wyświetlanie</string>
     <string name="night_mode">Motyw</string>
     <string name="night_mode_follow_system">Zgodnie z systemem</string>

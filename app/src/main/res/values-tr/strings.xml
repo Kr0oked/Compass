@@ -69,6 +69,10 @@
     <string name="magnetic_north">Manyetik kuzey</string>
     <string name="haptic_feedback">Dokunsal geribildirim</string>
     <string name="haptic_feedback_summary">Yön değişince titreşir.</string>
+    <string name="sighting_mode">Nişan alma modu</string>
+    <string name="sighting_mode_summary">Telefon dikey tutulduğunda nişan alma şeridine geçer.</string>
+    <string name="sensor_status_warnings">Sensör doğruluğu uyarıları</string>
+    <string name="sensor_status_warnings_summary">Sensör doğruluğu düştüğünde otomatik olarak uyarı gösterir.</string>
     <string name="display">Görüntü</string>
     <string name="night_mode">Tema</string>
     <string name="night_mode_follow_system">Sistemi izle</string>

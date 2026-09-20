@@ -69,6 +69,10 @@
     <string name="magnetic_north">Magnetski sjever</string>
     <string name="haptic_feedback">Vibracije</string>
     <string name="haptic_feedback_summary">Kompas vibrira kada se smjer promijeni.</string>
+    <string name="sighting_mode">Način ciljanja</string>
+    <string name="sighting_mode_summary">Prebacuje se na traku za ciljanje kada se telefon drži uspravno.</string>
+    <string name="sensor_status_warnings">Upozorenja o točnosti senzora</string>
+    <string name="sensor_status_warnings_summary">Automatski prikazuje upozorenje kada točnost senzora padne.</string>
     <string name="display">Zaslon</string>
     <string name="night_mode">Tema</string>
     <string name="night_mode_follow_system">Prati sustav</string>

@@ -101,6 +101,38 @@ class DataStoreSettingsRepositoryTest {
         assertFalse(repository.getScreenOrientationLocked().first())
     }
 
+    // sightingMode
+
+    @Test
+    fun sightingModeDefaultIsTrue() = testScope.runTest {
+        assertTrue(repository.getSightingMode().first())
+    }
+
+    @Test
+    fun sightingModeRoundTrip() = testScope.runTest {
+        repository.setSightingMode(false)
+        assertFalse(repository.getSightingMode().first())
+
+        repository.setSightingMode(true)
+        assertTrue(repository.getSightingMode().first())
+    }
+
+    // autoShowSensorStatusDialogEnabled
+
+    @Test
+    fun autoShowSensorStatusDialogEnabledDefaultIsTrue() = testScope.runTest {
+        assertTrue(repository.getAutoShowSensorStatusDialogEnabled().first())
+    }
+
+    @Test
+    fun autoShowSensorStatusDialogEnabledRoundTrip() = testScope.runTest {
+        repository.setAutoShowSensorStatusDialogEnabled(false)
+        assertFalse(repository.getAutoShowSensorStatusDialogEnabled().first())
+
+        repository.setAutoShowSensorStatusDialogEnabled(true)
+        assertTrue(repository.getAutoShowSensorStatusDialogEnabled().first())
+    }
+
     // nightMode
 
     @Test

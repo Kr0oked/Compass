@@ -69,6 +69,10 @@
     <string name="magnetic_north">Nord magnetico</string>
     <string name="haptic_feedback">Risposta tattile</string>
     <string name="haptic_feedback_summary">Vibra quando la direzione cambia.</string>
+    <string name="sighting_mode">Modalità di puntamento</string>
+    <string name="sighting_mode_summary">Passa a una barra di puntamento quando il telefono è tenuto in verticale.</string>
+    <string name="sensor_status_warnings">Avvisi sulla precisione del sensore</string>
+    <string name="sensor_status_warnings_summary">Mostra automaticamente un avviso quando la precisione del sensore diminuisce.</string>
     <string name="display">Visualizzazione</string>
     <string name="night_mode">Tema</string>
     <string name="night_mode_follow_system">Sistema</string>

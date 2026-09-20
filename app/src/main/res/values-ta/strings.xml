@@ -69,6 +69,10 @@
     <string name="magnetic_north">காந்த வடக்கு</string>
     <string name="haptic_feedback">அதிர்வு பின்னூட்டம்</string>
     <string name="haptic_feedback_summary">திசை மாறும்போது அதிரும்.</string>
+    <string name="sighting_mode">இலக்கு பயன்முறை</string>
+    <string name="sighting_mode_summary">தொலைபேசியை நிமிர்த்திப் பிடிக்கும்போது இலக்கு பட்டையாக மாறும்.</string>
+    <string name="sensor_status_warnings">சென்சார் துல்லிய எச்சரிக்கைகள்</string>
+    <string name="sensor_status_warnings_summary">சென்சார் துல்லியம் குறையும்போது தானாகவே எச்சரிக்கையைக் காட்டும்.</string>
     <string name="display">திரை</string>
     <string name="night_mode">தீம்</string>
     <string name="night_mode_follow_system">அமைப்பைப் பின்பற்று</string>

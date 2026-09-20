@@ -69,6 +69,10 @@
     <string name="magnetic_north">Mágneses észak</string>
     <string name="haptic_feedback">Haptikus visszajelzés</string>
     <string name="haptic_feedback_summary">Az iránytű rezeg, amikor az irány megváltozik.</string>
+    <string name="sighting_mode">Célzó mód</string>
+    <string name="sighting_mode_summary">Álló helyzetben tartott telefon esetén célzócsíkra vált.</string>
+    <string name="sensor_status_warnings">Érzékelő pontosságára vonatkozó figyelmeztetések</string>
+    <string name="sensor_status_warnings_summary">Automatikusan figyelmeztetést jelenít meg, ha az érzékelő pontossága csökken.</string>
     <string name="display">Megjelenés</string>
     <string name="night_mode">Téma</string>
     <string name="night_mode_follow_system">Rendszer követése</string>

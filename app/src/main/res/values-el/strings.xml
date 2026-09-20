@@ -69,6 +69,10 @@
     <string name="magnetic_north">Μαγνητικός βορράς</string>
     <string name="haptic_feedback">Απτική ανάδραση</string>
     <string name="haptic_feedback_summary">Δονείται όταν αλλάζει η κατεύθυνση.</string>
+    <string name="sighting_mode">Λειτουργία σκόπευσης</string>
+    <string name="sighting_mode_summary">Μεταβαίνει σε λωρίδα σκόπευσης όταν το τηλέφωνο κρατιέται όρθιο.</string>
+    <string name="sensor_status_warnings">Προειδοποιήσεις ακρίβειας αισθητήρα</string>
+    <string name="sensor_status_warnings_summary">Εμφανίζει αυτόματα προειδοποίηση όταν μειωθεί η ακρίβεια του αισθητήρα.</string>
     <string name="display">Εμφάνιση</string>
     <string name="night_mode">Θέμα</string>
     <string name="night_mode_follow_system">Όπως το σύστημα</string>

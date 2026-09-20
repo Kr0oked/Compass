@@ -119,6 +119,10 @@ private class FakeSettingsRepository(
     override suspend fun setHapticFeedback(hapticFeedback: Boolean) = Unit
     override fun getScreenOrientationLocked(): Flow<Boolean> = MutableStateFlow(true)
     override suspend fun setScreenOrientationLocked(screenOrientationLocked: Boolean) = Unit
+    override fun getSightingMode(): Flow<Boolean> = MutableStateFlow(true)
+    override suspend fun setSightingMode(sightingMode: Boolean) = Unit
+    override fun getAutoShowSensorStatusDialogEnabled(): Flow<Boolean> = MutableStateFlow(true)
+    override suspend fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean) = Unit
     override fun getAccessLocationPermissionRequested(): Flow<Boolean> = MutableStateFlow(false)
     override suspend fun setAccessLocationPermissionRequested(accessLocationPermissionRequested: Boolean) = Unit
 }

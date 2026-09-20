@@ -69,6 +69,10 @@
     <string name="magnetic_north">Магнитный север</string>
     <string name="haptic_feedback">Тактильная обратная связь</string>
     <string name="haptic_feedback_summary">Вибрация при смене направления.</string>
+    <string name="sighting_mode">Режим прицеливания</string>
+    <string name="sighting_mode_summary">Переключается на полосу прицеливания, когда телефон держат вертикально.</string>
+    <string name="sensor_status_warnings">Предупреждения о точности датчика</string>
+    <string name="sensor_status_warnings_summary">Автоматически показывает предупреждение при снижении точности датчика.</string>
     <string name="display">Дисплей</string>
     <string name="night_mode">Тема</string>
     <string name="night_mode_follow_system">Как в системе</string>

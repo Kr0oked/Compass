@@ -69,6 +69,10 @@
     <string name="magnetic_north">Magneettinen pohjoinen</string>
     <string name="haptic_feedback">Haptinen palaute</string>
     <string name="haptic_feedback_summary">Kompassi värisee, kun suunta muuttuu.</string>
+    <string name="sighting_mode">Tähtäystila</string>
+    <string name="sighting_mode_summary">Vaihtuu tähtäysliuskaan, kun puhelinta pidetään pystyasennossa.</string>
+    <string name="sensor_status_warnings">Anturin tarkkuusvaroitukset</string>
+    <string name="sensor_status_warnings_summary">Näyttää automaattisesti varoituksen, kun anturin tarkkuus heikkenee.</string>
     <string name="display">Näyttö</string>
     <string name="night_mode">Teema</string>
     <string name="night_mode_follow_system">Järjestelmän mukaan</string>

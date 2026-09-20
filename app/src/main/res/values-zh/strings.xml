@@ -69,6 +69,10 @@
     <string name="magnetic_north">磁北</string>
     <string name="haptic_feedback">触觉反馈</string>
     <string name="haptic_feedback_summary">方向改变时震动。</string>
+    <string name="sighting_mode">瞄准模式</string>
+    <string name="sighting_mode_summary">手机直立时会切换为瞄准条。</string>
+    <string name="sensor_status_warnings">传感器精度警告</string>
+    <string name="sensor_status_warnings_summary">传感器精度下降时会自动显示警告。</string>
     <string name="display">显示</string>
     <string name="night_mode">主题</string>
     <string name="night_mode_follow_system">跟随系统</string>

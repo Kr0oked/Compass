@@ -58,6 +58,10 @@ interface ICompassViewModel {
     fun setHapticFeedback(hapticFeedback: Boolean)
     fun getScreenOrientationLocked(): StateFlow<Boolean>
     fun setScreenOrientationLocked(screenOrientationLocked: Boolean)
+    fun getSightingModeFlow(): StateFlow<Boolean>
+    fun setSightingMode(sightingMode: Boolean)
+    fun getAutoShowSensorStatusDialogEnabledFlow(): StateFlow<Boolean>
+    fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean)
     fun getLocationFlow(): StateFlow<Location?>
     fun setLocation(location: Location?)
     fun getLocationStatusFlow(): StateFlow<LocationStatus>
@@ -91,12 +95,16 @@ class CompassViewModel @Inject constructor(
 
     private val screenOrientationLockedFlow = MutableStateFlow(false)
 
+    private val sightingModeFlow = MutableStateFlow(true)
+
+    private val autoShowSensorStatusDialogEnabledFlow = MutableStateFlow(true)
+
     private val locationFlow = MutableStateFlow<Location?>(null)
 
     private val locationStatusFlow = MutableStateFlow(LocationStatus.NOT_PRESENT)
 
     private val compassReadingFlow: StateFlow<CompassReading> =
-        combine(deviceRotationFlow, trueNorthFlow, locationFlow, ::RotationInput)
+        combine(deviceRotationFlow, trueNorthFlow, locationFlow, sightingModeFlow, ::RotationInput)
             .scan(CompassReading.INITIAL) { previous, input ->
                 val rotationMatrix = input.rotationMatrix ?: return@scan previous
                 val declination = if (input.trueNorth && input.location != null) {
@@ -104,7 +112,7 @@ class CompassViewModel @Inject constructor(
                 } else {
                     0f
                 }
-                CompassReadingCalculator.next(previous, rotationMatrix, declination)
+                CompassReadingCalculator.next(previous, rotationMatrix, declination, input.sightingModeEnabled)
             }
             .stateIn(viewModelScope, SharingStarted.Eagerly, CompassReading.INITIAL)
 
@@ -122,7 +130,11 @@ class CompassViewModel @Inject constructor(
             sensorAccuracyFlow.collect { accuracy ->
                 if (accuracy == SensorAccuracy.HIGH) {
                     sensorStatusDialogShownForCurrentAccuracyDrop = false
-                } else if (accuracy.isWarning && !sensorStatusDialogShownForCurrentAccuracyDrop) {
+                } else if (
+                    accuracy.isWarning &&
+                    !sensorStatusDialogShownForCurrentAccuracyDrop &&
+                    autoShowSensorStatusDialogEnabledFlow.value
+                ) {
                     sensorStatusDialogShownForCurrentAccuracyDrop = true
                     shouldAutoShowSensorStatusDialogFlow.value = true
                 }
@@ -134,6 +146,9 @@ class CompassViewModel @Inject constructor(
         settingsRepository.getTrueNorth().firstOrNull()?.let { trueNorthFlow.value = it }
         settingsRepository.getHapticFeedback().firstOrNull()?.let { hapticFeedbackFlow.value = it }
         settingsRepository.getScreenOrientationLocked().firstOrNull()?.let { screenOrientationLockedFlow.value = it }
+        settingsRepository.getSightingMode().firstOrNull()?.let { sightingModeFlow.value = it }
+        settingsRepository.getAutoShowSensorStatusDialogEnabled().firstOrNull()
+            ?.let { autoShowSensorStatusDialogEnabledFlow.value = it }
     }
 
     private fun setupFlowsToSettings() {
@@ -148,6 +163,14 @@ class CompassViewModel @Inject constructor(
         viewModelScope.launch {
             screenOrientationLockedFlow.drop(1).debounce(SETTINGS_DEBOUNCE)
                 .collect { settingsRepository.setScreenOrientationLocked(it) }
+        }
+        viewModelScope.launch {
+            sightingModeFlow.drop(1).debounce(SETTINGS_DEBOUNCE)
+                .collect { settingsRepository.setSightingMode(it) }
+        }
+        viewModelScope.launch {
+            autoShowSensorStatusDialogEnabledFlow.drop(1).debounce(SETTINGS_DEBOUNCE)
+                .collect { settingsRepository.setAutoShowSensorStatusDialogEnabled(it) }
         }
     }
 
@@ -188,6 +211,18 @@ class CompassViewModel @Inject constructor(
         screenOrientationLockedFlow.value = screenOrientationLocked
     }
 
+    override fun getSightingModeFlow() = sightingModeFlow
+
+    override fun setSightingMode(sightingMode: Boolean) {
+        sightingModeFlow.value = sightingMode
+    }
+
+    override fun getAutoShowSensorStatusDialogEnabledFlow() = autoShowSensorStatusDialogEnabledFlow
+
+    override fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean) {
+        autoShowSensorStatusDialogEnabledFlow.value = autoShowSensorStatusDialogEnabled
+    }
+
     override fun getLocationFlow() = locationFlow
 
     override fun setLocation(location: Location?) {
@@ -204,7 +239,8 @@ class CompassViewModel @Inject constructor(
 private class RotationInput(
     val rotationMatrix: FloatArray?,
     val trueNorth: Boolean,
-    val location: Location?
+    val location: Location?,
+    val sightingModeEnabled: Boolean
 )
 
 class ComposeCompassViewModel(
@@ -213,6 +249,8 @@ class ComposeCompassViewModel(
     val trueNorth: Boolean = false,
     val hapticFeedback: Boolean = true,
     val screenOrientationLocked: Boolean = true,
+    val sightingMode: Boolean = true,
+    val autoShowSensorStatusDialogEnabled: Boolean = true,
     val location: Location? = Location(""),
     val locationStatus: LocationStatus = LocationStatus.NOT_PRESENT
 ) : ICompassViewModel {
@@ -228,6 +266,10 @@ class ComposeCompassViewModel(
     override fun setHapticFeedback(hapticFeedback: Boolean) = Unit
     override fun getScreenOrientationLocked() = MutableStateFlow(screenOrientationLocked)
     override fun setScreenOrientationLocked(screenOrientationLocked: Boolean) = Unit
+    override fun getSightingModeFlow() = MutableStateFlow(sightingMode)
+    override fun setSightingMode(sightingMode: Boolean) = Unit
+    override fun getAutoShowSensorStatusDialogEnabledFlow() = MutableStateFlow(autoShowSensorStatusDialogEnabled)
+    override fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean) = Unit
     override fun getLocationFlow() = MutableStateFlow(location)
     override fun setLocation(location: Location?) = Unit
     override fun getLocationStatusFlow() = MutableStateFlow(locationStatus)

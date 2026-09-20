@@ -69,6 +69,10 @@
     <string name="magnetic_north">Magnetic North</string>
     <string name="haptic_feedback">Haptic feedback</string>
     <string name="haptic_feedback_summary">Vibrates when the direction changes.</string>
+    <string name="sighting_mode">Sighting mode</string>
+    <string name="sighting_mode_summary">Switches to a sighting strip when the phone is held upright.</string>
+    <string name="sensor_status_warnings">Sensor accuracy warnings</string>
+    <string name="sensor_status_warnings_summary">Automatically shows a warning when sensor accuracy drops.</string>
     <string name="display">Display</string>
     <string name="night_mode">Theme</string>
     <string name="night_mode_follow_system">Follow system</string>

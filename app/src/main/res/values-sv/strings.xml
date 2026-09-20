@@ -69,6 +69,10 @@
     <string name="magnetic_north">Magnetisk norr</string>
     <string name="haptic_feedback">Haptisk återkoppling</string>
     <string name="haptic_feedback_summary">Vibrerar när riktningen ändras.</string>
+    <string name="sighting_mode">Siktesläge</string>
+    <string name="sighting_mode_summary">Växlar till en siktremsa när telefonen hålls upprätt.</string>
+    <string name="sensor_status_warnings">Varningar om sensornoggrannhet</string>
+    <string name="sensor_status_warnings_summary">Visar automatiskt en varning när sensornoggrannheten sjunker.</string>
     <string name="display">Skärm</string>
     <string name="night_mode">Tema</string>
     <string name="night_mode_follow_system">Följ systemet</string>

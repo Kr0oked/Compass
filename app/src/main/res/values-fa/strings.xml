@@ -69,6 +69,10 @@
     <string name="magnetic_north">شمال مغناطیسی</string>
     <string name="haptic_feedback">بازخورد لرزشی</string>
     <string name="haptic_feedback_summary">با تغییر جهت، دستگاه می‌لرزد.</string>
+    <string name="sighting_mode">حالت نشانه‌گیری</string>
+    <string name="sighting_mode_summary">هنگامی که گوشی عمودی نگه داشته می‌شود، به نوار نشانه‌گیری تغییر می‌کند.</string>
+    <string name="sensor_status_warnings">هشدارهای دقت حسگر</string>
+    <string name="sensor_status_warnings_summary">هنگام کاهش دقت حسگر، به‌طور خودکار هشداری نشان می‌دهد.</string>
     <string name="display">نمایش</string>
     <string name="night_mode">پوسته</string>
     <string name="night_mode_follow_system">پیروی از سیستم</string>

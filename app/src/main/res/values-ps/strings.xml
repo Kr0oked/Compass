@@ -69,6 +69,10 @@
     <string name="magnetic_north">مقناطیسي شمال</string>
     <string name="haptic_feedback">د کمپن بیاغبرګون</string>
     <string name="haptic_feedback_summary">کله چې لور بدلیږي نو کمپن کوي.</string>
+    <string name="sighting_mode">د نیغولو حالت</string>
+    <string name="sighting_mode_summary">کله چې ټیلیفون په عمودي ډول ساتل کیږي، د نیغولو پټې ته اوړي.</string>
+    <string name="sensor_status_warnings">د سینسور دقت خبرداری</string>
+    <string name="sensor_status_warnings_summary">کله چې د سینسور دقت راټیټ شي، په اوتومات ډول خبرداری ښکاره کوي.</string>
     <string name="display">ښودنه</string>
     <string name="night_mode">طرحه</string>
     <string name="night_mode_follow_system">د سیسټم پیروي</string>

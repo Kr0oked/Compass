@@ -69,6 +69,10 @@
     <string name="magnetic_north">Utara magnet</string>
     <string name="haptic_feedback">Maklum balas haptik</string>
     <string name="haptic_feedback_summary">Bergetar apabila arah berubah.</string>
+    <string name="sighting_mode">Mod pandangan</string>
+    <string name="sighting_mode_summary">Bertukar kepada jalur pandangan apabila telefon dipegang tegak.</string>
+    <string name="sensor_status_warnings">Amaran ketepatan penderia</string>
+    <string name="sensor_status_warnings_summary">Memaparkan amaran secara automatik apabila ketepatan penderia menurun.</string>
     <string name="display">Paparan</string>
     <string name="night_mode">Tema</string>
     <string name="night_mode_follow_system">Ikut sistem</string>

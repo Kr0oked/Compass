@@ -26,6 +26,10 @@ object PreferenceConstants {
 
     const val SCREEN_ORIENTATION_LOCKED = "screen_orientation_locked"
 
+    const val SIGHTING_MODE = "sighting_mode"
+
+    const val AUTO_SHOW_SENSOR_STATUS_DIALOG = "auto_show_sensor_status_dialog"
+
     const val NIGHT_MODE = "night_mode"
     const val NIGHT_MODE_VALUE_FOLLOW_SYSTEM = "follow_system"
     const val NIGHT_MODE_VALUE_NO = "no"

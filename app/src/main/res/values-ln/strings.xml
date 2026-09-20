@@ -69,6 +69,10 @@
     <string name="magnetic_north">Nola magnétique</string>
     <string name="haptic_feedback">Bozóngisa na bolɛ́ngí</string>
     <string name="haptic_feedback_summary">Busɔ́lɛ eningání ntángo ngámbo na yangó ebongwanaka.</string>
+    <string name="sighting_mode">Modɛ ya kotalela</string>
+    <string name="sighting_mode_summary">Ekokitisa na bar ya kotalela soki telefone esimbami ya kotɛlɛma.</string>
+    <string name="sensor_status_warnings">Bikebisi ya bosikisiki bwa capteur</string>
+    <string name="sensor_status_warnings_summary">Ekolakisa likebisi na ndenge na yango moko soki bosikisiki bwa capteur ekiti.</string>
     <string name="display">Limɔ́niseli</string>
     <string name="night_mode">Eláteli</string>
     <string name="night_mode_follow_system">Kolanda litámbuisi-masíni</string>

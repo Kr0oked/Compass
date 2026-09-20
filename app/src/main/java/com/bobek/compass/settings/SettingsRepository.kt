@@ -28,6 +28,10 @@ interface SettingsRepository {
     suspend fun setHapticFeedback(hapticFeedback: Boolean)
     fun getScreenOrientationLocked(): Flow<Boolean>
     suspend fun setScreenOrientationLocked(screenOrientationLocked: Boolean)
+    fun getSightingMode(): Flow<Boolean>
+    suspend fun setSightingMode(sightingMode: Boolean)
+    fun getAutoShowSensorStatusDialogEnabled(): Flow<Boolean>
+    suspend fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean)
     fun getNightMode(): Flow<AppNightMode>
     suspend fun setNightMode(nightMode: AppNightMode)
     fun getAccessLocationPermissionRequested(): Flow<Boolean>

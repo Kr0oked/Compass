@@ -33,8 +33,9 @@ class CompassReadingCalculatorTest {
     private fun next(
         matrix: FloatArray,
         previous: CompassReading = CompassReading.INITIAL,
-        declination: Float = 0f
-    ): CompassReading = CompassReadingCalculator.next(previous, matrix, declination)
+        declination: Float = 0f,
+        sightingModeEnabled: Boolean = true
+    ): CompassReading = CompassReadingCalculator.next(previous, matrix, declination, sightingModeEnabled)
 
     // Rotation matrix helper sanity check
 
@@ -148,5 +149,41 @@ class CompassReadingCalculatorTest {
 
         reading = next(rotationMatrix(pitchDegrees = 105f), previous = reading)
         assertEquals(CompassRegime.SIGHTING, reading.regime)
+    }
+
+    // Sighting mode disabled
+
+    @Test
+    fun withSightingModeDisabledRoseExtendsThroughOldSightingRange() {
+        var reading = next(rotationMatrix(pitchDegrees = 75f), sightingModeEnabled = false)
+        assertEquals(CompassRegime.ROSE, reading.regime)
+
+        reading = next(rotationMatrix(pitchDegrees = 120f), previous = reading, sightingModeEnabled = false)
+        assertEquals(CompassRegime.ROSE, reading.regime)
+    }
+
+    @Test
+    fun withSightingModeDisabledHintTriggerIsUnaffected() {
+        val reading = next(rotationMatrix(pitchDegrees = 135f), sightingModeEnabled = false)
+        assertEquals(CompassRegime.HINT, reading.regime)
+    }
+
+    @Test
+    fun withSightingModeDisabledHintExitsBackToRoseBelowFiftyTwoDegrees() {
+        var reading = CompassReading.INITIAL.copy(regime = CompassRegime.HINT)
+
+        reading = next(rotationMatrix(pitchDegrees = 60f), previous = reading, sightingModeEnabled = false)
+        assertEquals(CompassRegime.HINT, reading.regime)
+
+        reading = next(rotationMatrix(pitchDegrees = 45f), previous = reading, sightingModeEnabled = false)
+        assertEquals(CompassRegime.ROSE, reading.regime)
+    }
+
+    @Test
+    fun withSightingModeDisabledStaleSightingPreviousFallsBackToRoseLogic() {
+        val stale = CompassReading.INITIAL.copy(regime = CompassRegime.SIGHTING)
+
+        val reading = next(rotationMatrix(pitchDegrees = 90f), previous = stale, sightingModeEnabled = false)
+        assertEquals(CompassRegime.ROSE, reading.regime)
     }
 }

@@ -69,6 +69,10 @@
     <string name="magnetic_north">Magnetischer Norden</string>
     <string name="haptic_feedback">Haptisches Feedback</string>
     <string name="haptic_feedback_summary">Der Kompass vibriert, wenn sich die Richtung ändert.</string>
+    <string name="sighting_mode">Peilmodus</string>
+    <string name="sighting_mode_summary">Wechselt zu einem Peilstreifen, wenn das Telefon senkrecht gehalten wird.</string>
+    <string name="sensor_status_warnings">Warnungen zur Sensorgenauigkeit</string>
+    <string name="sensor_status_warnings_summary">Zeigt automatisch eine Warnung an, wenn die Sensorgenauigkeit sinkt.</string>
     <string name="display">Anzeige</string>
     <string name="night_mode">Design</string>
     <string name="night_mode_follow_system">System folgen</string>

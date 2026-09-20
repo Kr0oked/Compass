@@ -69,6 +69,10 @@
     <string name="magnetic_north">Magnetisk nord</string>
     <string name="haptic_feedback">Vibrasjonstilbakemelding</string>
     <string name="haptic_feedback_summary">Vibrerer når retningen endres.</string>
+    <string name="sighting_mode">Siktemodus</string>
+    <string name="sighting_mode_summary">Skifter til en siktestripe når telefonen holdes loddrett.</string>
+    <string name="sensor_status_warnings">Varsler om sensornøyaktighet</string>
+    <string name="sensor_status_warnings_summary">Viser automatisk et varsel når sensornøyaktigheten faller.</string>
     <string name="display">Visning</string>
     <string name="night_mode">Tema</string>
     <string name="night_mode_follow_system">Følg system</string>

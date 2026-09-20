@@ -69,6 +69,10 @@
     <string name="magnetic_north">Magnetisch noorden</string>
     <string name="haptic_feedback">Haptische feedback</string>
     <string name="haptic_feedback_summary">Trilt wanneer de richting verandert.</string>
+    <string name="sighting_mode">Richtmodus</string>
+    <string name="sighting_mode_summary">Schakelt over naar een richtstrook wanneer de telefoon rechtop wordt gehouden.</string>
+    <string name="sensor_status_warnings">Waarschuwingen voor sensornauwkeurigheid</string>
+    <string name="sensor_status_warnings_summary">Toont automatisch een waarschuwing wanneer de sensornauwkeurigheid afneemt.</string>
     <string name="display">Weergave</string>
     <string name="night_mode">Thema</string>
     <string name="night_mode_follow_system">Volg systeem</string>

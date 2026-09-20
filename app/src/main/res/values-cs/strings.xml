@@ -69,6 +69,10 @@
     <string name="magnetic_north">Magnetický sever</string>
     <string name="haptic_feedback">Haptická odezva</string>
     <string name="haptic_feedback_summary">Při změně směru kompas vibruje.</string>
+    <string name="sighting_mode">Zaměřovací režim</string>
+    <string name="sighting_mode_summary">Při svislém držení telefonu se přepne na zaměřovací pruh.</string>
+    <string name="sensor_status_warnings">Upozornění na přesnost senzoru</string>
+    <string name="sensor_status_warnings_summary">Automaticky zobrazí upozornění při poklesu přesnosti senzoru.</string>
     <string name="display">Zobrazení</string>
     <string name="night_mode">Motiv</string>
     <string name="night_mode_follow_system">Podle systému</string>

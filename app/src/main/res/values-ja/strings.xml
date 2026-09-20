@@ -69,6 +69,10 @@
     <string name="magnetic_north">磁北</string>
     <string name="haptic_feedback">触覚フィードバック</string>
     <string name="haptic_feedback_summary">方角が変わると振動します。</string>
+    <string name="sighting_mode">照準モード</string>
+    <string name="sighting_mode_summary">スマートフォンを縦に持つと照準ストリップに切り替わります。</string>
+    <string name="sensor_status_warnings">センサー精度の警告</string>
+    <string name="sensor_status_warnings_summary">センサーの精度が低下すると自動的に警告を表示します。</string>
     <string name="display">画面</string>
     <string name="night_mode">テーマ</string>
     <string name="night_mode_follow_system">システムに合わせる</string>

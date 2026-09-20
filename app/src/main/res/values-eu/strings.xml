@@ -69,6 +69,10 @@
     <string name="magnetic_north">Ipar magnetikoa</string>
     <string name="haptic_feedback">Abisu haptikoak</string>
     <string name="haptic_feedback_summary">Iparrorratzak bibratu egingo du norabidea aldatzean.</string>
+    <string name="sighting_mode">Begiztatze modua</string>
+    <string name="sighting_mode_summary">Telefonoa zutik edukitzean, begiztatze-zerrendara aldatzen da.</string>
+    <string name="sensor_status_warnings">Sentsorearen zehaztasunari buruzko abisuak</string>
+    <string name="sensor_status_warnings_summary">Sentsorearen zehaztasuna jaisten denean, abisu bat erakusten du automatikoki.</string>
     <string name="display">Bistaratzea</string>
     <string name="night_mode">Gaia</string>
     <string name="night_mode_follow_system">Sistemarena</string>

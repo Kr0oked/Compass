@@ -69,6 +69,10 @@
     <string name="magnetic_north">Магнетни север</string>
     <string name="haptic_feedback">Вибрације</string>
     <string name="haptic_feedback_summary">Компас вибрира када се смер промени.</string>
+    <string name="sighting_mode">Режим нишањења</string>
+    <string name="sighting_mode_summary">Пребацује се на траку за нишањење када се телефон држи усправно.</string>
+    <string name="sensor_status_warnings">Упозорења о тачности сензора</string>
+    <string name="sensor_status_warnings_summary">Аутоматски приказује упозорење када тачност сензора опадне.</string>
     <string name="display">Приказ</string>
     <string name="night_mode">Тема</string>
     <string name="night_mode_follow_system">Прати систем</string>

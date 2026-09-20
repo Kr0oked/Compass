@@ -69,6 +69,10 @@
     <string name="magnetic_north">Utara magnetik</string>
     <string name="haptic_feedback">Umpan balik haptik</string>
     <string name="haptic_feedback_summary">Kompas bergetar ketika arah berubah.</string>
+    <string name="sighting_mode">Mode bidik</string>
+    <string name="sighting_mode_summary">Beralih ke garis bidik saat ponsel dipegang tegak.</string>
+    <string name="sensor_status_warnings">Peringatan akurasi sensor</string>
+    <string name="sensor_status_warnings_summary">Menampilkan peringatan secara otomatis saat akurasi sensor menurun.</string>
     <string name="display">Tampilan</string>
     <string name="night_mode">Tema</string>
     <string name="night_mode_follow_system">Ikuti sistem</string>

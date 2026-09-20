@@ -77,6 +77,8 @@ fun SettingsScreen(
     val context = LocalContext.current
     val trueNorth by compassViewModel.getTrueNorthFlow().collectAsState()
     val hapticFeedback by compassViewModel.getHapticFeedbackFlow().collectAsState()
+    val sightingMode by compassViewModel.getSightingModeFlow().collectAsState()
+    val autoShowSensorStatusDialogEnabled by compassViewModel.getAutoShowSensorStatusDialogEnabledFlow().collectAsState()
     val nightMode by appViewModel.getNightModeFlow().collectAsState()
 
     var showNightModeDialog by rememberSaveable { mutableStateOf(false) }
@@ -130,6 +132,32 @@ fun SettingsScreen(
                         )
                     },
                     modifier = Modifier.clickable { compassViewModel.setHapticFeedback(!hapticFeedback) }
+                )
+
+                ListItem(
+                    headlineContent = { Text(stringResource(R.string.sighting_mode)) },
+                    supportingContent = { Text(stringResource(R.string.sighting_mode_summary)) },
+                    trailingContent = {
+                        Switch(
+                            checked = sightingMode,
+                            onCheckedChange = null
+                        )
+                    },
+                    modifier = Modifier.clickable { compassViewModel.setSightingMode(!sightingMode) }
+                )
+
+                ListItem(
+                    headlineContent = { Text(stringResource(R.string.sensor_status_warnings)) },
+                    supportingContent = { Text(stringResource(R.string.sensor_status_warnings_summary)) },
+                    trailingContent = {
+                        Switch(
+                            checked = autoShowSensorStatusDialogEnabled,
+                            onCheckedChange = null
+                        )
+                    },
+                    modifier = Modifier.clickable {
+                        compassViewModel.setAutoShowSensorStatusDialogEnabled(!autoShowSensorStatusDialogEnabled)
+                    }
                 )
             }
 

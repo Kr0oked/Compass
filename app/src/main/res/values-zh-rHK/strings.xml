@@ -69,6 +69,10 @@
     <string name="magnetic_north">磁北</string>
     <string name="haptic_feedback">觸覺回饋</string>
     <string name="haptic_feedback_summary">方向改變時震動。</string>
+    <string name="sighting_mode">瞄準模式</string>
+    <string name="sighting_mode_summary">手機直立時會切換為瞄準條。</string>
+    <string name="sensor_status_warnings">感應器精度警告</string>
+    <string name="sensor_status_warnings_summary">感應器精度下降時會自動顯示警告。</string>
     <string name="display">顯示</string>
     <string name="night_mode">主題</string>
     <string name="night_mode_follow_system">跟隨系統</string>

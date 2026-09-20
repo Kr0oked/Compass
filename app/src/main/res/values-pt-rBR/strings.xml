@@ -69,6 +69,10 @@
     <string name="magnetic_north">Norte magnético</string>
     <string name="haptic_feedback">Feedback tátil</string>
     <string name="haptic_feedback_summary">Vibra quando a direção muda.</string>
+    <string name="sighting_mode">Modo de mira</string>
+    <string name="sighting_mode_summary">Alterna para uma faixa de mira quando o celular é mantido na vertical.</string>
+    <string name="sensor_status_warnings">Avisos de precisão do sensor</string>
+    <string name="sensor_status_warnings_summary">Mostra automaticamente um aviso quando a precisão do sensor diminui.</string>
     <string name="display">Tela</string>
     <string name="night_mode">Tema</string>
     <string name="night_mode_follow_system">Seguir sistema</string>
