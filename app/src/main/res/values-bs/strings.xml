@@ -66,7 +66,6 @@
     <string name="settings">Postavke</string>
     <string name="true_north">Pravi sjever</string>
     <string name="true_north_summary">Ispravlja magnetnu deklinaciju koristeći vašu lokaciju.</string>
-    <string name="magnetic_north">Magnetni sjever</string>
     <string name="haptic_feedback">Vibracije</string>
     <string name="haptic_feedback_summary">Kompas vibrira kada se smjer promijeni.</string>
     <string name="sighting_mode">Način ciljanja</string>

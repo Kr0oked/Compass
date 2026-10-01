@@ -36,6 +36,8 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -154,7 +156,7 @@ private fun CompassContent(
         )
 
         CornerInfo(corner = Alignment.BottomStart, horizontalAlignment = Alignment.Start) {
-            DeclinationText(trueNorth = trueNorth, locationStatus = locationStatus)
+            TrueNorthChip(trueNorth = trueNorth, onClick = { viewModel.setTrueNorth(!trueNorth) })
         }
 
         if (trueNorth) {
@@ -308,29 +310,27 @@ private fun LocationError(message: String) {
 }
 
 @Composable
-private fun DeclinationText(
+private fun TrueNorthChip(
     trueNorth: Boolean,
-    locationStatus: LocationStatus
+    onClick: () -> Unit
 ) {
-    val text = if (trueNorth && locationStatus == LocationStatus.PRESENT) {
-        stringResource(R.string.true_north)
-    } else {
-        stringResource(R.string.magnetic_north)
-    }
-
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Icon(
-            painter = painterResource(R.drawable.ic_explore),
-            contentDescription = null,
-            modifier = Modifier.size(16.dp),
-            tint = MaterialTheme.colorScheme.outline
-        )
-        Text(
-            text = text,
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.outline
-        )
-    }
+    FilterChip(
+        selected = trueNorth,
+        onClick = onClick,
+        label = { Text(stringResource(R.string.true_north)) },
+        leadingIcon = if (trueNorth) {
+            {
+                Icon(
+                    painter = painterResource(R.drawable.ic_check),
+                    contentDescription = null,
+                    modifier = Modifier.size(FilterChipDefaults.IconSize)
+                )
+            }
+        } else {
+            null
+        },
+        modifier = Modifier.testTag(TestConstants.TRUE_NORTH_CHIP)
+    )
 }
 
 private class CompassScreenViewModelProvider : PreviewParameterProvider<ICompassViewModel> {

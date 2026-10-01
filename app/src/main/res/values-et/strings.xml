@@ -66,7 +66,6 @@
     <string name="settings">Seadistused</string>
     <string name="true_north">Geograafiline põhjasuund</string>
     <string name="true_north_summary">Korrigeerib magnetilist deklinatsiooni, kasutades sinu asukohta.</string>
-    <string name="magnetic_north">Magnetiline põhjasuund</string>
     <string name="haptic_feedback">Haptiline tagasiside</string>
     <string name="haptic_feedback_summary">Suuna muutumisel kompass vibreerib.</string>
     <string name="sighting_mode">Sihtimisrežiim</string>

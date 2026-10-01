@@ -66,7 +66,6 @@
     <string name="settings">Innstillinger</string>
     <string name="true_north">Geografisk nord</string>
     <string name="true_north_summary">Korrigerer for misvisning ved hjelp av posisjonen din.</string>
-    <string name="magnetic_north">Magnetisk nord</string>
     <string name="haptic_feedback">Vibrasjonstilbakemelding</string>
     <string name="haptic_feedback_summary">Vibrerer når retningen endres.</string>
     <string name="sighting_mode">Siktemodus</string>

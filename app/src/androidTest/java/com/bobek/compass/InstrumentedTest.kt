@@ -25,6 +25,8 @@ import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.assertIsNotSelected
+import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.hasScrollToNodeAction
 import androidx.compose.ui.test.hasStateDescription
@@ -45,6 +47,7 @@ import androidx.test.filters.LargeTest
 import androidx.test.rule.GrantPermissionRule
 import com.bobek.compass.data.SensorAccuracy
 import com.bobek.compass.ui.TestConstants
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -88,6 +91,14 @@ class InstrumentedTest {
     @Before
     fun setup() {
         waitUntilCompassIsDisplayed()
+    }
+
+    // True north is persisted, so reset it to keep it from leaking into later tests
+    @After
+    fun tearDown() {
+        composeTestRule.runOnUiThread {
+            composeTestRule.activity.compassViewModel.setTrueNorth(false)
+        }
     }
 
     @Test
@@ -183,6 +194,23 @@ class InstrumentedTest {
         onOkButton().performClick()
     }
 
+    @Test
+    fun trueNorthChipTogglesTrueNorthSharedWithSettings() {
+        onTrueNorthChip().assertIsNotSelected()
+
+        onTrueNorthChip().performClick()
+        composeTestRule.waitForIdle()
+        onTrueNorthChip().assertIsSelected()
+
+        // The settings switch drives the same setting, so turning it off there deselects the chip
+        openSettings()
+        onListItem(getString(R.string.true_north)).performClick()
+        composeTestRule.waitForIdle()
+
+        pressBack()
+        composeTestRule.waitForIdle()
+        onTrueNorthChip().assertIsNotSelected()
+    }
 
     @Test
     fun navigatingToSettingsAndBackShowsCompassScreenAgain() {
@@ -310,6 +338,9 @@ class InstrumentedTest {
 
     private fun onCompassRose(): SemanticsNodeInteraction =
         composeTestRule.onNodeWithTag(TestConstants.COMPASS_ROSE)
+
+    private fun onTrueNorthChip(): SemanticsNodeInteraction =
+        composeTestRule.onNodeWithTag(TestConstants.TRUE_NORTH_CHIP)
 
     private fun onSensorStatusButton(): SemanticsNodeInteraction =
         composeTestRule.onNodeWithTag(TestConstants.SENSOR_STATUS_BUTTON)

@@ -66,7 +66,6 @@
     <string name="settings">Instellingen</string>
     <string name="true_north">Ware noorden</string>
     <string name="true_north_summary">Corrigeert de magnetische declinatie met behulp van uw locatie.</string>
-    <string name="magnetic_north">Magnetisch noorden</string>
     <string name="haptic_feedback">Haptische feedback</string>
     <string name="haptic_feedback_summary">Trilt wanneer de richting verandert.</string>
     <string name="sighting_mode">Richtmodus</string>

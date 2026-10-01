@@ -66,7 +66,6 @@
     <string name="settings">Sozlamalar</string>
     <string name="true_north">Haqiqiy shimol</string>
     <string name="true_north_summary">Joylashuvingiz yordamida magnit og‘ishini tuzatadi.</string>
-    <string name="magnetic_north">Magnit shimol</string>
     <string name="haptic_feedback">Taktil signal</string>
     <string name="haptic_feedback_summary">Yo‘nalish o‘zgarganda tebranadi.</string>
     <string name="sighting_mode">Nishonga olish rejimi</string>

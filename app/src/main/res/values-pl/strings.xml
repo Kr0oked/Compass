@@ -66,7 +66,6 @@
     <string name="settings">Ustawienia</string>
     <string name="true_north">Północ geograficzna</string>
     <string name="true_north_summary">Koryguje deklinację magnetyczną na podstawie Twojej lokalizacji.</string>
-    <string name="magnetic_north">Północ magnetyczna</string>
     <string name="haptic_feedback">Wibracje</string>
     <string name="haptic_feedback_summary">Wibruje, gdy zmienia się kierunek.</string>
     <string name="sighting_mode">Tryb celowania</string>

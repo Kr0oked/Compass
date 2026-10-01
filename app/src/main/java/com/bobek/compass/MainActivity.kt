@@ -270,6 +270,7 @@ class MainActivity : ComponentActivity() {
 
     fun requestLocation() {
         if (!compassViewModel.getTrueNorthFlow().value) return
+        if (intent.getBooleanExtra(OPTION_INSTRUMENTED_TEST, false)) return
 
         val locationManager = locationManager ?: run {
             Log.w(TAG, "LocationManager not present")

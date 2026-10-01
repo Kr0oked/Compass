@@ -66,7 +66,6 @@
     <string name="settings">تنظیمات</string>
     <string name="true_north">ریښتینی شمال</string>
     <string name="true_north_summary">ستاسو د موقعیت په کارولو سره مقناطیسي انحراف اصلاح کوي.</string>
-    <string name="magnetic_north">مقناطیسي شمال</string>
     <string name="haptic_feedback">د کمپن بیاغبرګون</string>
     <string name="haptic_feedback_summary">کله چې لور بدلیږي نو کمپن کوي.</string>
     <string name="sighting_mode">د نیغولو حالت</string>

@@ -66,7 +66,6 @@
     <string name="settings">تنظیمات</string>
     <string name="true_north">شمال واقعی</string>
     <string name="true_north_summary">با استفاده از موقعیت مکانی شما، انحراف مغناطیسی را تصحیح می‌کند.</string>
-    <string name="magnetic_north">شمال مغناطیسی</string>
     <string name="haptic_feedback">بازخورد لرزشی</string>
     <string name="haptic_feedback_summary">با تغییر جهت، دستگاه می‌لرزد.</string>
     <string name="sighting_mode">حالت نشانه‌گیری</string>

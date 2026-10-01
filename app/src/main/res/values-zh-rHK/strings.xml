@@ -66,7 +66,6 @@
     <string name="settings">設定</string>
     <string name="true_north">正北</string>
     <string name="true_north_summary">使用您的位置修正磁偏角。</string>
-    <string name="magnetic_north">磁北</string>
     <string name="haptic_feedback">觸覺回饋</string>
     <string name="haptic_feedback_summary">方向改變時震動。</string>
     <string name="sighting_mode">瞄準模式</string>

@@ -66,7 +66,6 @@
     <string name="settings">الإعدادات</string>
     <string name="true_north">الشمال الحقيقي</string>
     <string name="true_north_summary">يصحح الانحراف المغناطيسي باستخدام موقعك الجغرافي.</string>
-    <string name="magnetic_north">الشمال المغناطيسي</string>
     <string name="haptic_feedback">ردود الفعل الملموسة</string>
     <string name="haptic_feedback_summary">يهتز عند تغير الاتجاه.</string>
     <string name="sighting_mode">وضع التصويب</string>

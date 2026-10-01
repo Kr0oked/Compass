@@ -66,7 +66,6 @@
     <string name="settings">Налаштування</string>
     <string name="true_north">Справжня північ</string>
     <string name="true_north_summary">Виправляє магнітне схилення за допомогою вашого місцезнаходження.</string>
-    <string name="magnetic_north">Магнітна північ</string>
     <string name="haptic_feedback">Тактильний відгук</string>
     <string name="haptic_feedback_summary">Вібрація під час зміни напрямку.</string>
     <string name="sighting_mode">Режим прицілювання</string>

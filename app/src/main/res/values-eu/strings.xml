@@ -66,7 +66,6 @@
     <string name="settings">Ezarpenak</string>
     <string name="true_north">Benetako iparra</string>
     <string name="true_north_summary">Deklinazio magnetikoa zuzentzen du zure kokapena erabiliz.</string>
-    <string name="magnetic_north">Ipar magnetikoa</string>
     <string name="haptic_feedback">Abisu haptikoak</string>
     <string name="haptic_feedback_summary">Iparrorratzak bibratu egingo du norabidea aldatzean.</string>
     <string name="sighting_mode">Begiztatze modua</string>

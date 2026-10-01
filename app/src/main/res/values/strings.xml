@@ -66,7 +66,6 @@
     <string name="settings">Settings</string>
     <string name="true_north">True North</string>
     <string name="true_north_summary">Corrects for magnetic declination using your location.</string>
-    <string name="magnetic_north">Magnetic North</string>
     <string name="haptic_feedback">Haptic feedback</string>
     <string name="haptic_feedback_summary">Vibrates when the direction changes.</string>
     <string name="sighting_mode">Sighting mode</string>

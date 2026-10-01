@@ -66,7 +66,6 @@
     <string name="settings">அமைப்புகள்</string>
     <string name="true_north">உண்மையான வடக்கு</string>
     <string name="true_north_summary">உங்கள் இருப்பிடத்தைப் பயன்படுத்தி காந்தச் சரிவை சரிசெய்கிறது.</string>
-    <string name="magnetic_north">காந்த வடக்கு</string>
     <string name="haptic_feedback">அதிர்வு பின்னூட்டம்</string>
     <string name="haptic_feedback_summary">திசை மாறும்போது அதிரும்.</string>
     <string name="sighting_mode">இலக்கு பயன்முறை</string>

@@ -66,7 +66,6 @@
     <string name="settings">Ρυθμίσεις</string>
     <string name="true_north">Πραγματικός βορράς</string>
     <string name="true_north_summary">Διορθώνει τη μαγνητική απόκλιση χρησιμοποιώντας την τοποθεσία σας.</string>
-    <string name="magnetic_north">Μαγνητικός βορράς</string>
     <string name="haptic_feedback">Απτική ανάδραση</string>
     <string name="haptic_feedback_summary">Δονείται όταν αλλάζει η κατεύθυνση.</string>
     <string name="sighting_mode">Λειτουργία σκόπευσης</string>

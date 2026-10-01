@@ -84,6 +84,11 @@ Settings changes are debounced 1 second before being written to DataStore.
 
 ### Location Handling
 
+True north is toggled from a `FilterChip` (`TrueNorthChip`) in the compass screen's bottom-start corner as well as
+from Settings; both drive the same `trueNorthFlow`. The chip's selected state reflects the setting, not whether a
+location fix is in effect yet; `LocationSection` explains that. Instrumented tests (`OPTION_INSTRUMENTED_TEST`) skip
+the real location request, as they do sensor registration.
+
 `MainActivity` uses `requestLocationUpdates` (not `getCurrentLocation`) to acquire a single location fix, then removes
 the listener immediately after the first result. Location permission is requested once via `registerForActivityResult`.
 The `repeatOnLifecycle(RESUMED)` block re-triggers location handling whenever `trueNorth` changes.
@@ -136,7 +141,7 @@ Other current design decisions:
   threshold, and `HINT` exits straight back to `ROSE` below 52°. `HINT` itself is unaffected, since it fixes the
   face-down rendering problem rather than expressing a sighting preference.
 - **`CompassScreen` uses one layout for every orientation and regime.** The compass display fills the whole content
-  area and stays centered; `DeclinationText` and `LocationSection` float over its bottom-start/bottom-end corners
+  area and stays centered; `TrueNorthChip` and `LocationSection` float over its bottom-start/bottom-end corners
   (`CornerInfo`). Neither the display's size nor the two texts' positions change across regimes or on rotation;
   only the widget inside the display crossfades.
 - **The sighting strip forces LTR** regardless of app locale, since it's a physical instrument and degrees must
@@ -145,8 +150,8 @@ Other current design decisions:
   the `screenOrientationLocked` setting, the same as every other regime. An earlier attempt froze orientation while
   `SIGHTING` was active (Android's orientation detector is unstable near-vertical), but `SCREEN_ORIENTATION_LOCKED`
   locks once and stops re-evaluating, so it also blocked deliberate rotations, not just detector jitter. Reverted.
-- **Test tags:** `TestConstants.COMPASS_ROSE`, `COMPASS_STRIP`. `HINT` has no tag; assert it via its visible text
-  (`R.string.compass_hold_level`).
+- **Test tags:** `TestConstants.COMPASS_ROSE`, `COMPASS_STRIP`, `TRUE_NORTH_CHIP`. `HINT` has no tag; assert it via
+  its visible text (`R.string.compass_hold_level`).
 - **Non-goals:** a full 3D tilted rose, camera-passthrough sighting, a user-facing inclinometer/pitch readout, and
   mirroring the rose for face-down (that's what `HINT` replaces) were all considered and rejected. A roll indicator
   is deferred; `CompassReading.roll` is computed but currently unused in the UI.

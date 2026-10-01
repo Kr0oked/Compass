@@ -66,7 +66,6 @@
     <string name="settings">Paramètres</string>
     <string name="true_north">Nord géographique</string>
     <string name="true_north_summary">Corrige la déclinaison magnétique à partir de votre position.</string>
-    <string name="magnetic_north">Nord magnétique</string>
     <string name="haptic_feedback">Retour haptique</string>
     <string name="haptic_feedback_summary">La boussole vibre lorsque la direction change.</string>
     <string name="sighting_mode">Mode visée</string>

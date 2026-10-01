@@ -66,7 +66,6 @@
     <string name="settings">Configuracións</string>
     <string name="true_north">Norte verdadeiro</string>
     <string name="true_north_summary">Corrixe a declinación magnética empregando a súa ubicación.</string>
-    <string name="magnetic_north">Norte magnético</string>
     <string name="haptic_feedback">Resposta táctil</string>
     <string name="haptic_feedback_summary">O compás vibra cando a dirección cambia.</string>
     <string name="sighting_mode">Modo de puntaría</string>

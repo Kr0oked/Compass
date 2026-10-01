@@ -66,7 +66,6 @@
     <string name="settings">設定</string>
     <string name="true_north">真北</string>
     <string name="true_north_summary">位置情報を使って磁気偏角を補正します。</string>
-    <string name="magnetic_north">磁北</string>
     <string name="haptic_feedback">触覚フィードバック</string>
     <string name="haptic_feedback_summary">方角が変わると振動します。</string>
     <string name="sighting_mode">照準モード</string>
