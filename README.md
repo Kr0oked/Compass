@@ -36,6 +36,7 @@ height="80">](https://github.com/Kr0oked/Compass/releases/latest)
 
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/1.png" alt="Screenshot Light theme" height="500"/>
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/2.png" alt="Screenshot Dark theme" height="500"/>
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/3.png" alt="Screenshot Sighting mode" height="500"/>
 
 ## Contributing
 
