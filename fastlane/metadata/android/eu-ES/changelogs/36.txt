@@ -1,0 +1,7 @@
+- Begiztatze modu berria: eutsi telefonoari zutik urruneko erreferentzia-puntuei begiztatzeko
+- Telefonoari horizontal eusteko iradokizuna pantaila beherantz dagoenean
+- Iparrorratzaren 16 norabide
+- Benetako iparraren etengailua iparrorratzaren pantailan
+- Eremu magnetikoaren indarraren aukerako adierazlea
+- Abisu automatikoa sentsorearen zehaztasuna jaisten denean
+- Begiztatze modua eta sentsorearen zehaztasunari buruzko abisuak Ezarpenak atalean desaktiba daitezke

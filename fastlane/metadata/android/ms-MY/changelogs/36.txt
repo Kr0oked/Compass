@@ -1,0 +1,7 @@
+- Mod pandangan baharu: pegang telefon secara menegak untuk membidik mercu tanda yang jauh
+- Petunjuk untuk memegang telefon secara rata apabila skrin menghadap ke bawah
+- 16 arah kompas
+- Togol utara sebenar pada skrin kompas
+- Paparan pilihan kekuatan medan magnet
+- Amaran automatik apabila ketepatan penderia menurun
+- Mod pandangan dan amaran ketepatan penderia boleh dimatikan dalam Tetapan

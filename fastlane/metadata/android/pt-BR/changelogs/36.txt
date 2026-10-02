@@ -1,0 +1,7 @@
+- Novo modo de mira: segure o aparelho na vertical para mirar em pontos de referência distantes
+- Dica para manter o aparelho nivelado quando a tela está voltada para baixo
+- 16 direções da bússola
+- Botão de norte verdadeiro na tela da bússola
+- Exibição opcional da intensidade do campo magnético
+- Aviso automático quando a precisão do sensor diminui
+- O modo de mira e os avisos de precisão do sensor podem ser desativados em Configurações

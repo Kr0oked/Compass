@@ -1,0 +1,7 @@
+- Nový zaměřovací režim: držte telefon svisle a zaměřte vzdálené orientační body
+- Nápověda k držení telefonu ve vodorovné poloze, když je displejem dolů
+- 16 světových stran
+- Přepínač skutečného severu na obrazovce kompasu
+- Volitelné zobrazení síly magnetického pole
+- Automatické upozornění při poklesu přesnosti senzoru
+- Zaměřovací režim a upozornění na přesnost senzoru lze vypnout v Nastavení

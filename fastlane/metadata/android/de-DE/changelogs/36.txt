@@ -1,0 +1,7 @@
+- Neuer Peilmodus: Telefon aufrecht halten, um entfernte Landmarken anzupeilen
+- Hinweis, das Telefon waagerecht zu halten, wenn der Bildschirm nach unten zeigt
+- 16 Himmelsrichtungen
+- Schalter für geografischen Norden auf dem Kompass-Bildschirm
+- Optionale Anzeige der Magnetfeldstärke
+- Automatische Warnung, wenn die Sensorgenauigkeit nachlässt
+- Peilmodus und Warnungen zur Sensorgenauigkeit lassen sich in den Einstellungen deaktivieren

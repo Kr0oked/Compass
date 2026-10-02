@@ -1,0 +1,7 @@
+- Nouveau mode visée : tenez le téléphone à la verticale pour viser des repères éloignés
+- Indication pour tenir le téléphone à plat lorsque l'écran est tourné vers le bas
+- 16 directions de la boussole
+- Bouton nord géographique sur l'écran de la boussole
+- Affichage facultatif de l'intensité du champ magnétique
+- Avertissement automatique lorsque la précision du capteur baisse
+- Le mode visée et les avertissements de précision du capteur peuvent être désactivés dans les Paramètres

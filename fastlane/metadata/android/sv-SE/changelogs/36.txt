@@ -1,0 +1,7 @@
+- Nytt siktesläge: håll telefonen upprätt för att sikta mot avlägsna landmärken
+- Tips om att hålla telefonen vågrätt när skärmen är vänd nedåt
+- 16 kompassriktningar
+- Reglage för sann norr på kompasskärmen
+- Valfri visning av magnetfältets styrka
+- Automatisk varning när sensornoggrannheten sjunker
+- Siktesläge och varningar om sensornoggrannhet kan stängas av i Inställningar

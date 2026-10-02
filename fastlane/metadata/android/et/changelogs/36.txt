@@ -1,0 +1,7 @@
+- Uus sihtimisrežiim: hoia telefoni püsti, et sihtida kaugeid maamärke
+- Vihje hoida telefoni horisontaalselt, kui ekraan on allapoole
+- 16 kompassisuunda
+- Geograafilise põhjasuuna lüliti kompassi ekraanil
+- Valikuline magnetvälja tugevuse näit
+- Automaatne hoiatus, kui sensori täpsus langeb
+- Sihtimisrežiimi ja sensori täpsuse hoiatused saab seadistustes välja lülitada

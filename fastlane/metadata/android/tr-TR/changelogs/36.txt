@@ -1,0 +1,7 @@
+- Yeni nişan alma modu: uzaktaki yer işaretlerine nişan almak için telefonu dik tutun
+- Ekran aşağı baktığında telefonu düz tutma ipucu
+- 16 pusula yönü
+- Pusula ekranında gerçek kuzey düğmesi
+- İsteğe bağlı manyetik alan şiddeti göstergesi
+- Sensör doğruluğu düştüğünde otomatik uyarı
+- Nişan alma modu ve sensör doğruluğu uyarıları Ayarlar'dan kapatılabilir

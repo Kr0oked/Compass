@@ -1,0 +1,7 @@
+- Mode bidik baru: pegang ponsel tegak untuk membidik penanda yang jauh
+- Petunjuk untuk memegang ponsel secara datar saat layar menghadap ke bawah
+- 16 arah mata angin
+- Tombol utara sejati di layar kompas
+- Tampilan kekuatan medan magnet opsional
+- Peringatan otomatis saat akurasi sensor menurun
+- Mode bidik dan peringatan akurasi sensor dapat dinonaktifkan di Pengaturan

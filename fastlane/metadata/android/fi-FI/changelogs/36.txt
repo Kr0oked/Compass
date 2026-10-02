@@ -1,0 +1,7 @@
+- Uusi tähtäystila: pidä puhelinta pystyssä ja tähtää kaukaisiin maamerkkeihin
+- Vihje pitää puhelinta vaakatasossa, kun näyttö on alaspäin
+- 16 ilmansuuntaa
+- Maantieteellisen pohjoisen valinta kompassinäkymässä
+- Valinnainen magneettikentän voimakkuuden näyttö
+- Automaattinen varoitus, kun anturin tarkkuus heikkenee
+- Tähtäystilan ja anturin tarkkuusvaroitukset voi poistaa käytöstä asetuksista

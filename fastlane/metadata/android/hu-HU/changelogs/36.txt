@@ -1,0 +1,7 @@
+- Új célzó mód: tartsa a telefont függőlegesen a távoli tereptárgyak megcélzásához
+- Tipp a telefon vízszintes tartására, ha a kijelző lefelé néz
+- 16 égtáj
+- Valódi észak kapcsoló az iránytű képernyőjén
+- A mágneses térerősség opcionális kijelzése
+- Automatikus figyelmeztetés, ha az érzékelő pontossága csökken
+- A célzó mód és az érzékelő pontosságára vonatkozó figyelmeztetések a Beállításokban kikapcsolhatók

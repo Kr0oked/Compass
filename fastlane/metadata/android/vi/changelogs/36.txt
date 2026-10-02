@@ -1,0 +1,7 @@
+- Chế độ ngắm mới: cầm điện thoại thẳng đứng để ngắm các mốc ở xa
+- Gợi ý giữ điện thoại nằm ngang khi màn hình úp xuống
+- 16 hướng la bàn
+- Nút bật Bắc thực trên màn hình la bàn
+- Hiển thị tùy chọn cường độ từ trường
+- Cảnh báo tự động khi độ chính xác cảm biến giảm
+- Có thể tắt chế độ ngắm và cảnh báo độ chính xác cảm biến trong Cài đặt

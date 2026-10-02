@@ -1,0 +1,7 @@
+- Nuevo modo de puntería: sujeta el teléfono en vertical para apuntar a puntos de referencia lejanos
+- Aviso para mantener el teléfono nivelado cuando la pantalla mira hacia abajo
+- 16 direcciones de la brújula
+- Botón de norte verdadero en la pantalla de la brújula
+- Indicador opcional de la intensidad del campo magnético
+- Aviso automático cuando baja la precisión del sensor
+- El modo de puntería y los avisos de precisión del sensor se pueden desactivar en Ajustes

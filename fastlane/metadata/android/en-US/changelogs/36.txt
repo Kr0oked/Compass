@@ -1,0 +1,7 @@
+- New sighting mode: hold the phone upright to aim at distant landmarks
+- Hint to hold the phone level when its screen faces down
+- 16-point compass directions
+- True North toggle on the compass screen
+- Optional magnetic field strength readout
+- Automatic warning when sensor accuracy drops
+- Sighting mode and sensor accuracy warnings can be turned off in Settings

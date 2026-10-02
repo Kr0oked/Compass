@@ -1,0 +1,7 @@
+- Novi način ciljanja: držite telefon uspravno za ciljanje udaljenih orijentira
+- Savjet da držite telefon vodoravno kada je zaslon okrenut prema dolje
+- 16 smjerova kompasa
+- Prekidač za pravi sjever na zaslonu kompasa
+- Neobavezan prikaz jakosti magnetskog polja
+- Automatsko upozorenje kada točnost senzora padne
+- Način ciljanja i upozorenja o točnosti senzora mogu se isključiti u Postavkama

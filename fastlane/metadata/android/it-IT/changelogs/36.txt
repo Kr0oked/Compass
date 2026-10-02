@@ -1,0 +1,7 @@
+- Nuova modalità di puntamento: tieni il telefono in verticale per mirare a punti lontani
+- Suggerimento per tenere il telefono in piano quando lo schermo è rivolto verso il basso
+- 16 direzioni della bussola
+- Pulsante nord geografico nella schermata della bussola
+- Visualizzazione facoltativa dell'intensità del campo magnetico
+- Avviso automatico quando la precisione del sensore diminuisce
+- Modalità di puntamento e avvisi sulla precisione del sensore disattivabili nelle Impostazioni

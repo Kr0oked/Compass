@@ -1,0 +1,7 @@
+- Nieuwe richtmodus: houd de telefoon rechtop om op verre oriëntatiepunten te richten
+- Hint om de telefoon horizontaal te houden wanneer het scherm naar beneden wijst
+- 16 kompasrichtingen
+- Schakelaar voor het ware noorden op het kompasscherm
+- Optionele weergave van de magnetische veldsterkte
+- Automatische waarschuwing wanneer de sensornauwkeurigheid afneemt
+- Richtmodus en waarschuwingen voor sensornauwkeurigheid kunnen worden uitgeschakeld in Instellingen

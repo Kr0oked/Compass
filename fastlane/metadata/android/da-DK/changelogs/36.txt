@@ -1,0 +1,7 @@
+- Ny sigtetilstand: hold telefonen lodret for at sigte mod fjerne landemærker
+- Tip om at holde telefonen vandret, når skærmen vender nedad
+- 16 kompasretninger
+- Knap til sand nord på kompasskærmen
+- Valgfri visning af magnetfeltets styrke
+- Automatisk advarsel, når sensornøjagtigheden falder
+- Sigtetilstand og advarsler om sensornøjagtighed kan slås fra i Indstillinger

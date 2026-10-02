@@ -1,0 +1,7 @@
+- Nowy tryb celowania: trzymaj telefon pionowo, aby celować w odległe punkty orientacyjne
+- Wskazówka, aby trzymać telefon poziomo, gdy ekran jest skierowany w dół
+- 16 kierunków kompasu
+- Przełącznik północy geograficznej na ekranie kompasu
+- Opcjonalne wyświetlanie natężenia pola magnetycznego
+- Automatyczne ostrzeżenie przy spadku dokładności czujnika
+- Tryb celowania i ostrzeżenia o dokładności czujnika można wyłączyć w Ustawieniach
