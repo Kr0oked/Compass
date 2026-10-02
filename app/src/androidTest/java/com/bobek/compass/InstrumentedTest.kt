@@ -40,6 +40,7 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performScrollToNode
+import androidx.datastore.preferences.core.edit
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.pressBack
 import androidx.test.ext.junit.rules.ActivityScenarioRule
@@ -47,12 +48,14 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
 import androidx.test.rule.GrantPermissionRule
 import com.bobek.compass.data.SensorAccuracy
+import com.bobek.compass.settings.preferencesDataStore
 import com.bobek.compass.ui.TestConstants
 import com.bobek.compass.util.MathUtils
-import org.junit.After
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.ExternalResource
 import org.junit.runner.RunWith
 import kotlin.math.cos
 import kotlin.math.roundToInt
@@ -73,7 +76,19 @@ private val MAGNETIC_FIELD_48_MICROTESLA = floatArrayOf(0f, 0f, 48f)
 @OptIn(ExperimentalTestApi::class)
 class InstrumentedTest {
 
-    @get:Rule
+    // Settings persist across tests and across runs on the same device, so start every test from the
+    // defaults before the activity loads them. Resetting them after a test instead doesn't work: the
+    // debounced write is dropped when the activity finishes right away.
+    @get:Rule(order = 0)
+    val clearSettingsRule = object : ExternalResource() {
+        override fun before() {
+            runBlocking {
+                ApplicationProvider.getApplicationContext<CompassApplication>().preferencesDataStore.edit { it.clear() }
+            }
+        }
+    }
+
+    @get:Rule(order = 1)
     val composeTestRule: AndroidComposeTestRule<ActivityScenarioRule<MainActivity>, MainActivity> =
         createAndroidComposeTestRule(
             activityRule = ActivityScenarioRule<MainActivity>(
@@ -87,7 +102,7 @@ class InstrumentedTest {
             }
         )
 
-    @get:Rule
+    @get:Rule(order = 2)
     var permissionRule: GrantPermissionRule = GrantPermissionRule.grant(
         Manifest.permission.ACCESS_COARSE_LOCATION,
         Manifest.permission.ACCESS_FINE_LOCATION
@@ -96,16 +111,6 @@ class InstrumentedTest {
     @Before
     fun setup() {
         waitUntilCompassIsDisplayed()
-    }
-
-    // True north and the field strength readout are persisted, so reset them to keep them from
-    // leaking into later tests
-    @After
-    fun tearDown() {
-        composeTestRule.runOnUiThread {
-            composeTestRule.activity.compassViewModel.setTrueNorth(false)
-            composeTestRule.activity.compassViewModel.setShowMagneticFieldStrength(false)
-        }
     }
 
     @Test
