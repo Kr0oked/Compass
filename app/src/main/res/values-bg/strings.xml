@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Превключва към лента за прицелване, когато телефонът се държи изправен.</string>
     <string name="sensor_status_warnings">Предупреждения за точността на сензора</string>
     <string name="sensor_status_warnings_summary">Автоматично показва предупреждение, когато точността на сензора се понижи.</string>
+    <string name="magnetic_field_strength">Сила на магнитното поле</string>
+    <string name="magnetic_field_strength_summary">Показва силата на магнитното поле в микротесла (µT) на екрана на компаса.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">Магнитно поле: %1$s</string>
+    <string name="magnetic_field_expected">Очаквано тук: %1$s</string>
     <string name="display">Дисплей</string>
     <string name="night_mode">Тема</string>
     <string name="night_mode_follow_system">Както в системата</string>

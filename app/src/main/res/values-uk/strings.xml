@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Перемикається на смугу прицілювання, коли телефон тримають вертикально.</string>
     <string name="sensor_status_warnings">Попередження про точність датчика</string>
     <string name="sensor_status_warnings_summary">Автоматично показує попередження, коли точність датчика знижується.</string>
+    <string name="magnetic_field_strength">Напруженість магнітного поля</string>
+    <string name="magnetic_field_strength_summary">Показує напруженість магнітного поля в мікротеслах (мкТл) на екрані компаса.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0мкТл</string>
+    <string name="magnetic_field_measured">Магнітне поле: %1$s</string>
+    <string name="magnetic_field_expected">Очікується тут: %1$s</string>
     <string name="display">Дисплей</string>
     <string name="night_mode">Тема</string>
     <string name="night_mode_follow_system">Як у системі</string>

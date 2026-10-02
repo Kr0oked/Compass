@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Chuyển sang thanh ngắm khi điện thoại được cầm thẳng đứng.</string>
     <string name="sensor_status_warnings">Cảnh báo độ chính xác cảm biến</string>
     <string name="sensor_status_warnings_summary">Tự động hiển thị cảnh báo khi độ chính xác cảm biến giảm.</string>
+    <string name="magnetic_field_strength">Cường độ từ trường</string>
+    <string name="magnetic_field_strength_summary">Hiển thị cường độ từ trường theo microtesla (µT) trên màn hình la bàn.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">Từ trường: %1$s</string>
+    <string name="magnetic_field_expected">Dự kiến tại đây: %1$s</string>
     <string name="display">Hiển thị</string>
     <string name="night_mode">Chủ đề</string>
     <string name="night_mode_follow_system">Theo hệ thống</string>

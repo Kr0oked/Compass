@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Schakelt over naar een richtstrook wanneer de telefoon rechtop wordt gehouden.</string>
     <string name="sensor_status_warnings">Waarschuwingen voor sensornauwkeurigheid</string>
     <string name="sensor_status_warnings_summary">Toont automatisch een waarschuwing wanneer de sensornauwkeurigheid afneemt.</string>
+    <string name="magnetic_field_strength">Magnetische veldsterkte</string>
+    <string name="magnetic_field_strength_summary">Toont de sterkte van het magnetisch veld in microtesla (µT) op het kompasscherm.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">Magnetisch veld: %1$s</string>
+    <string name="magnetic_field_expected">Verwacht hier: %1$s</string>
     <string name="display">Weergave</string>
     <string name="night_mode">Thema</string>
     <string name="night_mode_follow_system">Volg systeem</string>

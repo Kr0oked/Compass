@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">फोनलाई सीधा समाउँदा साइटिंग स्ट्रिपमा परिवर्तन हुन्छ।</string>
     <string name="sensor_status_warnings">सेन्सर शुद्धता चेतावनीहरू</string>
     <string name="sensor_status_warnings_summary">सेन्सरको शुद्धता घट्दा स्वतः चेतावनी देखाउँछ।</string>
+    <string name="magnetic_field_strength">चुम्बकीय क्षेत्रको शक्ति</string>
+    <string name="magnetic_field_strength_summary">कम्पास स्क्रिनमा चुम्बकीय क्षेत्रको शक्ति माइक्रोटेस्ला (µT) मा देखाउँछ।</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">चुम्बकीय क्षेत्र: %1$s</string>
+    <string name="magnetic_field_expected">यहाँ अपेक्षित: %1$s</string>
     <string name="display">प्रदर्शन</string>
     <string name="night_mode">थिम</string>
     <string name="night_mode_follow_system">प्रणाली अनुसरण गर्नुहोस्</string>

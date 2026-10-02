@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">தொலைபேசியை நிமிர்த்திப் பிடிக்கும்போது இலக்கு பட்டையாக மாறும்.</string>
     <string name="sensor_status_warnings">சென்சார் துல்லிய எச்சரிக்கைகள்</string>
     <string name="sensor_status_warnings_summary">சென்சார் துல்லியம் குறையும்போது தானாகவே எச்சரிக்கையைக் காட்டும்.</string>
+    <string name="magnetic_field_strength">காந்தப்புல வலிமை</string>
+    <string name="magnetic_field_strength_summary">திசைகாட்டித் திரையில் காந்தப்புல வலிமையை மைக்ரோடெஸ்லாவில் (µT) காட்டுகிறது.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">காந்தப்புலம்: %1$s</string>
+    <string name="magnetic_field_expected">இங்கு எதிர்பார்க்கப்படுவது: %1$s</string>
     <string name="display">திரை</string>
     <string name="night_mode">தீம்</string>
     <string name="night_mode_follow_system">அமைப்பைப் பின்பற்று</string>

@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Пребацује се на траку за нишањење када се телефон држи усправно.</string>
     <string name="sensor_status_warnings">Упозорења о тачности сензора</string>
     <string name="sensor_status_warnings_summary">Аутоматски приказује упозорење када тачност сензора опадне.</string>
+    <string name="magnetic_field_strength">Јачина магнетног поља</string>
+    <string name="magnetic_field_strength_summary">Приказује јачину магнетног поља у микротеслама (µT) на екрану компаса.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">Магнетно поље: %1$s</string>
+    <string name="magnetic_field_expected">Очекивано овде: %1$s</string>
     <string name="display">Приказ</string>
     <string name="night_mode">Тема</string>
     <string name="night_mode_follow_system">Прати систем</string>

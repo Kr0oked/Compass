@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">עובר לרצועת כיוונון כשהטלפון מוחזק במאונך.</string>
     <string name="sensor_status_warnings">התראות דיוק החיישן</string>
     <string name="sensor_status_warnings_summary">מציג התראה באופן אוטומטי כשדיוק החיישן פוחת.</string>
+    <string name="magnetic_field_strength">עוצמת השדה המגנטי</string>
+    <string name="magnetic_field_strength_summary">מציג את עוצמת השדה המגנטי במיקרוטסלה (µT) במסך המצפן.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">שדה מגנטי: %1$s</string>
+    <string name="magnetic_field_expected">צפוי כאן: %1$s</string>
     <string name="display">תצוגה</string>
     <string name="night_mode">ערכת נושא</string>
     <string name="night_mode_follow_system">בהתאם למערכת</string>

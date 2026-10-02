@@ -168,10 +168,16 @@ class MainActivity : ComponentActivity() {
         compassViewModel.setSensorAccuracy(sensorAccuracy)
     }
 
-    private fun updateCompass(event: SensorEvent) {
+    private fun updateDeviceRotation(event: SensorEvent) {
         val rotationVector = RotationVector(event.values[0], event.values[1], event.values[2])
         val rotationMatrix = MathUtils.remappedRotationMatrix(rotationVector, getDisplayRotation())
         compassViewModel.setDeviceRotation(rotationMatrix)
+    }
+
+    private fun updateMagneticField(event: SensorEvent) {
+        // Copied, since the framework may reuse the values array and StateFlow would drop the same instance
+        val magneticField = event.values.copyOf(3)
+        compassViewModel.setMagneticField(magneticField)
     }
 
     @Suppress("DEPRECATION")
@@ -248,8 +254,9 @@ class MainActivity : ComponentActivity() {
         }
 
         override fun onSensorChanged(event: SensorEvent) {
-            if (event.sensor.type == Sensor.TYPE_ROTATION_VECTOR) {
-                updateCompass(event)
+            when (event.sensor.type) {
+                Sensor.TYPE_ROTATION_VECTOR -> updateDeviceRotation(event)
+                Sensor.TYPE_MAGNETIC_FIELD -> updateMagneticField(event)
             }
         }
     }

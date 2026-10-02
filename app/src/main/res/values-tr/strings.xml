@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Telefon dikey tutulduğunda nişan alma şeridine geçer.</string>
     <string name="sensor_status_warnings">Sensör doğruluğu uyarıları</string>
     <string name="sensor_status_warnings_summary">Sensör doğruluğu düştüğünde otomatik olarak uyarı gösterir.</string>
+    <string name="magnetic_field_strength">Manyetik alan şiddeti</string>
+    <string name="magnetic_field_strength_summary">Pusula ekranında manyetik alan şiddetini mikrotesla (µT) cinsinden gösterir.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">Manyetik alan: %1$s</string>
+    <string name="magnetic_field_expected">Burada beklenen: %1$s</string>
     <string name="display">Görüntü</string>
     <string name="night_mode">Tema</string>
     <string name="night_mode_follow_system">Sistemi izle</string>

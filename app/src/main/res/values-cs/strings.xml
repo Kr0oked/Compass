@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Při svislém držení telefonu se přepne na zaměřovací pruh.</string>
     <string name="sensor_status_warnings">Upozornění na přesnost senzoru</string>
     <string name="sensor_status_warnings_summary">Automaticky zobrazí upozornění při poklesu přesnosti senzoru.</string>
+    <string name="magnetic_field_strength">Síla magnetického pole</string>
+    <string name="magnetic_field_strength_summary">Zobrazuje sílu magnetického pole v mikroteslách (µT) na obrazovce kompasu.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">Magnetické pole: %1$s</string>
+    <string name="magnetic_field_expected">Očekáváno zde: %1$s</string>
     <string name="display">Zobrazení</string>
     <string name="night_mode">Motiv</string>
     <string name="night_mode_follow_system">Podle systému</string>

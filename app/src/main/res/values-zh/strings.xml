@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">手机直立时会切换为瞄准条。</string>
     <string name="sensor_status_warnings">传感器精度警告</string>
     <string name="sensor_status_warnings_summary">传感器精度下降时会自动显示警告。</string>
+    <string name="magnetic_field_strength">磁场强度</string>
+    <string name="magnetic_field_strength_summary">在指南针界面上以微特斯拉（µT）为单位显示磁场强度。</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">磁场：%1$s</string>
+    <string name="magnetic_field_expected">此处预期：%1$s</string>
     <string name="display">显示</string>
     <string name="night_mode">主题</string>
     <string name="night_mode_follow_system">跟随系统</string>

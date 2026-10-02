@@ -20,6 +20,7 @@ package com.bobek.compass
 
 import android.Manifest
 import android.content.Intent
+import android.location.Location
 import androidx.annotation.StringRes
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.SemanticsNodeInteraction
@@ -47,6 +48,7 @@ import androidx.test.filters.LargeTest
 import androidx.test.rule.GrantPermissionRule
 import com.bobek.compass.data.SensorAccuracy
 import com.bobek.compass.ui.TestConstants
+import com.bobek.compass.util.MathUtils
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -62,6 +64,9 @@ private val FLAT_FACING_NORTH = floatArrayOf(1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f)
 private val FLAT_FACING_SOUTH = floatArrayOf(-1f, 0f, 0f, 0f, -1f, 0f, 0f, 0f, 1f)
 private val UPRIGHT_SCREEN_FACING_NORTH = floatArrayOf(1f, 0f, 0f, 0f, 0f, 1f, 0f, -1f, 0f)
 private val FACE_DOWN = floatArrayOf(1f, 0f, 0f, 0f, -1f, 0f, 0f, 0f, -1f)
+
+// Calibrated magnetometer sample (µT) whose magnitude is exactly 48.
+private val MAGNETIC_FIELD_48_MICROTESLA = floatArrayOf(0f, 0f, 48f)
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
@@ -93,11 +98,13 @@ class InstrumentedTest {
         waitUntilCompassIsDisplayed()
     }
 
-    // True north is persisted, so reset it to keep it from leaking into later tests
+    // True north and the field strength readout are persisted, so reset them to keep them from
+    // leaking into later tests
     @After
     fun tearDown() {
         composeTestRule.runOnUiThread {
             composeTestRule.activity.compassViewModel.setTrueNorth(false)
+            composeTestRule.activity.compassViewModel.setShowMagneticFieldStrength(false)
         }
     }
 
@@ -195,6 +202,49 @@ class InstrumentedTest {
     }
 
     @Test
+    fun magneticFieldStrengthReadoutHiddenByDefaultAndShownWhenEnabledInSettings() {
+        setMagneticField(MAGNETIC_FIELD_48_MICROTESLA)
+        onMagneticFieldStrength().assertDoesNotExist()
+
+        openSettings()
+        onListItem(getString(R.string.magnetic_field_strength)).performScrollTo().performClick()
+        composeTestRule.waitForIdle()
+
+        pressBack()
+        composeTestRule.waitForIdle()
+        onMagneticFieldStrength().assertTextEquals(magneticFieldStrengthText(48))
+    }
+
+    @Test
+    fun sensorStatusDialogShowsMeasuredAndExpectedMagneticFieldStrength() {
+        onSensorStatusButton().performClick()
+        composeTestRule.onNodeWithText(magneticFieldMeasuredText(getString(R.string.no_value))).assertIsDisplayed()
+
+        setMagneticField(MAGNETIC_FIELD_48_MICROTESLA)
+        composeTestRule.onNodeWithText(magneticFieldMeasuredText(magneticFieldStrengthText(48))).assertIsDisplayed()
+        composeTestRule.onNodeWithText(getString(R.string.magnetic_field_expected), substring = true)
+            .assertDoesNotExist()
+
+        val location = Location("test").apply {
+            latitude = 52.52
+            longitude = 13.405
+            time = System.currentTimeMillis()
+        }
+        composeTestRule.runOnUiThread {
+            composeTestRule.activity.compassViewModel.setLocation(location)
+        }
+        composeTestRule.waitForIdle()
+        val expected = MathUtils.getExpectedMagneticFieldStrength(location).roundToInt()
+        val expectedText = composeTestRule.activity.getString(
+            R.string.magnetic_field_expected,
+            magneticFieldStrengthText(expected)
+        )
+        composeTestRule.onNodeWithText(expectedText).assertIsDisplayed()
+
+        onOkButton().performClick()
+    }
+
+    @Test
     fun trueNorthChipTogglesTrueNorthSharedWithSettings() {
         onTrueNorthChip().assertIsNotSelected()
 
@@ -240,7 +290,7 @@ class InstrumentedTest {
     fun navigatingToLicenseShowsGplLicenseTextAndBackReturnsToSettings() {
         openSettings()
 
-        onLicenseListItem().performClick()
+        onLicenseListItem().performScrollTo().performClick()
         composeTestRule.waitForIdle()
 
         onTopBarTitle(R.string.license_name).assertIsDisplayed()
@@ -321,6 +371,19 @@ class InstrumentedTest {
         return floatArrayOf(cos, sin, 0f, -sin, cos, 0f, 0f, 0f, 1f)
     }
 
+    private fun setMagneticField(magneticField: FloatArray) {
+        composeTestRule.runOnUiThread {
+            composeTestRule.activity.compassViewModel.setMagneticField(magneticField)
+        }
+        composeTestRule.waitForIdle()
+    }
+
+    private fun magneticFieldStrengthText(microtesla: Int): String =
+        composeTestRule.activity.getString(R.string.magnetic_field_strength_value, microtesla)
+
+    private fun magneticFieldMeasuredText(value: String): String =
+        composeTestRule.activity.getString(R.string.magnetic_field_measured, value)
+
     // Sensor accuracy is debounced, so this waits out the real delay rather than just idling Compose.
     private fun setAccuracy(accuracy: SensorAccuracy) {
         composeTestRule.runOnUiThread {
@@ -341,6 +404,9 @@ class InstrumentedTest {
 
     private fun onTrueNorthChip(): SemanticsNodeInteraction =
         composeTestRule.onNodeWithTag(TestConstants.TRUE_NORTH_CHIP)
+
+    private fun onMagneticFieldStrength(): SemanticsNodeInteraction =
+        composeTestRule.onNodeWithTag(TestConstants.MAGNETIC_FIELD_STRENGTH)
 
     private fun onSensorStatusButton(): SemanticsNodeInteraction =
         composeTestRule.onNodeWithTag(TestConstants.SENSOR_STATUS_BUTTON)

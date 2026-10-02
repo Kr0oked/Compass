@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Skifter til en siktestripe når telefonen holdes loddrett.</string>
     <string name="sensor_status_warnings">Varsler om sensornøyaktighet</string>
     <string name="sensor_status_warnings_summary">Viser automatisk et varsel når sensornøyaktigheten faller.</string>
+    <string name="magnetic_field_strength">Magnetfeltstyrke</string>
+    <string name="magnetic_field_strength_summary">Viser magnetfeltets styrke i mikrotesla (µT) på kompasskjermen.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">Magnetfelt: %1$s</string>
+    <string name="magnetic_field_expected">Forventet her: %1$s</string>
     <string name="display">Visning</string>
     <string name="night_mode">Tema</string>
     <string name="night_mode_follow_system">Følg system</string>

@@ -50,6 +50,8 @@ fun SensorStatusDialog(
     onDismiss: () -> Unit
 ) {
     val sensorAccuracy by viewModel.getSensorAccuracyFlow().collectAsState()
+    val magneticFieldStrength by viewModel.getMagneticFieldStrengthFlow().collectAsState()
+    val expectedMagneticFieldStrength by viewModel.getExpectedMagneticFieldStrengthFlow().collectAsState()
 
     AlertDialog(
         onDismissRequest = onDismiss,
@@ -72,6 +74,19 @@ fun SensorStatusDialog(
                         text = stringResource(id = sensorAccuracy.labelResourceId),
                         modifier = Modifier.testTag(TestConstants.SENSOR_ACCURACY_TEXT)
                     )
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Text(
+                    text = stringResource(
+                        R.string.magnetic_field_measured,
+                        magneticFieldStrength?.let { formatMagneticFieldStrength(it) }
+                            ?: stringResource(R.string.no_value)
+                    )
+                )
+                expectedMagneticFieldStrength?.let {
+                    Text(text = stringResource(R.string.magnetic_field_expected, formatMagneticFieldStrength(it)))
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))

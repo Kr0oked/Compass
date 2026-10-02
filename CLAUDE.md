@@ -61,24 +61,36 @@ The app follows MVVM in a single-Activity Compose setup:
 - **`AppViewModel`** — Night mode preference via `StateFlow`; reads from `SettingsRepository`
 - **`CompassViewModel`** — Combines device rotation, the true-north setting, and location into a `CompassReading`
   via `CompassReadingCalculator.next` (see [Compass Regimes](#compass-regimes-rose--sighting--hint)); exposes that
-  plus sensor/settings state via `StateFlow`, loaded from `SettingsRepository` on init
+  plus sensor/settings state via `StateFlow`, loaded from `SettingsRepository` on init. Also derives the measured
+  and expected magnetic field strength (see [Magnetic Field Strength](#magnetic-field-strength))
 - **`ICompassViewModel`** / **`ComposeCompassViewModel`** — Interface + preview implementation used by all Compose
   screens
 
 ### Key Packages
 
-| Package     | Responsibility                                                                                                                                                                                                |
-|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `data/`     | Immutable data models: `Azimuth`, `CardinalDirection`, `CompassReading`, `CompassRegime`, `SensorAccuracy`, `LocationStatus`, `AppNightMode`, `AppError`                                                      |
-| `settings/` | `DataStoreSettingsRepository` — persists preferences via Jetpack DataStore; migrates from SharedPreferences; injected via Hilt                                                                                |
-| `ui/`       | Jetpack Compose screens: `compass/`, `settings/`, `licenses/`, `theme/`                                                                                                                                       |
-| `util/`     | `MathUtils` — rotation-matrix remap, magnetic declination, haptic-feedback interval math. `CompassReadingCalculator` — pure-Kotlin azimuth/tilt/regime derivation, unit-tested without any Android dependency |
+What belongs where, rather than an inventory; a class is named only when it carries a rule worth knowing.
+
+- **`data/`**: immutable models and enums shared across layers, e.g. `CompassReading`, `Azimuth`, `SensorAccuracy`.
+- **`settings/`**: the `SettingsRepository` interface and its Jetpack DataStore implementation
+  (`DataStoreSettingsRepository`, bound in `SettingsModule`); keys live in `PreferenceConstants`. A new setting also
+  needs loading and debounced persisting in `CompassViewModel`, a row in `SettingsScreen`, and the two test fakes
+  (`CompassViewModelTest`, `AppViewModelTest`).
+- **`licenses/`**: `LicenseRepository` reads the app and third-party license texts from `res/raw`.
+- **`ui/`**: Compose code, one subpackage per screen (`compass/`, `settings/`, `licenses/`) plus `theme/`.
+  `MainContent` hosts navigation; `TestConstants` holds the test tags.
+- **`util/`**: sensor math. Logic without Android dependencies (`CompassReadingCalculator`,
+  `MagneticFieldStrengthFilter`) is kept apart from code that needs Android APIs (`MathUtils`: `SensorManager`
+  remap, `GeomagneticField`), so the former stays unit-testable on the JVM.
 
 ### Data Flow
 
 Rotation-vector sensor events → `MainActivity` remaps them to a device-to-world matrix → `CompassViewModel` combines
 that with the true-north setting and location, and runs `CompassReadingCalculator.next` through a `scan` (so regime
 hysteresis can see the previous reading) → `CompassReading` `StateFlow` → Compose UI.
+
+Magnetic-field sensor events → `MainActivity` forwards a copy of the raw calibrated vector → `CompassViewModel` runs
+`MagneticFieldStrengthFilter.next` through a separate `scan` → field-strength `StateFlow`. This is deliberately kept
+out of `CompassReading`, since folding a second sensor in would rerun regime selection on every magnetometer event.
 
 Settings changes are debounced 1 second before being written to DataStore.
 
@@ -92,6 +104,26 @@ the real location request, as they do sensor registration.
 `MainActivity` uses `requestLocationUpdates` (not `getCurrentLocation`) to acquire a single location fix, then removes
 the listener immediately after the first result. Location permission is requested once via `registerForActivityResult`.
 The `repeatOnLifecycle(RESUMED)` block re-triggers location handling whenever `trueNorth` changes.
+
+## Magnetic Field Strength
+
+Requested in GitHub issue #129. The calibrated `TYPE_MAGNETIC_FIELD` stream (already registered for accuracy) is
+reduced to its magnitude in µT and smoothed with an exponential low-pass (`SMOOTHING_FACTOR` 0.25, settling in ~1 s
+at `SENSOR_DELAY_NORMAL`); the first sample passes through unfiltered. The uncalibrated stream is not used, since its
+hard-iron offset would make the number device-specific and meaningless.
+
+- **Sensor status dialog** always shows "Magnetic field: X µT" (`—` before the first event), plus "Expected here:
+  Y µT" from `MathUtils.getExpectedMagneticFieldStrength` (`GeomagneticField.fieldStrength`, nT → µT) whenever a
+  location is known, regardless of the true-north setting.
+- **Compass screen readout** (`MagneticFieldStrengthReadout`): icon + whole-µT value in a top-end `CornerInfo`,
+  only when the `show_magnetic_field_strength` setting is on (off by default, Settings → Compass only, no on-screen
+  toggle). Hidden while no reading exists; shown in every regime including `HINT`, undimmed.
+- Whole µT everywhere (phone magnetometers aren't better than ~±1 µT), via the translatable
+  `magnetic_field_strength_value` format string.
+- **Deliberately not done:** an interference warning/threshold (offsets vary too much between devices), greying out
+  on low accuracy (the accuracy icon already covers it), and a store screenshot (off by default).
+- `GeomagneticField` is stubbed in local unit tests (`isReturnDefaultValues`), so the expected value is verified in
+  the instrumented `MathUtilsInstrumentedTest` instead.
 
 ## Compass Regimes (rose / sighting / hint)
 
@@ -142,16 +174,16 @@ Other current design decisions:
   face-down rendering problem rather than expressing a sighting preference.
 - **`CompassScreen` uses one layout for every orientation and regime.** The compass display fills the whole content
   area and stays centered; `TrueNorthChip` and `LocationSection` float over its bottom-start/bottom-end corners
-  (`CornerInfo`). Neither the display's size nor the two texts' positions change across regimes or on rotation;
-  only the widget inside the display crossfades.
+  and the optional field-strength readout over its top-end corner (`CornerInfo`). Neither the display's size nor the
+  texts' positions change across regimes or on rotation; only the widget inside the display crossfades.
 - **The sighting strip forces LTR** regardless of app locale, since it's a physical instrument and degrees must
   always increase clockwise.
 - **Screen orientation is not special-cased for `SIGHTING`.** `MainContent` sets `requestedOrientation` purely from
   the `screenOrientationLocked` setting, the same as every other regime. An earlier attempt froze orientation while
   `SIGHTING` was active (Android's orientation detector is unstable near-vertical), but `SCREEN_ORIENTATION_LOCKED`
   locks once and stops re-evaluating, so it also blocked deliberate rotations, not just detector jitter. Reverted.
-- **Test tags:** `TestConstants.COMPASS_ROSE`, `COMPASS_STRIP`, `TRUE_NORTH_CHIP`. `HINT` has no tag; assert it via
-  its visible text (`R.string.compass_hold_level`).
+- **Test tags:** `TestConstants.COMPASS_ROSE`, `COMPASS_STRIP`, `TRUE_NORTH_CHIP`, `MAGNETIC_FIELD_STRENGTH`. `HINT`
+  has no tag; assert it via its visible text (`R.string.compass_hold_level`).
 - **Non-goals:** a full 3D tilted rose, camera-passthrough sighting, a user-facing inclinometer/pitch readout, and
   mirroring the rose for face-down (that's what `HINT` replaces) were all considered and rejected. A roll indicator
   is deferred; `CompassReading.roll` is computed but currently unused in the UI.

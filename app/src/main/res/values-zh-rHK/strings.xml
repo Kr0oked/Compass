@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">手機直立時會切換為瞄準條。</string>
     <string name="sensor_status_warnings">感應器精度警告</string>
     <string name="sensor_status_warnings_summary">感應器精度下降時會自動顯示警告。</string>
+    <string name="magnetic_field_strength">磁場強度</string>
+    <string name="magnetic_field_strength_summary">在指南針畫面上以微特斯拉（µT）為單位顯示磁場強度。</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">磁場：%1$s</string>
+    <string name="magnetic_field_expected">此處預期：%1$s</string>
     <string name="display">顯示</string>
     <string name="night_mode">主題</string>
     <string name="night_mode_follow_system">跟隨系統</string>

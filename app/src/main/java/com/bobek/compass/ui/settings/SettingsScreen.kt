@@ -79,6 +79,7 @@ fun SettingsScreen(
     val hapticFeedback by compassViewModel.getHapticFeedbackFlow().collectAsState()
     val sightingMode by compassViewModel.getSightingModeFlow().collectAsState()
     val autoShowSensorStatusDialogEnabled by compassViewModel.getAutoShowSensorStatusDialogEnabledFlow().collectAsState()
+    val showMagneticFieldStrength by compassViewModel.getShowMagneticFieldStrengthFlow().collectAsState()
     val nightMode by appViewModel.getNightModeFlow().collectAsState()
 
     var showNightModeDialog by rememberSaveable { mutableStateOf(false) }
@@ -157,6 +158,20 @@ fun SettingsScreen(
                     },
                     modifier = Modifier.clickable {
                         compassViewModel.setAutoShowSensorStatusDialogEnabled(!autoShowSensorStatusDialogEnabled)
+                    }
+                )
+
+                ListItem(
+                    headlineContent = { Text(stringResource(R.string.magnetic_field_strength)) },
+                    supportingContent = { Text(stringResource(R.string.magnetic_field_strength_summary)) },
+                    trailingContent = {
+                        Switch(
+                            checked = showMagneticFieldStrength,
+                            onCheckedChange = null
+                        )
+                    },
+                    modifier = Modifier.clickable {
+                        compassViewModel.setShowMagneticFieldStrength(!showMagneticFieldStrength)
                     }
                 )
             }

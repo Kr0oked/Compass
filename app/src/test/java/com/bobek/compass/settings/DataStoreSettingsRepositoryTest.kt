@@ -133,6 +133,22 @@ class DataStoreSettingsRepositoryTest {
         assertTrue(repository.getAutoShowSensorStatusDialogEnabled().first())
     }
 
+    // showMagneticFieldStrength
+
+    @Test
+    fun showMagneticFieldStrengthDefaultIsFalse() = testScope.runTest {
+        assertFalse(repository.getShowMagneticFieldStrength().first())
+    }
+
+    @Test
+    fun showMagneticFieldStrengthRoundTrip() = testScope.runTest {
+        repository.setShowMagneticFieldStrength(true)
+        assertTrue(repository.getShowMagneticFieldStrength().first())
+
+        repository.setShowMagneticFieldStrength(false)
+        assertFalse(repository.getShowMagneticFieldStrength().first())
+    }
+
     // nightMode
 
     @Test

@@ -40,6 +40,7 @@ import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
@@ -127,6 +128,13 @@ class CompassViewModelTest {
         val settings = FakeSettingsRepository(autoShowSensorStatusDialogEnabled = false)
         val customViewModel = CompassViewModel(settings)
         assertFalse(customViewModel.getAutoShowSensorStatusDialogEnabledFlow().value)
+    }
+
+    @Test
+    fun showMagneticFieldStrengthLoadedFromSettings() = runTest(testDispatcher) {
+        val settings = FakeSettingsRepository(showMagneticFieldStrength = true)
+        val customViewModel = CompassViewModel(settings)
+        assertTrue(customViewModel.getShowMagneticFieldStrengthFlow().value)
     }
 
     // Setters update flows immediately
@@ -299,6 +307,47 @@ class CompassViewModelTest {
     }
 
     @Test
+    fun setShowMagneticFieldStrengthUpdatesFlow() {
+        viewModel.setShowMagneticFieldStrength(true)
+        assertTrue(viewModel.getShowMagneticFieldStrengthFlow().value)
+    }
+
+    // Magnetic field strength
+
+    @Test
+    fun magneticFieldStrengthIsNullUntilFirstSample() {
+        assertNull(viewModel.getMagneticFieldStrengthFlow().value)
+    }
+
+    @Test
+    fun magneticFieldStrengthIsMagnitudeOfFirstSampleThenSmoothed() = runTest(testDispatcher) {
+        viewModel.setMagneticField(floatArrayOf(30f, 40f, 0f))
+        advanceUntilIdle()
+        assertEquals(50f, viewModel.getMagneticFieldStrengthFlow().value!!, 0.001f)
+
+        viewModel.setMagneticField(floatArrayOf(0f, 0f, 90f))
+        advanceUntilIdle()
+        val strength = viewModel.getMagneticFieldStrengthFlow().value!!
+        assertTrue("Expected smoothing between 50 and 90, was $strength", strength > 50f && strength < 90f)
+    }
+
+    @Test
+    fun expectedMagneticFieldStrengthIsNullWithoutLocation() {
+        assertNull(viewModel.getExpectedMagneticFieldStrengthFlow().value)
+    }
+
+    @Test
+    fun expectedMagneticFieldStrengthFollowsLocationRegardlessOfTrueNorth() = runTest(testDispatcher) {
+        viewModel.setLocation(Location("test"))
+        advanceUntilIdle()
+        assertNotNull(viewModel.getExpectedMagneticFieldStrengthFlow().value)
+
+        viewModel.setTrueNorth(false)
+        advanceUntilIdle()
+        assertNotNull(viewModel.getExpectedMagneticFieldStrengthFlow().value)
+    }
+
+    @Test
     fun setLocationUpdatesFlow() {
         val location = Location("test")
         viewModel.setLocation(location)
@@ -349,6 +398,13 @@ class CompassViewModelTest {
     }
 
     @Test
+    fun showMagneticFieldStrengthIsPersistedToSettingsAfterDebounce() = runTest(testDispatcher) {
+        viewModel.setShowMagneticFieldStrength(true)
+        advanceTimeBy(DEBOUNCE + 1.milliseconds)
+        assertTrue(fakeSettingsRepository.showMagneticFieldStrengthValue)
+    }
+
+    @Test
     fun rapidChangesOnlyPersistLastValueAfterDebounce() = runTest(testDispatcher) {
         viewModel.setTrueNorth(false)
         advanceTimeBy(DEBOUNCE - 1.milliseconds)
@@ -364,7 +420,8 @@ class CompassViewModelTest {
 
 private class FakeSettingsRepository(
     sightingMode: Boolean = true,
-    autoShowSensorStatusDialogEnabled: Boolean = true
+    autoShowSensorStatusDialogEnabled: Boolean = true,
+    showMagneticFieldStrength: Boolean = false
 ) : SettingsRepository {
 
     private val trueNorthFlow = MutableStateFlow(true)
@@ -372,6 +429,7 @@ private class FakeSettingsRepository(
     private val screenOrientationLockedFlow = MutableStateFlow(true)
     private val sightingModeFlow = MutableStateFlow(sightingMode)
     private val autoShowSensorStatusDialogEnabledFlow = MutableStateFlow(autoShowSensorStatusDialogEnabled)
+    private val showMagneticFieldStrengthFlow = MutableStateFlow(showMagneticFieldStrength)
     private val accessLocationPermissionRequestedFlow = MutableStateFlow(false)
 
     val trueNorthValue get() = trueNorthFlow.value
@@ -379,6 +437,7 @@ private class FakeSettingsRepository(
     val screenOrientationLockedValue get() = screenOrientationLockedFlow.value
     val sightingModeValue get() = sightingModeFlow.value
     val autoShowSensorStatusDialogEnabledValue get() = autoShowSensorStatusDialogEnabledFlow.value
+    val showMagneticFieldStrengthValue get() = showMagneticFieldStrengthFlow.value
 
     override fun getTrueNorth(): Flow<Boolean> = trueNorthFlow
     override suspend fun setTrueNorth(trueNorth: Boolean) {
@@ -403,6 +462,11 @@ private class FakeSettingsRepository(
     override fun getAutoShowSensorStatusDialogEnabled(): Flow<Boolean> = autoShowSensorStatusDialogEnabledFlow
     override suspend fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean) {
         autoShowSensorStatusDialogEnabledFlow.value = autoShowSensorStatusDialogEnabled
+    }
+
+    override fun getShowMagneticFieldStrength(): Flow<Boolean> = showMagneticFieldStrengthFlow
+    override suspend fun setShowMagneticFieldStrength(showMagneticFieldStrength: Boolean) {
+        showMagneticFieldStrengthFlow.value = showMagneticFieldStrength
     }
 
     override fun getNightMode(): Flow<AppNightMode> = MutableStateFlow(AppNightMode.FOLLOW_SYSTEM)

@@ -42,6 +42,8 @@ class DataStoreSettingsRepository @Inject constructor(
         val SIGHTING_MODE_KEY = booleanPreferencesKey(PreferenceConstants.SIGHTING_MODE)
         val AUTO_SHOW_SENSOR_STATUS_DIALOG_KEY =
             booleanPreferencesKey(PreferenceConstants.AUTO_SHOW_SENSOR_STATUS_DIALOG)
+        val SHOW_MAGNETIC_FIELD_STRENGTH_KEY =
+            booleanPreferencesKey(PreferenceConstants.SHOW_MAGNETIC_FIELD_STRENGTH)
         val NIGHT_MODE_KEY = stringPreferencesKey(PreferenceConstants.NIGHT_MODE)
         val ACCESS_LOCATION_PERMISSION_REQUESTED_KEY =
             booleanPreferencesKey(PreferenceConstants.ACCESS_LOCATION_PERMISSION_REQUESTED)
@@ -85,6 +87,14 @@ class DataStoreSettingsRepository @Inject constructor(
     override suspend fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean) {
         preferencesDataStore.edit { it[AUTO_SHOW_SENSOR_STATUS_DIALOG_KEY] = autoShowSensorStatusDialogEnabled }
         Log.d(TAG, "Persisted autoShowSensorStatusDialogEnabled: $autoShowSensorStatusDialogEnabled")
+    }
+
+    override fun getShowMagneticFieldStrength(): Flow<Boolean> = preferencesDataStore.data
+        .map { it[SHOW_MAGNETIC_FIELD_STRENGTH_KEY] ?: false }
+
+    override suspend fun setShowMagneticFieldStrength(showMagneticFieldStrength: Boolean) {
+        preferencesDataStore.edit { it[SHOW_MAGNETIC_FIELD_STRENGTH_KEY] = showMagneticFieldStrength }
+        Log.d(TAG, "Persisted showMagneticFieldStrength: $showMagneticFieldStrength")
     }
 
     override fun getNightMode(): Flow<AppNightMode> = preferencesDataStore.data

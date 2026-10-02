@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">کله چې ټیلیفون په عمودي ډول ساتل کیږي، د نیغولو پټې ته اوړي.</string>
     <string name="sensor_status_warnings">د سینسور دقت خبرداری</string>
     <string name="sensor_status_warnings_summary">کله چې د سینسور دقت راټیټ شي، په اوتومات ډول خبرداری ښکاره کوي.</string>
+    <string name="magnetic_field_strength">د مقناطیسي ساحې ځواک</string>
+    <string name="magnetic_field_strength_summary">د کمپاس پر پرده د مقناطیسي ساحې ځواک په مایکروټیسلا (µT) کې ښيي.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">مقناطیسي ساحه: %1$s</string>
+    <string name="magnetic_field_expected">دلته تمه کېږي: %1$s</string>
     <string name="display">ښودنه</string>
     <string name="night_mode">طرحه</string>
     <string name="night_mode_follow_system">د سیسټم پیروي</string>

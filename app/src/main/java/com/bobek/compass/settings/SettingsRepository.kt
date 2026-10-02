@@ -32,6 +32,8 @@ interface SettingsRepository {
     suspend fun setSightingMode(sightingMode: Boolean)
     fun getAutoShowSensorStatusDialogEnabled(): Flow<Boolean>
     suspend fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean)
+    fun getShowMagneticFieldStrength(): Flow<Boolean>
+    suspend fun setShowMagneticFieldStrength(showMagneticFieldStrength: Boolean)
     fun getNightMode(): Flow<AppNightMode>
     suspend fun setNightMode(nightMode: AppNightMode)
     fun getAccessLocationPermissionRequested(): Flow<Boolean>

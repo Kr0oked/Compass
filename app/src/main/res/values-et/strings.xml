@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Lülitub sihtimisribale, kui telefoni hoitakse püstiselt.</string>
     <string name="sensor_status_warnings">Sensori täpsuse hoiatused</string>
     <string name="sensor_status_warnings_summary">Kuvab automaatselt hoiatuse, kui sensori täpsus langeb.</string>
+    <string name="magnetic_field_strength">Magnetvälja tugevus</string>
+    <string name="magnetic_field_strength_summary">Näitab kompassiekraanil magnetvälja tugevust mikroteslades (µT).</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">Magnetväli: %1$s</string>
+    <string name="magnetic_field_expected">Oodatav siin: %1$s</string>
     <string name="display">Ekraan</string>
     <string name="night_mode">Kujundus</string>
     <string name="night_mode_follow_system">Järgi süsteemi kujundust</string>

@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Ekokitisa na bar ya kotalela soki telefone esimbami ya kotɛlɛma.</string>
     <string name="sensor_status_warnings">Bikebisi ya bosikisiki bwa capteur</string>
     <string name="sensor_status_warnings_summary">Ekolakisa likebisi na ndenge na yango moko soki bosikisiki bwa capteur ekiti.</string>
+    <string name="magnetic_field_strength">Makasi ya esika ya magnétique</string>
+    <string name="magnetic_field_strength_summary">Emonisaka makasi ya esika ya magnétique na microtesla (µT) na écran ya boussole.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">Esika ya magnétique: %1$s</string>
+    <string name="magnetic_field_expected">Oyo ezelamaki awa: %1$s</string>
     <string name="display">Limɔ́niseli</string>
     <string name="night_mode">Eláteli</string>
     <string name="night_mode_follow_system">Kolanda litámbuisi-masíni</string>

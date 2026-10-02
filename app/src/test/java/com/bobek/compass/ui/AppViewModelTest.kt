@@ -123,6 +123,8 @@ private class FakeSettingsRepository(
     override suspend fun setSightingMode(sightingMode: Boolean) = Unit
     override fun getAutoShowSensorStatusDialogEnabled(): Flow<Boolean> = MutableStateFlow(true)
     override suspend fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean) = Unit
+    override fun getShowMagneticFieldStrength(): Flow<Boolean> = MutableStateFlow(false)
+    override suspend fun setShowMagneticFieldStrength(showMagneticFieldStrength: Boolean) = Unit
     override fun getAccessLocationPermissionRequested(): Flow<Boolean> = MutableStateFlow(false)
     override suspend fun setAccessLocationPermissionRequested(accessLocationPermissionRequested: Boolean) = Unit
 }

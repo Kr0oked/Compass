@@ -26,6 +26,7 @@ import com.bobek.compass.data.LocationStatus
 import com.bobek.compass.data.SensorAccuracy
 import com.bobek.compass.settings.SettingsRepository
 import com.bobek.compass.util.CompassReadingCalculator
+import com.bobek.compass.util.MagneticFieldStrengthFilter
 import com.bobek.compass.util.MathUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
@@ -36,7 +37,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -62,6 +65,11 @@ interface ICompassViewModel {
     fun setSightingMode(sightingMode: Boolean)
     fun getAutoShowSensorStatusDialogEnabledFlow(): StateFlow<Boolean>
     fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean)
+    fun getShowMagneticFieldStrengthFlow(): StateFlow<Boolean>
+    fun setShowMagneticFieldStrength(showMagneticFieldStrength: Boolean)
+    fun setMagneticField(magneticField: FloatArray)
+    fun getMagneticFieldStrengthFlow(): StateFlow<Float?>
+    fun getExpectedMagneticFieldStrengthFlow(): StateFlow<Float?>
     fun getLocationFlow(): StateFlow<Location?>
     fun setLocation(location: Location?)
     fun getLocationStatusFlow(): StateFlow<LocationStatus>
@@ -99,6 +107,8 @@ class CompassViewModel @Inject constructor(
 
     private val autoShowSensorStatusDialogEnabledFlow = MutableStateFlow(true)
 
+    private val showMagneticFieldStrengthFlow = MutableStateFlow(false)
+
     private val locationFlow = MutableStateFlow<Location?>(null)
 
     private val locationStatusFlow = MutableStateFlow(LocationStatus.NOT_PRESENT)
@@ -115,6 +125,23 @@ class CompassViewModel @Inject constructor(
                 CompassReadingCalculator.next(previous, rotationMatrix, declination, input.sightingModeEnabled)
             }
             .stateIn(viewModelScope, SharingStarted.Eagerly, CompassReading.INITIAL)
+
+    private val magneticFieldFlow = MutableStateFlow<FloatArray?>(null)
+
+    private val magneticFieldStrengthFlow: StateFlow<Float?> =
+        magneticFieldFlow
+            .filterNotNull()
+            .scan(null as Float?) { previous, field ->
+                MagneticFieldStrengthFilter.next(previous, field[0], field[1], field[2])
+            }
+            .stateIn(viewModelScope, SharingStarted.Eagerly, null)
+
+    // Follows the last known location regardless of the true-north setting; it's still accurate
+    // for where the user is.
+    private val expectedMagneticFieldStrengthFlow: StateFlow<Float?> =
+        locationFlow
+            .map { location -> location?.let(MathUtils::getExpectedMagneticFieldStrength) }
+            .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     init {
         viewModelScope.launch {
@@ -149,6 +176,8 @@ class CompassViewModel @Inject constructor(
         settingsRepository.getSightingMode().firstOrNull()?.let { sightingModeFlow.value = it }
         settingsRepository.getAutoShowSensorStatusDialogEnabled().firstOrNull()
             ?.let { autoShowSensorStatusDialogEnabledFlow.value = it }
+        settingsRepository.getShowMagneticFieldStrength().firstOrNull()
+            ?.let { showMagneticFieldStrengthFlow.value = it }
     }
 
     private fun setupFlowsToSettings() {
@@ -171,6 +200,10 @@ class CompassViewModel @Inject constructor(
         viewModelScope.launch {
             autoShowSensorStatusDialogEnabledFlow.drop(1).debounce(SETTINGS_DEBOUNCE)
                 .collect { settingsRepository.setAutoShowSensorStatusDialogEnabled(it) }
+        }
+        viewModelScope.launch {
+            showMagneticFieldStrengthFlow.drop(1).debounce(SETTINGS_DEBOUNCE)
+                .collect { settingsRepository.setShowMagneticFieldStrength(it) }
         }
     }
 
@@ -223,6 +256,20 @@ class CompassViewModel @Inject constructor(
         autoShowSensorStatusDialogEnabledFlow.value = autoShowSensorStatusDialogEnabled
     }
 
+    override fun getShowMagneticFieldStrengthFlow() = showMagneticFieldStrengthFlow
+
+    override fun setShowMagneticFieldStrength(showMagneticFieldStrength: Boolean) {
+        showMagneticFieldStrengthFlow.value = showMagneticFieldStrength
+    }
+
+    override fun setMagneticField(magneticField: FloatArray) {
+        magneticFieldFlow.value = magneticField
+    }
+
+    override fun getMagneticFieldStrengthFlow() = magneticFieldStrengthFlow
+
+    override fun getExpectedMagneticFieldStrengthFlow() = expectedMagneticFieldStrengthFlow
+
     override fun getLocationFlow() = locationFlow
 
     override fun setLocation(location: Location?) {
@@ -251,6 +298,9 @@ class ComposeCompassViewModel(
     val screenOrientationLocked: Boolean = true,
     val sightingMode: Boolean = true,
     val autoShowSensorStatusDialogEnabled: Boolean = true,
+    val showMagneticFieldStrength: Boolean = false,
+    val magneticFieldStrength: Float? = null,
+    val expectedMagneticFieldStrength: Float? = null,
     val location: Location? = Location(""),
     val locationStatus: LocationStatus = LocationStatus.NOT_PRESENT
 ) : ICompassViewModel {
@@ -270,6 +320,11 @@ class ComposeCompassViewModel(
     override fun setSightingMode(sightingMode: Boolean) = Unit
     override fun getAutoShowSensorStatusDialogEnabledFlow() = MutableStateFlow(autoShowSensorStatusDialogEnabled)
     override fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean) = Unit
+    override fun getShowMagneticFieldStrengthFlow() = MutableStateFlow(showMagneticFieldStrength)
+    override fun setShowMagneticFieldStrength(showMagneticFieldStrength: Boolean) = Unit
+    override fun setMagneticField(magneticField: FloatArray) = Unit
+    override fun getMagneticFieldStrengthFlow() = MutableStateFlow(magneticFieldStrength)
+    override fun getExpectedMagneticFieldStrengthFlow() = MutableStateFlow(expectedMagneticFieldStrength)
     override fun getLocationFlow() = MutableStateFlow(location)
     override fun setLocation(location: Location?) = Unit
     override fun getLocationStatusFlow() = MutableStateFlow(locationStatus)

@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Switches to a sighting strip when the phone is held upright.</string>
     <string name="sensor_status_warnings">Sensor accuracy warnings</string>
     <string name="sensor_status_warnings_summary">Automatically shows a warning when sensor accuracy drops.</string>
+    <string name="magnetic_field_strength">Magnetic field strength</string>
+    <string name="magnetic_field_strength_summary">Shows the strength of the magnetic field in microtesla (µT) on the compass screen.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">Magnetic field: %1$s</string>
+    <string name="magnetic_field_expected">Expected here: %1$s</string>
     <string name="display">Display</string>
     <string name="night_mode">Theme</string>
     <string name="night_mode_follow_system">Follow system</string>
@@ -92,4 +97,5 @@
     <string name="license_name" translatable="false">GNU GPLv3</string>
     <string name="author_name" translatable="false">Philipp Bobek</string>
     <string name="degrees" translatable="false">%1$d°</string>
+    <string name="no_value" translatable="false">—</string>
 </resources>

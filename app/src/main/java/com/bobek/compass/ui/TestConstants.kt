@@ -24,4 +24,5 @@ object TestConstants {
     const val SENSOR_STATUS_BUTTON = "sensor_status_button"
     const val SENSOR_ACCURACY_TEXT = "sensor_accuracy_text"
     const val TRUE_NORTH_CHIP = "true_north_chip"
+    const val MAGNETIC_FIELD_STRENGTH = "magnetic_field_strength"
 }

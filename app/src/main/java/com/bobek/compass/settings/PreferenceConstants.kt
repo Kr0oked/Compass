@@ -30,6 +30,8 @@ object PreferenceConstants {
 
     const val AUTO_SHOW_SENSOR_STATUS_DIALOG = "auto_show_sensor_status_dialog"
 
+    const val SHOW_MAGNETIC_FIELD_STRENGTH = "show_magnetic_field_strength"
+
     const val NIGHT_MODE = "night_mode"
     const val NIGHT_MODE_VALUE_FOLLOW_SYSTEM = "follow_system"
     const val NIGHT_MODE_VALUE_NO = "no"

@@ -131,9 +131,10 @@ fun CompassScreen(
 
 /**
  * One layout for every orientation and regime: [CompassDisplay] fills the area and stays centered,
- * so it never resizes or shifts as the phone tilts, while the info texts float over its lower
- * corners where the round rose and the short strip leave space. Nothing branches on the regime, so
- * the texts stay put while the display crossfades.
+ * so it never resizes or shifts as the phone tilts, while the info texts float over its corners
+ * where the round rose and the short strip leave space: true north and location along the bottom,
+ * the optional magnetic field strength top-end. Nothing branches on the regime, so the texts stay
+ * put while the display crossfades.
  */
 @Composable
 private fun CompassContent(
@@ -143,6 +144,8 @@ private fun CompassContent(
     padding: PaddingValues,
     onLocationReload: () -> Unit
 ) {
+    val showMagneticFieldStrength by viewModel.getShowMagneticFieldStrengthFlow().collectAsState()
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -162,6 +165,12 @@ private fun CompassContent(
         if (trueNorth) {
             CornerInfo(corner = Alignment.BottomEnd, horizontalAlignment = Alignment.End) {
                 LocationSection(locationStatus = locationStatus, onLocationReload = onLocationReload)
+            }
+        }
+
+        if (showMagneticFieldStrength) {
+            CornerInfo(corner = Alignment.TopEnd, horizontalAlignment = Alignment.End) {
+                MagneticFieldStrengthReadout(viewModel = viewModel)
             }
         }
     }
@@ -336,7 +345,11 @@ private fun TrueNorthChip(
 private class CompassScreenViewModelProvider : PreviewParameterProvider<ICompassViewModel> {
     override val values: Sequence<ICompassViewModel> = sequenceOf(
         ComposeCompassViewModel(trueNorth = false),
-        ComposeCompassViewModel(trueNorth = true),
+        ComposeCompassViewModel(
+            trueNorth = true,
+            showMagneticFieldStrength = true,
+            magneticFieldStrength = 48.2f
+        ),
         ComposeCompassViewModel(
             compassReading = CompassReading.INITIAL.copy(
                 sightingBearing = Azimuth(123.0f),

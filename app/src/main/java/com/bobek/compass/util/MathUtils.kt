@@ -31,6 +31,7 @@ import com.bobek.compass.data.RotationVector
 import kotlin.math.roundToInt
 
 private const val ROTATION_MATRIX_SIZE = 9
+private const val NANOTESLA_PER_MICROTESLA = 1_000f
 
 object MathUtils {
 
@@ -62,13 +63,22 @@ object MathUtils {
     }
 
     @JvmStatic
-    fun getMagneticDeclination(location: Location): Float {
+    fun getMagneticDeclination(location: Location): Float = getGeomagneticField(location).declination
+
+    /**
+     * Total field strength in µT that the geomagnetic model predicts at [location], for comparison
+     * with the measured value. [GeomagneticField] reports nanotesla.
+     */
+    @JvmStatic
+    fun getExpectedMagneticFieldStrength(location: Location): Float =
+        getGeomagneticField(location).fieldStrength / NANOTESLA_PER_MICROTESLA
+
+    private fun getGeomagneticField(location: Location): GeomagneticField {
         val latitude = location.latitude.toFloat()
         val longitude = location.longitude.toFloat()
         val altitude = location.altitude.toFloat()
         val time = location.time
-        val geomagneticField = GeomagneticField(latitude, longitude, altitude, time)
-        return geomagneticField.declination
+        return GeomagneticField(latitude, longitude, altitude, time)
     }
 
     fun getClosestNumberFromInterval(number: Float, interval: Float): Float =

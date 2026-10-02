@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Telefon vertikal tutilganda nishonga olish chizig‘iga o‘tadi.</string>
     <string name="sensor_status_warnings">Datchik aniqligi haqida ogohlantirishlar</string>
     <string name="sensor_status_warnings_summary">Datchik aniqligi pasayganda avtomatik ravishda ogohlantirish ko‘rsatadi.</string>
+    <string name="magnetic_field_strength">Magnit maydon kuchi</string>
+    <string name="magnetic_field_strength_summary">Kompas ekranida magnit maydon kuchini mikroteslada (µT) ko‘rsatadi.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">Magnit maydon: %1$s</string>
+    <string name="magnetic_field_expected">Bu yerda kutilgan: %1$s</string>
     <string name="display">Ekran</string>
     <string name="night_mode">Mavzu</string>
     <string name="night_mode_follow_system">Tizimga mos</string>

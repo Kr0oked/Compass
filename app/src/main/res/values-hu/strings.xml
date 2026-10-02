@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Álló helyzetben tartott telefon esetén célzócsíkra vált.</string>
     <string name="sensor_status_warnings">Érzékelő pontosságára vonatkozó figyelmeztetések</string>
     <string name="sensor_status_warnings_summary">Automatikusan figyelmeztetést jelenít meg, ha az érzékelő pontossága csökken.</string>
+    <string name="magnetic_field_strength">Mágneses térerősség</string>
+    <string name="magnetic_field_strength_summary">Megjeleníti a mágneses tér erősségét mikroteslában (µT) az iránytű képernyőjén.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">Mágneses tér: %1$s</string>
+    <string name="magnetic_field_expected">Várható itt: %1$s</string>
     <string name="display">Megjelenés</string>
     <string name="night_mode">Téma</string>
     <string name="night_mode_follow_system">Rendszer követése</string>

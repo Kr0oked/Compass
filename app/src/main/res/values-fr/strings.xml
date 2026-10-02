@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Passe à une bande de visée lorsque le téléphone est tenu à la verticale.</string>
     <string name="sensor_status_warnings">Avertissements de précision du capteur</string>
     <string name="sensor_status_warnings_summary">Affiche automatiquement un avertissement lorsque la précision du capteur diminue.</string>
+    <string name="magnetic_field_strength">Intensité du champ magnétique</string>
+    <string name="magnetic_field_strength_summary">Affiche l\'intensité du champ magnétique en microteslas (µT) sur l\'écran de la boussole.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">Champ magnétique : %1$s</string>
+    <string name="magnetic_field_expected">Attendu ici : %1$s</string>
     <string name="display">Affichage</string>
     <string name="night_mode">Thème</string>
     <string name="night_mode_follow_system">Suivre le système</string>

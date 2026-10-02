@@ -72,6 +72,11 @@
     <string name="sighting_mode_summary">Passa a una barra di puntamento quando il telefono è tenuto in verticale.</string>
     <string name="sensor_status_warnings">Avvisi sulla precisione del sensore</string>
     <string name="sensor_status_warnings_summary">Mostra automaticamente un avviso quando la precisione del sensore diminuisce.</string>
+    <string name="magnetic_field_strength">Intensità del campo magnetico</string>
+    <string name="magnetic_field_strength_summary">Mostra l\'intensità del campo magnetico in microtesla (µT) nella schermata della bussola.</string>
+    <string name="magnetic_field_strength_value">%1$d\u00A0µT</string>
+    <string name="magnetic_field_measured">Campo magnetico: %1$s</string>
+    <string name="magnetic_field_expected">Previsto qui: %1$s</string>
     <string name="display">Visualizzazione</string>
     <string name="night_mode">Tema</string>
     <string name="night_mode_follow_system">Sistema</string>
