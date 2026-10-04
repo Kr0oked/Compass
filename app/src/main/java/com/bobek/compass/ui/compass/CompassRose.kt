@@ -35,6 +35,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextMeasurer
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.drawText
@@ -49,6 +50,7 @@ import com.bobek.compass.ui.TestConstants
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
+import kotlin.math.sqrt
 
 @Composable
 @Preview(widthDp = 512)
@@ -166,8 +168,7 @@ private fun DrawScope.drawCenterText(
     drawData: CompassDrawData
 ) {
     val measuredAzimuth = drawData.textMeasurer.measure(text = drawData.azimuthText, style = styles.azimuthStyle)
-    val measuredCardinalDirection =
-        drawData.textMeasurer.measure(text = drawData.cardinalDirectionText, style = styles.cardinalDirectionStyle)
+    val measuredCardinalDirection = measureCardinalDirection(metrics, styles, drawData, measuredAzimuth.size.height)
     val totalHeight = measuredAzimuth.size.height + metrics.textGap + measuredCardinalDirection.size.height
     val topY = metrics.center.y - totalHeight / 2f
 
@@ -184,6 +185,43 @@ private fun DrawScope.drawCenterText(
             metrics.center.x - measuredCardinalDirection.size.width / 2f,
             topY + measuredAzimuth.size.height + metrics.textGap
         )
+    )
+}
+
+/**
+ * Measures the cardinal direction text, shrinking its font if needed so that its bottom corners stay inside the
+ * circle left free by the rotating cardinal abbreviations. Long names in some locales (e.g. Serbian
+ * "Север-северозапад") would otherwise overlap the abbreviations.
+ */
+private fun measureCardinalDirection(
+    metrics: CompassMetrics,
+    styles: CompassStyles,
+    drawData: CompassDrawData,
+    azimuthHeight: Int
+): TextLayoutResult {
+    val measured = drawData.textMeasurer.measure(
+        text = drawData.cardinalDirectionText,
+        style = styles.cardinalDirectionStyle,
+        softWrap = false
+    )
+
+    val abbreviationHeight = drawData.textMeasurer.measure(
+        text = drawData.northAbbreviation,
+        style = styles.cardinalStyle
+    ).size.height
+    val clearRadius = metrics.cardinalRadius - abbreviationHeight / 2f
+    val bottomY = (azimuthHeight + metrics.textGap + measured.size.height) / 2f
+    val maxWidth = 2f * sqrt((clearRadius * clearRadius - bottomY * bottomY).coerceAtLeast(0f))
+
+    if (measured.size.width <= maxWidth) {
+        return measured
+    }
+
+    val scale = maxWidth / measured.size.width
+    return drawData.textMeasurer.measure(
+        text = drawData.cardinalDirectionText,
+        style = styles.cardinalDirectionStyle.copy(fontSize = styles.cardinalDirectionStyle.fontSize * scale),
+        softWrap = false
     )
 }
 
