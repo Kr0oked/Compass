@@ -1,2 +1,4 @@
 *
-!copyright
+!.gitignore
+!copyright/
+!copyright/*.xml
