@@ -1,3 +1,5 @@
+require "open3"
+
 default_platform(:android)
 
 ANDROID_SDK_ROOT_PATH = ENV["ANDROID_SDK_ROOT"] || ENV["ANDROID_HOME"] || File.expand_path("~/Android/Sdk")
@@ -9,6 +11,8 @@ AVD_BASE_DEVICE = "pixel"
 AVD_SYSTEM_IMAGE = "system-images;android-37.0;google_apis;x86_64"
 # Android 17 (API 37) emulators require at least 4GB of RAM.
 AVD_RAM_SIZE_MB = 4096
+EMULATOR_BOOT_TIMEOUT_SECONDS = 600
+EMULATOR_SHUTDOWN_TIMEOUT_SECONDS = 60
 
 SCREENSHOT_EMULATORS = [
   { avd: "Screenshots_Phone", port: 5554, device_type: "phone", lcd_width: 1080, lcd_height: 1920, lcd_density: 480 },
@@ -154,12 +158,28 @@ platform :android do
 
   private_lane :boot_emulator do |options|
     serial = options[:serial]
-    UI.message("Booting #{options[:avd]} (#{serial})...")
-    sh("nohup \"#{EMULATOR_BIN}\" -avd #{options[:avd]} -port #{options[:port]} " \
-       "-no-snapshot-save > /tmp/#{options[:avd]}-emulator.log 2>&1 &")
-    sh("\"#{ADB_BIN}\" -s #{serial} wait-for-device")
-    sh("while [ \"$(\"#{ADB_BIN}\" -s #{serial} shell getprop sys.boot_completed | tr -d '\\r')\" != \"1\" ]; do sleep 2; done")
-    sh("while [ \"$(\"#{ADB_BIN}\" -s #{serial} shell getprop init.svc.bootanim | tr -d '\\r')\" != \"stopped\" ]; do sleep 2; done")
+    log_path = "/tmp/#{options[:avd]}-emulator.log"
+    UI.message("Booting #{options[:avd]} (#{serial}), log: #{log_path}...")
+    # Own process group, so a Ctrl+C meant for fastlane doesn't also reach the emulator; shutdown_emulator stops it.
+    pid = Process.spawn(EMULATOR_BIN, "-avd", options[:avd], "-port", options[:port].to_s, "-no-snapshot-save",
+                        out: log_path, err: [:child, :out], pgroup: true)
+    Process.detach(pid)
+
+    deadline = Time.now + EMULATOR_BOOT_TIMEOUT_SECONDS
+    until adb_getprop(serial, "sys.boot_completed") == "1" && adb_getprop(serial, "init.svc.bootanim") == "stopped"
+      unless process_alive?(pid)
+        UI.user_error!("Emulator #{options[:avd]} exited before finishing boot. Last lines of #{log_path}:\n" \
+                       "#{log_tail(log_path)}")
+      end
+      if Time.now > deadline
+        Process.kill("KILL", pid) rescue nil
+        UI.user_error!("Emulator #{options[:avd]} did not finish booting within #{EMULATOR_BOOT_TIMEOUT_SECONDS}s " \
+                       "and was killed. Check `adb -s #{serial} logcat -b crash` on the next attempt for a " \
+                       "crash-looping system image. Last lines of #{log_path}:\n#{log_tail(log_path)}")
+      end
+      sleep(2)
+    end
+
     sh("\"#{ADB_BIN}\" -s #{serial} shell input keyevent KEYCODE_WAKEUP")
     sh("\"#{ADB_BIN}\" -s #{serial} shell wm dismiss-keyguard")
   end
@@ -167,8 +187,37 @@ platform :android do
   private_lane :shutdown_emulator do |options|
     serial = options[:serial]
     UI.message("Shutting down #{serial}...")
-    sh("\"#{ADB_BIN}\" -s #{serial} emu kill || true")
-    sh("while \"#{ADB_BIN}\" devices | grep -q \"#{serial}\"; do sleep 1; done")
+    sh("timeout 10 \"#{ADB_BIN}\" -s #{serial} emu kill || true")
+    deadline = Time.now + EMULATOR_SHUTDOWN_TIMEOUT_SECONDS
+    while adb_device_listed?(serial)
+      if Time.now > deadline
+        UI.important("#{serial} still listed by adb after #{EMULATOR_SHUTDOWN_TIMEOUT_SECONDS}s, giving up waiting.")
+        break
+      end
+      sleep(1)
+    end
   end
 
+end
+
+# Each adb call is capped by `timeout`, since adb can block indefinitely on a half-started or offline emulator.
+def adb_getprop(serial, property)
+  output, status = Open3.capture2e("timeout", "10", ADB_BIN, "-s", serial, "shell", "getprop", property)
+  status.success? ? output.strip : nil
+end
+
+def adb_device_listed?(serial)
+  output, = Open3.capture2e("timeout", "10", ADB_BIN, "devices")
+  output.lines.any? { |line| line.split.first == serial }
+end
+
+def process_alive?(pid)
+  Process.kill(0, pid)
+  true
+rescue Errno::ESRCH
+  false
+end
+
+def log_tail(path, lines = 30)
+  File.exist?(path) ? File.readlines(path).last(lines).join : "(no log written)"
 end
