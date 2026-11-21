@@ -2,7 +2,7 @@
 activityCompose = "1.13.0"
 agp = "9.5.2"
 composeBom = "2026.11.01"
-coreKtx = "1.19.0"
+coreKtx = "1.19.1"
 datastore = "1.2.1"
 espressoCore = "3.7.0"
 guava = "33.7.1-android"
