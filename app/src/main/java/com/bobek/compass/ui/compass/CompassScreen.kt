@@ -77,7 +77,6 @@ import com.bobek.compass.ui.TestConstants
 
 @Composable
 @PreviewScreenSizes
-@OptIn(ExperimentalMaterial3Api::class)
 fun CompassScreen(
     @PreviewParameter(CompassScreenViewModelProvider::class) viewModel: ICompassViewModel,
     onSettingsClick: () -> Unit = {},

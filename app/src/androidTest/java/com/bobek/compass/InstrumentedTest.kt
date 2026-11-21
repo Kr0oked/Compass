@@ -22,7 +22,6 @@ import android.Manifest
 import android.content.Intent
 import android.location.Location
 import androidx.annotation.StringRes
-import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsDisplayed
@@ -73,7 +72,6 @@ private val MAGNETIC_FIELD_48_MICROTESLA = floatArrayOf(0f, 0f, 48f)
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-@OptIn(ExperimentalTestApi::class)
 class InstrumentedTest {
 
     // Settings persist across tests and across runs on the same device, so start every test from the
