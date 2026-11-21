@@ -81,7 +81,11 @@ What belongs where, rather than an inventory; a class is named only when it carr
   screens (Settings, third-party licenses) use a collapsing flexible top app bar with plain `ListItem`s, not
   `SegmentedListItem` (grouped cards were tried and rejected as not looking like the usual Android settings);
   `NavigateBackButton` lives in `AppBars.kt`; buttons pass `shapes = …Defaults.shapes()` so they morph on press.
-  The compass rose and strip are custom-drawn instruments and intentionally not restyled.
+  `MainContent`'s navigation transitions (quarter-width slide plus fade) take their specs from
+  `MaterialTheme.motionScheme`, read inside `AppTheme` before the `NavHost` since the transition lambdas aren't
+  composable. The XML themes in `res/values*/themes.xml` inherit from `Theme.Material3Expressive.*`, which styles
+  View-based UI such as `MainActivity`'s `MaterialAlertDialogBuilder` dialogs. The compass rose and strip are
+  custom-drawn instruments and intentionally not restyled.
 - **`util/`**: sensor math. Logic without Android dependencies (`CompassReadingCalculator`,
   `MagneticFieldStrengthFilter`) is kept apart from code that needs Android APIs (`MathUtils`: `SensorManager`
   remap, `GeomagneticField`), so the former stays unit-testable on the JVM.
