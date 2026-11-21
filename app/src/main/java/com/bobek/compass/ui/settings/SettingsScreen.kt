@@ -22,7 +22,6 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -112,68 +111,71 @@ fun SettingsScreen(
                 }
             ) {
                 ListItem(
-                    headlineContent = { Text(stringResource(R.string.true_north)) },
+                    onClick = { compassViewModel.setTrueNorth(!trueNorth) },
                     supportingContent = { Text(stringResource(R.string.true_north_summary)) },
                     trailingContent = {
                         Switch(
                             checked = trueNorth,
                             onCheckedChange = null
                         )
-                    },
-                    modifier = Modifier.clickable { compassViewModel.setTrueNorth(!trueNorth) }
-                )
+                    }
+                ) {
+                    Text(stringResource(R.string.true_north))
+                }
 
                 ListItem(
-                    headlineContent = { Text(stringResource(R.string.haptic_feedback)) },
+                    onClick = { compassViewModel.setHapticFeedback(!hapticFeedback) },
                     supportingContent = { Text(stringResource(R.string.haptic_feedback_summary)) },
                     trailingContent = {
                         Switch(
                             checked = hapticFeedback,
                             onCheckedChange = null
                         )
-                    },
-                    modifier = Modifier.clickable { compassViewModel.setHapticFeedback(!hapticFeedback) }
-                )
+                    }
+                ) {
+                    Text(stringResource(R.string.haptic_feedback))
+                }
 
                 ListItem(
-                    headlineContent = { Text(stringResource(R.string.sighting_mode)) },
+                    onClick = { compassViewModel.setSightingMode(!sightingMode) },
                     supportingContent = { Text(stringResource(R.string.sighting_mode_summary)) },
                     trailingContent = {
                         Switch(
                             checked = sightingMode,
                             onCheckedChange = null
                         )
-                    },
-                    modifier = Modifier.clickable { compassViewModel.setSightingMode(!sightingMode) }
-                )
+                    }
+                ) {
+                    Text(stringResource(R.string.sighting_mode))
+                }
 
                 ListItem(
-                    headlineContent = { Text(stringResource(R.string.sensor_status_warnings)) },
+                    onClick = {
+                        compassViewModel.setAutoShowSensorStatusDialogEnabled(!autoShowSensorStatusDialogEnabled)
+                    },
                     supportingContent = { Text(stringResource(R.string.sensor_status_warnings_summary)) },
                     trailingContent = {
                         Switch(
                             checked = autoShowSensorStatusDialogEnabled,
                             onCheckedChange = null
                         )
-                    },
-                    modifier = Modifier.clickable {
-                        compassViewModel.setAutoShowSensorStatusDialogEnabled(!autoShowSensorStatusDialogEnabled)
                     }
-                )
+                ) {
+                    Text(stringResource(R.string.sensor_status_warnings))
+                }
 
                 ListItem(
-                    headlineContent = { Text(stringResource(R.string.magnetic_field_strength)) },
+                    onClick = { compassViewModel.setShowMagneticFieldStrength(!showMagneticFieldStrength) },
                     supportingContent = { Text(stringResource(R.string.magnetic_field_strength_summary)) },
                     trailingContent = {
                         Switch(
                             checked = showMagneticFieldStrength,
                             onCheckedChange = null
                         )
-                    },
-                    modifier = Modifier.clickable {
-                        compassViewModel.setShowMagneticFieldStrength(!showMagneticFieldStrength)
                     }
-                )
+                ) {
+                    Text(stringResource(R.string.magnetic_field_strength))
+                }
             }
 
             HorizontalDivider()
@@ -184,10 +186,11 @@ fun SettingsScreen(
                 }
             ) {
                 ListItem(
-                    headlineContent = { Text(stringResource(R.string.night_mode)) },
-                    supportingContent = { Text(stringResource(nightMode.labelResourceId)) },
-                    modifier = Modifier.clickable { showNightModeDialog = true }
-                )
+                    onClick = { showNightModeDialog = true },
+                    supportingContent = { Text(stringResource(nightMode.labelResourceId)) }
+                ) {
+                    Text(stringResource(R.string.night_mode))
+                }
             }
 
             HorizontalDivider()
@@ -198,39 +201,44 @@ fun SettingsScreen(
                 }
             ) {
                 ListItem(
-                    headlineContent = { Text(stringResource(R.string.author)) },
-                    supportingContent = { Text(stringResource(R.string.author_name)) },
-                    modifier = Modifier.clickable {
+                    onClick = {
                         val intent = Intent(Intent.ACTION_VIEW, "mailto:philipp.bobek@mailbox.org".toUri())
                         context.startActivitySafely(intent)
-                    }
-                )
+                    },
+                    supportingContent = { Text(stringResource(R.string.author_name)) }
+                ) {
+                    Text(stringResource(R.string.author))
+                }
 
                 ListItem(
-                    headlineContent = { Text(stringResource(R.string.license)) },
-                    supportingContent = { Text(stringResource(R.string.license_name)) },
-                    modifier = Modifier.clickable { onLicenseClick() }
-                )
+                    onClick = onLicenseClick,
+                    supportingContent = { Text(stringResource(R.string.license_name)) }
+                ) {
+                    Text(stringResource(R.string.license))
+                }
 
                 ListItem(
-                    headlineContent = { Text(stringResource(R.string.third_party_licenses)) },
-                    supportingContent = { Text(stringResource(R.string.third_party_licenses_summary)) },
-                    modifier = Modifier.clickable { onThirdPartyLicensesClick() }
-                )
+                    onClick = onThirdPartyLicensesClick,
+                    supportingContent = { Text(stringResource(R.string.third_party_licenses_summary)) }
+                ) {
+                    Text(stringResource(R.string.third_party_licenses))
+                }
 
                 ListItem(
-                    headlineContent = { Text(stringResource(R.string.source_code)) },
-                    supportingContent = { Text(stringResource(R.string.source_code_name)) },
-                    modifier = Modifier.clickable {
+                    onClick = {
                         val intent = Intent(Intent.ACTION_VIEW, "https://github.com/Kr0oked/Compass".toUri())
                         context.startActivitySafely(intent)
-                    }
-                )
+                    },
+                    supportingContent = { Text(stringResource(R.string.source_code_name)) }
+                ) {
+                    Text(stringResource(R.string.source_code))
+                }
 
                 ListItem(
-                    headlineContent = { Text(stringResource(R.string.version)) },
                     supportingContent = { Text(BuildConfig.VERSION_NAME) }
-                )
+                ) {
+                    Text(stringResource(R.string.version))
+                }
             }
         }
     }
@@ -256,15 +264,13 @@ private fun SettingsSection(
         verticalAlignment = Alignment.CenterVertically
     ) {
         icon()
-        ListItem(
-            headlineContent = {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.labelLarge,
-                    color = MaterialTheme.colorScheme.primary,
-                )
-            }
-        )
+        ListItem {
+            Text(
+                text = title,
+                style = MaterialTheme.typography.labelLarge,
+                color = MaterialTheme.colorScheme.primary,
+            )
+        }
     }
     Column(modifier = Modifier.padding(start = 40.dp)) {
         content()
