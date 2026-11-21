@@ -35,12 +35,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.FilterChip
-import androidx.compose.material3.FilterChipDefaults
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -50,6 +48,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.ToggleButton
 import androidx.compose.material3.TooltipAnchorPosition
 import androidx.compose.material3.TooltipBox
 import androidx.compose.material3.TooltipDefaults
@@ -164,7 +163,7 @@ private fun CompassContent(
         )
 
         CornerInfo(corner = Alignment.BottomStart, horizontalAlignment = Alignment.Start) {
-            TrueNorthChip(trueNorth = trueNorth, onClick = { viewModel.setTrueNorth(!trueNorth) })
+            TrueNorthToggleButton(trueNorth = trueNorth, onTrueNorthChange = viewModel::setTrueNorth)
         }
 
         if (trueNorth) {
@@ -291,7 +290,7 @@ private fun LocationSection(
         LocationStatus.NOT_PRESENT -> {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 LocationError(stringResource(R.string.location_not_present))
-                Button(onClick = onLocationReload, shapes = ButtonDefaults.shapes()) {
+                FilledTonalButton(onClick = onLocationReload, shapes = ButtonDefaults.shapes()) {
                     Icon(
                         painter = painterResource(R.drawable.ic_refresh),
                         contentDescription = null,
@@ -334,28 +333,24 @@ private fun LocationError(message: String) {
     }
 }
 
+/** Tonal when off, filled with a check icon when on; the shape morphs from round to square on check. */
 @Composable
-private fun TrueNorthChip(
+private fun TrueNorthToggleButton(
     trueNorth: Boolean,
-    onClick: () -> Unit
+    onTrueNorthChange: (Boolean) -> Unit
 ) {
-    FilterChip(
-        selected = trueNorth,
-        onClick = onClick,
-        label = { Text(stringResource(R.string.true_north)) },
-        leadingIcon = if (trueNorth) {
-            {
-                Icon(
-                    painter = painterResource(R.drawable.ic_check),
-                    contentDescription = null,
-                    modifier = Modifier.size(FilterChipDefaults.IconSize)
-                )
-            }
+    ToggleButton(
+        checked = trueNorth,
+        onCheckedChange = onTrueNorthChange,
+        icon = if (trueNorth) {
+            { Icon(painter = painterResource(R.drawable.ic_check), contentDescription = null) }
         } else {
             null
         },
-        modifier = Modifier.testTag(TestConstants.TRUE_NORTH_CHIP)
-    )
+        modifier = Modifier.testTag(TestConstants.TRUE_NORTH_TOGGLE_BUTTON)
+    ) {
+        Text(stringResource(R.string.true_north))
+    }
 }
 
 private class CompassScreenViewModelProvider : PreviewParameterProvider<ICompassViewModel> {

@@ -25,8 +25,8 @@ import androidx.annotation.StringRes
 import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertIsNotSelected
-import androidx.compose.ui.test.assertIsSelected
+import androidx.compose.ui.test.assertIsOff
+import androidx.compose.ui.test.assertIsOn
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.hasScrollToNodeAction
 import androidx.compose.ui.test.hasStateDescription
@@ -248,21 +248,21 @@ class InstrumentedTest {
     }
 
     @Test
-    fun trueNorthChipTogglesTrueNorthSharedWithSettings() {
-        onTrueNorthChip().assertIsNotSelected()
+    fun trueNorthToggleButtonTogglesTrueNorthSharedWithSettings() {
+        onTrueNorthToggleButton().assertIsOff()
 
-        onTrueNorthChip().performClick()
+        onTrueNorthToggleButton().performClick()
         composeTestRule.waitForIdle()
-        onTrueNorthChip().assertIsSelected()
+        onTrueNorthToggleButton().assertIsOn()
 
-        // The settings switch drives the same setting, so turning it off there deselects the chip
+        // The settings switch drives the same setting, so turning it off there unchecks the toggle button
         openSettings()
         onListItem(getString(R.string.true_north)).performClick()
         composeTestRule.waitForIdle()
 
         pressBack()
         composeTestRule.waitForIdle()
-        onTrueNorthChip().assertIsNotSelected()
+        onTrueNorthToggleButton().assertIsOff()
     }
 
     @Test
@@ -405,8 +405,8 @@ class InstrumentedTest {
     private fun onCompassRose(): SemanticsNodeInteraction =
         composeTestRule.onNodeWithTag(TestConstants.COMPASS_ROSE)
 
-    private fun onTrueNorthChip(): SemanticsNodeInteraction =
-        composeTestRule.onNodeWithTag(TestConstants.TRUE_NORTH_CHIP)
+    private fun onTrueNorthToggleButton(): SemanticsNodeInteraction =
+        composeTestRule.onNodeWithTag(TestConstants.TRUE_NORTH_TOGGLE_BUTTON)
 
     private fun onMagneticFieldStrength(): SemanticsNodeInteraction =
         composeTestRule.onNodeWithTag(TestConstants.MAGNETIC_FIELD_STRENGTH)
