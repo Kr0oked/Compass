@@ -26,20 +26,26 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.IconToggleButton
+import androidx.compose.material3.LoadingIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.Scaffold
@@ -221,7 +227,11 @@ private fun ScreenOrientationLockedButton(viewModel: ICompassViewModel) {
         tooltip = { PlainTooltip { Text(label) } },
         state = rememberTooltipState()
     ) {
-        IconButton(onClick = { viewModel.setScreenOrientationLocked(!screenOrientationLocked) }) {
+        IconToggleButton(
+            checked = screenOrientationLocked,
+            onCheckedChange = viewModel::setScreenOrientationLocked,
+            shapes = IconButtonDefaults.toggleableShapes()
+        ) {
             Icon(painter = painterResource(iconResourceId), contentDescription = label)
         }
     }
@@ -243,6 +253,7 @@ private fun SensorStatusButton(
     ) {
         IconButton(
             onClick = onClick,
+            shapes = IconButtonDefaults.shapes(),
             modifier = Modifier.testTag(TestConstants.SENSOR_STATUS_BUTTON)
         ) {
             Icon(
@@ -264,13 +275,14 @@ private fun SettingsButton(onClick: () -> Unit) {
         tooltip = { PlainTooltip { Text(label) } },
         state = rememberTooltipState()
     ) {
-        IconButton(onClick = onClick) {
+        IconButton(onClick = onClick, shapes = IconButtonDefaults.shapes()) {
             Icon(painter = painterResource(R.drawable.ic_settings), contentDescription = label)
         }
     }
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 private fun LocationSection(
     locationStatus: LocationStatus,
     onLocationReload: () -> Unit
@@ -279,8 +291,13 @@ private fun LocationSection(
         LocationStatus.NOT_PRESENT -> {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 LocationError(stringResource(R.string.location_not_present))
-                Button(onClick = onLocationReload) {
-                    Icon(painter = painterResource(R.drawable.ic_refresh), contentDescription = null)
+                Button(onClick = onLocationReload, shapes = ButtonDefaults.shapes()) {
+                    Icon(
+                        painter = painterResource(R.drawable.ic_refresh),
+                        contentDescription = null,
+                        modifier = Modifier.size(ButtonDefaults.IconSize)
+                    )
+                    Spacer(modifier = Modifier.width(ButtonDefaults.IconSpacing))
                     Text(text = stringResource(R.string.location_reload))
                 }
             }
@@ -288,7 +305,7 @@ private fun LocationSection(
 
         LocationStatus.LOADING -> {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                CircularProgressIndicator(modifier = Modifier.size(20.dp))
+                LoadingIndicator(modifier = Modifier.size(32.dp))
                 Text(text = stringResource(R.string.location_loading), textAlign = TextAlign.Center)
             }
         }

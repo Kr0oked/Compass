@@ -77,7 +77,11 @@ What belongs where, rather than an inventory; a class is named only when it carr
   (`CompassViewModelTest`, `AppViewModelTest`).
 - **`licenses/`**: `LicenseRepository` reads the app and third-party license texts from `res/raw`.
 - **`ui/`**: Compose code, one subpackage per screen (`compass/`, `settings/`, `licenses/`) plus `theme/`.
-  `MainContent` hosts navigation; `TestConstants` holds the test tags.
+  `MainContent` hosts navigation; `TestConstants` holds the test tags. Material 3 Expressive conventions: list
+  screens (Settings, third-party licenses) use a collapsing flexible top app bar with plain `ListItem`s, not
+  `SegmentedListItem` (grouped cards were tried and rejected as not looking like the usual Android settings);
+  `NavigateBackButton` lives in `AppBars.kt`; buttons pass `shapes = …Defaults.shapes()` so they morph on press.
+  The compass rose and strip are custom-drawn instruments and intentionally not restyled.
 - **`util/`**: sensor math. Logic without Android dependencies (`CompassReadingCalculator`,
   `MagneticFieldStrengthFilter`) is kept apart from code that needs Android APIs (`MathUtils`: `SensorManager`
   remap, `GeomagneticField`), so the former stays unit-testable on the JVM.
@@ -190,7 +194,8 @@ Other current design decisions:
 
 ## Tech Stack
 
-- **UI:** Jetpack Compose + Material3, Navigation Compose
+- **UI:** Jetpack Compose + Material 3 Expressive (`MaterialExpressiveTheme`, `MotionScheme.expressive()`),
+  Navigation Compose
 - **DI:** Hilt + KSP
 - **Persistence:** DataStore Preferences
 - **Sensors:** Android `SensorManager` (rotation vector + magnetic field)

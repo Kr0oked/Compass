@@ -26,17 +26,19 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
+import androidx.compose.material3.LargeFlexibleTopAppBar
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -45,6 +47,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -59,6 +62,7 @@ import com.bobek.compass.R
 import com.bobek.compass.data.AppNightMode
 import com.bobek.compass.ui.ComposeAppViewModel
 import com.bobek.compass.ui.IAppViewModel
+import com.bobek.compass.ui.NavigateBackButton
 
 private const val TAG = "SettingsScreen"
 
@@ -75,24 +79,22 @@ fun SettingsScreen(
     val trueNorth by compassViewModel.getTrueNorthFlow().collectAsState()
     val hapticFeedback by compassViewModel.getHapticFeedbackFlow().collectAsState()
     val sightingMode by compassViewModel.getSightingModeFlow().collectAsState()
-    val autoShowSensorStatusDialogEnabled by compassViewModel.getAutoShowSensorStatusDialogEnabledFlow().collectAsState()
+    val autoShowSensorStatusDialogEnabled by compassViewModel.getAutoShowSensorStatusDialogEnabledFlow()
+        .collectAsState()
     val showMagneticFieldStrength by compassViewModel.getShowMagneticFieldStrengthFlow().collectAsState()
     val nightMode by appViewModel.getNightModeFlow().collectAsState()
 
     var showNightModeDialog by rememberSaveable { mutableStateOf(false) }
 
+    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+
     Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
-            TopAppBar(
+            LargeFlexibleTopAppBar(
                 title = { Text(stringResource(R.string.settings)) },
-                navigationIcon = {
-                    IconButton(onClick = onBackClick) {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_arrow_back),
-                            contentDescription = stringResource(R.string.navigate_back)
-                        )
-                    }
-                }
+                navigationIcon = { NavigateBackButton(onClick = onBackClick) },
+                scrollBehavior = scrollBehavior
             )
         }
     ) { padding ->
@@ -104,134 +106,83 @@ fun SettingsScreen(
         ) {
             SettingsSection(
                 title = stringResource(R.string.compass),
-                icon = {
-                    Icon(painter = painterResource(R.drawable.ic_explore), contentDescription = null)
-                }
+                iconResourceId = R.drawable.ic_explore
             ) {
-                ListItem(
-                    onClick = { compassViewModel.setTrueNorth(!trueNorth) },
-                    supportingContent = { Text(stringResource(R.string.true_north_summary)) },
-                    trailingContent = {
-                        Switch(
-                            checked = trueNorth,
-                            onCheckedChange = null
-                        )
-                    }
-                ) {
-                    Text(stringResource(R.string.true_north))
-                }
-
-                ListItem(
-                    onClick = { compassViewModel.setHapticFeedback(!hapticFeedback) },
-                    supportingContent = { Text(stringResource(R.string.haptic_feedback_summary)) },
-                    trailingContent = {
-                        Switch(
-                            checked = hapticFeedback,
-                            onCheckedChange = null
-                        )
-                    }
-                ) {
-                    Text(stringResource(R.string.haptic_feedback))
-                }
-
-                ListItem(
-                    onClick = { compassViewModel.setSightingMode(!sightingMode) },
-                    supportingContent = { Text(stringResource(R.string.sighting_mode_summary)) },
-                    trailingContent = {
-                        Switch(
-                            checked = sightingMode,
-                            onCheckedChange = null
-                        )
-                    }
-                ) {
-                    Text(stringResource(R.string.sighting_mode))
-                }
-
-                ListItem(
-                    onClick = {
-                        compassViewModel.setAutoShowSensorStatusDialogEnabled(!autoShowSensorStatusDialogEnabled)
-                    },
-                    supportingContent = { Text(stringResource(R.string.sensor_status_warnings_summary)) },
-                    trailingContent = {
-                        Switch(
-                            checked = autoShowSensorStatusDialogEnabled,
-                            onCheckedChange = null
-                        )
-                    }
-                ) {
-                    Text(stringResource(R.string.sensor_status_warnings))
-                }
-
-                ListItem(
-                    onClick = { compassViewModel.setShowMagneticFieldStrength(!showMagneticFieldStrength) },
-                    supportingContent = { Text(stringResource(R.string.magnetic_field_strength_summary)) },
-                    trailingContent = {
-                        Switch(
-                            checked = showMagneticFieldStrength,
-                            onCheckedChange = null
-                        )
-                    }
-                ) {
-                    Text(stringResource(R.string.magnetic_field_strength))
-                }
+                SwitchSettingItem(
+                    title = stringResource(R.string.true_north),
+                    summary = stringResource(R.string.true_north_summary),
+                    checked = trueNorth,
+                    onCheckedChange = compassViewModel::setTrueNorth
+                )
+                SwitchSettingItem(
+                    title = stringResource(R.string.haptic_feedback),
+                    summary = stringResource(R.string.haptic_feedback_summary),
+                    checked = hapticFeedback,
+                    onCheckedChange = compassViewModel::setHapticFeedback
+                )
+                SwitchSettingItem(
+                    title = stringResource(R.string.sighting_mode),
+                    summary = stringResource(R.string.sighting_mode_summary),
+                    checked = sightingMode,
+                    onCheckedChange = compassViewModel::setSightingMode
+                )
+                SwitchSettingItem(
+                    title = stringResource(R.string.sensor_status_warnings),
+                    summary = stringResource(R.string.sensor_status_warnings_summary),
+                    checked = autoShowSensorStatusDialogEnabled,
+                    onCheckedChange = compassViewModel::setAutoShowSensorStatusDialogEnabled
+                )
+                SwitchSettingItem(
+                    title = stringResource(R.string.magnetic_field_strength),
+                    summary = stringResource(R.string.magnetic_field_strength_summary),
+                    checked = showMagneticFieldStrength,
+                    onCheckedChange = compassViewModel::setShowMagneticFieldStrength
+                )
             }
 
             HorizontalDivider()
             SettingsSection(
                 title = stringResource(R.string.display),
-                icon = {
-                    Icon(painter = painterResource(R.drawable.ic_display_settings), contentDescription = null)
-                }
+                iconResourceId = R.drawable.ic_display_settings
             ) {
-                ListItem(
-                    onClick = { showNightModeDialog = true },
-                    supportingContent = { Text(stringResource(nightMode.labelResourceId)) }
-                ) {
-                    Text(stringResource(R.string.night_mode))
-                }
+                ClickableSettingItem(
+                    title = stringResource(R.string.night_mode),
+                    summary = stringResource(nightMode.labelResourceId),
+                    onClick = { showNightModeDialog = true }
+                )
             }
 
             HorizontalDivider()
             SettingsSection(
                 title = stringResource(R.string.about),
-                icon = {
-                    Icon(painter = painterResource(R.drawable.ic_help), contentDescription = null)
-                }
+                iconResourceId = R.drawable.ic_help
             ) {
-                ListItem(
+                ClickableSettingItem(
+                    title = stringResource(R.string.author),
+                    summary = stringResource(R.string.author_name),
                     onClick = {
                         val intent = Intent(Intent.ACTION_VIEW, "mailto:philipp.bobek@mailbox.org".toUri())
                         context.startActivitySafely(intent)
-                    },
-                    supportingContent = { Text(stringResource(R.string.author_name)) }
-                ) {
-                    Text(stringResource(R.string.author))
-                }
-
-                ListItem(
-                    onClick = onLicenseClick,
-                    supportingContent = { Text(stringResource(R.string.license_name)) }
-                ) {
-                    Text(stringResource(R.string.license))
-                }
-
-                ListItem(
-                    onClick = onThirdPartyLicensesClick,
-                    supportingContent = { Text(stringResource(R.string.third_party_licenses_summary)) }
-                ) {
-                    Text(stringResource(R.string.third_party_licenses))
-                }
-
-                ListItem(
+                    }
+                )
+                ClickableSettingItem(
+                    title = stringResource(R.string.license),
+                    summary = stringResource(R.string.license_name),
+                    onClick = onLicenseClick
+                )
+                ClickableSettingItem(
+                    title = stringResource(R.string.third_party_licenses),
+                    summary = stringResource(R.string.third_party_licenses_summary),
+                    onClick = onThirdPartyLicensesClick
+                )
+                ClickableSettingItem(
+                    title = stringResource(R.string.source_code),
+                    summary = stringResource(R.string.source_code_name),
                     onClick = {
                         val intent = Intent(Intent.ACTION_VIEW, "https://github.com/Kr0oked/Compass".toUri())
                         context.startActivitySafely(intent)
-                    },
-                    supportingContent = { Text(stringResource(R.string.source_code_name)) }
-                ) {
-                    Text(stringResource(R.string.source_code))
-                }
-
+                    }
+                )
                 ListItem(
                     supportingContent = { Text(BuildConfig.VERSION_NAME) }
                 ) {
@@ -254,14 +205,14 @@ fun SettingsScreen(
 @Composable
 private fun SettingsSection(
     title: String,
-    icon: @Composable () -> Unit,
+    iconResourceId: Int,
     content: @Composable () -> Unit
 ) {
     Row(
         modifier = Modifier.padding(start = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        icon()
+        Icon(painter = painterResource(iconResourceId), contentDescription = null)
         ListItem {
             Text(
                 text = title,
@@ -272,6 +223,52 @@ private fun SettingsSection(
     }
     Column(modifier = Modifier.padding(start = 40.dp)) {
         content()
+    }
+}
+
+@Composable
+private fun SwitchSettingItem(
+    title: String,
+    summary: String,
+    checked: Boolean,
+    onCheckedChange: (Boolean) -> Unit
+) {
+    ListItem(
+        onClick = { onCheckedChange(!checked) },
+        supportingContent = { Text(summary) },
+        trailingContent = {
+            Switch(
+                checked = checked,
+                onCheckedChange = null,
+                thumbContent = if (checked) {
+                    {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_check),
+                            contentDescription = null,
+                            modifier = Modifier.size(SwitchDefaults.IconSize)
+                        )
+                    }
+                } else {
+                    null
+                }
+            )
+        }
+    ) {
+        Text(title)
+    }
+}
+
+@Composable
+private fun ClickableSettingItem(
+    title: String,
+    summary: String,
+    onClick: () -> Unit
+) {
+    ListItem(
+        onClick = onClick,
+        supportingContent = { Text(summary) }
+    ) {
+        Text(title)
     }
 }
 
