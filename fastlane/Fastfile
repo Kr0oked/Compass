@@ -92,6 +92,7 @@ platform :android do
     SCREENSHOT_EMULATORS.each do |emulator|
       boot_emulator(emulator)
       begin
+        disable_language_pack_downloads(emulator)
         capture_device_screenshots(device_type: emulator[:device_type], specific_device: emulator[:serial])
       ensure
         shutdown_emulator(emulator)
@@ -154,6 +155,13 @@ platform :android do
       specific_device: options[:specific_device],
       clear_previous_screenshots: true
     )
+  end
+
+  # Android System Intelligence downloads language packs whenever the tests switch the locale, and its download
+  # notification icon shows up in random screenshots (demo mode doesn't hide it on API 37). Only ever applied to
+  # the dedicated Screenshots_* AVDs, never to a device the single-device grab_screen_* lanes might be pointed at.
+  private_lane :disable_language_pack_downloads do |options|
+    sh("\"#{ADB_BIN}\" -s #{options[:serial]} shell pm disable-user --user 0 com.google.android.as")
   end
 
   private_lane :boot_emulator do |options|
