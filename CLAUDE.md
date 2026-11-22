@@ -84,8 +84,12 @@ What belongs where, rather than an inventory; a class is named only when it carr
   `MainContent`'s navigation transitions (quarter-width slide plus fade) take their specs from
   `MaterialTheme.motionScheme`, read inside `AppTheme` before the `NavHost` since the transition lambdas aren't
   composable. The XML themes in `res/values*/themes.xml` inherit from `Theme.Material3Expressive.*`, which styles
-  View-based UI such as `MainActivity`'s `MaterialAlertDialogBuilder` dialogs. The compass rose and strip are
-  custom-drawn instruments and intentionally not restyled.
+  View-based UI such as `MainActivity`'s `MaterialAlertDialogBuilder` dialogs. Single-choice options use
+  `ListItem(selected, onClick)` with a leading `RadioButton(onClick = null)` inside a `selectableGroup()`, not
+  hand-rolled `selectable` rows. `*Emphasized` type styles mark focal text only: Settings section headers, the
+  selected choice-dialog option, the sensor status dialog's accuracy label, and the `HINT` "hold level" message.
+  The compass rose and strip are custom-drawn instruments and intentionally not restyled (their readouts keep the
+  plain type scale).
 - **`util/`**: sensor math. Logic without Android dependencies (`CompassReadingCalculator`,
   `MagneticFieldStrengthFilter`) is kept apart from code that needs Android APIs (`MathUtils`: `SensorManager`
   remap, `GeomagneticField`), so the former stays unit-testable on the JVM.

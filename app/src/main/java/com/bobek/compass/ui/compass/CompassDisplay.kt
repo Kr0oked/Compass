@@ -145,7 +145,7 @@ private fun HoldLevelHint(
             )
             Text(
                 text = stringResource(R.string.compass_hold_level),
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.titleMediumEmphasized,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(top = 8.dp)
