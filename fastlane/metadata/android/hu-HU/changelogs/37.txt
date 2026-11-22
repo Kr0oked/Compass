@@ -1,0 +1,3 @@
+- Megújult, Material 3 Expressive alapú megjelenés, gördülékenyebb képernyőváltásokkal
+- A hosszú irányok nevei most már mindig elférnek a szélrózsán belül
+- Az irányzó iránytű égtájai most már a te nyelveden jelennek meg

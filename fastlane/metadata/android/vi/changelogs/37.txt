@@ -1,0 +1,3 @@
+- Thiết kế mới dựa trên Material 3 Expressive, với hiệu ứng chuyển màn hình mượt mà hơn
+- Tên hướng dài giờ luôn vừa vặn bên trong hoa gió la bàn
+- Các hướng trên la bàn ngắm giờ được hiển thị bằng ngôn ngữ của bạn

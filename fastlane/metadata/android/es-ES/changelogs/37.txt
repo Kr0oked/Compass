@@ -1,0 +1,3 @@
+- Diseño renovado basado en Material 3 Expressive, con transiciones entre pantallas más fluidas
+- Los nombres largos de las direcciones ahora siempre caben dentro de la rosa de los vientos
+- Los puntos cardinales de la brújula de mira ahora se muestran en tu idioma

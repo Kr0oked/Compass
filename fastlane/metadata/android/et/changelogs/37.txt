@@ -1,0 +1,3 @@
+- Värskendatud kujundus, mis põhineb Material 3 Expressive'il, sujuvamate ekraaniüleminekutega
+- Pikad suunanimed mahuvad nüüd alati kompassiroosi sisse
+- Sihtimiskompassi ilmakaared kuvatakse nüüd sinu keeles

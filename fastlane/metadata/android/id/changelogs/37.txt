@@ -1,0 +1,3 @@
+- Desain baru berbasis Material 3 Expressive, dengan transisi antarlayar yang lebih mulus
+- Nama arah yang panjang kini selalu muat di dalam mawar kompas
+- Arah mata angin pada kompas bidik kini ditampilkan dalam bahasa Anda

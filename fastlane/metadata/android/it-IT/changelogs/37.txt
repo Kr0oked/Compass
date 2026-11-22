@@ -1,0 +1,3 @@
+- Design rinnovato basato su Material 3 Expressive, con transizioni tra le schermate più fluide
+- I nomi lunghi delle direzioni ora rientrano sempre nella rosa dei venti
+- I punti cardinali della bussola di rilevamento ora vengono mostrati nella tua lingua

@@ -1,0 +1,3 @@
+- Osvěžený vzhled založený na Material 3 Expressive s plynulejšími přechody mezi obrazovkami
+- Dlouhé názvy směrů se nyní vždy vejdou do kompasové růžice
+- Světové strany na zaměřovacím kompasu se nyní zobrazují ve vašem jazyce

@@ -1,0 +1,3 @@
+- Material 3 Expressive tabanlı yenilenmiş tasarım ve daha akıcı ekran geçişleri
+- Uzun yön adları artık her zaman pusula gülünün içine sığıyor
+- Nişan pusulasındaki yönler artık kendi dilinizde gösteriliyor

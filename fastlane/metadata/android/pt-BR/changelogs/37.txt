@@ -1,0 +1,3 @@
+- Design renovado com base no Material 3 Expressive, com transições de tela mais suaves
+- Nomes de direção longos agora sempre cabem dentro da rosa dos ventos
+- Os pontos cardeais da bússola de visada agora aparecem no seu idioma

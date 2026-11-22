@@ -1,0 +1,3 @@
+- Refreshed design based on Material 3 Expressive, with smoother screen transitions
+- Long direction names now always fit inside the compass rose
+- Compass directions on the sighting compass are now shown in your language

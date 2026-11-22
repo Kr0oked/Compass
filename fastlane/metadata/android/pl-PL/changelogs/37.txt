@@ -1,0 +1,3 @@
+- Odświeżony wygląd oparty na Material 3 Expressive, z płynniejszymi przejściami między ekranami
+- Długie nazwy kierunków zawsze mieszczą się teraz w róży wiatrów
+- Kierunki na kompasie celowniczym są teraz wyświetlane w Twoim języku

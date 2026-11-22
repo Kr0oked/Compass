@@ -1,0 +1,3 @@
+- Design rafraîchi basé sur Material 3 Expressive, avec des transitions entre écrans plus fluides
+- Les noms de direction longs tiennent désormais toujours dans la rose des vents
+- Les points cardinaux de la boussole de visée s'affichent désormais dans votre langue

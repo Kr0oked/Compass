@@ -1,0 +1,3 @@
+- Opfrisket design baseret på Material 3 Expressive med mere glidende skærmovergange
+- Lange retningsnavne passer nu altid inden i kompasrosen
+- Verdenshjørnerne på sigtekompasset vises nu på dit sprog

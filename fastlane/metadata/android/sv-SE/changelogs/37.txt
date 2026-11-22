@@ -1,0 +1,3 @@
+- Uppfräschad design baserad på Material 3 Expressive, med mjukare skärmövergångar
+- Långa väderstrecksnamn får nu alltid plats inuti kompassrosen
+- Väderstrecken på siktkompassen visas nu på ditt språk

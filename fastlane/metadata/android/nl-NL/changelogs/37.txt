@@ -1,0 +1,3 @@
+- Vernieuwd ontwerp gebaseerd op Material 3 Expressive, met vloeiendere schermovergangen
+- Lange richtingnamen passen nu altijd binnen de kompasroos
+- De windrichtingen op het peilkompas worden nu in je eigen taal weergegeven

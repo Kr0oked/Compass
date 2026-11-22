@@ -1,0 +1,3 @@
+- Uudistettu ulkoasu, joka perustuu Material 3 Expressiveen, ja sujuvammat näkymäsiirtymät
+- Pitkät ilmansuuntien nimet mahtuvat nyt aina kompassiruusun sisään
+- Tähtäyskompassin ilmansuunnat näytetään nyt omalla kielelläsi

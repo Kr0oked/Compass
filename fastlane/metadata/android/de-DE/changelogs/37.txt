@@ -1,0 +1,3 @@
+- Aufgefrischtes Design auf Basis von Material 3 Expressive, mit flüssigeren Bildschirmübergängen
+- Lange Richtungsnamen passen jetzt immer in die Kompassrose
+- Die Himmelsrichtungen im Peilkompass werden jetzt in deiner Sprache angezeigt

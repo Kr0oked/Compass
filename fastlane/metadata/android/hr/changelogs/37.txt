@@ -1,0 +1,3 @@
+- Osvježen dizajn temeljen na Material 3 Expressive, s glađim prijelazima između zaslona
+- Dugi nazivi smjerova sada uvijek stanu unutar ruže kompasa
+- Strane svijeta na nišanskom kompasu sada se prikazuju na vašem jeziku
