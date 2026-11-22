@@ -77,6 +77,12 @@ fun CompassStrip(
     val description = stringResource(R.string.compass_strip_image_description)
     val stateDescription =
         stringResource(R.string.compass_strip_state_description, cardinalDirectionText, bearingText)
+    val cardinalLabels = mapOf(
+        0 to stringResource(R.string.cardinal_direction_north_abbreviation),
+        90 to stringResource(R.string.cardinal_direction_east_abbreviation),
+        180 to stringResource(R.string.cardinal_direction_south_abbreviation),
+        270 to stringResource(R.string.cardinal_direction_west_abbreviation)
+    )
 
     val degreeStyle = MaterialTheme.typography.labelMedium.copy(color = onSurfaceColor)
     val cardinalStyle = MaterialTheme.typography.titleMedium.copy(
@@ -107,7 +113,8 @@ fun CompassStrip(
                     primaryColor = primaryColor,
                     errorColor = errorColor,
                     degreeStyle = degreeStyle,
-                    cardinalStyle = cardinalStyle
+                    cardinalStyle = cardinalStyle,
+                    cardinalLabels = cardinalLabels
                 )
                 drawRuler(data)
                 drawReticle(data)
@@ -156,7 +163,7 @@ private fun DrawScope.drawRuler(data: CompassStripDrawData) {
         )
 
         if (major) {
-            val cardinal = cardinalLabel(degree)
+            val cardinal = data.cardinalLabels[degree]
             val style = when {
                 degree == 0 -> data.cardinalStyle.copy(color = data.errorColor)
                 cardinal != null -> data.cardinalStyle
@@ -210,14 +217,6 @@ private fun signedDelta(rawDegrees: Float): Float {
     return delta
 }
 
-private fun cardinalLabel(degree: Int): String? = when (degree) {
-    0 -> "N"
-    90 -> "E"
-    180 -> "S"
-    270 -> "W"
-    else -> null
-}
-
 private class CompassStripDrawData(
     val textMeasurer: TextMeasurer,
     val bearingDegrees: Float,
@@ -225,7 +224,9 @@ private class CompassStripDrawData(
     val primaryColor: Color,
     val errorColor: Color,
     val degreeStyle: TextStyle,
-    val cardinalStyle: TextStyle
+    val cardinalStyle: TextStyle,
+    /** Localized abbreviations keyed by heading in degrees (0, 90, 180, 270), as on the rose. */
+    val cardinalLabels: Map<Int, String>
 )
 
 private class CompassStripBearingProvider : PreviewParameterProvider<Azimuth> {
