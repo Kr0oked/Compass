@@ -32,12 +32,11 @@ import com.bobek.compass.util.MathUtils
 private const val HAPTIC_FEEDBACK_INTERVAL = 2.0f
 
 /**
- * Fires a short haptic tick every [HAPTIC_FEEDBACK_INTERVAL] degrees as [bearing] sweeps past the
- * marks, while [enabled] is true.
+ * Fires a short haptic tick every [HAPTIC_FEEDBACK_INTERVAL] degrees as [bearing] sweeps past the marks, while
+ * [enabled] is true.
  *
- * The reference point is cleared whenever [enabled] goes false, so anything that re-enables it
- * later (a regime change, a recovered reading, the setting toggled back on) re-seeds silently
- * instead of firing a burst.
+ * The reference point is cleared whenever [enabled] goes false, so anything that re-enables it later (a regime change,
+ * a recovered reading, the setting toggled back on) re-seeds silently instead of firing a burst.
  */
 @Composable
 fun CompassHapticFeedback(enabled: Boolean, bearing: Azimuth) {
@@ -56,11 +55,12 @@ fun CompassHapticFeedback(enabled: Boolean, bearing: Azimuth) {
             return@LaunchedEffect
         }
 
-        val insideCurrentMark = MathUtils.isAzimuthBetweenTwoPoints(
-            bearing,
-            lastPoint - HAPTIC_FEEDBACK_INTERVAL,
-            lastPoint + HAPTIC_FEEDBACK_INTERVAL
-        )
+        val insideCurrentMark =
+            MathUtils.isAzimuthBetweenTwoPoints(
+                bearing,
+                lastPoint - HAPTIC_FEEDBACK_INTERVAL,
+                lastPoint + HAPTIC_FEEDBACK_INTERVAL,
+            )
         if (!insideCurrentMark) {
             lastFeedbackPoint = closestMark(bearing)
             view.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)

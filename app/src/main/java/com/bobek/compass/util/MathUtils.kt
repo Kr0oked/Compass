@@ -36,9 +36,8 @@ private const val NANOTESLA_PER_MICROTESLA = 1_000f
 object MathUtils {
 
     /**
-     * Device-to-world rotation matrix for the rotation vector, remapped so that its axes follow the
-     * current display rotation. The result feeds
-     * [com.bobek.compass.util.CompassReadingCalculator].
+     * Device-to-world rotation matrix for the rotation vector, remapped so that its axes follow the current display
+     * rotation. The result feeds [com.bobek.compass.util.CompassReadingCalculator].
      */
     @JvmStatic
     fun remappedRotationMatrix(rotationVector: RotationVector, displayRotation: DisplayRotation): FloatArray {
@@ -62,12 +61,11 @@ object MathUtils {
         return remappedRotationMatrix
     }
 
-    @JvmStatic
-    fun getMagneticDeclination(location: Location): Float = getGeomagneticField(location).declination
+    @JvmStatic fun getMagneticDeclination(location: Location): Float = getGeomagneticField(location).declination
 
     /**
-     * Total field strength in µT that the geomagnetic model predicts at [location], for comparison
-     * with the measured value. [GeomagneticField] reports nanotesla.
+     * Total field strength in µT that the geomagnetic model predicts at [location], for comparison with the measured
+     * value. [GeomagneticField] reports nanotesla.
      */
     @JvmStatic
     fun getExpectedMagneticFieldStrength(location: Location): Float =
@@ -85,7 +83,8 @@ object MathUtils {
         (number / interval).roundToInt() * interval
 
     /**
-     * @see <a href="https://math.stackexchange.com/questions/2275439/check-if-point-on-circle-is-between-two-other-points-on-circle">Stackexchange</a>
+     * @see <a
+     *   href="https://math.stackexchange.com/questions/2275439/check-if-point-on-circle-is-between-two-other-points-on-circle">Stackexchange</a>
      */
     fun isAzimuthBetweenTwoPoints(azimuth: Azimuth, pointA: Azimuth, pointB: Azimuth): Boolean {
         val aToB = (pointB.degrees - pointA.degrees + 360f) % 360f

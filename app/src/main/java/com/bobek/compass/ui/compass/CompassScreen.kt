@@ -85,7 +85,7 @@ import com.bobek.compass.ui.TestConstants
 fun CompassScreen(
     @PreviewParameter(CompassScreenViewModelProvider::class) viewModel: ICompassViewModel,
     onSettingsClick: () -> Unit = {},
-    onLocationReload: () -> Unit = {}
+    onLocationReload: () -> Unit = {},
 ) {
     val trueNorth by viewModel.getTrueNorthFlow().collectAsState()
     val locationStatus by viewModel.getLocationStatusFlow().collectAsState()
@@ -110,16 +110,16 @@ fun CompassScreen(
                     ScreenOrientationLockedButton(viewModel = viewModel)
                     SensorStatusButton(viewModel = viewModel, onClick = { showSensorStatusDialog = true })
                     SettingsButton(onClick = onSettingsClick)
-                }
+                },
             )
-        }
+        },
     ) { padding ->
         CompassContent(
             viewModel = viewModel,
             trueNorth = trueNorth,
             locationStatus = locationStatus,
             padding = padding,
-            onLocationReload = onLocationReload
+            onLocationReload = onLocationReload,
         )
     }
 
@@ -128,17 +128,16 @@ fun CompassScreen(
             viewModel = viewModel,
             onDismiss = {
                 showSensorStatusDialog = false
-            }
+            },
         )
     }
 }
 
 /**
- * One layout for every orientation and regime: [CompassDisplay] fills the area and stays centered,
- * so it never resizes or shifts as the phone tilts, while the info texts float over its corners
- * where the round rose and the short strip leave space: true north and location along the bottom,
- * the optional magnetic field strength top-end. Nothing branches on the regime, so the texts stay
- * put while the display crossfades.
+ * One layout for every orientation and regime: [CompassDisplay] fills the area and stays centered, so it never resizes
+ * or shifts as the phone tilts, while the info texts float over its corners where the round rose and the short strip
+ * leave space: true north and location along the bottom, the optional magnetic field strength top-end. Nothing branches
+ * on the regime, so the texts stay put while the display crossfades.
  */
 @Composable
 private fun CompassContent(
@@ -146,20 +145,20 @@ private fun CompassContent(
     trueNorth: Boolean,
     locationStatus: LocationStatus,
     padding: PaddingValues,
-    onLocationReload: () -> Unit
+    onLocationReload: () -> Unit,
 ) {
     val showMagneticFieldStrength by viewModel.getShowMagneticFieldStrengthFlow().collectAsState()
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(padding)
-            .consumeWindowInsets(padding)
-            .padding(dimensionResource(R.dimen.root_layout_padding))
+        modifier =
+            Modifier.fillMaxSize()
+                .padding(padding)
+                .consumeWindowInsets(padding)
+                .padding(dimensionResource(R.dimen.root_layout_padding)),
     ) {
         CompassDisplay(
             viewModel = viewModel,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         )
 
         CornerInfo(corner = Alignment.BottomStart, horizontalAlignment = Alignment.Start) {
@@ -181,23 +180,20 @@ private fun CompassContent(
 }
 
 /**
- * A half-width info column pinned to one [corner] of the compass. Scrolls internally instead of
- * clipping when its content is too tall, for example a location error with its reload button on a
- * short screen, or large accessibility font scaling.
+ * A half-width info column pinned to one [corner] of the compass. Scrolls internally instead of clipping when its
+ * content is too tall, for example a location error with its reload button on a short screen, or large accessibility
+ * font scaling.
  */
 @Composable
 private fun BoxScope.CornerInfo(
     corner: Alignment,
     horizontalAlignment: Alignment.Horizontal,
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .align(corner)
-            .fillMaxWidth(0.5f)
-            .verticalScroll(rememberScrollState()),
+        modifier = Modifier.align(corner).fillMaxWidth(0.5f).verticalScroll(rememberScrollState()),
         horizontalAlignment = horizontalAlignment,
-        content = content
+        content = content,
     )
 }
 
@@ -224,12 +220,12 @@ private fun ScreenOrientationLockedButton(viewModel: ICompassViewModel) {
     TooltipBox(
         positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Below),
         tooltip = { PlainTooltip { Text(label) } },
-        state = rememberTooltipState()
+        state = rememberTooltipState(),
     ) {
         IconToggleButton(
             checked = screenOrientationLocked,
             onCheckedChange = viewModel::setScreenOrientationLocked,
-            shapes = IconButtonDefaults.toggleableShapes()
+            shapes = IconButtonDefaults.toggleableShapes(),
         ) {
             Icon(painter = painterResource(iconResourceId), contentDescription = label)
         }
@@ -240,7 +236,7 @@ private fun ScreenOrientationLockedButton(viewModel: ICompassViewModel) {
 @OptIn(ExperimentalMaterial3Api::class)
 private fun SensorStatusButton(
     viewModel: ICompassViewModel,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     val sensorAccuracy by viewModel.getSensorAccuracyFlow().collectAsState()
     val label = stringResource(R.string.sensor_status)
@@ -248,17 +244,17 @@ private fun SensorStatusButton(
     TooltipBox(
         positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Below),
         tooltip = { PlainTooltip { Text(label) } },
-        state = rememberTooltipState()
+        state = rememberTooltipState(),
     ) {
         IconButton(
             onClick = onClick,
             shapes = IconButtonDefaults.shapes(),
-            modifier = Modifier.testTag(TestConstants.SENSOR_STATUS_BUTTON)
+            modifier = Modifier.testTag(TestConstants.SENSOR_STATUS_BUTTON),
         ) {
             Icon(
                 painter = painterResource(sensorAccuracy.iconResourceId),
                 contentDescription = label,
-                tint = sensorAccuracy.tintColor
+                tint = sensorAccuracy.tintColor,
             )
         }
     }
@@ -272,7 +268,7 @@ private fun SettingsButton(onClick: () -> Unit) {
     TooltipBox(
         positionProvider = TooltipDefaults.rememberTooltipPositionProvider(TooltipAnchorPosition.Below),
         tooltip = { PlainTooltip { Text(label) } },
-        state = rememberTooltipState()
+        state = rememberTooltipState(),
     ) {
         IconButton(onClick = onClick, shapes = IconButtonDefaults.shapes()) {
             Icon(painter = painterResource(R.drawable.ic_settings), contentDescription = label)
@@ -284,7 +280,7 @@ private fun SettingsButton(onClick: () -> Unit) {
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 private fun LocationSection(
     locationStatus: LocationStatus,
-    onLocationReload: () -> Unit
+    onLocationReload: () -> Unit,
 ) {
     when (locationStatus) {
         LocationStatus.NOT_PRESENT -> {
@@ -294,7 +290,7 @@ private fun LocationSection(
                     Icon(
                         painter = painterResource(R.drawable.ic_refresh),
                         contentDescription = null,
-                        modifier = Modifier.size(ButtonDefaults.IconSize)
+                        modifier = Modifier.size(ButtonDefaults.IconSize),
                     )
                     Spacer(modifier = Modifier.width(ButtonDefaults.IconSpacing))
                     Text(text = stringResource(R.string.location_reload))
@@ -323,12 +319,12 @@ private fun LocationError(message: String) {
         Icon(
             painter = painterResource(R.drawable.ic_warning),
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.error
+            tint = MaterialTheme.colorScheme.error,
         )
         Text(
             text = message,
             color = MaterialTheme.colorScheme.error,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
     }
 }
@@ -337,41 +333,44 @@ private fun LocationError(message: String) {
 @Composable
 private fun TrueNorthToggleButton(
     trueNorth: Boolean,
-    onTrueNorthChange: (Boolean) -> Unit
+    onTrueNorthChange: (Boolean) -> Unit,
 ) {
     ToggleButton(
         checked = trueNorth,
         onCheckedChange = onTrueNorthChange,
-        icon = if (trueNorth) {
-            { Icon(painter = painterResource(R.drawable.ic_check), contentDescription = null) }
-        } else {
-            null
-        },
-        modifier = Modifier.testTag(TestConstants.TRUE_NORTH_TOGGLE_BUTTON)
+        icon =
+            if (trueNorth) {
+                { Icon(painter = painterResource(R.drawable.ic_check), contentDescription = null) }
+            } else {
+                null
+            },
+        modifier = Modifier.testTag(TestConstants.TRUE_NORTH_TOGGLE_BUTTON),
     ) {
         Text(stringResource(R.string.true_north))
     }
 }
 
 private class CompassScreenViewModelProvider : PreviewParameterProvider<ICompassViewModel> {
-    override val values: Sequence<ICompassViewModel> = sequenceOf(
-        ComposeCompassViewModel(trueNorth = false),
-        ComposeCompassViewModel(
-            trueNorth = true,
-            showMagneticFieldStrength = true,
-            magneticFieldStrength = 48.2f
-        ),
-        ComposeCompassViewModel(
-            compassReading = CompassReading.INITIAL.copy(
-                sightingBearing = Azimuth(123.0f),
-                tilt = 90f,
-                regime = CompassRegime.SIGHTING,
-                reliable = true
+    override val values: Sequence<ICompassViewModel> =
+        sequenceOf(
+            ComposeCompassViewModel(trueNorth = false),
+            ComposeCompassViewModel(
+                trueNorth = true,
+                showMagneticFieldStrength = true,
+                magneticFieldStrength = 48.2f,
             ),
-            trueNorth = true,
-            locationStatus = LocationStatus.PRESENT
+            ComposeCompassViewModel(
+                compassReading =
+                    CompassReading.INITIAL.copy(
+                        sightingBearing = Azimuth(123.0f),
+                        tilt = 90f,
+                        regime = CompassRegime.SIGHTING,
+                        reliable = true,
+                    ),
+                trueNorth = true,
+                locationStatus = LocationStatus.PRESENT,
+            ),
         )
-    )
 
     override fun getDisplayName(index: Int): String? =
         when (index) {

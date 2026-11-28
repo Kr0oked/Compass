@@ -31,8 +31,10 @@ import kotlinx.coroutines.flow.map
 
 private const val TAG = "DataStoreSettingsRepository"
 
-class DataStoreSettingsRepository @Inject constructor(
-    private val preferencesDataStore: DataStore<Preferences>
+class DataStoreSettingsRepository
+@Inject
+constructor(
+    private val preferencesDataStore: DataStore<Preferences>,
 ) : SettingsRepository {
 
     companion object {
@@ -42,72 +44,69 @@ class DataStoreSettingsRepository @Inject constructor(
         val SIGHTING_MODE_KEY = booleanPreferencesKey(PreferenceConstants.SIGHTING_MODE)
         val AUTO_SHOW_SENSOR_STATUS_DIALOG_KEY =
             booleanPreferencesKey(PreferenceConstants.AUTO_SHOW_SENSOR_STATUS_DIALOG)
-        val SHOW_MAGNETIC_FIELD_STRENGTH_KEY =
-            booleanPreferencesKey(PreferenceConstants.SHOW_MAGNETIC_FIELD_STRENGTH)
+        val SHOW_MAGNETIC_FIELD_STRENGTH_KEY = booleanPreferencesKey(PreferenceConstants.SHOW_MAGNETIC_FIELD_STRENGTH)
         val NIGHT_MODE_KEY = stringPreferencesKey(PreferenceConstants.NIGHT_MODE)
         val ACCESS_LOCATION_PERMISSION_REQUESTED_KEY =
             booleanPreferencesKey(PreferenceConstants.ACCESS_LOCATION_PERMISSION_REQUESTED)
     }
 
-    override fun getTrueNorth(): Flow<Boolean> = preferencesDataStore.data
-        .map { it[TRUE_NORTH_KEY] ?: false }
+    override fun getTrueNorth(): Flow<Boolean> = preferencesDataStore.data.map { it[TRUE_NORTH_KEY] ?: false }
 
     override suspend fun setTrueNorth(trueNorth: Boolean) {
         preferencesDataStore.edit { it[TRUE_NORTH_KEY] = trueNorth }
         Log.d(TAG, "Persisted trueNorth: $trueNorth")
     }
 
-    override fun getHapticFeedback(): Flow<Boolean> = preferencesDataStore.data
-        .map { it[HAPTIC_FEEDBACK_KEY] ?: true }
+    override fun getHapticFeedback(): Flow<Boolean> = preferencesDataStore.data.map { it[HAPTIC_FEEDBACK_KEY] ?: true }
 
     override suspend fun setHapticFeedback(hapticFeedback: Boolean) {
         preferencesDataStore.edit { it[HAPTIC_FEEDBACK_KEY] = hapticFeedback }
         Log.d(TAG, "Persisted hapticFeedback: $hapticFeedback")
     }
 
-    override fun getScreenOrientationLocked(): Flow<Boolean> = preferencesDataStore.data
-        .map { it[SCREEN_ORIENTATION_LOCKED_KEY] ?: false }
+    override fun getScreenOrientationLocked(): Flow<Boolean> =
+        preferencesDataStore.data.map { it[SCREEN_ORIENTATION_LOCKED_KEY] ?: false }
 
     override suspend fun setScreenOrientationLocked(screenOrientationLocked: Boolean) {
         preferencesDataStore.edit { it[SCREEN_ORIENTATION_LOCKED_KEY] = screenOrientationLocked }
         Log.d(TAG, "Persisted screenOrientationLocked: $screenOrientationLocked")
     }
 
-    override fun getSightingMode(): Flow<Boolean> = preferencesDataStore.data
-        .map { it[SIGHTING_MODE_KEY] ?: true }
+    override fun getSightingMode(): Flow<Boolean> = preferencesDataStore.data.map { it[SIGHTING_MODE_KEY] ?: true }
 
     override suspend fun setSightingMode(sightingMode: Boolean) {
         preferencesDataStore.edit { it[SIGHTING_MODE_KEY] = sightingMode }
         Log.d(TAG, "Persisted sightingMode: $sightingMode")
     }
 
-    override fun getAutoShowSensorStatusDialogEnabled(): Flow<Boolean> = preferencesDataStore.data
-        .map { it[AUTO_SHOW_SENSOR_STATUS_DIALOG_KEY] ?: true }
+    override fun getAutoShowSensorStatusDialogEnabled(): Flow<Boolean> =
+        preferencesDataStore.data.map { it[AUTO_SHOW_SENSOR_STATUS_DIALOG_KEY] ?: true }
 
     override suspend fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean) {
         preferencesDataStore.edit { it[AUTO_SHOW_SENSOR_STATUS_DIALOG_KEY] = autoShowSensorStatusDialogEnabled }
         Log.d(TAG, "Persisted autoShowSensorStatusDialogEnabled: $autoShowSensorStatusDialogEnabled")
     }
 
-    override fun getShowMagneticFieldStrength(): Flow<Boolean> = preferencesDataStore.data
-        .map { it[SHOW_MAGNETIC_FIELD_STRENGTH_KEY] ?: false }
+    override fun getShowMagneticFieldStrength(): Flow<Boolean> =
+        preferencesDataStore.data.map { it[SHOW_MAGNETIC_FIELD_STRENGTH_KEY] ?: false }
 
     override suspend fun setShowMagneticFieldStrength(showMagneticFieldStrength: Boolean) {
         preferencesDataStore.edit { it[SHOW_MAGNETIC_FIELD_STRENGTH_KEY] = showMagneticFieldStrength }
         Log.d(TAG, "Persisted showMagneticFieldStrength: $showMagneticFieldStrength")
     }
 
-    override fun getNightMode(): Flow<AppNightMode> = preferencesDataStore.data
-        .map { it[NIGHT_MODE_KEY] ?: AppNightMode.FOLLOW_SYSTEM.preferenceValue }
-        .map { AppNightMode.forPreferenceValue(it) }
+    override fun getNightMode(): Flow<AppNightMode> =
+        preferencesDataStore.data
+            .map { it[NIGHT_MODE_KEY] ?: AppNightMode.FOLLOW_SYSTEM.preferenceValue }
+            .map { AppNightMode.forPreferenceValue(it) }
 
     override suspend fun setNightMode(nightMode: AppNightMode) {
         preferencesDataStore.edit { it[NIGHT_MODE_KEY] = nightMode.preferenceValue }
         Log.d(TAG, "Persisted nightMode: ${nightMode.preferenceValue}")
     }
 
-    override fun getAccessLocationPermissionRequested(): Flow<Boolean> = preferencesDataStore.data
-        .map { it[ACCESS_LOCATION_PERMISSION_REQUESTED_KEY] ?: false }
+    override fun getAccessLocationPermissionRequested(): Flow<Boolean> =
+        preferencesDataStore.data.map { it[ACCESS_LOCATION_PERMISSION_REQUESTED_KEY] ?: false }
 
     override suspend fun setAccessLocationPermissionRequested(accessLocationPermissionRequested: Boolean) {
         preferencesDataStore.edit {

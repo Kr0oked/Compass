@@ -24,7 +24,7 @@ import com.bobek.compass.settings.PreferenceConstants
 
 enum class AppNightMode(
     @StringRes override val labelResourceId: Int,
-    override val preferenceValue: String
+    override val preferenceValue: String,
 ) : PreferenceChoice {
 
     FOLLOW_SYSTEM(R.string.night_mode_follow_system, PreferenceConstants.NIGHT_MODE_VALUE_FOLLOW_SYSTEM),

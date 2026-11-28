@@ -37,5 +37,5 @@ enum class CardinalDirection(@StringRes val labelResourceId: Int) {
     WEST(R.string.cardinal_direction_west),
     WEST_NORTHWEST(R.string.cardinal_direction_west_northwest),
     NORTHWEST(R.string.cardinal_direction_northwest),
-    NORTH_NORTHWEST(R.string.cardinal_direction_north_northwest)
+    NORTH_NORTHWEST(R.string.cardinal_direction_north_northwest),
 }

@@ -158,7 +158,7 @@ live entirely in `CompassReadingCalculator.nextRegime`, keyed only on the curren
 (no time debounce, no broader state machine), so a fast face-down flip jumps `ROSE` → `HINT` directly, skipping
 `SIGHTING`.
 
-| Regime     | Screen orientation | Shows                                                          | Enter threshold                    | Exit threshold                                |
+|   Regime   | Screen orientation |                             Shows                              |          Enter threshold           |                Exit threshold                 |
 |------------|--------------------|----------------------------------------------------------------|------------------------------------|-----------------------------------------------|
 | `ROSE`     | roughly horizontal | The rotating compass rose, top-edge bearing                    | (initial regime)                   | tilt > 70° → `SIGHTING`                       |
 | `SIGHTING` | roughly vertical   | Linear sighting strip, bearing of the phone's back (device −Z) | tilt > 70° from `ROSE`             | tilt < 52° → `ROSE`; tilt > 130° → `HINT`     |
@@ -171,7 +171,7 @@ now passes `ROSE` → `SIGHTING` → `HINT` instead of the rose spinning 180° i
 
 `CompassReading` fields:
 
-| Field             | Meaning                                                                   |
+|       Field       |                                  Meaning                                  |
 |-------------------|---------------------------------------------------------------------------|
 | `azimuth`         | `ROSE` bearing: phone's top edge, declination applied                     |
 | `sightingBearing` | `SIGHTING` bearing: phone's back (device −Z), declination applied         |

@@ -21,8 +21,7 @@ package com.bobek.compass.data
 /**
  * Which compass visualization is appropriate for the current device orientation.
  *
- * Selected from the screen-normal tilt with hysteresis, see
- * `com.bobek.compass.util.CompassReadingCalculator`.
+ * Selected from the screen-normal tilt with hysteresis, see `com.bobek.compass.util.CompassReadingCalculator`.
  */
 enum class CompassRegime {
 
@@ -33,5 +32,5 @@ enum class CompassRegime {
     SIGHTING,
 
     /** Screen roughly face-down: a "hold level" hint, the rose is not meaningful here. */
-    HINT
+    HINT,
 }

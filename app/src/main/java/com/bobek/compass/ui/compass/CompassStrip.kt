@@ -59,13 +59,15 @@ import kotlin.math.abs
 /** Degrees of heading visible across the full width of the strip. */
 private const val VISIBLE_SPAN_DEGREES = 90f
 
-/** The sighting compass: a horizontal ruler that scrolls under a fixed reticle showing where the
- * phone's back points. Shown when the phone is held roughly upright. */
+/**
+ * The sighting compass: a horizontal ruler that scrolls under a fixed reticle showing where the phone's back points.
+ * Shown when the phone is held roughly upright.
+ */
 @Composable
 @Preview(widthDp = 360, heightDp = 320)
 fun CompassStrip(
     @PreviewParameter(CompassStripBearingProvider::class) bearing: Azimuth,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val textMeasurer = rememberTextMeasurer()
     val onSurfaceColor = MaterialTheme.colorScheme.onSurface
@@ -75,47 +77,47 @@ fun CompassStrip(
     val cardinalDirectionText = stringResource(bearing.cardinalDirection.labelResourceId)
     val bearingText = stringResource(R.string.degrees, bearing.roundedDegrees)
     val description = stringResource(R.string.compass_strip_image_description)
-    val stateDescription =
-        stringResource(R.string.compass_strip_state_description, cardinalDirectionText, bearingText)
-    val cardinalLabels = mapOf(
-        0 to stringResource(R.string.cardinal_direction_north_abbreviation),
-        90 to stringResource(R.string.cardinal_direction_east_abbreviation),
-        180 to stringResource(R.string.cardinal_direction_south_abbreviation),
-        270 to stringResource(R.string.cardinal_direction_west_abbreviation)
-    )
+    val stateDescription = stringResource(R.string.compass_strip_state_description, cardinalDirectionText, bearingText)
+    val cardinalLabels =
+        mapOf(
+            0 to stringResource(R.string.cardinal_direction_north_abbreviation),
+            90 to stringResource(R.string.cardinal_direction_east_abbreviation),
+            180 to stringResource(R.string.cardinal_direction_south_abbreviation),
+            270 to stringResource(R.string.cardinal_direction_west_abbreviation),
+        )
 
     val degreeStyle = MaterialTheme.typography.labelMedium.copy(color = onSurfaceColor)
-    val cardinalStyle = MaterialTheme.typography.titleMedium.copy(
-        color = onSurfaceColor,
-        fontWeight = FontWeight.Bold
-    )
+    val cardinalStyle =
+        MaterialTheme.typography.titleMedium.copy(
+            color = onSurfaceColor,
+            fontWeight = FontWeight.Bold,
+        )
 
     // Degrees always increase clockwise; the ruler must not mirror in right-to-left locales.
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
         Column(
-            modifier = modifier.semantics {
-                contentDescription = description
-                this.stateDescription = stateDescription
-            },
+            modifier =
+                modifier.semantics {
+                    contentDescription = description
+                    this.stateDescription = stateDescription
+                },
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
         ) {
             Canvas(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(112.dp)
-                    .testTag(TestConstants.COMPASS_STRIP)
+                modifier = Modifier.fillMaxWidth().height(112.dp).testTag(TestConstants.COMPASS_STRIP),
             ) {
-                val data = CompassStripDrawData(
-                    textMeasurer = textMeasurer,
-                    bearingDegrees = bearing.degrees,
-                    onSurfaceColor = onSurfaceColor,
-                    primaryColor = primaryColor,
-                    errorColor = errorColor,
-                    degreeStyle = degreeStyle,
-                    cardinalStyle = cardinalStyle,
-                    cardinalLabels = cardinalLabels
-                )
+                val data =
+                    CompassStripDrawData(
+                        textMeasurer = textMeasurer,
+                        bearingDegrees = bearing.degrees,
+                        onSurfaceColor = onSurfaceColor,
+                        primaryColor = primaryColor,
+                        errorColor = errorColor,
+                        degreeStyle = degreeStyle,
+                        cardinalStyle = cardinalStyle,
+                        cardinalLabels = cardinalLabels,
+                    )
                 drawRuler(data)
                 drawReticle(data)
             }
@@ -124,12 +126,12 @@ fun CompassStrip(
                 text = bearingText,
                 style = MaterialTheme.typography.displaySmall,
                 color = onSurfaceColor,
-                modifier = Modifier.padding(top = 12.dp)
+                modifier = Modifier.padding(top = 12.dp),
             )
             Text(
                 text = cardinalDirectionText,
                 style = MaterialTheme.typography.titleLarge,
-                color = onSurfaceColor
+                color = onSurfaceColor,
             )
         }
     }
@@ -148,31 +150,33 @@ private fun DrawScope.drawRuler(data: CompassStripDrawData) {
         val x = centerX + delta * pixelsPerDegree
         val major = degree % 30 == 0
         val tickLength = if (major) size.height * 0.22f else size.height * 0.11f
-        val color = when {
-            degree == 0 -> data.errorColor
-            major -> data.onSurfaceColor
-            else -> data.onSurfaceColor.copy(alpha = 0.6f)
-        }
+        val color =
+            when {
+                degree == 0 -> data.errorColor
+                major -> data.onSurfaceColor
+                else -> data.onSurfaceColor.copy(alpha = 0.6f)
+            }
 
         drawLine(
             color = color,
             start = Offset(x, baselineY),
             end = Offset(x, baselineY - tickLength),
             strokeWidth = if (major) size.height * 0.02f else size.height * 0.008f,
-            cap = StrokeCap.Round
+            cap = StrokeCap.Round,
         )
 
         if (major) {
             val cardinal = data.cardinalLabels[degree]
-            val style = when {
-                degree == 0 -> data.cardinalStyle.copy(color = data.errorColor)
-                cardinal != null -> data.cardinalStyle
-                else -> data.degreeStyle
-            }
+            val style =
+                when {
+                    degree == 0 -> data.cardinalStyle.copy(color = data.errorColor)
+                    cardinal != null -> data.cardinalStyle
+                    else -> data.degreeStyle
+                }
             val measured = data.textMeasurer.measure(cardinal ?: degree.toString(), style)
             drawText(
                 measured,
-                topLeft = Offset(x - measured.size.width / 2f, baselineY + size.height * 0.06f)
+                topLeft = Offset(x - measured.size.width / 2f, baselineY + size.height * 0.06f),
             )
         }
     }
@@ -181,7 +185,7 @@ private fun DrawScope.drawRuler(data: CompassStripDrawData) {
         color = data.onSurfaceColor.copy(alpha = 0.4f),
         start = Offset(0f, baselineY),
         end = Offset(size.width, baselineY),
-        strokeWidth = size.height * 0.006f
+        strokeWidth = size.height * 0.006f,
     )
 }
 
@@ -194,19 +198,20 @@ private fun DrawScope.drawReticle(data: CompassStripDrawData) {
     val baseY = size.height * 0.32f
     val halfWidth = size.height * 0.06f
 
-    val path = Path().apply {
-        moveTo(centerX, apexY)
-        lineTo(centerX - halfWidth, baseY)
-        lineTo(centerX + halfWidth, baseY)
-        close()
-    }
+    val path =
+        Path().apply {
+            moveTo(centerX, apexY)
+            lineTo(centerX - halfWidth, baseY)
+            lineTo(centerX + halfWidth, baseY)
+            close()
+        }
     drawPath(path, color = data.primaryColor)
     drawLine(
         color = data.primaryColor,
         start = Offset(centerX, baseY),
         end = Offset(centerX, baselineY),
         strokeWidth = size.height * 0.02f,
-        cap = StrokeCap.Round
+        cap = StrokeCap.Round,
     )
 }
 
@@ -226,16 +231,16 @@ private class CompassStripDrawData(
     val degreeStyle: TextStyle,
     val cardinalStyle: TextStyle,
     /** Localized abbreviations keyed by heading in degrees (0, 90, 180, 270), as on the rose. */
-    val cardinalLabels: Map<Int, String>
+    val cardinalLabels: Map<Int, String>,
 )
 
 private class CompassStripBearingProvider : PreviewParameterProvider<Azimuth> {
-    override val values: Sequence<Azimuth> = sequenceOf(
-        Azimuth(0.0f),
-        Azimuth(47.5f),
-        Azimuth(213.0f)
-    )
+    override val values: Sequence<Azimuth> =
+        sequenceOf(
+            Azimuth(0.0f),
+            Azimuth(47.5f),
+            Azimuth(213.0f),
+        )
 
-    override fun getDisplayName(index: Int): String? =
-        listOf("0°", "47.5°", "213°").getOrNull(index)
+    override fun getDisplayName(index: Int): String? = listOf("0°", "47.5°", "213°").getOrNull(index)
 }

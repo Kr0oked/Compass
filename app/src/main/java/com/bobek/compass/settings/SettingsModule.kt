@@ -36,11 +36,15 @@ import jakarta.inject.Singleton
 private const val PREFERENCES_NAME = "settings"
 private const val SHARED_PREFERENCES_NAME = "com.bobek.compass_preferences"
 
-val Context.preferencesDataStore: DataStore<Preferences> by preferencesDataStore(
-    name = PREFERENCES_NAME,
-    corruptionHandler = ReplaceFileCorruptionHandler(
-        produceNewData = { emptyPreferences() }),
-    produceMigrations = { context -> listOf(SharedPreferencesMigration(context, SHARED_PREFERENCES_NAME)) })
+val Context.preferencesDataStore: DataStore<Preferences> by
+    preferencesDataStore(
+        name = PREFERENCES_NAME,
+        corruptionHandler =
+            ReplaceFileCorruptionHandler(
+                produceNewData = { emptyPreferences() },
+            ),
+        produceMigrations = { context -> listOf(SharedPreferencesMigration(context, SHARED_PREFERENCES_NAME)) },
+    )
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -50,7 +54,7 @@ abstract class SettingsModule {
     @Binds
     @Singleton
     abstract fun bindSettingsRepository(
-        dataStoreSettingsRepository: DataStoreSettingsRepository
+        dataStoreSettingsRepository: DataStoreSettingsRepository,
     ): SettingsRepository
 
     companion object {
@@ -58,7 +62,7 @@ abstract class SettingsModule {
         @Provides
         @Singleton
         fun providePreferencesDataStore(
-            @ApplicationContext context: Context
+            @ApplicationContext context: Context,
         ): DataStore<Preferences> {
             return context.preferencesDataStore
         }

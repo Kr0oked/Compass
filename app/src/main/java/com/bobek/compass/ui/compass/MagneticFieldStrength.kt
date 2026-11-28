@@ -39,8 +39,8 @@ import com.bobek.compass.ui.TestConstants
 import kotlin.math.roundToInt
 
 /**
- * Live magnetic field strength for the compass screen. Collects the ~5 Hz strength flow itself so
- * only this readout recomposes on each magnetometer event, and renders nothing until the first one.
+ * Live magnetic field strength for the compass screen. Collects the ~5 Hz strength flow itself so only this readout
+ * recomposes on each magnetometer event, and renders nothing until the first one.
  */
 @Composable
 fun MagneticFieldStrengthReadout(viewModel: ICompassViewModel) {
@@ -49,14 +49,12 @@ fun MagneticFieldStrengthReadout(viewModel: ICompassViewModel) {
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .semantics(mergeDescendants = true) {}
-            .testTag(TestConstants.MAGNETIC_FIELD_STRENGTH)
+        modifier = Modifier.semantics(mergeDescendants = true) {}.testTag(TestConstants.MAGNETIC_FIELD_STRENGTH),
     ) {
         Icon(
             painter = painterResource(R.drawable.ic_sensors),
             contentDescription = stringResource(R.string.magnetic_field_strength),
-            modifier = Modifier.size(20.dp)
+            modifier = Modifier.size(20.dp),
         )
         Spacer(modifier = Modifier.width(4.dp))
         Text(text = formatMagneticFieldStrength(microtesla))

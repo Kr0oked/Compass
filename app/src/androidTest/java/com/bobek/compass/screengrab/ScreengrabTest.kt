@@ -29,8 +29,8 @@ import com.bobek.compass.data.CompassReading
 import com.bobek.compass.data.SensorAccuracy
 import com.bobek.compass.ui.ComposeAppViewModel
 import com.bobek.compass.ui.MainContent
-import com.bobek.compass.ui.compass.ComposeCompassViewModel
 import com.bobek.compass.ui.compass.CompassReadingShowcase
+import com.bobek.compass.ui.compass.ComposeCompassViewModel
 import com.bobek.compass.ui.compass.ICompassViewModel
 import org.junit.AfterClass
 import org.junit.BeforeClass
@@ -47,16 +47,13 @@ import tools.fastlane.screengrab.locale.LocaleTestRule
 @RunWith(AndroidJUnit4::class)
 class ScreengrabTest {
 
-    @get:Rule
-    val composeTestRule = createComposeRule()
+    @get:Rule val composeTestRule = createComposeRule()
 
-    @Rule
-    @JvmField
-    val localeTestRule = LocaleTestRule()
+    @Rule @JvmField val localeTestRule = LocaleTestRule()
 
     /**
-     * Produces, in order: "1" rose/light, "2" rose/dark, "3" sighting/light. New regimes or
-     * features are showcased in light mode only; dark mode is already established by "2".
+     * Produces, in order: "1" rose/light, "2" rose/dark, "3" sighting/light. New regimes or features are showcased in
+     * light mode only; dark mode is already established by "2".
      */
     @Test
     fun grabScreenshot() {
@@ -69,7 +66,7 @@ class ScreengrabTest {
             // compassViewModel is read here, so reassigning it below recomposes without a second setContent.
             MainContent(
                 appViewModel = appViewModel,
-                compassViewModel = compassViewModel
+                compassViewModel = compassViewModel,
             )
         }
         capture("1")
@@ -82,11 +79,12 @@ class ScreengrabTest {
         capture("3")
     }
 
-    private fun showcaseViewModel(reading: CompassReading) = ComposeCompassViewModel(
-        compassReading = reading,
-        sensorAccuracy = SensorAccuracy.HIGH,
-        screenOrientationLocked = false
-    )
+    private fun showcaseViewModel(reading: CompassReading) =
+        ComposeCompassViewModel(
+            compassReading = reading,
+            sensorAccuracy = SensorAccuracy.HIGH,
+            screenOrientationLocked = false,
+        )
 
     private fun capture(name: String) {
         composeTestRule.waitForIdle()
@@ -109,14 +107,12 @@ class ScreengrabTest {
         }
 
         /**
-         * The mobile network icon doesn't reliably respect the app's light/dark status bar
-         * appearance on all system images, sometimes rendering white regardless of theme.
-         * Hiding it avoids that inconsistency instead of chasing it.
+         * The mobile network icon doesn't reliably respect the app's light/dark status bar appearance on all system
+         * images, sometimes rendering white regardless of theme. Hiding it avoids that inconsistency instead of chasing
+         * it.
          */
         private fun enableCleanStatusBar() {
-            CleanStatusBar()
-                .setMobileNetworkVisibility(IconVisibility.HIDE)
-                .enable()
+            CleanStatusBar().setMobileNetworkVisibility(IconVisibility.HIDE).enable()
         }
     }
 }

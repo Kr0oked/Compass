@@ -56,13 +56,13 @@ import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import com.bobek.compass.BuildConfig
-import com.bobek.compass.ui.compass.ComposeCompassViewModel
-import com.bobek.compass.ui.compass.ICompassViewModel
 import com.bobek.compass.R
 import com.bobek.compass.data.AppNightMode
 import com.bobek.compass.ui.ComposeAppViewModel
 import com.bobek.compass.ui.IAppViewModel
 import com.bobek.compass.ui.NavigateBackButton
+import com.bobek.compass.ui.compass.ComposeCompassViewModel
+import com.bobek.compass.ui.compass.ICompassViewModel
 
 private const val TAG = "SettingsScreen"
 
@@ -73,14 +73,14 @@ fun SettingsScreen(
     compassViewModel: ICompassViewModel = ComposeCompassViewModel(),
     onBackClick: () -> Unit = {},
     onLicenseClick: () -> Unit = {},
-    onThirdPartyLicensesClick: () -> Unit = {}
+    onThirdPartyLicensesClick: () -> Unit = {},
 ) {
     val context = LocalContext.current
     val trueNorth by compassViewModel.getTrueNorthFlow().collectAsState()
     val hapticFeedback by compassViewModel.getHapticFeedbackFlow().collectAsState()
     val sightingMode by compassViewModel.getSightingModeFlow().collectAsState()
-    val autoShowSensorStatusDialogEnabled by compassViewModel.getAutoShowSensorStatusDialogEnabledFlow()
-        .collectAsState()
+    val autoShowSensorStatusDialogEnabled by
+        compassViewModel.getAutoShowSensorStatusDialogEnabledFlow().collectAsState()
     val showMagneticFieldStrength by compassViewModel.getShowMagneticFieldStrengthFlow().collectAsState()
     val nightMode by appViewModel.getNightModeFlow().collectAsState()
 
@@ -94,68 +94,65 @@ fun SettingsScreen(
             LargeFlexibleTopAppBar(
                 title = { Text(stringResource(R.string.settings)) },
                 navigationIcon = { NavigateBackButton(onClick = onBackClick) },
-                scrollBehavior = scrollBehavior
+                scrollBehavior = scrollBehavior,
             )
-        }
+        },
     ) { padding ->
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .verticalScroll(rememberScrollState())
+            modifier = Modifier.fillMaxSize().padding(padding).verticalScroll(rememberScrollState()),
         ) {
             SettingsSection(
                 title = stringResource(R.string.compass),
-                iconResourceId = R.drawable.ic_explore
+                iconResourceId = R.drawable.ic_explore,
             ) {
                 SwitchSettingItem(
                     title = stringResource(R.string.true_north),
                     summary = stringResource(R.string.true_north_summary),
                     checked = trueNorth,
-                    onCheckedChange = compassViewModel::setTrueNorth
+                    onCheckedChange = compassViewModel::setTrueNorth,
                 )
                 SwitchSettingItem(
                     title = stringResource(R.string.haptic_feedback),
                     summary = stringResource(R.string.haptic_feedback_summary),
                     checked = hapticFeedback,
-                    onCheckedChange = compassViewModel::setHapticFeedback
+                    onCheckedChange = compassViewModel::setHapticFeedback,
                 )
                 SwitchSettingItem(
                     title = stringResource(R.string.sighting_mode),
                     summary = stringResource(R.string.sighting_mode_summary),
                     checked = sightingMode,
-                    onCheckedChange = compassViewModel::setSightingMode
+                    onCheckedChange = compassViewModel::setSightingMode,
                 )
                 SwitchSettingItem(
                     title = stringResource(R.string.sensor_status_warnings),
                     summary = stringResource(R.string.sensor_status_warnings_summary),
                     checked = autoShowSensorStatusDialogEnabled,
-                    onCheckedChange = compassViewModel::setAutoShowSensorStatusDialogEnabled
+                    onCheckedChange = compassViewModel::setAutoShowSensorStatusDialogEnabled,
                 )
                 SwitchSettingItem(
                     title = stringResource(R.string.magnetic_field_strength),
                     summary = stringResource(R.string.magnetic_field_strength_summary),
                     checked = showMagneticFieldStrength,
-                    onCheckedChange = compassViewModel::setShowMagneticFieldStrength
+                    onCheckedChange = compassViewModel::setShowMagneticFieldStrength,
                 )
             }
 
             HorizontalDivider()
             SettingsSection(
                 title = stringResource(R.string.display),
-                iconResourceId = R.drawable.ic_display_settings
+                iconResourceId = R.drawable.ic_display_settings,
             ) {
                 ClickableSettingItem(
                     title = stringResource(R.string.night_mode),
                     summary = stringResource(nightMode.labelResourceId),
-                    onClick = { showNightModeDialog = true }
+                    onClick = { showNightModeDialog = true },
                 )
             }
 
             HorizontalDivider()
             SettingsSection(
                 title = stringResource(R.string.about),
-                iconResourceId = R.drawable.ic_help
+                iconResourceId = R.drawable.ic_help,
             ) {
                 ClickableSettingItem(
                     title = stringResource(R.string.author),
@@ -163,17 +160,17 @@ fun SettingsScreen(
                     onClick = {
                         val intent = Intent(Intent.ACTION_VIEW, "mailto:philipp.bobek@mailbox.org".toUri())
                         context.startActivitySafely(intent)
-                    }
+                    },
                 )
                 ClickableSettingItem(
                     title = stringResource(R.string.license),
                     summary = stringResource(R.string.license_name),
-                    onClick = onLicenseClick
+                    onClick = onLicenseClick,
                 )
                 ClickableSettingItem(
                     title = stringResource(R.string.third_party_licenses),
                     summary = stringResource(R.string.third_party_licenses_summary),
-                    onClick = onThirdPartyLicensesClick
+                    onClick = onThirdPartyLicensesClick,
                 )
                 ClickableSettingItem(
                     title = stringResource(R.string.source_code),
@@ -181,10 +178,10 @@ fun SettingsScreen(
                     onClick = {
                         val intent = Intent(Intent.ACTION_VIEW, "https://github.com/Kr0oked/Compass".toUri())
                         context.startActivitySafely(intent)
-                    }
+                    },
                 )
                 ListItem(
-                    supportingContent = { Text(BuildConfig.VERSION_NAME) }
+                    supportingContent = { Text(BuildConfig.VERSION_NAME) },
                 ) {
                     Text(stringResource(R.string.version))
                 }
@@ -197,7 +194,7 @@ fun SettingsScreen(
             viewModel = appViewModel,
             onDismiss = {
                 showNightModeDialog = false
-            }
+            },
         )
     }
 }
@@ -206,11 +203,11 @@ fun SettingsScreen(
 private fun SettingsSection(
     title: String,
     iconResourceId: Int,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Row(
         modifier = Modifier.padding(start = 16.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(painter = painterResource(iconResourceId), contentDescription = null)
         ListItem {
@@ -231,7 +228,7 @@ private fun SwitchSettingItem(
     title: String,
     summary: String,
     checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit
+    onCheckedChange: (Boolean) -> Unit,
 ) {
     ListItem(
         onClick = { onCheckedChange(!checked) },
@@ -240,19 +237,20 @@ private fun SwitchSettingItem(
             Switch(
                 checked = checked,
                 onCheckedChange = null,
-                thumbContent = if (checked) {
-                    {
-                        Icon(
-                            painter = painterResource(R.drawable.ic_check),
-                            contentDescription = null,
-                            modifier = Modifier.size(SwitchDefaults.IconSize)
-                        )
-                    }
-                } else {
-                    null
-                }
+                thumbContent =
+                    if (checked) {
+                        {
+                            Icon(
+                                painter = painterResource(R.drawable.ic_check),
+                                contentDescription = null,
+                                modifier = Modifier.size(SwitchDefaults.IconSize),
+                            )
+                        }
+                    } else {
+                        null
+                    },
             )
-        }
+        },
     ) {
         Text(title)
     }
@@ -262,11 +260,11 @@ private fun SwitchSettingItem(
 private fun ClickableSettingItem(
     title: String,
     summary: String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     ListItem(
         onClick = onClick,
-        supportingContent = { Text(summary) }
+        supportingContent = { Text(summary) },
     ) {
         Text(title)
     }
@@ -284,7 +282,7 @@ private fun NightModeDialog(
         SingleChoiceDialogState(
             title = stringResource(R.string.night_mode),
             entries = AppNightMode.entries,
-            currentValue = nightMode.preferenceValue
+            currentValue = nightMode.preferenceValue,
         ),
         onValueSelected = { newValue ->
             viewModel.setNightMode(newValue)
@@ -292,7 +290,7 @@ private fun NightModeDialog(
         },
         onDismiss = {
             onDismiss()
-        }
+        },
     )
 }
 

@@ -21,13 +21,13 @@ package com.bobek.compass.data
 /**
  * The complete compass state derived from a single device orientation.
  *
- * Both bearings are always populated (the crossfade between regimes needs both);
- * declination is already applied to them when true north is active.
+ * Both bearings are always populated (the crossfade between regimes needs both); declination is already applied to them
+ * when true north is active.
  *
  * @param azimuth heading of the phone's top edge projected onto the horizontal plane, for the rose
  * @param sightingBearing heading of the phone's back projected onto the horizontal plane, for the sighting strip
- * @param tilt angle of the screen normal away from straight up, in degrees. 0 = flat face-up,
- * 90 = upright, 180 = face-down
+ * @param tilt angle of the screen normal away from straight up, in degrees. 0 = flat face-up, 90 = upright, 180 =
+ *   face-down
  * @param roll rotation about the screen normal, in degrees
  * @param regime which visualization is appropriate for this orientation
  * @param reliable whether the active regime's bearing is currently trustworthy (gates haptic feedback)
@@ -38,16 +38,17 @@ data class CompassReading(
     val tilt: Float,
     val roll: Float,
     val regime: CompassRegime,
-    val reliable: Boolean
+    val reliable: Boolean,
 ) {
     companion object {
-        val INITIAL = CompassReading(
-            azimuth = Azimuth(0.0f),
-            sightingBearing = Azimuth(0.0f),
-            tilt = 0.0f,
-            roll = 0.0f,
-            regime = CompassRegime.ROSE,
-            reliable = false
-        )
+        val INITIAL =
+            CompassReading(
+                azimuth = Azimuth(0.0f),
+                sightingBearing = Azimuth(0.0f),
+                tilt = 0.0f,
+                roll = 0.0f,
+                regime = CompassRegime.ROSE,
+                reliable = false,
+            )
     }
 }

@@ -20,6 +20,8 @@ package com.bobek.compass.ui
 
 import com.bobek.compass.data.AppNightMode
 import com.bobek.compass.settings.SettingsRepository
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -35,8 +37,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Before
 import org.junit.Test
-import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.Duration.Companion.seconds
 
 private val DEBOUNCE = 1.seconds
 
@@ -57,15 +57,16 @@ class AppViewModelTest {
     }
 
     private fun createViewModel(
-        settingsRepository: SettingsRepository = FakeSettingsRepository()
+        settingsRepository: SettingsRepository = FakeSettingsRepository(),
     ): AppViewModel = AppViewModel(settingsRepository)
 
     @Test
-    fun initialStateLoadsFromSettings() = runTest(testDispatcher) {
-        val settings = FakeSettingsRepository(nightMode = AppNightMode.YES)
-        val viewModel = createViewModel(settings)
-        assertEquals(AppNightMode.YES, viewModel.getNightModeFlow().value)
-    }
+    fun initialStateLoadsFromSettings() =
+        runTest(testDispatcher) {
+            val settings = FakeSettingsRepository(nightMode = AppNightMode.YES)
+            val viewModel = createViewModel(settings)
+            assertEquals(AppNightMode.YES, viewModel.getNightModeFlow().value)
+        }
 
     @Test
     fun setNightModeUpdatesFlow() {
@@ -75,56 +76,73 @@ class AppViewModelTest {
     }
 
     @Test
-    fun nightModePersistedToSettingsAfterDebounce() = runTest(testDispatcher) {
-        val settings = FakeSettingsRepository()
-        val viewModel = createViewModel(settings)
+    fun nightModePersistedToSettingsAfterDebounce() =
+        runTest(testDispatcher) {
+            val settings = FakeSettingsRepository()
+            val viewModel = createViewModel(settings)
 
-        viewModel.setNightMode(AppNightMode.YES)
-        advanceTimeBy(DEBOUNCE + 1.milliseconds)
+            viewModel.setNightMode(AppNightMode.YES)
+            advanceTimeBy(DEBOUNCE + 1.milliseconds)
 
-        assertEquals(AppNightMode.YES, settings.writtenNightMode)
-    }
+            assertEquals(AppNightMode.YES, settings.writtenNightMode)
+        }
 
     @Test
-    fun initialValueNotPersistedToSettings() = runTest(testDispatcher) {
-        val settings = FakeSettingsRepository()
-        createViewModel(settings)
+    fun initialValueNotPersistedToSettings() =
+        runTest(testDispatcher) {
+            val settings = FakeSettingsRepository()
+            createViewModel(settings)
 
-        advanceTimeBy(DEBOUNCE + 1.milliseconds)
+            advanceTimeBy(DEBOUNCE + 1.milliseconds)
 
-        assertFalse(settings.nightModeWritten)
-    }
+            assertFalse(settings.nightModeWritten)
+        }
 }
 
 private class FakeSettingsRepository(
-    nightMode: AppNightMode = AppNightMode.FOLLOW_SYSTEM
+    nightMode: AppNightMode = AppNightMode.FOLLOW_SYSTEM,
 ) : SettingsRepository {
 
     private val nightModeFlow = MutableStateFlow(nightMode)
 
     var nightModeWritten = false
         private set
+
     var writtenNightMode: AppNightMode? = null
         private set
 
     override fun getNightMode(): Flow<AppNightMode> = nightModeFlow
+
     override suspend fun setNightMode(nightMode: AppNightMode) {
         nightModeWritten = true
         writtenNightMode = nightMode
     }
 
     override fun getTrueNorth(): Flow<Boolean> = MutableStateFlow(true)
+
     override suspend fun setTrueNorth(trueNorth: Boolean) = Unit
+
     override fun getHapticFeedback(): Flow<Boolean> = MutableStateFlow(true)
+
     override suspend fun setHapticFeedback(hapticFeedback: Boolean) = Unit
+
     override fun getScreenOrientationLocked(): Flow<Boolean> = MutableStateFlow(true)
+
     override suspend fun setScreenOrientationLocked(screenOrientationLocked: Boolean) = Unit
+
     override fun getSightingMode(): Flow<Boolean> = MutableStateFlow(true)
+
     override suspend fun setSightingMode(sightingMode: Boolean) = Unit
+
     override fun getAutoShowSensorStatusDialogEnabled(): Flow<Boolean> = MutableStateFlow(true)
+
     override suspend fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean) = Unit
+
     override fun getShowMagneticFieldStrength(): Flow<Boolean> = MutableStateFlow(false)
+
     override suspend fun setShowMagneticFieldStrength(showMagneticFieldStrength: Boolean) = Unit
+
     override fun getAccessLocationPermissionRequested(): Flow<Boolean> = MutableStateFlow(false)
+
     override suspend fun setAccessLocationPermissionRequested(accessLocationPermissionRequested: Boolean) = Unit
 }

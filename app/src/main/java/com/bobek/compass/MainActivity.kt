@@ -72,8 +72,7 @@ class MainActivity : ComponentActivity() {
     internal val compassViewModel: CompassViewModel by viewModels()
     private val accessLocationPermissionRequest = registerAccessLocationPermissionRequest()
 
-    @Inject
-    lateinit var settingsRepository: SettingsRepository
+    @Inject lateinit var settingsRepository: SettingsRepository
 
     private var sensorManager: SensorManager? = null
     private var locationManager: LocationManager? = null
@@ -86,7 +85,7 @@ class MainActivity : ComponentActivity() {
             MainContent(
                 appViewModel = appViewModel,
                 compassViewModel = compassViewModel,
-                onLocationReload = ::requestLocation
+                onLocationReload = ::requestLocation,
             )
         }
 
@@ -110,19 +109,22 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun registerSensorListener() {
-        val sensorManager = sensorManager ?: run {
-            Log.w(TAG, "SensorManager not present")
-            showErrorDialog(AppError.SENSOR_MANAGER_NOT_PRESENT)
-            return
-        }
+        val sensorManager =
+            sensorManager
+                ?: run {
+                    Log.w(TAG, "SensorManager not present")
+                    showErrorDialog(AppError.SENSOR_MANAGER_NOT_PRESENT)
+                    return
+                }
 
         val rotationVectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
         if (rotationVectorSensor != null) {
-            val success = sensorManager.registerListener(
-                compassSensorEventListener,
-                rotationVectorSensor,
-                SensorManager.SENSOR_DELAY_FASTEST
-            )
+            val success =
+                sensorManager.registerListener(
+                    compassSensorEventListener,
+                    rotationVectorSensor,
+                    SensorManager.SENSOR_DELAY_FASTEST,
+                )
             if (!success) {
                 Log.w(TAG, "Could not enable rotation vector sensor")
                 showErrorDialog(AppError.ROTATION_VECTOR_SENSOR_FAILED)
@@ -134,11 +136,12 @@ class MainActivity : ComponentActivity() {
 
         val magneticFieldSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD)
         if (magneticFieldSensor != null) {
-            val success = sensorManager.registerListener(
-                compassSensorEventListener,
-                magneticFieldSensor,
-                SensorManager.SENSOR_DELAY_NORMAL
-            )
+            val success =
+                sensorManager.registerListener(
+                    compassSensorEventListener,
+                    magneticFieldSensor,
+                    SensorManager.SENSOR_DELAY_NORMAL,
+                )
             if (!success) {
                 Log.w(TAG, "Could not enable magnetic field sensor")
                 showErrorDialog(AppError.MAGNETIC_FIELD_SENSOR_FAILED)
@@ -157,14 +160,15 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun setSensorAccuracy(accuracy: Int) {
-        val sensorAccuracy = when (accuracy) {
-            SensorManager.SENSOR_STATUS_NO_CONTACT -> SensorAccuracy.NO_CONTACT
-            SensorManager.SENSOR_STATUS_UNRELIABLE -> SensorAccuracy.UNRELIABLE
-            SensorManager.SENSOR_STATUS_ACCURACY_LOW -> SensorAccuracy.LOW
-            SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM -> SensorAccuracy.MEDIUM
-            SensorManager.SENSOR_STATUS_ACCURACY_HIGH -> SensorAccuracy.HIGH
-            else -> SensorAccuracy.NO_CONTACT
-        }
+        val sensorAccuracy =
+            when (accuracy) {
+                SensorManager.SENSOR_STATUS_NO_CONTACT -> SensorAccuracy.NO_CONTACT
+                SensorManager.SENSOR_STATUS_UNRELIABLE -> SensorAccuracy.UNRELIABLE
+                SensorManager.SENSOR_STATUS_ACCURACY_LOW -> SensorAccuracy.LOW
+                SensorManager.SENSOR_STATUS_ACCURACY_MEDIUM -> SensorAccuracy.MEDIUM
+                SensorManager.SENSOR_STATUS_ACCURACY_HIGH -> SensorAccuracy.HIGH
+                else -> SensorAccuracy.NO_CONTACT
+            }
         compassViewModel.setSensorAccuracy(sensorAccuracy)
     }
 
@@ -182,11 +186,12 @@ class MainActivity : ComponentActivity() {
 
     @Suppress("DEPRECATION")
     private fun getDisplayRotation(): DisplayRotation {
-        val rotation = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            display?.rotation ?: Surface.ROTATION_0
-        } else {
-            windowManager.defaultDisplay.rotation
-        }
+        val rotation =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                display?.rotation ?: Surface.ROTATION_0
+            } else {
+                windowManager.defaultDisplay.rotation
+            }
         return when (rotation) {
             Surface.ROTATION_90 -> DisplayRotation.ROTATION_90
             Surface.ROTATION_180 -> DisplayRotation.ROTATION_180
@@ -208,13 +213,14 @@ class MainActivity : ComponentActivity() {
         settingsRepository.getAccessLocationPermissionRequested().first().not()
 
     private fun accessLocationPermissionDenied() =
-        ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_DENIED
-                && ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_DENIED
+        ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_DENIED &&
+            ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_DENIED
 
     private suspend fun startAccessLocationPermissionRequestWorkflow() {
-        if (neverRequestedAccessLocationPermission()
-            && (ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_COARSE_LOCATION)
-                    || ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_FINE_LOCATION))
+        if (
+            neverRequestedAccessLocationPermission() &&
+                (ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_COARSE_LOCATION) ||
+                    ActivityCompat.shouldShowRequestPermissionRationale(this, ACCESS_FINE_LOCATION))
         ) {
             showRequestNotificationsPermissionRationale()
         } else {
@@ -246,20 +252,21 @@ class MainActivity : ComponentActivity() {
         accessLocationPermissionRequest.launch(arrayOf(ACCESS_COARSE_LOCATION, ACCESS_FINE_LOCATION))
     }
 
-    private val compassSensorEventListener = object : SensorEventListener {
-        override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
-            if (sensor.type == Sensor.TYPE_MAGNETIC_FIELD) {
-                setSensorAccuracy(accuracy)
+    private val compassSensorEventListener =
+        object : SensorEventListener {
+            override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {
+                if (sensor.type == Sensor.TYPE_MAGNETIC_FIELD) {
+                    setSensorAccuracy(accuracy)
+                }
             }
-        }
 
-        override fun onSensorChanged(event: SensorEvent) {
-            when (event.sensor.type) {
-                Sensor.TYPE_ROTATION_VECTOR -> updateDeviceRotation(event)
-                Sensor.TYPE_MAGNETIC_FIELD -> updateMagneticField(event)
+            override fun onSensorChanged(event: SensorEvent) {
+                when (event.sensor.type) {
+                    Sensor.TYPE_ROTATION_VECTOR -> updateDeviceRotation(event)
+                    Sensor.TYPE_MAGNETIC_FIELD -> updateMagneticField(event)
+                }
             }
         }
-    }
 
     private fun registerAccessLocationPermissionRequest() =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
@@ -279,17 +286,20 @@ class MainActivity : ComponentActivity() {
         if (!compassViewModel.getTrueNorthFlow().value) return
         if (intent.getBooleanExtra(OPTION_INSTRUMENTED_TEST, false)) return
 
-        val locationManager = locationManager ?: run {
-            Log.w(TAG, "LocationManager not present")
-            showErrorDialog(AppError.LOCATION_MANAGER_NOT_PRESENT)
-            return
-        }
+        val locationManager =
+            locationManager
+                ?: run {
+                    Log.w(TAG, "LocationManager not present")
+                    showErrorDialog(AppError.LOCATION_MANAGER_NOT_PRESENT)
+                    return
+                }
 
         locationListener?.let { locationManager.removeUpdates(it) }
         locationListener = null
 
-        if (ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED
-            && ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED
+        if (
+            ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) != PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PERMISSION_GRANTED
         ) {
             compassViewModel.setLocationStatus(LocationStatus.PERMISSION_DENIED)
             return
@@ -302,12 +312,14 @@ class MainActivity : ComponentActivity() {
             return
         }
 
-        val provider = getBestLocationProvider() ?: run {
-            Log.w(TAG, "No LocationProvider available")
-            compassViewModel.setLocationStatus(LocationStatus.NOT_PRESENT)
-            showErrorDialog(AppError.NO_LOCATION_PROVIDER_AVAILABLE)
-            return
-        }
+        val provider =
+            getBestLocationProvider()
+                ?: run {
+                    Log.w(TAG, "No LocationProvider available")
+                    compassViewModel.setLocationStatus(LocationStatus.NOT_PRESENT)
+                    showErrorDialog(AppError.NO_LOCATION_PROVIDER_AVAILABLE)
+                    return
+                }
 
         compassViewModel.setLocationStatus(LocationStatus.LOADING)
         val listener = createLocationListener(locationManager)
@@ -315,19 +327,20 @@ class MainActivity : ComponentActivity() {
         locationManager.requestLocationUpdates(provider, 0L, 0f, listener, Looper.getMainLooper())
     }
 
-    private fun createLocationListener(locationManager: LocationManager) = object : LocationListenerCompat {
-        override fun onLocationChanged(location: Location) {
-            locationManager.removeUpdates(this)
-            locationListener = null
-            setLocation(location)
-        }
+    private fun createLocationListener(locationManager: LocationManager) =
+        object : LocationListenerCompat {
+            override fun onLocationChanged(location: Location) {
+                locationManager.removeUpdates(this)
+                locationListener = null
+                setLocation(location)
+            }
 
-        override fun onProviderDisabled(provider: String) {
-            locationManager.removeUpdates(this)
-            locationListener = null
-            compassViewModel.setLocationStatus(LocationStatus.NOT_PRESENT)
+            override fun onProviderDisabled(provider: String) {
+                locationManager.removeUpdates(this)
+                locationListener = null
+                compassViewModel.setLocationStatus(LocationStatus.NOT_PRESENT)
+            }
         }
-    }
 
     private fun showErrorDialog(appError: AppError) {
         MaterialAlertDialogBuilder(this)
@@ -338,19 +351,20 @@ class MainActivity : ComponentActivity() {
             .show()
     }
 
-    private fun getBestLocationProvider(): String? = when {
-        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
-                && ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED ->
-            LocationManager.FUSED_PROVIDER
+    private fun getBestLocationProvider(): String? =
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
+                ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED ->
+                LocationManager.FUSED_PROVIDER
 
-        ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED ->
-            LocationManager.GPS_PROVIDER
+            ContextCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED ->
+                LocationManager.GPS_PROVIDER
 
-        ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED ->
-            LocationManager.NETWORK_PROVIDER
+            ContextCompat.checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED ->
+                LocationManager.NETWORK_PROVIDER
 
-        else -> null
-    }
+            else -> null
+        }
 
     private fun setLocation(location: Location) {
         compassViewModel.setLocation(location)

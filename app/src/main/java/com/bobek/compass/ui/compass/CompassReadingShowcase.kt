@@ -23,20 +23,21 @@ import com.bobek.compass.data.CompassReading
 import com.bobek.compass.data.CompassRegime
 
 /**
- * Hand-picked [CompassReading]s used to display each regime in a deliberately non-trivial,
- * good-looking orientation (not aligned to an axis) wherever we need a canned reading instead of
- * live sensor data: Compose previews and the Fastlane screenshot test. Shared so both stay in sync.
+ * Hand-picked [CompassReading]s used to display each regime in a deliberately non-trivial, good-looking orientation
+ * (not aligned to an axis) wherever we need a canned reading instead of live sensor data: Compose previews and the
+ * Fastlane screenshot test. Shared so both stay in sync.
  */
 internal object CompassReadingShowcase {
 
     val ROSE = CompassReading.INITIAL.copy(azimuth = Azimuth(320.0f), reliable = true)
 
-    val SIGHTING = CompassReading.INITIAL.copy(
-        sightingBearing = Azimuth(147.0f),
-        tilt = 90.0f,
-        regime = CompassRegime.SIGHTING,
-        reliable = true
-    )
+    val SIGHTING =
+        CompassReading.INITIAL.copy(
+            sightingBearing = Azimuth(147.0f),
+            tilt = 90.0f,
+            regime = CompassRegime.SIGHTING,
+            reliable = true,
+        )
 
     val HINT = CompassReading.INITIAL.copy(azimuth = ROSE.azimuth, tilt = 175.0f, regime = CompassRegime.HINT)
 }

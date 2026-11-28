@@ -45,16 +45,14 @@ import com.bobek.compass.data.PreferenceChoice
 fun <T : PreferenceChoice> SingleChoiceDialog(
     @PreviewParameter(SingleChoiceDialogStateProvider::class) state: SingleChoiceDialogState<T>,
     onValueSelected: (T) -> Unit = {},
-    onDismiss: () -> Unit = {}
+    onDismiss: () -> Unit = {},
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(state.title) },
         text = {
             Column(
-                modifier = Modifier
-                    .selectableGroup()
-                    .verticalScroll(rememberScrollState())
+                modifier = Modifier.selectableGroup().verticalScroll(rememberScrollState()),
             ) {
                 state.entries.forEach { entry ->
                     val selected = entry.preferenceValue == state.currentValue
@@ -63,15 +61,16 @@ fun <T : PreferenceChoice> SingleChoiceDialog(
                         onClick = { onValueSelected(entry) },
                         leadingContent = { RadioButton(selected = selected, onClick = null) },
                         // Transparent so the rows blend into the dialog surface
-                        colors = ListItemDefaults.colors(containerColor = Color.Transparent)
+                        colors = ListItemDefaults.colors(containerColor = Color.Transparent),
                     ) {
                         Text(
                             text = stringResource(entry.labelResourceId),
-                            style = if (selected) {
-                                MaterialTheme.typography.bodyLargeEmphasized
-                            } else {
-                                MaterialTheme.typography.bodyLarge
-                            }
+                            style =
+                                if (selected) {
+                                    MaterialTheme.typography.bodyLargeEmphasized
+                                } else {
+                                    MaterialTheme.typography.bodyLarge
+                                },
                         )
                     }
                 }
@@ -81,7 +80,7 @@ fun <T : PreferenceChoice> SingleChoiceDialog(
             TextButton(onClick = onDismiss, shapes = ButtonDefaults.shapes()) {
                 Text(stringResource(android.R.string.cancel))
             }
-        }
+        },
     )
 }
 
@@ -92,11 +91,12 @@ data class SingleChoiceDialogState<T : PreferenceChoice>(
 )
 
 private class SingleChoiceDialogStateProvider : PreviewParameterProvider<SingleChoiceDialogState<AppNightMode>> {
-    override val values: Sequence<SingleChoiceDialogState<AppNightMode>> = sequenceOf(
-        SingleChoiceDialogState(
-            title = "The title",
-            entries = AppNightMode.entries,
-            currentValue = AppNightMode.FOLLOW_SYSTEM.preferenceValue
+    override val values: Sequence<SingleChoiceDialogState<AppNightMode>> =
+        sequenceOf(
+            SingleChoiceDialogState(
+                title = "The title",
+                entries = AppNightMode.entries,
+                currentValue = AppNightMode.FOLLOW_SYSTEM.preferenceValue,
+            ),
         )
-    )
 }

@@ -22,8 +22,7 @@ import androidx.annotation.StringRes
 
 interface PreferenceChoice {
 
-    @get:StringRes
-    val labelResourceId: Int
+    @get:StringRes val labelResourceId: Int
 
     val preferenceValue: String
 }

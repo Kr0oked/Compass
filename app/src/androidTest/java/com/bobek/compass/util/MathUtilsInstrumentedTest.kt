@@ -25,20 +25,21 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * [android.hardware.GeomagneticField] is only stubbed in local unit tests, so the expected field
- * strength is checked on a device against the World Magnetic Model.
+ * [android.hardware.GeomagneticField] is only stubbed in local unit tests, so the expected field strength is checked on
+ * a device against the World Magnetic Model.
  */
 @RunWith(AndroidJUnit4::class)
 class MathUtilsInstrumentedTest {
 
     @Test
     fun expectedMagneticFieldStrengthInBerlin() {
-        val location = Location("test").apply {
-            latitude = 52.52
-            longitude = 13.405
-            altitude = 0.0
-            time = 1_767_225_600_000L // 2026-01-01T00:00:00Z
-        }
+        val location =
+            Location("test").apply {
+                latitude = 52.52
+                longitude = 13.405
+                altitude = 0.0
+                time = 1_767_225_600_000L // 2026-01-01T00:00:00Z
+            }
 
         // WMM total intensity in Berlin is about 49.7 µT; the tolerance absorbs model versions.
         assertEquals(49.7f, MathUtils.getExpectedMagneticFieldStrength(location), 1f)

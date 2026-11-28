@@ -22,5 +22,5 @@ enum class LocationStatus {
     PRESENT,
     NOT_PRESENT,
     LOADING,
-    PERMISSION_DENIED
+    PERMISSION_DENIED,
 }

@@ -24,6 +24,7 @@ import com.bobek.compass.data.AppNightMode
 import com.bobek.compass.settings.SettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -31,19 +32,21 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
-import kotlin.time.Duration.Companion.seconds
 
 private val SETTINGS_DEBOUNCE = 1.seconds
 
 interface IAppViewModel {
     fun getNightModeFlow(): StateFlow<AppNightMode>
+
     fun setNightMode(nightMode: AppNightMode)
 }
 
 @HiltViewModel
 @OptIn(FlowPreview::class)
-class AppViewModel @Inject constructor(
-    private val settingsRepository: SettingsRepository
+class AppViewModel
+@Inject
+constructor(
+    private val settingsRepository: SettingsRepository,
 ) : ViewModel(), IAppViewModel {
 
     private val nightModeFlow = MutableStateFlow(AppNightMode.FOLLOW_SYSTEM)
@@ -51,8 +54,7 @@ class AppViewModel @Inject constructor(
     init {
         viewModelScope.launch { initFromSettings() }
         viewModelScope.launch {
-            nightModeFlow.drop(1).debounce(SETTINGS_DEBOUNCE)
-                .collect { settingsRepository.setNightMode(it) }
+            nightModeFlow.drop(1).debounce(SETTINGS_DEBOUNCE).collect { settingsRepository.setNightMode(it) }
         }
     }
 
@@ -68,7 +70,7 @@ class AppViewModel @Inject constructor(
 }
 
 class ComposeAppViewModel(
-    nightMode: AppNightMode = AppNightMode.FOLLOW_SYSTEM
+    nightMode: AppNightMode = AppNightMode.FOLLOW_SYSTEM,
 ) : IAppViewModel {
 
     private val nightModeFlow = MutableStateFlow(nightMode)

@@ -56,39 +56,42 @@ import kotlin.math.sqrt
 @Preview(widthDp = 512)
 fun CompassRose(
     @PreviewParameter(CompassRoseAzimuthProvider::class) azimuth: Azimuth,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val drawData = rememberCompassDrawData(azimuth)
 
     Box(modifier = modifier) {
         Canvas(
-            modifier = Modifier
-                .fillMaxSize()
-                .testTag(TestConstants.COMPASS_ROSE)
-                .semantics {
+            modifier =
+                Modifier.fillMaxSize().testTag(TestConstants.COMPASS_ROSE).semantics {
                     contentDescription = drawData.description
                     stateDescription = drawData.stateDescription
-                }
+                },
         ) {
-            val metrics = CompassMetrics(
-                canvasSize = minOf(size.width, size.height),
-                center = Offset(size.width / 2f, size.height / 2f)
-            )
-            val styles = CompassStyles(
-                cardinalStyle = TextStyle(
-                    fontSize = (metrics.canvasSize * 0.055f).toSp(),
-                    fontWeight = FontWeight.Bold
-                ),
-                degreeStyle = TextStyle(fontSize = (metrics.canvasSize * 0.028f).toSp()),
-                azimuthStyle = drawData.azimuthTypography.copy(
-                    fontSize = (metrics.canvasSize * 0.115f).toSp(),
-                    color = drawData.onSurfaceColor
-                ),
-                cardinalDirectionStyle = drawData.cardinalDirectionTypography.copy(
-                    fontSize = (metrics.canvasSize * 0.062f).toSp(),
-                    color = drawData.onSurfaceColor
+            val metrics =
+                CompassMetrics(
+                    canvasSize = minOf(size.width, size.height),
+                    center = Offset(size.width / 2f, size.height / 2f),
                 )
-            )
+            val styles =
+                CompassStyles(
+                    cardinalStyle =
+                        TextStyle(
+                            fontSize = (metrics.canvasSize * 0.055f).toSp(),
+                            fontWeight = FontWeight.Bold,
+                        ),
+                    degreeStyle = TextStyle(fontSize = (metrics.canvasSize * 0.028f).toSp()),
+                    azimuthStyle =
+                        drawData.azimuthTypography.copy(
+                            fontSize = (metrics.canvasSize * 0.115f).toSp(),
+                            color = drawData.onSurfaceColor,
+                        ),
+                    cardinalDirectionStyle =
+                        drawData.cardinalDirectionTypography.copy(
+                            fontSize = (metrics.canvasSize * 0.062f).toSp(),
+                            color = drawData.onSurfaceColor,
+                        ),
+                )
 
             drawFixedOverlay(metrics, styles, drawData)
             drawRotatingRose(metrics, styles, drawData)
@@ -128,14 +131,14 @@ private fun rememberCompassDrawData(azimuth: Azimuth): CompassDrawData {
         azimuthText = azimuthText,
         cardinalDirectionText = cardinalDirectionText,
         description = description,
-        stateDescription = stateDescription
+        stateDescription = stateDescription,
     )
 }
 
 private fun DrawScope.drawFixedOverlay(
     metrics: CompassMetrics,
     styles: CompassStyles,
-    drawData: CompassDrawData
+    drawData: CompassDrawData,
 ) {
     drawHeadingIndicator(metrics, drawData)
     drawCenterText(metrics, styles, drawData)
@@ -146,26 +149,27 @@ private fun DrawScope.drawHeadingIndicator(metrics: CompassMetrics, drawData: Co
     val triangleBaseY = metrics.center.y - metrics.outerRadius * 1.14f - metrics.canvasSize * 0.02f
     val triangleHalfWidth = metrics.canvasSize * 0.03f
 
-    val indicatorPath = Path().apply {
-        moveTo(metrics.center.x, triangleTipY)
-        lineTo(metrics.center.x - triangleHalfWidth, triangleBaseY)
-        lineTo(metrics.center.x + triangleHalfWidth, triangleBaseY)
-        close()
-    }
+    val indicatorPath =
+        Path().apply {
+            moveTo(metrics.center.x, triangleTipY)
+            lineTo(metrics.center.x - triangleHalfWidth, triangleBaseY)
+            lineTo(metrics.center.x + triangleHalfWidth, triangleBaseY)
+            close()
+        }
     drawPath(path = indicatorPath, color = drawData.primaryColor)
     drawLine(
         color = drawData.primaryColor,
         start = Offset(metrics.center.x, triangleBaseY),
         end = Offset(metrics.center.x, metrics.center.y - metrics.outerRadius),
         strokeWidth = metrics.canvasSize * 0.017f,
-        cap = StrokeCap.Square
+        cap = StrokeCap.Square,
     )
 }
 
 private fun DrawScope.drawCenterText(
     metrics: CompassMetrics,
     styles: CompassStyles,
-    drawData: CompassDrawData
+    drawData: CompassDrawData,
 ) {
     val measuredAzimuth = drawData.textMeasurer.measure(text = drawData.azimuthText, style = styles.azimuthStyle)
     val measuredCardinalDirection = measureCardinalDirection(metrics, styles, drawData, measuredAzimuth.size.height)
@@ -174,41 +178,48 @@ private fun DrawScope.drawCenterText(
 
     drawText(
         measuredAzimuth,
-        topLeft = Offset(
-            metrics.center.x - measuredAzimuth.size.width / 2f,
-            topY
-        )
+        topLeft =
+            Offset(
+                metrics.center.x - measuredAzimuth.size.width / 2f,
+                topY,
+            ),
     )
     drawText(
         measuredCardinalDirection,
-        topLeft = Offset(
-            metrics.center.x - measuredCardinalDirection.size.width / 2f,
-            topY + measuredAzimuth.size.height + metrics.textGap
-        )
+        topLeft =
+            Offset(
+                metrics.center.x - measuredCardinalDirection.size.width / 2f,
+                topY + measuredAzimuth.size.height + metrics.textGap,
+            ),
     )
 }
 
 /**
- * Measures the cardinal direction text, shrinking its font if needed so that its bottom corners stay inside the
- * circle left free by the rotating cardinal abbreviations. Long names in some locales (e.g. Serbian
- * "Север-северозапад") would otherwise overlap the abbreviations.
+ * Measures the cardinal direction text, shrinking its font if needed so that its bottom corners stay inside the circle
+ * left free by the rotating cardinal abbreviations. Long names in some locales (e.g. Serbian "Север-северозапад") would
+ * otherwise overlap the abbreviations.
  */
 private fun measureCardinalDirection(
     metrics: CompassMetrics,
     styles: CompassStyles,
     drawData: CompassDrawData,
-    azimuthHeight: Int
+    azimuthHeight: Int,
 ): TextLayoutResult {
-    val measured = drawData.textMeasurer.measure(
-        text = drawData.cardinalDirectionText,
-        style = styles.cardinalDirectionStyle,
-        softWrap = false
-    )
+    val measured =
+        drawData.textMeasurer.measure(
+            text = drawData.cardinalDirectionText,
+            style = styles.cardinalDirectionStyle,
+            softWrap = false,
+        )
 
-    val abbreviationHeight = drawData.textMeasurer.measure(
-        text = drawData.northAbbreviation,
-        style = styles.cardinalStyle
-    ).size.height
+    val abbreviationHeight =
+        drawData.textMeasurer
+            .measure(
+                text = drawData.northAbbreviation,
+                style = styles.cardinalStyle,
+            )
+            .size
+            .height
     val clearRadius = metrics.cardinalRadius - abbreviationHeight / 2f
     val bottomY = (azimuthHeight + metrics.textGap + measured.size.height) / 2f
     val maxWidth = 2f * sqrt((clearRadius * clearRadius - bottomY * bottomY).coerceAtLeast(0f))
@@ -221,14 +232,14 @@ private fun measureCardinalDirection(
     return drawData.textMeasurer.measure(
         text = drawData.cardinalDirectionText,
         style = styles.cardinalDirectionStyle.copy(fontSize = styles.cardinalDirectionStyle.fontSize * scale),
-        softWrap = false
+        softWrap = false,
     )
 }
 
 private fun DrawScope.drawRotatingRose(
     metrics: CompassMetrics,
     styles: CompassStyles,
-    drawData: CompassDrawData
+    drawData: CompassDrawData,
 ) {
     withTransform({ rotate(-drawData.azimuthDegrees, pivot = metrics.center) }) {
         drawTickMarks(metrics, drawData)
@@ -253,11 +264,12 @@ private fun DrawScope.drawTickMarks(metrics: CompassMetrics, drawData: CompassDr
             strokeWidth = metrics.smallTickStroke
         }
 
-        val tickColor = when {
-            degree == 0 -> drawData.errorColor
-            degree % 30 == 0 -> drawData.onSurfaceColor
-            else -> drawData.onSurfaceColor.copy(alpha = 0.9f)
-        }
+        val tickColor =
+            when {
+                degree == 0 -> drawData.errorColor
+                degree % 30 == 0 -> drawData.onSurfaceColor
+                else -> drawData.onSurfaceColor.copy(alpha = 0.9f)
+            }
         val innerX = metrics.center.x + metrics.outerRadius * sinAngle
         val innerY = metrics.center.y - metrics.outerRadius * cosAngle
         val outerX = metrics.center.x + (metrics.outerRadius + tickLength) * sinAngle
@@ -268,7 +280,7 @@ private fun DrawScope.drawTickMarks(metrics: CompassMetrics, drawData: CompassDr
             start = Offset(innerX, innerY),
             end = Offset(outerX, outerY),
             strokeWidth = strokeWidth,
-            cap = StrokeCap.Square
+            cap = StrokeCap.Square,
         )
     }
 }
@@ -276,14 +288,15 @@ private fun DrawScope.drawTickMarks(metrics: CompassMetrics, drawData: CompassDr
 private fun DrawScope.drawDegreeLabels(
     metrics: CompassMetrics,
     styles: CompassStyles,
-    drawData: CompassDrawData
+    drawData: CompassDrawData,
 ) {
     for (degree in 0 until 360 step 30) {
         val labelColor = if (degree == 0) drawData.errorColor else drawData.onSurfaceColor
-        val measured = drawData.textMeasurer.measure(
-            text = degree.toString(),
-            style = styles.degreeStyle.copy(color = labelColor)
-        )
+        val measured =
+            drawData.textMeasurer.measure(
+                text = degree.toString(),
+                style = styles.degreeStyle.copy(color = labelColor),
+            )
 
         val angleRadians = degree * PI.toFloat() / 180f
         val tx = metrics.center.x + metrics.labelRadius * sin(angleRadians)
@@ -295,7 +308,7 @@ private fun DrawScope.drawDegreeLabels(
         }) {
             drawText(
                 textLayoutResult = measured,
-                topLeft = Offset(-measured.size.width / 2f, -measured.size.height / 2f)
+                topLeft = Offset(-measured.size.width / 2f, -measured.size.height / 2f),
             )
         }
     }
@@ -304,21 +317,23 @@ private fun DrawScope.drawDegreeLabels(
 private fun DrawScope.drawCardinalAbbreviations(
     metrics: CompassMetrics,
     styles: CompassStyles,
-    drawData: CompassDrawData
+    drawData: CompassDrawData,
 ) {
-    val cardinals = listOf(
-        0 to drawData.northAbbreviation,
-        90 to drawData.eastAbbreviation,
-        180 to drawData.southAbbreviation,
-        270 to drawData.westAbbreviation
-    )
+    val cardinals =
+        listOf(
+            0 to drawData.northAbbreviation,
+            90 to drawData.eastAbbreviation,
+            180 to drawData.southAbbreviation,
+            270 to drawData.westAbbreviation,
+        )
 
     for ((degree, abbreviation) in cardinals) {
         val labelColor = if (degree == 0) drawData.errorColor else drawData.onSurfaceColor
-        val measured = drawData.textMeasurer.measure(
-            text = abbreviation,
-            style = styles.cardinalStyle.copy(color = labelColor)
-        )
+        val measured =
+            drawData.textMeasurer.measure(
+                text = abbreviation,
+                style = styles.cardinalStyle.copy(color = labelColor),
+            )
 
         val angleRadians = degree * PI.toFloat() / 180f
         val tx = metrics.center.x + metrics.cardinalRadius * sin(angleRadians)
@@ -348,7 +363,7 @@ private class CompassDrawData(
     val azimuthText: String,
     val cardinalDirectionText: String,
     val description: String,
-    val stateDescription: String
+    val stateDescription: String,
 )
 
 private data class CompassMetrics(val canvasSize: Float, val center: Offset) {
@@ -364,16 +379,17 @@ private data class CompassStyles(
     val cardinalStyle: TextStyle,
     val degreeStyle: TextStyle,
     val azimuthStyle: TextStyle,
-    val cardinalDirectionStyle: TextStyle
+    val cardinalDirectionStyle: TextStyle,
 )
 
 private class CompassRoseAzimuthProvider : PreviewParameterProvider<Azimuth> {
-    override val values: Sequence<Azimuth> = sequenceOf(
-        Azimuth(0.0f),
-        Azimuth(95.0f),
-        Azimuth(185.5f),
-        Azimuth(268.1f)
-    )
+    override val values: Sequence<Azimuth> =
+        sequenceOf(
+            Azimuth(0.0f),
+            Azimuth(95.0f),
+            Azimuth(185.5f),
+            Azimuth(268.1f),
+        )
 
     override fun getDisplayName(index: Int): String? =
         when (index) {

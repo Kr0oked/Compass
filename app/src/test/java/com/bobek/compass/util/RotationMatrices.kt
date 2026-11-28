@@ -22,9 +22,8 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 /**
- * Builds a 9-element device-to-world rotation matrix (world = East-North-Up) that
- * `SensorManager.getOrientation`, and therefore [CompassReadingCalculator], reads back as the
- * given angles.
+ * Builds a 9-element device-to-world rotation matrix (world = East-North-Up) that `SensorManager.getOrientation`, and
+ * therefore [CompassReadingCalculator], reads back as the given angles.
  *
  * Reference poses (all angles 0 unless noted):
  * - identity: phone flat, screen up, top edge pointing north
@@ -43,23 +42,44 @@ fun rotationMatrix(yawDegrees: Float = 0f, pitchDegrees: Float = 0f, rollDegrees
     return multiply(multiply(rz, rx), ry)
 }
 
-private fun rotationAboutZ(a: Double) = floatArrayOf(
-    cos(a).toFloat(), sin(a).toFloat(), 0f,
-    (-sin(a)).toFloat(), cos(a).toFloat(), 0f,
-    0f, 0f, 1f
-)
+private fun rotationAboutZ(a: Double) =
+    floatArrayOf(
+        cos(a).toFloat(),
+        sin(a).toFloat(),
+        0f,
+        (-sin(a)).toFloat(),
+        cos(a).toFloat(),
+        0f,
+        0f,
+        0f,
+        1f,
+    )
 
-private fun rotationAboutX(p: Double) = floatArrayOf(
-    1f, 0f, 0f,
-    0f, cos(p).toFloat(), sin(p).toFloat(),
-    0f, (-sin(p)).toFloat(), cos(p).toFloat()
-)
+private fun rotationAboutX(p: Double) =
+    floatArrayOf(
+        1f,
+        0f,
+        0f,
+        0f,
+        cos(p).toFloat(),
+        sin(p).toFloat(),
+        0f,
+        (-sin(p)).toFloat(),
+        cos(p).toFloat(),
+    )
 
-private fun rotationAboutY(r: Double) = floatArrayOf(
-    cos(r).toFloat(), 0f, sin(r).toFloat(),
-    0f, 1f, 0f,
-    (-sin(r)).toFloat(), 0f, cos(r).toFloat()
-)
+private fun rotationAboutY(r: Double) =
+    floatArrayOf(
+        cos(r).toFloat(),
+        0f,
+        sin(r).toFloat(),
+        0f,
+        1f,
+        0f,
+        (-sin(r)).toFloat(),
+        0f,
+        cos(r).toFloat(),
+    )
 
 private fun multiply(a: FloatArray, b: FloatArray): FloatArray {
     val result = FloatArray(9)

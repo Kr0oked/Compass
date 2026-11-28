@@ -52,21 +52,21 @@ import com.bobek.compass.R
 import com.bobek.compass.data.Azimuth
 import com.bobek.compass.data.CompassReading
 import com.bobek.compass.data.CompassRegime
-import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.milliseconds
+import kotlinx.coroutines.delay
 
 private const val REGIME_CROSSFADE_MILLIS = 250
 private const val HINT_ROSE_ALPHA = 0.28f
 
 /**
- * Picks the compass visualization that suits the current device orientation and crossfades between
- * them: the rotating rose when the phone is roughly flat, the sighting strip when it is roughly
- * upright, and a "hold level" hint when it is roughly face-down.
+ * Picks the compass visualization that suits the current device orientation and crossfades between them: the rotating
+ * rose when the phone is roughly flat, the sighting strip when it is roughly upright, and a "hold level" hint when it
+ * is roughly face-down.
  */
 @Composable
 fun CompassDisplay(
     viewModel: ICompassViewModel,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val reading by viewModel.getCompassReadingFlow().collectAsState()
     val hapticFeedbackEnabled by viewModel.getHapticFeedbackFlow().collectAsState()
@@ -85,41 +85,43 @@ fun CompassDisplay(
         regimeSettling = false
     }
 
-    val hapticBearing = when (reading.regime) {
-        CompassRegime.ROSE -> reading.azimuth
-        CompassRegime.SIGHTING -> reading.sightingBearing
-        CompassRegime.HINT -> reading.azimuth
-    }
-    val hapticsActive = hapticFeedbackEnabled &&
-            reading.reliable &&
-            !regimeSettling &&
-            reading.regime != CompassRegime.HINT
+    val hapticBearing =
+        when (reading.regime) {
+            CompassRegime.ROSE -> reading.azimuth
+            CompassRegime.SIGHTING -> reading.sightingBearing
+            CompassRegime.HINT -> reading.azimuth
+        }
+    val hapticsActive =
+        hapticFeedbackEnabled && reading.reliable && !regimeSettling && reading.regime != CompassRegime.HINT
     CompassHapticFeedback(
         enabled = hapticsActive,
-        bearing = hapticBearing
+        bearing = hapticBearing,
     )
 
     Crossfade(
         targetState = reading.regime,
         animationSpec = tween(REGIME_CROSSFADE_MILLIS),
         label = "compass-regime",
-        modifier = modifier.semantics { liveRegion = LiveRegionMode.Polite }
+        modifier = modifier.semantics { liveRegion = LiveRegionMode.Polite },
     ) { regime ->
         when (regime) {
-            CompassRegime.ROSE -> CompassRose(
-                azimuth = reading.azimuth,
-                modifier = Modifier.fillMaxSize()
-            )
+            CompassRegime.ROSE ->
+                CompassRose(
+                    azimuth = reading.azimuth,
+                    modifier = Modifier.fillMaxSize(),
+                )
 
-            CompassRegime.SIGHTING -> CompassStrip(
-                bearing = reading.sightingBearing,
-                modifier = Modifier.fillMaxSize()
-            )
+            CompassRegime.SIGHTING ->
+                CompassStrip(
+                    bearing = reading.sightingBearing,
+                    modifier = Modifier.fillMaxSize(),
+                )
 
-            CompassRegime.HINT -> HoldLevelHint(
-                frozenAzimuth = frozenRoseAzimuth,
-                modifier = Modifier.fillMaxSize()
-            )
+            CompassRegime.HINT ->
+                HoldLevelHint(
+                    frozenAzimuth = frozenRoseAzimuth,
+                    modifier = Modifier.fillMaxSize(),
+                )
         }
     }
 }
@@ -127,28 +129,26 @@ fun CompassDisplay(
 @Composable
 private fun HoldLevelHint(
     frozenAzimuth: Azimuth,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
         CompassRose(
             azimuth = frozenAzimuth,
-            modifier = Modifier
-                .fillMaxSize()
-                .alpha(HINT_ROSE_ALPHA)
+            modifier = Modifier.fillMaxSize().alpha(HINT_ROSE_ALPHA),
         )
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Icon(
                 painter = painterResource(R.drawable.ic_explore),
                 contentDescription = null,
                 modifier = Modifier.size(40.dp),
-                tint = MaterialTheme.colorScheme.onSurface
+                tint = MaterialTheme.colorScheme.onSurface,
             )
             Text(
                 text = stringResource(R.string.compass_hold_level),
                 style = MaterialTheme.typography.titleMediumEmphasized,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 8.dp)
+                modifier = Modifier.padding(top = 8.dp),
             )
         }
     }
@@ -157,18 +157,18 @@ private fun HoldLevelHint(
 @Composable
 @Preview(widthDp = 360, heightDp = 420)
 private fun CompassDisplayPreview(
-    @PreviewParameter(CompassDisplayReadingProvider::class) reading: CompassReading
+    @PreviewParameter(CompassDisplayReadingProvider::class) reading: CompassReading,
 ) {
     CompassDisplay(viewModel = ComposeCompassViewModel(compassReading = reading))
 }
 
 private class CompassDisplayReadingProvider : PreviewParameterProvider<CompassReading> {
-    override val values: Sequence<CompassReading> = sequenceOf(
-        CompassReadingShowcase.ROSE,
-        CompassReadingShowcase.SIGHTING,
-        CompassReadingShowcase.HINT
-    )
+    override val values: Sequence<CompassReading> =
+        sequenceOf(
+            CompassReadingShowcase.ROSE,
+            CompassReadingShowcase.SIGHTING,
+            CompassReadingShowcase.HINT,
+        )
 
-    override fun getDisplayName(index: Int): String? =
-        listOf("Rose", "Sighting", "Hint").getOrNull(index)
+    override fun getDisplayName(index: Int): String? = listOf("Rose", "Sighting", "Hint").getOrNull(index)
 }

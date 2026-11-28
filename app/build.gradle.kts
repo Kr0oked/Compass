@@ -40,9 +40,10 @@ java {
 android {
     namespace = "com.bobek.compass"
     compileSdk {
-        version = release(37) {
-            minorApiLevel = 2
-        }
+        version =
+            release(37) {
+                minorApiLevel = 2
+            }
     }
 
     defaultConfig {
@@ -64,7 +65,7 @@ android {
             isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }

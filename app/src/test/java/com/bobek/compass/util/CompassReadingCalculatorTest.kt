@@ -34,7 +34,7 @@ class CompassReadingCalculatorTest {
         matrix: FloatArray,
         previous: CompassReading = CompassReading.INITIAL,
         declination: Float = 0f,
-        sightingModeEnabled: Boolean = true
+        sightingModeEnabled: Boolean = true,
     ): CompassReading = CompassReadingCalculator.next(previous, matrix, declination, sightingModeEnabled)
 
     // Rotation matrix helper sanity check
@@ -44,7 +44,7 @@ class CompassReadingCalculatorTest {
         assertArrayEquals(
             floatArrayOf(1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f),
             rotationMatrix(),
-            1e-5f
+            1e-5f,
         )
     }
 
@@ -127,10 +127,11 @@ class CompassReadingCalculatorTest {
 
     @Test
     fun fastFlipBackGoesFromHintToRoseDirectly() {
-        val reading = next(
-            rotationMatrix(pitchDegrees = 30f),
-            previous = CompassReading.INITIAL.copy(regime = CompassRegime.HINT)
-        )
+        val reading =
+            next(
+                rotationMatrix(pitchDegrees = 30f),
+                previous = CompassReading.INITIAL.copy(regime = CompassRegime.HINT),
+            )
         assertEquals(CompassRegime.ROSE, reading.regime)
     }
 

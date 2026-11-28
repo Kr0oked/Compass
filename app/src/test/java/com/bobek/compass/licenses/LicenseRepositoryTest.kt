@@ -20,10 +20,10 @@ package com.bobek.compass.licenses
 
 import android.content.res.Resources
 import com.bobek.compass.R
-import org.junit.Assert.assertEquals
-import org.junit.Test
 import java.io.ByteArrayInputStream
 import java.io.InputStream
+import org.junit.Assert.assertEquals
+import org.junit.Test
 
 class LicenseRepositoryTest {
 
@@ -36,14 +36,15 @@ class LicenseRepositoryTest {
     @Test
     fun getThirdPartyLibraryNamesCombinesParsedAndManualLibrariesSortedAlphabetically() {
         val (metadata, licenses) = thirdPartyLicenseFixture("Zeta" to "zeta license", "Alpha" to "alpha license")
-        val resources = FakeResources(
-            R.raw.third_party_license_metadata to metadata,
-            R.raw.third_party_licenses to licenses
-        )
+        val resources =
+            FakeResources(
+                R.raw.third_party_license_metadata to metadata,
+                R.raw.third_party_licenses to licenses,
+            )
 
         assertEquals(
             listOf("Alpha", "Material Symbols", "Zeta"),
-            LicenseRepository.getThirdPartyLibraryNames(resources)
+            LicenseRepository.getThirdPartyLibraryNames(resources),
         )
     }
 
@@ -55,14 +56,16 @@ class LicenseRepositoryTest {
 
     @Test
     fun getThirdPartyLicenseContentMapsKnownLicenseUrlToBundledLicenseText() {
-        val (metadata, licenses) = thirdPartyLicenseFixture(
-            "SomeLib" to "https://opensource.org/licenses/BSD-3-Clause"
-        )
-        val resources = FakeResources(
-            R.raw.third_party_license_metadata to metadata,
-            R.raw.third_party_licenses to licenses,
-            R.raw.license_bsd_3_clause to "BSD 3-Clause text".toByteArray()
-        )
+        val (metadata, licenses) =
+            thirdPartyLicenseFixture(
+                "SomeLib" to "https://opensource.org/licenses/BSD-3-Clause",
+            )
+        val resources =
+            FakeResources(
+                R.raw.third_party_license_metadata to metadata,
+                R.raw.third_party_licenses to licenses,
+                R.raw.license_bsd_3_clause to "BSD 3-Clause text".toByteArray(),
+            )
 
         assertEquals("BSD 3-Clause text", LicenseRepository.getThirdPartyLicenseContent(resources, "SomeLib"))
     }
@@ -71,10 +74,11 @@ class LicenseRepositoryTest {
     fun getThirdPartyLicenseContentReturnsRawLicenseTextForUnknownUrl() {
         val licenseContent = "Some custom license text that is not a known URL"
         val (metadata, licenses) = thirdPartyLicenseFixture("CustomLib" to licenseContent)
-        val resources = FakeResources(
-            R.raw.third_party_license_metadata to metadata,
-            R.raw.third_party_licenses to licenses
-        )
+        val resources =
+            FakeResources(
+                R.raw.third_party_license_metadata to metadata,
+                R.raw.third_party_licenses to licenses,
+            )
 
         assertEquals(licenseContent, LicenseRepository.getThirdPartyLicenseContent(resources, "CustomLib"))
     }
@@ -82,10 +86,11 @@ class LicenseRepositoryTest {
     @Test
     fun getThirdPartyLicenseContentReturnsEmptyStringForUnknownLibrary() {
         val (metadata, licenses) = thirdPartyLicenseFixture()
-        val resources = FakeResources(
-            R.raw.third_party_license_metadata to metadata,
-            R.raw.third_party_licenses to licenses
-        )
+        val resources =
+            FakeResources(
+                R.raw.third_party_license_metadata to metadata,
+                R.raw.third_party_licenses to licenses,
+            )
 
         assertEquals("", LicenseRepository.getThirdPartyLicenseContent(resources, "DoesNotExist"))
     }
@@ -106,6 +111,5 @@ class LicenseRepositoryTest {
 @Suppress("DEPRECATION")
 private class FakeResources(private val rawResources: Map<Int, ByteArray>) : Resources(null, null, null) {
     override fun openRawResource(id: Int): InputStream =
-        rawResources[id]?.let { ByteArrayInputStream(it) }
-            ?: throw NotFoundException("Unknown resource id: $id")
+        rawResources[id]?.let { ByteArrayInputStream(it) } ?: throw NotFoundException("Unknown resource id: $id")
 }

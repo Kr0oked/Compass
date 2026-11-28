@@ -30,6 +30,7 @@ import com.bobek.compass.util.MagneticFieldStrengthFilter
 import com.bobek.compass.util.MathUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -43,43 +44,68 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.scan
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import kotlin.time.Duration.Companion.seconds
 
 private val SETTINGS_DEBOUNCE = 1.seconds
 private val SENSOR_ACCURACY_DEBOUNCE = 1.seconds
 
 interface ICompassViewModel {
     fun getCompassReadingFlow(): StateFlow<CompassReading>
+
     fun setDeviceRotation(rotationMatrix: FloatArray)
+
     fun getSensorAccuracyFlow(): StateFlow<SensorAccuracy>
+
     fun setSensorAccuracy(sensorAccuracy: SensorAccuracy)
+
     fun getShouldAutoShowSensorStatusDialogFlow(): StateFlow<Boolean>
+
     fun onSensorStatusDialogAutoShown()
+
     fun getTrueNorthFlow(): StateFlow<Boolean>
+
     fun setTrueNorth(trueNorth: Boolean)
+
     fun getHapticFeedbackFlow(): StateFlow<Boolean>
+
     fun setHapticFeedback(hapticFeedback: Boolean)
+
     fun getScreenOrientationLocked(): StateFlow<Boolean>
+
     fun setScreenOrientationLocked(screenOrientationLocked: Boolean)
+
     fun getSightingModeFlow(): StateFlow<Boolean>
+
     fun setSightingMode(sightingMode: Boolean)
+
     fun getAutoShowSensorStatusDialogEnabledFlow(): StateFlow<Boolean>
+
     fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean)
+
     fun getShowMagneticFieldStrengthFlow(): StateFlow<Boolean>
+
     fun setShowMagneticFieldStrength(showMagneticFieldStrength: Boolean)
+
     fun setMagneticField(magneticField: FloatArray)
+
     fun getMagneticFieldStrengthFlow(): StateFlow<Float?>
+
     fun getExpectedMagneticFieldStrengthFlow(): StateFlow<Float?>
+
     fun getLocationFlow(): StateFlow<Location?>
+
     fun setLocation(location: Location?)
+
     fun getLocationStatusFlow(): StateFlow<LocationStatus>
+
     fun setLocationStatus(locationStatus: LocationStatus)
 }
 
 @HiltViewModel
 @OptIn(FlowPreview::class)
-class CompassViewModel @Inject constructor(
-    private val settingsRepository: SettingsRepository
+class CompassViewModel
+@Inject
+constructor(
+    private val settingsRepository: SettingsRepository,
 ) : ViewModel(), ICompassViewModel {
 
     private val deviceRotationFlow = MutableStateFlow<FloatArray?>(null)
@@ -117,11 +143,12 @@ class CompassViewModel @Inject constructor(
         combine(deviceRotationFlow, trueNorthFlow, locationFlow, sightingModeFlow, ::RotationInput)
             .scan(CompassReading.INITIAL) { previous, input ->
                 val rotationMatrix = input.rotationMatrix ?: return@scan previous
-                val declination = if (input.trueNorth && input.location != null) {
-                    MathUtils.getMagneticDeclination(input.location)
-                } else {
-                    0f
-                }
+                val declination =
+                    if (input.trueNorth && input.location != null) {
+                        MathUtils.getMagneticDeclination(input.location)
+                    } else {
+                        0f
+                    }
                 CompassReadingCalculator.next(previous, rotationMatrix, declination, input.sightingModeEnabled)
             }
             .stateIn(viewModelScope, SharingStarted.Eagerly, CompassReading.INITIAL)
@@ -159,8 +186,8 @@ class CompassViewModel @Inject constructor(
                     sensorStatusDialogShownForCurrentAccuracyDrop = false
                 } else if (
                     accuracy.isWarning &&
-                    !sensorStatusDialogShownForCurrentAccuracyDrop &&
-                    autoShowSensorStatusDialogEnabledFlow.value
+                        !sensorStatusDialogShownForCurrentAccuracyDrop &&
+                        autoShowSensorStatusDialogEnabledFlow.value
                 ) {
                     sensorStatusDialogShownForCurrentAccuracyDrop = true
                     shouldAutoShowSensorStatusDialogFlow.value = true
@@ -174,36 +201,38 @@ class CompassViewModel @Inject constructor(
         settingsRepository.getHapticFeedback().firstOrNull()?.let { hapticFeedbackFlow.value = it }
         settingsRepository.getScreenOrientationLocked().firstOrNull()?.let { screenOrientationLockedFlow.value = it }
         settingsRepository.getSightingMode().firstOrNull()?.let { sightingModeFlow.value = it }
-        settingsRepository.getAutoShowSensorStatusDialogEnabled().firstOrNull()
-            ?.let { autoShowSensorStatusDialogEnabledFlow.value = it }
-        settingsRepository.getShowMagneticFieldStrength().firstOrNull()
-            ?.let { showMagneticFieldStrengthFlow.value = it }
+        settingsRepository.getAutoShowSensorStatusDialogEnabled().firstOrNull()?.let {
+            autoShowSensorStatusDialogEnabledFlow.value = it
+        }
+        settingsRepository.getShowMagneticFieldStrength().firstOrNull()?.let {
+            showMagneticFieldStrengthFlow.value = it
+        }
     }
 
     private fun setupFlowsToSettings() {
         viewModelScope.launch {
-            trueNorthFlow.drop(1).debounce(SETTINGS_DEBOUNCE)
-                .collect { settingsRepository.setTrueNorth(it) }
+            trueNorthFlow.drop(1).debounce(SETTINGS_DEBOUNCE).collect { settingsRepository.setTrueNorth(it) }
         }
         viewModelScope.launch {
-            hapticFeedbackFlow.drop(1).debounce(SETTINGS_DEBOUNCE)
-                .collect { settingsRepository.setHapticFeedback(it) }
+            hapticFeedbackFlow.drop(1).debounce(SETTINGS_DEBOUNCE).collect { settingsRepository.setHapticFeedback(it) }
         }
         viewModelScope.launch {
-            screenOrientationLockedFlow.drop(1).debounce(SETTINGS_DEBOUNCE)
-                .collect { settingsRepository.setScreenOrientationLocked(it) }
+            screenOrientationLockedFlow.drop(1).debounce(SETTINGS_DEBOUNCE).collect {
+                settingsRepository.setScreenOrientationLocked(it)
+            }
         }
         viewModelScope.launch {
-            sightingModeFlow.drop(1).debounce(SETTINGS_DEBOUNCE)
-                .collect { settingsRepository.setSightingMode(it) }
+            sightingModeFlow.drop(1).debounce(SETTINGS_DEBOUNCE).collect { settingsRepository.setSightingMode(it) }
         }
         viewModelScope.launch {
-            autoShowSensorStatusDialogEnabledFlow.drop(1).debounce(SETTINGS_DEBOUNCE)
-                .collect { settingsRepository.setAutoShowSensorStatusDialogEnabled(it) }
+            autoShowSensorStatusDialogEnabledFlow.drop(1).debounce(SETTINGS_DEBOUNCE).collect {
+                settingsRepository.setAutoShowSensorStatusDialogEnabled(it)
+            }
         }
         viewModelScope.launch {
-            showMagneticFieldStrengthFlow.drop(1).debounce(SETTINGS_DEBOUNCE)
-                .collect { settingsRepository.setShowMagneticFieldStrength(it) }
+            showMagneticFieldStrengthFlow.drop(1).debounce(SETTINGS_DEBOUNCE).collect {
+                settingsRepository.setShowMagneticFieldStrength(it)
+            }
         }
     }
 
@@ -226,7 +255,6 @@ class CompassViewModel @Inject constructor(
     }
 
     override fun getTrueNorthFlow() = trueNorthFlow
-
 
     override fun setTrueNorth(trueNorth: Boolean) {
         trueNorthFlow.value = trueNorth
@@ -287,7 +315,7 @@ private class RotationInput(
     val rotationMatrix: FloatArray?,
     val trueNorth: Boolean,
     val location: Location?,
-    val sightingModeEnabled: Boolean
+    val sightingModeEnabled: Boolean,
 )
 
 class ComposeCompassViewModel(
@@ -302,31 +330,55 @@ class ComposeCompassViewModel(
     val magneticFieldStrength: Float? = null,
     val expectedMagneticFieldStrength: Float? = null,
     val location: Location? = Location(""),
-    val locationStatus: LocationStatus = LocationStatus.NOT_PRESENT
+    val locationStatus: LocationStatus = LocationStatus.NOT_PRESENT,
 ) : ICompassViewModel {
     override fun getCompassReadingFlow() = MutableStateFlow(compassReading)
+
     override fun setDeviceRotation(rotationMatrix: FloatArray) = Unit
+
     override fun getSensorAccuracyFlow() = MutableStateFlow(sensorAccuracy)
+
     override fun setSensorAccuracy(sensorAccuracy: SensorAccuracy) = Unit
+
     override fun getShouldAutoShowSensorStatusDialogFlow() = MutableStateFlow(false)
+
     override fun onSensorStatusDialogAutoShown() = Unit
+
     override fun getTrueNorthFlow() = MutableStateFlow(trueNorth)
+
     override fun setTrueNorth(trueNorth: Boolean) = Unit
+
     override fun getHapticFeedbackFlow() = MutableStateFlow(hapticFeedback)
+
     override fun setHapticFeedback(hapticFeedback: Boolean) = Unit
+
     override fun getScreenOrientationLocked() = MutableStateFlow(screenOrientationLocked)
+
     override fun setScreenOrientationLocked(screenOrientationLocked: Boolean) = Unit
+
     override fun getSightingModeFlow() = MutableStateFlow(sightingMode)
+
     override fun setSightingMode(sightingMode: Boolean) = Unit
+
     override fun getAutoShowSensorStatusDialogEnabledFlow() = MutableStateFlow(autoShowSensorStatusDialogEnabled)
+
     override fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean) = Unit
+
     override fun getShowMagneticFieldStrengthFlow() = MutableStateFlow(showMagneticFieldStrength)
+
     override fun setShowMagneticFieldStrength(showMagneticFieldStrength: Boolean) = Unit
+
     override fun setMagneticField(magneticField: FloatArray) = Unit
+
     override fun getMagneticFieldStrengthFlow() = MutableStateFlow(magneticFieldStrength)
+
     override fun getExpectedMagneticFieldStrengthFlow() = MutableStateFlow(expectedMagneticFieldStrength)
+
     override fun getLocationFlow() = MutableStateFlow(location)
+
     override fun setLocation(location: Location?) = Unit
+
     override fun getLocationStatusFlow() = MutableStateFlow(locationStatus)
+
     override fun setLocationStatus(locationStatus: LocationStatus) = Unit
 }

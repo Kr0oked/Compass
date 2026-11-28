@@ -26,6 +26,8 @@ import com.bobek.compass.data.LocationStatus
 import com.bobek.compass.data.SensorAccuracy
 import com.bobek.compass.settings.SettingsRepository
 import com.bobek.compass.util.rotationMatrix
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -46,8 +48,6 @@ import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.Duration.Companion.seconds
 
 private val DEBOUNCE = 1.seconds
 private val SENSOR_ACCURACY_DEBOUNCE = 1.seconds
@@ -117,134 +117,148 @@ class CompassViewModelTest {
     }
 
     @Test
-    fun sightingModeLoadedFromSettings() = runTest(testDispatcher) {
-        val settings = FakeSettingsRepository(sightingMode = false)
-        val customViewModel = CompassViewModel(settings)
-        assertFalse(customViewModel.getSightingModeFlow().value)
-    }
+    fun sightingModeLoadedFromSettings() =
+        runTest(testDispatcher) {
+            val settings = FakeSettingsRepository(sightingMode = false)
+            val customViewModel = CompassViewModel(settings)
+            assertFalse(customViewModel.getSightingModeFlow().value)
+        }
 
     @Test
-    fun autoShowSensorStatusDialogEnabledLoadedFromSettings() = runTest(testDispatcher) {
-        val settings = FakeSettingsRepository(autoShowSensorStatusDialogEnabled = false)
-        val customViewModel = CompassViewModel(settings)
-        assertFalse(customViewModel.getAutoShowSensorStatusDialogEnabledFlow().value)
-    }
+    fun autoShowSensorStatusDialogEnabledLoadedFromSettings() =
+        runTest(testDispatcher) {
+            val settings = FakeSettingsRepository(autoShowSensorStatusDialogEnabled = false)
+            val customViewModel = CompassViewModel(settings)
+            assertFalse(customViewModel.getAutoShowSensorStatusDialogEnabledFlow().value)
+        }
 
     @Test
-    fun showMagneticFieldStrengthLoadedFromSettings() = runTest(testDispatcher) {
-        val settings = FakeSettingsRepository(showMagneticFieldStrength = true)
-        val customViewModel = CompassViewModel(settings)
-        assertTrue(customViewModel.getShowMagneticFieldStrengthFlow().value)
-    }
+    fun showMagneticFieldStrengthLoadedFromSettings() =
+        runTest(testDispatcher) {
+            val settings = FakeSettingsRepository(showMagneticFieldStrength = true)
+            val customViewModel = CompassViewModel(settings)
+            assertTrue(customViewModel.getShowMagneticFieldStrengthFlow().value)
+        }
 
     // Setters update flows immediately
 
     @Test
-    fun setDeviceRotationUpdatesCompassReading() = runTest(testDispatcher) {
-        viewModel.setDeviceRotation(rotationMatrix(yawDegrees = 90.0f))
-        advanceUntilIdle()
+    fun setDeviceRotationUpdatesCompassReading() =
+        runTest(testDispatcher) {
+            viewModel.setDeviceRotation(rotationMatrix(yawDegrees = 90.0f))
+            advanceUntilIdle()
 
-        val reading = viewModel.getCompassReadingFlow().value
-        assertEquals(CompassRegime.ROSE, reading.regime)
-        assertEquals(90.0f, reading.azimuth.degrees, 0.5f)
-    }
-
-    @Test
-    fun setDeviceRotationFaceDownSelectsHintRegime() = runTest(testDispatcher) {
-        viewModel.setDeviceRotation(rotationMatrix(pitchDegrees = 180.0f))
-        advanceUntilIdle()
-
-        assertEquals(CompassRegime.HINT, viewModel.getCompassReadingFlow().value.regime)
-    }
+            val reading = viewModel.getCompassReadingFlow().value
+            assertEquals(CompassRegime.ROSE, reading.regime)
+            assertEquals(90.0f, reading.azimuth.degrees, 0.5f)
+        }
 
     @Test
-    fun setSensorAccuracyUpdatesFlow() = runTest(testDispatcher) {
-        viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
-        assertEquals(SensorAccuracy.HIGH, viewModel.getSensorAccuracyFlow().value)
-    }
+    fun setDeviceRotationFaceDownSelectsHintRegime() =
+        runTest(testDispatcher) {
+            viewModel.setDeviceRotation(rotationMatrix(pitchDegrees = 180.0f))
+            advanceUntilIdle()
+
+            assertEquals(CompassRegime.HINT, viewModel.getCompassReadingFlow().value.regime)
+        }
+
+    @Test
+    fun setSensorAccuracyUpdatesFlow() =
+        runTest(testDispatcher) {
+            viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+            assertEquals(SensorAccuracy.HIGH, viewModel.getSensorAccuracyFlow().value)
+        }
 
     // Sensor accuracy is debounced
 
     @Test
-    fun transientAccuracyBlipNeverReachesSensorAccuracyFlow() = runTest(testDispatcher) {
-        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE - 1.milliseconds)
-        viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+    fun transientAccuracyBlipNeverReachesSensorAccuracyFlow() =
+        runTest(testDispatcher) {
+            viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE - 1.milliseconds)
+            viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
 
-        assertEquals(SensorAccuracy.HIGH, viewModel.getSensorAccuracyFlow().value)
-    }
+            assertEquals(SensorAccuracy.HIGH, viewModel.getSensorAccuracyFlow().value)
+        }
 
     // Auto-show sensor status dialog
 
     @Test
-    fun droppingBelowHighAutoShowsSensorStatusDialog() = runTest(testDispatcher) {
-        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
-        assertTrue(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
-    }
+    fun droppingBelowHighAutoShowsSensorStatusDialog() =
+        runTest(testDispatcher) {
+            viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+            assertTrue(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+        }
 
     @Test
-    fun mediumAccuracyAlsoAutoShowsSensorStatusDialog() = runTest(testDispatcher) {
-        viewModel.setSensorAccuracy(SensorAccuracy.MEDIUM)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
-        assertTrue(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
-    }
+    fun mediumAccuracyAlsoAutoShowsSensorStatusDialog() =
+        runTest(testDispatcher) {
+            viewModel.setSensorAccuracy(SensorAccuracy.MEDIUM)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+            assertTrue(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+        }
 
     @Test
-    fun onSensorStatusDialogAutoShownResetsFlow() = runTest(testDispatcher) {
-        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
-        viewModel.onSensorStatusDialogAutoShown()
-        assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
-    }
+    fun onSensorStatusDialogAutoShownResetsFlow() =
+        runTest(testDispatcher) {
+            viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+            viewModel.onSensorStatusDialogAutoShown()
+            assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+        }
 
     @Test
-    fun transientAccuracyBlipDoesNotAutoShowSensorStatusDialog() = runTest(testDispatcher) {
-        // Mirrors a screen rotation: accuracy dips and recovers before the debounce settles
-        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE - 1.milliseconds)
-        viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+    fun transientAccuracyBlipDoesNotAutoShowSensorStatusDialog() =
+        runTest(testDispatcher) {
+            // Mirrors a screen rotation: accuracy dips and recovers before the debounce settles
+            viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE - 1.milliseconds)
+            viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
 
-        assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
-    }
-
-    @Test
-    fun oscillatingBetweenWarningLevelsOnlyAutoShowsOnce() = runTest(testDispatcher) {
-        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
-        viewModel.onSensorStatusDialogAutoShown()
-
-        viewModel.setSensorAccuracy(SensorAccuracy.MEDIUM)
-        viewModel.setSensorAccuracy(SensorAccuracy.UNRELIABLE)
-        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
-
-        assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
-    }
+            assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+        }
 
     @Test
-    fun recoveringToHighRearmsAutoShowForNextDrop() = runTest(testDispatcher) {
-        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
-        viewModel.onSensorStatusDialogAutoShown()
+    fun oscillatingBetweenWarningLevelsOnlyAutoShowsOnce() =
+        runTest(testDispatcher) {
+            viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+            viewModel.onSensorStatusDialogAutoShown()
 
-        viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
-        viewModel.setSensorAccuracy(SensorAccuracy.MEDIUM)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+            viewModel.setSensorAccuracy(SensorAccuracy.MEDIUM)
+            viewModel.setSensorAccuracy(SensorAccuracy.UNRELIABLE)
+            viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
 
-        assertTrue(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
-    }
+            assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+        }
 
     @Test
-    fun highAccuracyNeverAutoShowsSensorStatusDialog() = runTest(testDispatcher) {
-        viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
-        assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
-    }
+    fun recoveringToHighRearmsAutoShowForNextDrop() =
+        runTest(testDispatcher) {
+            viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+            viewModel.onSensorStatusDialogAutoShown()
+
+            viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+            viewModel.setSensorAccuracy(SensorAccuracy.MEDIUM)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+
+            assertTrue(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+        }
+
+    @Test
+    fun highAccuracyNeverAutoShowsSensorStatusDialog() =
+        runTest(testDispatcher) {
+            viewModel.setSensorAccuracy(SensorAccuracy.HIGH)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+            assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+        }
 
     @Test
     fun setTrueNorthUpdatesFlow() {
@@ -279,32 +293,35 @@ class CompassViewModelTest {
     // Sighting mode setting affects regime selection
 
     @Test
-    fun sightingModeDisabledKeepsRoseWhenUpright() = runTest(testDispatcher) {
-        viewModel.setSightingMode(false)
-        viewModel.setDeviceRotation(rotationMatrix(pitchDegrees = 90.0f))
-        advanceUntilIdle()
+    fun sightingModeDisabledKeepsRoseWhenUpright() =
+        runTest(testDispatcher) {
+            viewModel.setSightingMode(false)
+            viewModel.setDeviceRotation(rotationMatrix(pitchDegrees = 90.0f))
+            advanceUntilIdle()
 
-        assertEquals(CompassRegime.ROSE, viewModel.getCompassReadingFlow().value.regime)
-    }
+            assertEquals(CompassRegime.ROSE, viewModel.getCompassReadingFlow().value.regime)
+        }
 
     @Test
-    fun sightingModeEnabledEntersSightingWhenUpright() = runTest(testDispatcher) {
-        viewModel.setDeviceRotation(rotationMatrix(pitchDegrees = 90.0f))
-        advanceUntilIdle()
+    fun sightingModeEnabledEntersSightingWhenUpright() =
+        runTest(testDispatcher) {
+            viewModel.setDeviceRotation(rotationMatrix(pitchDegrees = 90.0f))
+            advanceUntilIdle()
 
-        assertEquals(CompassRegime.SIGHTING, viewModel.getCompassReadingFlow().value.regime)
-    }
+            assertEquals(CompassRegime.SIGHTING, viewModel.getCompassReadingFlow().value.regime)
+        }
 
     // Auto-show sensor status dialog setting gates the popup
 
     @Test
-    fun autoShowSensorStatusDialogDisabledSuppressesPopup() = runTest(testDispatcher) {
-        viewModel.setAutoShowSensorStatusDialogEnabled(false)
-        viewModel.setSensorAccuracy(SensorAccuracy.LOW)
-        advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
+    fun autoShowSensorStatusDialogDisabledSuppressesPopup() =
+        runTest(testDispatcher) {
+            viewModel.setAutoShowSensorStatusDialogEnabled(false)
+            viewModel.setSensorAccuracy(SensorAccuracy.LOW)
+            advanceTimeBy(SENSOR_ACCURACY_DEBOUNCE + 1.milliseconds)
 
-        assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
-    }
+            assertFalse(viewModel.getShouldAutoShowSensorStatusDialogFlow().value)
+        }
 
     @Test
     fun setShowMagneticFieldStrengthUpdatesFlow() {
@@ -320,16 +337,17 @@ class CompassViewModelTest {
     }
 
     @Test
-    fun magneticFieldStrengthIsMagnitudeOfFirstSampleThenSmoothed() = runTest(testDispatcher) {
-        viewModel.setMagneticField(floatArrayOf(30f, 40f, 0f))
-        advanceUntilIdle()
-        assertEquals(50f, viewModel.getMagneticFieldStrengthFlow().value!!, 0.001f)
+    fun magneticFieldStrengthIsMagnitudeOfFirstSampleThenSmoothed() =
+        runTest(testDispatcher) {
+            viewModel.setMagneticField(floatArrayOf(30f, 40f, 0f))
+            advanceUntilIdle()
+            assertEquals(50f, viewModel.getMagneticFieldStrengthFlow().value!!, 0.001f)
 
-        viewModel.setMagneticField(floatArrayOf(0f, 0f, 90f))
-        advanceUntilIdle()
-        val strength = viewModel.getMagneticFieldStrengthFlow().value!!
-        assertTrue("Expected smoothing between 50 and 90, was $strength", strength > 50f && strength < 90f)
-    }
+            viewModel.setMagneticField(floatArrayOf(0f, 0f, 90f))
+            advanceUntilIdle()
+            val strength = viewModel.getMagneticFieldStrengthFlow().value!!
+            assertTrue("Expected smoothing between 50 and 90, was $strength", strength > 50f && strength < 90f)
+        }
 
     @Test
     fun expectedMagneticFieldStrengthIsNullWithoutLocation() {
@@ -337,15 +355,16 @@ class CompassViewModelTest {
     }
 
     @Test
-    fun expectedMagneticFieldStrengthFollowsLocationRegardlessOfTrueNorth() = runTest(testDispatcher) {
-        viewModel.setLocation(Location("test"))
-        advanceUntilIdle()
-        assertNotNull(viewModel.getExpectedMagneticFieldStrengthFlow().value)
+    fun expectedMagneticFieldStrengthFollowsLocationRegardlessOfTrueNorth() =
+        runTest(testDispatcher) {
+            viewModel.setLocation(Location("test"))
+            advanceUntilIdle()
+            assertNotNull(viewModel.getExpectedMagneticFieldStrengthFlow().value)
 
-        viewModel.setTrueNorth(false)
-        advanceUntilIdle()
-        assertNotNull(viewModel.getExpectedMagneticFieldStrengthFlow().value)
-    }
+            viewModel.setTrueNorth(false)
+            advanceUntilIdle()
+            assertNotNull(viewModel.getExpectedMagneticFieldStrengthFlow().value)
+        }
 
     @Test
     fun setLocationUpdatesFlow() {
@@ -363,65 +382,72 @@ class CompassViewModelTest {
     // Settings persistence after debounce
 
     @Test
-    fun trueNorthIsPersistedToSettingsAfterDebounce() = runTest(testDispatcher) {
-        viewModel.setTrueNorth(false)
-        advanceTimeBy(DEBOUNCE + 1.milliseconds)
-        assertFalse(fakeSettingsRepository.trueNorthValue)
-    }
+    fun trueNorthIsPersistedToSettingsAfterDebounce() =
+        runTest(testDispatcher) {
+            viewModel.setTrueNorth(false)
+            advanceTimeBy(DEBOUNCE + 1.milliseconds)
+            assertFalse(fakeSettingsRepository.trueNorthValue)
+        }
 
     @Test
-    fun hapticFeedbackIsPersistedToSettingsAfterDebounce() = runTest(testDispatcher) {
-        viewModel.setHapticFeedback(false)
-        advanceTimeBy(DEBOUNCE + 1.milliseconds)
-        assertFalse(fakeSettingsRepository.hapticFeedbackValue)
-    }
+    fun hapticFeedbackIsPersistedToSettingsAfterDebounce() =
+        runTest(testDispatcher) {
+            viewModel.setHapticFeedback(false)
+            advanceTimeBy(DEBOUNCE + 1.milliseconds)
+            assertFalse(fakeSettingsRepository.hapticFeedbackValue)
+        }
 
     @Test
-    fun screenOrientationLockedIsPersistedToSettingsAfterDebounce() = runTest(testDispatcher) {
-        viewModel.setScreenOrientationLocked(false)
-        advanceTimeBy(DEBOUNCE + 1.milliseconds)
-        assertFalse(fakeSettingsRepository.screenOrientationLockedValue)
-    }
+    fun screenOrientationLockedIsPersistedToSettingsAfterDebounce() =
+        runTest(testDispatcher) {
+            viewModel.setScreenOrientationLocked(false)
+            advanceTimeBy(DEBOUNCE + 1.milliseconds)
+            assertFalse(fakeSettingsRepository.screenOrientationLockedValue)
+        }
 
     @Test
-    fun sightingModeIsPersistedToSettingsAfterDebounce() = runTest(testDispatcher) {
-        viewModel.setSightingMode(false)
-        advanceTimeBy(DEBOUNCE + 1.milliseconds)
-        assertFalse(fakeSettingsRepository.sightingModeValue)
-    }
+    fun sightingModeIsPersistedToSettingsAfterDebounce() =
+        runTest(testDispatcher) {
+            viewModel.setSightingMode(false)
+            advanceTimeBy(DEBOUNCE + 1.milliseconds)
+            assertFalse(fakeSettingsRepository.sightingModeValue)
+        }
 
     @Test
-    fun autoShowSensorStatusDialogEnabledIsPersistedToSettingsAfterDebounce() = runTest(testDispatcher) {
-        viewModel.setAutoShowSensorStatusDialogEnabled(false)
-        advanceTimeBy(DEBOUNCE + 1.milliseconds)
-        assertFalse(fakeSettingsRepository.autoShowSensorStatusDialogEnabledValue)
-    }
+    fun autoShowSensorStatusDialogEnabledIsPersistedToSettingsAfterDebounce() =
+        runTest(testDispatcher) {
+            viewModel.setAutoShowSensorStatusDialogEnabled(false)
+            advanceTimeBy(DEBOUNCE + 1.milliseconds)
+            assertFalse(fakeSettingsRepository.autoShowSensorStatusDialogEnabledValue)
+        }
 
     @Test
-    fun showMagneticFieldStrengthIsPersistedToSettingsAfterDebounce() = runTest(testDispatcher) {
-        viewModel.setShowMagneticFieldStrength(true)
-        advanceTimeBy(DEBOUNCE + 1.milliseconds)
-        assertTrue(fakeSettingsRepository.showMagneticFieldStrengthValue)
-    }
+    fun showMagneticFieldStrengthIsPersistedToSettingsAfterDebounce() =
+        runTest(testDispatcher) {
+            viewModel.setShowMagneticFieldStrength(true)
+            advanceTimeBy(DEBOUNCE + 1.milliseconds)
+            assertTrue(fakeSettingsRepository.showMagneticFieldStrengthValue)
+        }
 
     @Test
-    fun rapidChangesOnlyPersistLastValueAfterDebounce() = runTest(testDispatcher) {
-        viewModel.setTrueNorth(false)
-        advanceTimeBy(DEBOUNCE - 1.milliseconds)
-        // Debounce not expired yet, repository not yet updated
-        assertTrue(fakeSettingsRepository.trueNorthValue)
+    fun rapidChangesOnlyPersistLastValueAfterDebounce() =
+        runTest(testDispatcher) {
+            viewModel.setTrueNorth(false)
+            advanceTimeBy(DEBOUNCE - 1.milliseconds)
+            // Debounce not expired yet, repository not yet updated
+            assertTrue(fakeSettingsRepository.trueNorthValue)
 
-        viewModel.setTrueNorth(true)
-        advanceTimeBy(DEBOUNCE + 1.milliseconds)
-        // Only the last value is persisted
-        assertTrue(fakeSettingsRepository.trueNorthValue)
-    }
+            viewModel.setTrueNorth(true)
+            advanceTimeBy(DEBOUNCE + 1.milliseconds)
+            // Only the last value is persisted
+            assertTrue(fakeSettingsRepository.trueNorthValue)
+        }
 }
 
 private class FakeSettingsRepository(
     sightingMode: Boolean = true,
     autoShowSensorStatusDialogEnabled: Boolean = true,
-    showMagneticFieldStrength: Boolean = false
+    showMagneticFieldStrength: Boolean = false,
 ) : SettingsRepository {
 
     private val trueNorthFlow = MutableStateFlow(true)
@@ -432,47 +458,66 @@ private class FakeSettingsRepository(
     private val showMagneticFieldStrengthFlow = MutableStateFlow(showMagneticFieldStrength)
     private val accessLocationPermissionRequestedFlow = MutableStateFlow(false)
 
-    val trueNorthValue get() = trueNorthFlow.value
-    val hapticFeedbackValue get() = hapticFeedbackFlow.value
-    val screenOrientationLockedValue get() = screenOrientationLockedFlow.value
-    val sightingModeValue get() = sightingModeFlow.value
-    val autoShowSensorStatusDialogEnabledValue get() = autoShowSensorStatusDialogEnabledFlow.value
-    val showMagneticFieldStrengthValue get() = showMagneticFieldStrengthFlow.value
+    val trueNorthValue
+        get() = trueNorthFlow.value
+
+    val hapticFeedbackValue
+        get() = hapticFeedbackFlow.value
+
+    val screenOrientationLockedValue
+        get() = screenOrientationLockedFlow.value
+
+    val sightingModeValue
+        get() = sightingModeFlow.value
+
+    val autoShowSensorStatusDialogEnabledValue
+        get() = autoShowSensorStatusDialogEnabledFlow.value
+
+    val showMagneticFieldStrengthValue
+        get() = showMagneticFieldStrengthFlow.value
 
     override fun getTrueNorth(): Flow<Boolean> = trueNorthFlow
+
     override suspend fun setTrueNorth(trueNorth: Boolean) {
         trueNorthFlow.value = trueNorth
     }
 
     override fun getHapticFeedback(): Flow<Boolean> = hapticFeedbackFlow
+
     override suspend fun setHapticFeedback(hapticFeedback: Boolean) {
         hapticFeedbackFlow.value = hapticFeedback
     }
 
     override fun getScreenOrientationLocked(): Flow<Boolean> = screenOrientationLockedFlow
+
     override suspend fun setScreenOrientationLocked(screenOrientationLocked: Boolean) {
         screenOrientationLockedFlow.value = screenOrientationLocked
     }
 
     override fun getSightingMode(): Flow<Boolean> = sightingModeFlow
+
     override suspend fun setSightingMode(sightingMode: Boolean) {
         sightingModeFlow.value = sightingMode
     }
 
     override fun getAutoShowSensorStatusDialogEnabled(): Flow<Boolean> = autoShowSensorStatusDialogEnabledFlow
+
     override suspend fun setAutoShowSensorStatusDialogEnabled(autoShowSensorStatusDialogEnabled: Boolean) {
         autoShowSensorStatusDialogEnabledFlow.value = autoShowSensorStatusDialogEnabled
     }
 
     override fun getShowMagneticFieldStrength(): Flow<Boolean> = showMagneticFieldStrengthFlow
+
     override suspend fun setShowMagneticFieldStrength(showMagneticFieldStrength: Boolean) {
         showMagneticFieldStrengthFlow.value = showMagneticFieldStrength
     }
 
     override fun getNightMode(): Flow<AppNightMode> = MutableStateFlow(AppNightMode.FOLLOW_SYSTEM)
+
     override suspend fun setNightMode(nightMode: AppNightMode) = Unit
 
     override fun getAccessLocationPermissionRequested(): Flow<Boolean> = accessLocationPermissionRequestedFlow
+
     override suspend fun setAccessLocationPermissionRequested(accessLocationPermissionRequested: Boolean) {
         accessLocationPermissionRequestedFlow.value = accessLocationPermissionRequested
     }

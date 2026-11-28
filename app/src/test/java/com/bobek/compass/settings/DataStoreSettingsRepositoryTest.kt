@@ -38,8 +38,7 @@ import org.junit.rules.TemporaryFolder
 @OptIn(ExperimentalCoroutinesApi::class)
 class DataStoreSettingsRepositoryTest {
 
-    @get:Rule
-    val tempFolder = TemporaryFolder()
+    @get:Rule val tempFolder = TemporaryFolder()
 
     private val testDispatcher = UnconfinedTestDispatcher(TestCoroutineScheduler())
     private val testScope = TestScope(testDispatcher)
@@ -49,7 +48,8 @@ class DataStoreSettingsRepositoryTest {
             PreferenceDataStoreFactory.create(
                 corruptionHandler = ReplaceFileCorruptionHandler { emptyPreferences() },
                 scope = testScope,
-                produceFile = { tempFolder.newFile("test_settings.preferences_pb") })
+                produceFile = { tempFolder.newFile("test_settings.preferences_pb") },
+            ),
         )
     }
 

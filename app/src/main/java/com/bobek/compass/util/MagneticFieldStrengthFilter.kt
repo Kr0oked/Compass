@@ -28,15 +28,14 @@ import kotlin.math.sqrt
 object MagneticFieldStrengthFilter {
 
     /**
-     * Weight of each new sample in the exponential low-pass. At the ~5 Hz of `SENSOR_DELAY_NORMAL`
-     * this settles within about a second, steadying the readout while still reacting visibly to a
-     * nearby magnet.
+     * Weight of each new sample in the exponential low-pass. At the ~5 Hz of `SENSOR_DELAY_NORMAL` this settles within
+     * about a second, steadying the readout while still reacting visibly to a nearby magnet.
      */
     const val SMOOTHING_FACTOR = 0.25f
 
     /**
-     * Returns the smoothed field strength in µT after the sample ([x], [y], [z], in µT). The first
-     * sample (no [previous]) passes through unfiltered so the readout doesn't ramp up from zero.
+     * Returns the smoothed field strength in µT after the sample ([x], [y], [z], in µT). The first sample (no
+     * [previous]) passes through unfiltered so the readout doesn't ramp up from zero.
      */
     fun next(previous: Float?, x: Float, y: Float, z: Float): Float {
         val magnitude = sqrt(x * x + y * y + z * z)

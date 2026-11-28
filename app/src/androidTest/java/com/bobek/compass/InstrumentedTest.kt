@@ -33,6 +33,7 @@ import androidx.compose.ui.test.hasStateDescription
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
+import androidx.compose.ui.test.junit4.v2.AndroidComposeTestRule as createAndroidComposeTestRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -50,16 +51,15 @@ import com.bobek.compass.data.SensorAccuracy
 import com.bobek.compass.settings.preferencesDataStore
 import com.bobek.compass.ui.TestConstants
 import com.bobek.compass.util.MathUtils
+import kotlin.math.cos
+import kotlin.math.roundToInt
+import kotlin.math.sin
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.ExternalResource
 import org.junit.runner.RunWith
-import kotlin.math.cos
-import kotlin.math.roundToInt
-import kotlin.math.sin
-import androidx.compose.ui.test.junit4.v2.AndroidComposeTestRule as createAndroidComposeTestRule
 
 // Remapped device-to-world rotation matrices (row-major, world = East-North-Up).
 private val FLAT_FACING_NORTH = floatArrayOf(1f, 0f, 0f, 0f, 1f, 0f, 0f, 0f, 1f)
@@ -78,33 +78,38 @@ class InstrumentedTest {
     // defaults before the activity loads them. Resetting them after a test instead doesn't work: the
     // debounced write is dropped when the activity finishes right away.
     @get:Rule(order = 0)
-    val clearSettingsRule = object : ExternalResource() {
-        override fun before() {
-            runBlocking {
-                ApplicationProvider.getApplicationContext<CompassApplication>().preferencesDataStore.edit { it.clear() }
+    val clearSettingsRule =
+        object : ExternalResource() {
+            override fun before() {
+                runBlocking {
+                    ApplicationProvider.getApplicationContext<CompassApplication>().preferencesDataStore.edit {
+                        it.clear()
+                    }
+                }
             }
         }
-    }
 
     @get:Rule(order = 1)
     val composeTestRule: AndroidComposeTestRule<ActivityScenarioRule<MainActivity>, MainActivity> =
         createAndroidComposeTestRule(
-            activityRule = ActivityScenarioRule<MainActivity>(
-                Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
-                    .putExtra(OPTION_INSTRUMENTED_TEST, true)
-            ),
+            activityRule =
+                ActivityScenarioRule<MainActivity>(
+                    Intent(ApplicationProvider.getApplicationContext(), MainActivity::class.java)
+                        .putExtra(OPTION_INSTRUMENTED_TEST, true),
+                ),
             activityProvider = { rule ->
                 var activity: MainActivity? = null
                 rule.scenario.onActivity { activity = it }
                 activity ?: throw IllegalStateException("Activity not found")
-            }
+            },
         )
 
     @get:Rule(order = 2)
-    var permissionRule: GrantPermissionRule = GrantPermissionRule.grant(
-        Manifest.permission.ACCESS_COARSE_LOCATION,
-        Manifest.permission.ACCESS_FINE_LOCATION
-    )
+    var permissionRule: GrantPermissionRule =
+        GrantPermissionRule.grant(
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+        )
 
     @Before
     fun setup() {
@@ -129,20 +134,22 @@ class InstrumentedTest {
 
     @Test
     fun compassIntercardinalDirections() {
-        val sectorCenters = listOf(
-            22.5f to R.string.cardinal_direction_north_northeast,
-            67.5f to R.string.cardinal_direction_east_northeast,
-            112.5f to R.string.cardinal_direction_east_southeast,
-            157.5f to R.string.cardinal_direction_south_southeast,
-            202.5f to R.string.cardinal_direction_south_southwest,
-            247.5f to R.string.cardinal_direction_west_southwest,
-            292.5f to R.string.cardinal_direction_west_northwest,
-            337.5f to R.string.cardinal_direction_north_northwest
-        )
+        val sectorCenters =
+            listOf(
+                22.5f to R.string.cardinal_direction_north_northeast,
+                67.5f to R.string.cardinal_direction_east_northeast,
+                112.5f to R.string.cardinal_direction_east_southeast,
+                157.5f to R.string.cardinal_direction_south_southeast,
+                202.5f to R.string.cardinal_direction_south_southwest,
+                247.5f to R.string.cardinal_direction_west_southwest,
+                292.5f to R.string.cardinal_direction_west_northwest,
+                337.5f to R.string.cardinal_direction_north_northwest,
+            )
 
         for ((azimuthDegrees, expectedStringRes) in sectorCenters) {
             setDeviceRotation(flatRotationAt(azimuthDegrees))
-            onCompassRose().assertStateDescription(expectedStateDescription(expectedStringRes, azimuthDegrees.roundToInt()))
+            onCompassRose()
+                .assertStateDescription(expectedStateDescription(expectedStringRes, azimuthDegrees.roundToInt()))
         }
     }
 
@@ -225,23 +232,26 @@ class InstrumentedTest {
 
         setMagneticField(MAGNETIC_FIELD_48_MICROTESLA)
         composeTestRule.onNodeWithText(magneticFieldMeasuredText(magneticFieldStrengthText(48))).assertIsDisplayed()
-        composeTestRule.onNodeWithText(getString(R.string.magnetic_field_expected), substring = true)
+        composeTestRule
+            .onNodeWithText(getString(R.string.magnetic_field_expected), substring = true)
             .assertDoesNotExist()
 
-        val location = Location("test").apply {
-            latitude = 52.52
-            longitude = 13.405
-            time = System.currentTimeMillis()
-        }
+        val location =
+            Location("test").apply {
+                latitude = 52.52
+                longitude = 13.405
+                time = System.currentTimeMillis()
+            }
         composeTestRule.runOnUiThread {
             composeTestRule.activity.compassViewModel.setLocation(location)
         }
         composeTestRule.waitForIdle()
         val expected = MathUtils.getExpectedMagneticFieldStrength(location).roundToInt()
-        val expectedText = composeTestRule.activity.getString(
-            R.string.magnetic_field_expected,
-            magneticFieldStrengthText(expected)
-        )
+        val expectedText =
+            composeTestRule.activity.getString(
+                R.string.magnetic_field_expected,
+                magneticFieldStrengthText(expected),
+            )
         composeTestRule.onNodeWithText(expectedText).assertIsDisplayed()
 
         onOkButton().performClick()
@@ -330,7 +340,7 @@ class InstrumentedTest {
         return composeTestRule.activity.getString(
             R.string.compass_rose_state_description,
             cardinalDirectionText,
-            degreesText
+            degreesText,
         )
     }
 
@@ -402,8 +412,7 @@ class InstrumentedTest {
         assert(hasStateDescription(value))
     }
 
-    private fun onCompassRose(): SemanticsNodeInteraction =
-        composeTestRule.onNodeWithTag(TestConstants.COMPASS_ROSE)
+    private fun onCompassRose(): SemanticsNodeInteraction = composeTestRule.onNodeWithTag(TestConstants.COMPASS_ROSE)
 
     private fun onTrueNorthToggleButton(): SemanticsNodeInteraction =
         composeTestRule.onNodeWithTag(TestConstants.TRUE_NORTH_TOGGLE_BUTTON)
@@ -429,8 +438,7 @@ class InstrumentedTest {
     private fun onNightModeOption(@StringRes labelResId: Int): SemanticsNodeInteraction =
         composeTestRule.onNodeWithText(getString(labelResId))
 
-    private fun onListItem(text: String): SemanticsNodeInteraction =
-        composeTestRule.onNodeWithText(text)
+    private fun onListItem(text: String): SemanticsNodeInteraction = composeTestRule.onNodeWithText(text)
 
     private fun scrollToListItem(text: String) {
         composeTestRule.onNode(hasScrollToNodeAction()).performScrollToNode(hasText(text))
@@ -443,14 +451,12 @@ class InstrumentedTest {
     private fun onTopBarTitle(@StringRes titleResId: Int = R.string.compass): SemanticsNodeInteraction =
         onTopBarTitle(getString(titleResId))
 
-    private fun onTopBarTitle(title: String): SemanticsNodeInteraction =
-        composeTestRule.onNodeWithText(title)
+    private fun onTopBarTitle(title: String): SemanticsNodeInteraction = composeTestRule.onNodeWithText(title)
 
     private fun onSettingsButton(): SemanticsNodeInteraction =
         composeTestRule.onNodeWithContentDescription(getString(R.string.settings))
 
-    private fun onOkButton(): SemanticsNodeInteraction =
-        composeTestRule.onNodeWithText(getString(R.string.ok))
+    private fun onOkButton(): SemanticsNodeInteraction = composeTestRule.onNodeWithText(getString(R.string.ok))
 
     private fun getString(@StringRes resId: Int): String = composeTestRule.activity.getString(resId)
 }

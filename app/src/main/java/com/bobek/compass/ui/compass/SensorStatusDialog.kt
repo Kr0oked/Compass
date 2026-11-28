@@ -49,7 +49,7 @@ import com.bobek.compass.ui.TestConstants
 @Composable
 fun SensorStatusDialog(
     viewModel: ICompassViewModel,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     val sensorAccuracy by viewModel.getSensorAccuracyFlow().collectAsState()
     val magneticFieldStrength by viewModel.getMagneticFieldStrengthFlow().collectAsState()
@@ -60,33 +60,32 @@ fun SensorStatusDialog(
         title = { Text(text = stringResource(R.string.sensor_status)) },
         text = {
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .verticalScroll(rememberScrollState())
+                modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState()),
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         painter = painterResource(sensorAccuracy.iconResourceId),
                         contentDescription = null,
                         modifier = Modifier.size(24.dp),
-                        tint = sensorAccuracy.tintColor
+                        tint = sensorAccuracy.tintColor,
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
                         text = stringResource(id = sensorAccuracy.labelResourceId),
                         style = MaterialTheme.typography.titleMediumEmphasized,
-                        modifier = Modifier.testTag(TestConstants.SENSOR_ACCURACY_TEXT)
+                        modifier = Modifier.testTag(TestConstants.SENSOR_ACCURACY_TEXT),
                     )
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = stringResource(
-                        R.string.magnetic_field_measured,
-                        magneticFieldStrength?.let { formatMagneticFieldStrength(it) }
-                            ?: stringResource(R.string.no_value)
-                    )
+                    text =
+                        stringResource(
+                            R.string.magnetic_field_measured,
+                            magneticFieldStrength?.let { formatMagneticFieldStrength(it) }
+                                ?: stringResource(R.string.no_value),
+                        ),
                 )
                 expectedMagneticFieldStrength?.let {
                     Text(text = stringResource(R.string.magnetic_field_expected, formatMagneticFieldStrength(it)))
@@ -101,9 +100,7 @@ fun SensorStatusDialog(
                 Image(
                     painter = painterResource(id = R.drawable.img_sensor_calibration_explanation),
                     contentDescription = null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(100.dp)
+                    modifier = Modifier.fillMaxWidth().height(100.dp),
                 )
             }
         },
@@ -111,6 +108,6 @@ fun SensorStatusDialog(
             TextButton(onClick = onDismiss, shapes = ButtonDefaults.shapes()) {
                 Text(text = stringResource(R.string.ok))
             }
-        }
+        },
     )
 }

@@ -39,7 +39,7 @@ import com.bobek.compass.ui.NavigateBackButton
 @PreviewScreenSizes
 fun LicenseScreen(
     @PreviewParameter(LicenseScreenStateProvider::class) state: LicenseScreenState,
-    onBackClick: () -> Unit = {}
+    onBackClick: () -> Unit = {},
 ) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
@@ -49,28 +49,25 @@ fun LicenseScreen(
             MediumFlexibleTopAppBar(
                 title = { Text(state.title) },
                 navigationIcon = { NavigateBackButton(onClick = onBackClick) },
-                scrollBehavior = scrollBehavior
+                scrollBehavior = scrollBehavior,
             )
-        }
+        },
     ) { padding ->
         Text(
             text = state.licenseContent,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .padding(16.dp)
-                .verticalScroll(rememberScrollState())
+            modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp).verticalScroll(rememberScrollState()),
         )
     }
 }
 
 data class LicenseScreenState(
     val title: String,
-    val licenseContent: String
+    val licenseContent: String,
 )
 
 private class LicenseScreenStateProvider : PreviewParameterProvider<LicenseScreenState> {
-    override val values: Sequence<LicenseScreenState> = sequenceOf(
-        LicenseScreenState(title = "The license title", licenseContent = "The license content")
-    )
+    override val values: Sequence<LicenseScreenState> =
+        sequenceOf(
+            LicenseScreenState(title = "The license title", licenseContent = "The license content"),
+        )
 }
