@@ -55,7 +55,7 @@ fun LicenseScreen(
     ) { padding ->
         Text(
             text = state.licenseContent,
-            modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp).verticalScroll(rememberScrollState()),
+            modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(padding).padding(16.dp),
         )
     }
 }
