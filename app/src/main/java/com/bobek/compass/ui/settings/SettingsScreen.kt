@@ -23,7 +23,10 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -33,6 +36,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LargeFlexibleTopAppBar
 import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
@@ -49,8 +53,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.toggleableState
+import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.dp
@@ -65,6 +75,9 @@ import com.bobek.compass.ui.compass.ComposeCompassViewModel
 import com.bobek.compass.ui.compass.ICompassViewModel
 
 private const val TAG = "SettingsScreen"
+
+/** Indents setting items so their text aligns with the section title next to the section icon. */
+private val SettingItemIndent = 40.dp
 
 @Composable
 @PreviewScreenSizes
@@ -182,6 +195,7 @@ fun SettingsScreen(
                 )
                 ListItem(
                     supportingContent = { Text(BuildConfig.VERSION_NAME) },
+                    contentPadding = settingItemContentPadding(),
                 ) {
                     Text(stringResource(R.string.version))
                 }
@@ -218,9 +232,19 @@ private fun SettingsSection(
             )
         }
     }
-    Column(modifier = Modifier.padding(start = 40.dp)) {
-        content()
-    }
+    content()
+}
+
+@Composable
+private fun settingItemContentPadding(): PaddingValues {
+    val layoutDirection = LocalLayoutDirection.current
+    val default = ListItemDefaults.ContentPadding
+    return PaddingValues(
+        start = default.calculateStartPadding(layoutDirection) + SettingItemIndent,
+        top = default.calculateTopPadding(),
+        end = default.calculateEndPadding(layoutDirection),
+        bottom = default.calculateBottomPadding(),
+    )
 }
 
 @Composable
@@ -230,6 +254,8 @@ private fun SwitchSettingItem(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
 ) {
+    // The checked/onCheckedChange ListItem overload announces itself as a checkbox and tints the item as selected while
+    // checked, so use the onClick overload with switch semantics instead.
     ListItem(
         onClick = { onCheckedChange(!checked) },
         supportingContent = { Text(summary) },
@@ -251,6 +277,12 @@ private fun SwitchSettingItem(
                     },
             )
         },
+        modifier =
+            Modifier.semantics {
+                role = Role.Switch
+                toggleableState = ToggleableState(checked)
+            },
+        contentPadding = settingItemContentPadding(),
     ) {
         Text(title)
     }
@@ -265,6 +297,7 @@ private fun ClickableSettingItem(
     ListItem(
         onClick = onClick,
         supportingContent = { Text(summary) },
+        contentPadding = settingItemContentPadding(),
     ) {
         Text(title)
     }
