@@ -16,7 +16,8 @@ Package: `com.bobek.compass`.
 # Instrumented tests (requires connected device/emulator)
 ./gradlew connectedAndroidTest
 
-# Run all tests, auto-creating/booting/shutting down a Test_Phone AVD for the instrumented ones
+# Check formatting (spotlessCheck), then run all tests, auto-creating/booting/shutting down a Test_Phone AVD for the
+# instrumented ones
 bundle exec fastlane android test
 
 # Build debug APK
@@ -30,6 +31,17 @@ bundle exec fastlane android deploy
 
 # Run lint
 ./gradlew lint
+
+# Check / apply formatting via Spotless (configured in the root build.gradle.kts):
+# ktfmt (kotlinlang style, 120 columns) + GPL license header (spotless/license-header.txt) for .kt/.kts,
+# flexmark for Markdown (except the generated fastlane/README.md),
+# trailing whitespace / final newline / no tabs for XML, TOML, properties, fastlane files.
+# spotlessCheck also runs as part of ./gradlew check and in the .githooks/pre-commit hook.
+./gradlew spotlessCheck
+./gradlew spotlessApply
+
+# Enable the versioned git hooks (once per clone); pre-commit aborts on formatting violations
+git config core.hooksPath .githooks
 
 # Screenshots via Fastlane; each lane grabs a light rose (1.png), dark rose (2.png), and light sighting (3.png) shot
 bundle exec fastlane android grab_screens               # creates Screenshots_* AVDs if missing, boots each in turn

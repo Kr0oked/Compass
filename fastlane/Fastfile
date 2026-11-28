@@ -23,8 +23,9 @@ SCREENSHOT_EMULATORS = [
 TEST_EMULATOR = { avd: "Test_Phone", port: 5560, serial: "emulator-5560" }.freeze
 
 platform :android do
-  desc "Runs all the tests"
+  desc "Checks formatting and runs all the tests"
   lane :test do
+    gradle(task: "spotlessCheck")
     gradle(task: "test")
 
     ensure_sdk_command_line_tools_available
